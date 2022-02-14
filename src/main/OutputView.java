@@ -11,7 +11,7 @@ public class OutputView {
 
         for (LadderChar[] chars : ladderGame.getMap()) {
             for (LadderChar chr : chars) {
-                System.out.print(chr.getChr());
+                System.out.print(chr.get());
             }
             System.out.println();
         }

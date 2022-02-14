@@ -13,12 +13,12 @@ public class InputView {
     }
 
     public int getNumPerson() {
-        outputView.printMessage("참여할 사람은 몇 명인가요?");
+        outputView.printMessage(Message.INPUT_NUM_PERSON.get());
         return scanner.nextInt();
     }
 
     public int getNumLadder() {
-        outputView.printMessage("최대 사다리 높이는 몇 개인가요?");
+        outputView.printMessage(Message.INPUT_NUM_LADDER.get());
         return scanner.nextInt();
     }
 }

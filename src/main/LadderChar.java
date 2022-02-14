@@ -11,7 +11,7 @@ public enum LadderChar {
         this.chr = chr;
     }
 
-    public char getChr() {
+    public char get() {
         return chr;
     }
 }
