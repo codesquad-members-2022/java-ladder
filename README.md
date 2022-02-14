@@ -69,6 +69,18 @@ public interface GameInitializer {
 
 ---
 
+## GameResultService (interface)
+```java
+public interface GameResultService {
+
+    LadderElement[][] getLadder();
+}
+```
+- 게임결과에 대한 서비스 로직을 담당하는 인터페이스
+- 구현체 : GameResultServiceImpl
+
+---
+
 ## LadderElement (enum)
 ```java
 @RequiredArgsConstructor
