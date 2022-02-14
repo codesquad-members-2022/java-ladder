@@ -78,3 +78,16 @@ public enum LadderElement {
   - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
 
 ---
+
+## Validator (interface)
+```java
+public interface Validator {
+
+  void entryValidation(int entry);
+  void heightValidate(int height);
+}
+```
+- 유효성을 검사하는 역할을 정의한 인터페이스
+- 구현체 : ValidatorImpl
+
+---
