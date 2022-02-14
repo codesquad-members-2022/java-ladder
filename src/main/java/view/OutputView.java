@@ -1,5 +1,7 @@
 package view;
 
+import model.Ladder;
+
 public class OutputView {
     private static OutputView ov;
 
@@ -10,5 +12,9 @@ public class OutputView {
             ov = new OutputView();
         }
         return ov;
+    }
+
+    public void printLadder(Ladder ladder) {
+        System.out.println(ladder);
     }
 }
