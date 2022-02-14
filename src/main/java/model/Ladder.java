@@ -12,23 +12,23 @@ public class Ladder {
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
-        this.shape = initShape();
+        this.shape = new char[height][width];
+        initShape();
     }
 
     private char[][] initShape() {
-        char[][] shape = new char[height][width];
         for (int h = 0; h < height; ++h) {
             fill(shape[h], ' ');
         }
-        assignLine(shape);
+        assignLine();
         return shape;
     }
-    private void assignLine(char[][] shape) {
+    private void assignLine() {
         for (int h = 0; h < height; ++h) {
-            assignLine(shape, h);
+            assignLine(h);
         }
     }
-    private void assignLine(char[][] shape, int h) {
+    private void assignLine(int h) {
         for (int w = 0; w < width; ++w) {
             shape[h][w] = isLine(h, w) ? '-' : ' ';
         }
