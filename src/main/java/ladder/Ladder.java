@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ladder {
-    public String[][] makeLadder(int[] param) {
-        return getDrawingLadder(getLadderArr(getLine(param[0]), param[1]));
+    public String[][] makeLadder(int n, int m) {
+        return getDrawingLadder(getLadderArr(getLine(n), m));
     }
 
     private int getLine(int n) {
@@ -20,8 +20,8 @@ public class Ladder {
     private String[][] getDrawingLadder(String[][] ladder) {
         for (int i = 0; i < ladder.length; i++) { //세로
             for (int j = 0; j < ladder[i].length; j++) {//가로
-                ladder = drawingStick(ladder, i, j);
                 ladder = drawingLine(ladder, i, j);
+                ladder = drawingStick(ladder, i, j);
             }
         }
         return ladder;
