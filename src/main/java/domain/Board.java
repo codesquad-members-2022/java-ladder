@@ -32,6 +32,14 @@ public class Board {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String[] strings : frame) {
+            stringBuilder.append(Arrays.toString(strings).replaceAll("\\[|\\]|,","")).append('\n');
+        }
+        return stringBuilder.toString();
+    }
 
     private void draw(int row) {
         for (int col = 0; col < getLadderHeight() ; col++) {
