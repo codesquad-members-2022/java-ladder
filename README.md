@@ -91,3 +91,16 @@ public interface Validator {
 - 구현체 : ValidatorImpl
 
 ---
+
+## InputView (interface)
+```java
+public interface InputView {
+
+    int inputEntry();
+    int inputHeight();
+}
+```
+- 사용자로부터 입력을 받는 역할을 정의한 인터페이스
+- 구현체 : InputViewImpl
+
+---
