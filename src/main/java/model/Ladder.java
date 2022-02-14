@@ -46,11 +46,14 @@ public class Ladder {
     public String toString() {
         StringBuffer sb = new StringBuffer();
         for (int h = 0; h < height; ++h) {
-            for (int w = 0; w < width; ++w) {
-                sb.append('|').append(w < width - 1 ? shape[h][w] : "");
-            }
+            appendRow(sb, h);
             sb.append('\n');
         }
         return sb.toString();
+    }
+    private void appendRow(StringBuffer sb, int h) {
+        for (int w = 0; w < width; ++w) {
+            sb.append('|').append(w < width - 1 ? shape[h][w] : "");
+        }
     }
 }
