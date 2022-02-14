@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    public static final String LINE_MAKE_ERROR_MESSAGE = "Line의 x좌표는 같고, y좌표는 1차이 나야 합니다.";
+    public static final String LINE_MAKE_ERROR_MESSAGE = "Line의 x좌표는 같고, y좌표는 2차이 나야 합니다.";
     private final List<Position> positions;
 
     public Line(List<Position> positions) {
@@ -17,7 +17,7 @@ public class Line {
     private boolean isValidLinePositions(List<Position> positions) {
         Position first = positions.get(0);
         Position second = positions.get(1);
-        return first.isSameX(second) && first.isDistanceOne(second);
+        return first.isSameX(second) && first.isDistanceTwo(second);
     }
 
     @Override

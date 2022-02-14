@@ -23,7 +23,7 @@ public class Position {
     }
 
     public boolean isSameX(Position position) {return this.x == position.x;}
-    public boolean isDistanceOne(Position position) {return Math.abs(this.y - position.y) == 1;}
+    public boolean isDistanceTwo(Position position) {return Math.abs(this.y - position.y) == 2;}
 
     @Override
     public boolean equals(Object o) {
