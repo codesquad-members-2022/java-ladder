@@ -8,13 +8,13 @@ public class InputView {
     private static final String MAX_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
     private static Scanner sc = new Scanner(System.in);
 
-    public static String getPlayersCount() {
+    public static int getPlayersCount() {
         System.out.println(PLAYERS_COUNT_MESSAGE);
-        return sc.nextLine();
+        return sc.nextInt();
     }
 
-    public static String getMaxLadderHeight() {
+    public static int getMaxLadderHeight() {
         System.out.println(MAX_LADDER_HEIGHT_MESSAGE);
-        return sc.nextLine();
+        return sc.nextInt();
     }
 }
