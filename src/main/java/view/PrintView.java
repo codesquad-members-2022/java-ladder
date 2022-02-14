@@ -18,7 +18,7 @@ public class PrintView {
 
     public static void showLadder(char[][] ladderBoard) {
         for (char[] chars : ladderBoard) {
-            PrintView.printLadderWidth(chars);
+            printLadderWidth(chars);
         }
     }
 }
