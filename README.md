@@ -67,6 +67,3 @@
 - [X] naming convention 고려
 
 
-## 구현 사항 정리
-
-- [ ] ㅇㅇ
