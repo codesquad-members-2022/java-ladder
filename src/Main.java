@@ -7,7 +7,8 @@ public class Main {
         int people = scn.nextInt() * 2 - 1;
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = scn.nextInt();
-
+        Ladder l = new Ladder();
+        l.makeLadder(people,height);
         scn.close();
     }
 }
