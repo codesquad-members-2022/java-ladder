@@ -4,4 +4,8 @@ public class Person {
     public Person(int personCount) {
         this.personCount = personCount;
     }
+
+    public int getPersonCount() {
+        return personCount;
+    }
 }
