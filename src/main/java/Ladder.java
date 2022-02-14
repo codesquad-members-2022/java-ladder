@@ -18,11 +18,9 @@ public class Ladder {
         return (n == 0) ? EMPTY : LINE;
     }
 
-    public Ladder(int entry, int height) {
-        int width = entry + (entry - 1);
-        this.ladder = new String[height][width];
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
+    private void initLadder() {
+        for (int row = 0; row < ladder.length; row++) {
+            for (int col = 0; col < ladder[row].length; col++) {
                 if (isPillar(col)) {
                     ladder[row][col] = PILLAR;
                 } else {
@@ -30,6 +28,12 @@ public class Ladder {
                 }
             }
         }
+    }
+
+    public Ladder(int entry, int height) {
+        int width = entry + (entry - 1);
+        this.ladder = new String[height][width];
+        initLadder();
     }
 
     @Override
