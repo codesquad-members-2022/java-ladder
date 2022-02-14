@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class GameDisplay {
 
     public static void showGuideToPersonCount() {
@@ -10,10 +12,8 @@ public class GameDisplay {
 
     public static void showLadderInfo(String[][] ladderInfo) {
         System.out.println();
-        for (int i = 0; i < ladderInfo.length; i++) {
-            for (int j = 0; j < ladderInfo[0].length; j++) {
-                System.out.printf("%s", ladderInfo[i][j]);
-            }
+        for (String[] item : ladderInfo) {
+            Arrays.stream(item).forEach(System.out::print);
             System.out.println();
         }
     }
