@@ -104,3 +104,15 @@ public interface InputView {
 - 구현체 : InputViewImpl
 
 ---
+
+## OutputView (interface)
+```java
+public interface OutputView {
+
+    void printLadder(LadderElement[][] ladder);
+}
+```
+- 결과 출력 역할을 담당하는 인터페이스
+- 구현체 : OutputViewImpl
+
+---
