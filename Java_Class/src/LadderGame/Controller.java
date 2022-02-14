@@ -1,30 +1,23 @@
 package LadderGame;
 
-import java.util.Arrays;
-
 public class Controller {
     private final Input input;
     private final LadderMaker maker;
+    private final Output output;
 
-    public Controller(Input input, LadderMaker maker) {
+    public Controller(Input input, LadderMaker maker, Output output) {
         this.input = input;
         this.maker = maker;
+        this.output = output;
     }
 
     protected void runApp() {
         input.processInput();
+        int[] inputArray = input.getInputAsArray();
 
-            int[] inputArray = input.getInputArray();
-            maker.makeLadder(inputArray);
-            String[][] ladder = maker.getLadder();
+        maker.makeLadder(inputArray);
+        String[][] ladder = maker.getLadderArray();
 
-            /* 테스트..Junit 배워야하는데.. */
-            Arrays.stream(ladder) // Stream<String[]>
-                .map(i -> Arrays.toString(i)
-                    .replace(", ", "")
-                    .replace("[", "")
-                    .replace("]", ""))
-                .forEach(System.out::println);
-
+        output.printConsole(ladder);
     }
 }

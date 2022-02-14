@@ -34,7 +34,7 @@ public class Input {
         ladderHeight = Integer.parseInt(receiveInput(Message.LADDERHEIGHT));
     }
 
-    protected int[] getInputArray() {
+    protected int[] getInputAsArray() {
         int[] intArr = new int[2];
         intArr[0] = headCount;
         intArr[1] = ladderHeight;

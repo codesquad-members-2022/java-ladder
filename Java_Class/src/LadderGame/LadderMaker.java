@@ -7,8 +7,7 @@ public class LadderMaker {
     private String[][] ladder;
 
     protected void makeLadder(int[] inputArray) {
-        ladder = new String[inputArray[1]][inputArray[0]*2 -1];
-
+        ladder = new String[inputArray[1]][inputArray[0] * 2 - 1];
         for (int row = 0; row < ladder.length; row++) {
             makeRow(row);
         }
@@ -32,7 +31,7 @@ public class LadderMaker {
         ladder[row][column] = " ";
     }
 
-    protected String[][] getLadder() {
+    protected String[][] getLadderArray() {
         return ladder;
     }
 }
