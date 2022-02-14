@@ -1,9 +1,15 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Ladder {
 
+    Scanner sc = new Scanner(System.in);
     Random ran = new Random();
 
+    public int InputInfo(String Questions){
+        System.out.println(Questions);
+        return sc.nextInt();
+    }
 
     public String[][] LadderInfo(int Player, int LadderHeight){
 
