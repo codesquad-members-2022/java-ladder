@@ -32,3 +32,11 @@
 
 
 - 사다리 상태를 화면에 출력한다. 어느 시점에 출력할 것인지에 대한 제약은 없다.
+
+
+#### 결과
+- 입력값 범위 검증 
+
+<img src="https://user-images.githubusercontent.com/96989782/153838599-32e43d5e-9476-4a30-8edf-65b3a7038b2f.PNG" width="300">
+
+
