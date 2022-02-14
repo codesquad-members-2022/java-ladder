@@ -18,10 +18,12 @@ public class Position {
     private boolean isValidPosition(int x, int y){
         return isValidArgument(x) && isValidArgument(y);
     }
-
     private boolean isValidArgument(int num){
         return num >= 0;
     }
+
+    public boolean isSameX(Position position) {return this.x == position.x;}
+    public boolean isDistanceOne(Position position) {return Math.abs(this.y - position.y) == 1;}
 
     @Override
     public boolean equals(Object o) {
