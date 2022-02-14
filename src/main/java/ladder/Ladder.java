@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ladder {
-    public String[][] makeLadder(int n, int m) {
-        return getDrawingLadder(getLadderArr(getLine(n), m));
+    public String[][] makeLadder(int[] param) {
+        return getDrawingLadder(getLadderArr(getLine(param[0]), param[1]));
     }
 
     private int getLine(int n) {
@@ -48,25 +48,4 @@ public class Ladder {
         return random.nextInt(2);
     }
 
-    private void printLadder(String[][] ladder) {
-        for (String[] strings : ladder) {
-            for (String string : strings) {
-                System.out.print(string);
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("참여 인원수?");
-        int people = sc.nextInt();
-        System.out.println("최대 사다리 높이?");
-        int ladderHeight = sc.nextInt();
-
-        Ladder ladder = new Ladder();
-        String[][] StringLadder = ladder.makeLadder(people, ladderHeight);
-
-        ladder.printLadder(StringLadder);
-    }
 }
