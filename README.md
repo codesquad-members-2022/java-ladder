@@ -39,3 +39,25 @@ public class AppConfig {
   - `Scanner` : 사용자 입력을 받는 용도. 어플리케이션이 종료되면 자원을 반환하도록 close 메서드를 소멸 메서드로 설정함.
 
 ---
+
+## LadderElement (enum)
+```
+@RequiredArgsConstructor
+@Getter
+public enum LadderElement {
+
+    VERTICAL_LINE("-"),
+    HORIZONTAL_LINE("|"),
+    EMPTY_LINE(" ");
+
+    private final String symbol;
+
+}
+```
+- `Ladder`의 구성 요소들을 enum으로 정의
+- 요소
+  - 세로라인은 VERTICAL_LINE
+  - 가로라인은 HORIZONTAL_LINE
+  - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
+
+---
