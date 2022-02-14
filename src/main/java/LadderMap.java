@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class LadderMap {
     private char[][] map;
     private int personCount;
@@ -9,10 +11,10 @@ public class LadderMap {
         }
         this.personCount = personCount;
         this.ladderHeight = ladderHeight;
-        map = new char[ladderHeight][personCount * 2 - 1];
+        initMap();
     }
 
-    private void initMap(int personCount, int ladderHeight) {
+    private void initMap() {
         map = new char[ladderHeight][personCount * 2 - 1];
         for (char[] line : map) {
             for (int i = 0; i < line.length; i++) {

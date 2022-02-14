@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class View {
     private static Scanner sc = new Scanner(System.in);
@@ -12,6 +14,7 @@ public class View {
     }
 
     public static void printLadderMap(LadderMap ladderMap) {
+        System.out.println(1);
         System.out.println();
         for (char[] line : ladderMap.getMap()) {
             for (char c : line) {
