@@ -6,6 +6,8 @@ public class Ladder {
 
     public void makeLadder(int people, int height) {
         this.ladder = new String[height][people];
+
+        makeLadder2(ladder);
     }
 
     public void makeLadder2(String[][] ladder){
