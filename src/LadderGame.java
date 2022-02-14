@@ -10,7 +10,7 @@ public class LadderGame {
         int m = Integer.parseInt(sc.nextLine());
         System.out.println();
 
-        Ladder ladder = new Ladder(n, m);
+        Ladder ladder = new Ladder(m, n);
         System.out.println(ladder.render());
 
         sc.close();
