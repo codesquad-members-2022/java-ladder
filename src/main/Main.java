@@ -10,12 +10,13 @@ public class Main {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView(scanner, outputView);
 
-        LadderMap ladderMap = new LadderMap(
+        LadderGame ladderGame = new LadderGame(
             inputView.getNumPerson(),
             inputView.getNumLadder()
         );
+        ladderGame.createMap();
 
-        System.out.println(ladderMap);
+        outputView.printGame(ladderGame);
     }
 
 }
