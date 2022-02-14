@@ -24,6 +24,7 @@ public class Ladder {
             }
         }
         this.ladder = ladder;
+        print(ladder);
     }
 
     public int makeRandom(){
