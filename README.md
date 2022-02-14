@@ -64,5 +64,7 @@
 - [ ] 들여쓰기를 2단계에서 1단계로 줄이기
 - [ ] else 사용 금지
 - [ ] 구현 순서를 고려하며 프로그래밍
-- [ ] naming convention 고려 
+- [ ] naming convention 고려
+
+
 
