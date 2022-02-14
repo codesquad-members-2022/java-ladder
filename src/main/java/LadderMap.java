@@ -31,4 +31,8 @@ public class LadderMap {
         }
         return ' ';
     }
+
+    public char[][] getMap() {
+        return map;
+    }
 }

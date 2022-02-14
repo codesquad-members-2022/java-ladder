@@ -13,4 +13,19 @@ class LadderMapTest {
         assertThrows(IllegalArgumentException.class, () -> new LadderMap(-1, -1));
     }
 
+    @Test
+    void initMap() {
+        LadderMap ladderMap = new LadderMap(3, 5);
+
+        char[][] map = ladderMap.getMap();
+        for (char[] line : map) {
+            for (int i = 0; i < line.length; i++) {
+                if (i % 2 == 1) {
+                    assertTrue(line[i] == ' ' || line[i] == '-');
+                } else {
+                    assertTrue(line[i] == '|');
+                }
+            }
+        }
+    }
 }
