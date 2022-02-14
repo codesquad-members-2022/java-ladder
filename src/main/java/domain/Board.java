@@ -7,23 +7,23 @@ import static Util.Valid.checkPlayers;
 public class Board {
 
     private static final String VERTICAL = "|";
-    private static final String BLANK = " ";
+
 
     private final String[][] frame;
     private final Line line;
 
     public Board(int players, int height) {
         checkPlayers(players);
-        frame = new String[(players*2)-1][height];
+        frame = new String[height][(players*2)-1];
         line = new Line();
     }
 
     public int countPlayers() {
-        return frame.length/2+1;
+        return frame[0].length/2+1;
     }
 
     public int getLadderHeight() {
-        return frame[0].length;
+        return frame.length;
     }
 
     public void generateFrame() {
