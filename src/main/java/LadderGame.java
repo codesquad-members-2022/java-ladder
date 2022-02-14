@@ -13,6 +13,10 @@ public class LadderGame {
 
     public void start() {
         makeRandomLadder();
+        showLadder();
+    }
+
+    private void showLadder() {
         for (char[] chars : ladderBoard) {
             for (char aChar : chars) {
                 System.out.print(aChar);
@@ -32,8 +36,20 @@ public class LadderGame {
     private void makeRandomLadder() {
         for (int i = 0; i < ladderHeight; i++) {
             for (int j = 1; j < peopleCount + 2; j+=2) {
-                ladderBoard[i][j] = '-';
+                if (isPutLine()) {
+                    ladderBoard[i][j] = '-';
+                    continue;
+                }
+                ladderBoard[i][j] = ' ';
             }
         }
+    }
+
+    private boolean isPutLine() {
+        return makeRandomValue() > 5;
+    }
+
+    private int makeRandomValue() {
+        return (int)(Math.random() * 10 + 1);
     }
 }
