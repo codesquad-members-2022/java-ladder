@@ -61,8 +61,12 @@ public class LadderGame {
         }
         ladderBoard[i][j] = ' ';
     }
-
+    
     private boolean isPutLine() {
-        return (int)(Math.random() * 10) % 2 == 0;
+        return makeRandomValue() > 5;
+    }
+
+    private int makeRandomValue() {
+        return (int)(Math.random() * 10 + 1);
     }
 }
