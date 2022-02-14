@@ -5,6 +5,14 @@ public class Ladder {
     Random ran = new Random();
 
 
+    public String[][] LadderInfo(int Player, int LadderHeight){
+
+        String[][] ladder = new String[LadderHeight][Player*2-1];
+        MakeLadder(ladder);
+
+        return ladder;
+    }
+
     private void MakeLadder(String[][] ladder){
         String[] RandomLine = {" ", "-"};
         for (int i = 0; i < ladder.length; i++) {
