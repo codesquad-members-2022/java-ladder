@@ -7,4 +7,9 @@ public class OutputView {
     public static void printMaxHeightOfLadderQueryText() {
         System.out.println(QueryText.MAXIMUM_HEIGHT_OF_LADDERS.getText());
     }
+
+    public static void printLadderBoard(String ladderBoard) {
+        System.out.println(ladderBoard);
+    }
+
 }

@@ -1,6 +1,5 @@
 import view.InputView;
 import view.OutputView;
-import view.QueryText;
 
 public class Main {
 
@@ -14,6 +13,7 @@ public class Main {
         Game game = new Game();
         game.init(numOfPeople, maxHeightOfLadder);
 
+        OutputView.printLadderBoard(game.showLadderBoard());
 
     }
 }
