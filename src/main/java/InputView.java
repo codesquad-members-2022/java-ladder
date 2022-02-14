@@ -1,9 +1,16 @@
+import java.util.Scanner;
+
 public class InputView {
-    public static int getPlayerCount() {
-        return 0;
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static int getInputNumer(String message) {
+        OutputView.printMessage(message);
+        int result = Integer.parseInt(scanner.nextLine());
+        return result;
     }
 
-    public static int getLadderMaxHeight() {
-        return 0;
+
+    public static void close() {
+        scanner.close();
     }
 }
