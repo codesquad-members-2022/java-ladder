@@ -39,10 +39,6 @@ public class Ladder {
     }
 
     private char drawRandomStep() {
-        if (random.nextBoolean()) {
-            return STEP;
-        } else {
-            return EMPTY;
-        }
+        return random.nextBoolean() ? STEP : EMPTY;
     }
 }
