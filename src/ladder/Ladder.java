@@ -7,6 +7,7 @@ public class Ladder {
     private final String verticalBar = "|";
     private final String horizontalBar = "-";
     private final String blank = " ";
+    private final String newLine = "\n";
     private final Random random = new Random();
     private String[][] ladder;
 
@@ -43,12 +44,16 @@ public class Ladder {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                stringBuilder.append(ladder[i][j]);
-            }
-            stringBuilder.append("\n");
+            appendSingleLine(i, stringBuilder);
         }
         return stringBuilder.toString();
+    }
+
+    private void appendSingleLine(int currentHeight, StringBuilder stringBuilder) {
+        for (int i = 0; i < ladder[currentHeight].length; i++) {
+            stringBuilder.append(ladder[currentHeight][i]);
+        }
+        stringBuilder.append(newLine);
     }
 
 
