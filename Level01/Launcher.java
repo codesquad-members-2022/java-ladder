@@ -10,4 +10,14 @@ public class Launcher {
 
         Print.result(result);
     }
+
+    private String[][] makeLadder(int player, int height) {
+        int row = height;
+        int column = 2 * player - 1;
+
+        String[][] ladder = new String[row][column];
+        ladder = makeLegBridge(ladder);
+
+        return ladder;
+    }
 }
