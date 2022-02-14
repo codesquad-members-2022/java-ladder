@@ -57,6 +57,18 @@ public class LadderGame {
 
 ---
 
+## GameInitializer (interface)
+```java
+public interface GameInitializer {
+
+    void initLadder(int entry, int maxHeight);
+}
+```
+- LadderGame을 초기화하는 역할을 담당
+- 구현체 : GameInitializerImpl
+
+---
+
 ## LadderElement (enum)
 ```java
 @RequiredArgsConstructor
