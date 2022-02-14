@@ -1,5 +1,3 @@
-import view.PrintView;
-
 public class LadderGame {
 
     private final int peopleCount;
@@ -11,6 +9,20 @@ public class LadderGame {
         this.ladderHeight = ladderHeight;
         this.ladderBoard = new char[ladderHeight][peopleCount * 2 - 1];
         initBoard();
+    }
+
+    public void start() {
+        makeRandomLadder();
+        showLadder();
+    }
+
+    private void showLadder() {
+        for (char[] chars : ladderBoard) {
+            for (char aChar : chars) {
+                System.out.print(aChar);
+            }
+            System.out.println();
+        }
     }
 
     private void initBoard() {
@@ -51,6 +63,10 @@ public class LadderGame {
     }
 
     private boolean isPutLine() {
-        return (int)(Math.random() * 10) % 2 == 0;
+        return makeRandomValue() > 5;
+    }
+
+    private int makeRandomValue() {
+        return (int)(Math.random() * 10 + 1);
     }
 }
