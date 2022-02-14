@@ -3,14 +3,14 @@ package LadderGame;
 import java.util.Random;
 
 public class LadderMaker {
-    Random random = new Random();
-    String[][] ladder;
+    private final Random random = new Random();
+    private String[][] ladder;
 
-    public void makeLadder(int[] inputArray) {
-        ladder = new String[inputArray[1]][inputArray[0]];
+    protected void makeLadder(int[] inputArray) {
+        ladder = new String[inputArray[1]][inputArray[0]*2 -1];
 
         for (int row = 0; row < ladder.length; row++) {
-               makeRow(row);
+            makeRow(row);
         }
     }
 
@@ -19,6 +19,7 @@ public class LadderMaker {
             drawLine(row, column);
         }
     }
+
     private void drawLine(int row, int column) {
         if (column % 2 == 0) {
             ladder[row][column] = "|";
@@ -31,7 +32,7 @@ public class LadderMaker {
         ladder[row][column] = " ";
     }
 
-    public String[][] getLadder() {
+    protected String[][] getLadder() {
         return ladder;
     }
 }
