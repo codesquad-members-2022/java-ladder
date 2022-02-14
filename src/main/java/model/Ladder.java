@@ -18,7 +18,28 @@ public class Ladder {
         for (int h = 0; h < height; ++h) {
             fill(shape[h], ' ');
         }
+        assignLine(shape);
         return shape;
+    }
+    private void assignLine(char[][] shape) {
+        for (int h = 0; h < height; ++h) {
+            for (int w = 0; w < width; ++w) {
+                if (isLine(h, w)) {
+                    shape[h][w] = '-';
+                }
+            }
+        }
+    }
+    private boolean isLine(int h, int w) {
+        int indexValue = (h + 1) * (w + 1) + w + 1;
+        int randomValue = (int) (Math.random() * height * width + 1);
+        int maxValue = Math.max(indexValue, randomValue);
+        for (int value = 2; value * value <= maxValue; ++value) {
+            if (indexValue % value == 0 && randomValue % value == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
