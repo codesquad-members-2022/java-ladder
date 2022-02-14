@@ -40,7 +40,7 @@ public class LadderGame {
 
 		for (int i = 0; i < ladderHeight; i++) {
 			for (int j = 0; j < userNumber - 1; j++) {
-				if (Math.random() < 0.2f) {
+				if (Math.random() < 0.3f) {
 					ladderFoothold[i][j] = true;
 				}
 			}
