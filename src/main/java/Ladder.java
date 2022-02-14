@@ -1,12 +1,21 @@
+import java.util.Random;
+
 public class Ladder {
 
     private static final String PILLAR = "|";
     private static final String LINE = "-";
+    private static final String EMPTY = " ";
+    private static final Random random = new Random();
 
     private final String[][] ladder;
 
     private boolean isPillar(int col) {
         return col % 2 == 0;
+    }
+
+    private String createRandomLine() {
+        int n = random.nextInt(2);
+        return (n == 0) ? EMPTY : LINE;
     }
 
     public Ladder(int entry, int height) {
@@ -17,8 +26,7 @@ public class Ladder {
                 if (isPillar(col)) {
                     ladder[row][col] = PILLAR;
                 } else {
-                    // TODO: 랜덤으로 연결하기
-                    ladder[row][col] = LINE;
+                    ladder[row][col] = createRandomLine();
                 }
             }
         }
