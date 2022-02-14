@@ -20,6 +20,21 @@
 
 ---
 
+## Main 클래스
+```java
+public class Main {
+
+  public static void main(String[] args) {
+    GameClient gameClient = new GameClient();
+    gameClient.run();
+  }
+}
+```
+- main 메서드가 정의된 클래스
+- GameClient 클래스의 인스턴스 생성
+- run 메서드 호출
+---
+
 ## GameClient 클래스
 ```java
 public class GameClient {
