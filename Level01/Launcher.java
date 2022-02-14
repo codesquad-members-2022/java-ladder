@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Launcher {
     private int player;
     private int height;
@@ -40,5 +42,15 @@ public class Launcher {
             launcher.randomMakeBridge();
             ladder[i][j] = randomMakeBridge();
         }
+    }
+
+    private String randomMakeBridge() {
+        Random random = new Random();
+        int a = random.nextInt(2);
+
+        if(a == 0){
+            return "-";
+        }
+        return " ";
     }
 }
