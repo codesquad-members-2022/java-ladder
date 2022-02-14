@@ -12,4 +12,23 @@ public class LadderMap {
         map = new char[ladderHeight][personCount * 2 - 1];
     }
 
+    private void initMap(int personCount, int ladderHeight) {
+        map = new char[ladderHeight][personCount * 2 - 1];
+        for (char[] line : map) {
+            for (int i = 0; i < line.length; i++) {
+                line[i] = '|';
+                if (i % 2 == 1) {
+                    line[i] = randomCreateLadderOrBlank();
+                }
+            }
+        }
+    }
+
+    private char randomCreateLadderOrBlank() {
+        int random = (int) (Math.random() * 2);
+        if (random == 1) {
+            return '-';
+        }
+        return ' ';
+    }
 }
