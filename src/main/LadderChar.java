@@ -8,7 +8,7 @@ public enum LadderChar {
     private final char chr;
 
     LadderChar(char chr) {
-        this.chr =  chr;
+        this.chr = chr;
     }
 
     public char getChr() {

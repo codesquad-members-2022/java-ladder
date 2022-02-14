@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Random;
-
 public class LadderGame {
 
     private final int numPerson;
