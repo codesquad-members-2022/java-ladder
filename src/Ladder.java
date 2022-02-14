@@ -1,5 +1,8 @@
+import java.util.Random;
+
 public class Ladder {
     private String[][] ladder;
+    private int random;
 
     public void makeLadder(int people, int height) {
         this.ladder = new String[height][people];
@@ -10,9 +13,23 @@ public class Ladder {
             for (int j = 0; j < ladder[i].length; j++) {
                 if (j%2 == 0){
                     ladder[i][j] ="|";
+                }  else {
+                    makeRandom();
+                    if (random == 0) {
+                        ladder[i][j] = " ";
+                    } else {
+                        ladder[i][j] = "-";
+                    }
                 }
             }
         }
         this.ladder = ladder;
+    }
+
+    public int makeRandom(){
+        Random rd = new Random();
+        int random = rd.nextInt(100) % 2;
+        this.random = random;
+        return random;
     }
 }
