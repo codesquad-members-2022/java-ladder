@@ -4,25 +4,51 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ladder {
-    public void makeLadder(int n, int m) {
-        int line = (2 * n) - 1;
-        String[][] ladder = new String[line][m];
+    public String[][] makeLadder(int n, int m) {
+        return getDrawingLadder(getLadderArr(getLine(n), m));
+    }
 
-        for (int i = 0; i < m; i++) { //세로
-            for (int j = 0; j < line; j++) {//가로
-                if (j % 2 == 0){
-                    ladder[i][j] = "|";
-                    continue;
-                }
-                Random random = new Random();
-                int randomNum = random.nextInt(2);
-                if (randomNum == 0) {
-                    ladder[i][j] = "--";
-                }else {
-                    ladder[i][j] = "  ";
-                }
+    private int getLine(int n) {
+        return (2 * n) - 1;
+    }
+
+    private String[][] getLadderArr(int line, int m) {
+        String[][] ladder = new String[line][m];
+        return ladder;
+    }
+
+    private String[][] getDrawingLadder(String[][] ladder) {
+        for (int i = 0; i < ladder.length; i++) { //세로
+            for (int j = 0; j < ladder[i].length; j++) {//가로
+                ladder = drawingStick(ladder, i, j);
+                ladder = drawingLine(ladder, i, j);
             }
         }
+        return ladder;
+    }
+
+    private String[][] drawingLine(String[][] ladder, int i, int j) {
+        if (getRandomNum() == 0) {
+            ladder[i][j] = "--";
+            return ladder;
+        }
+        ladder[i][j] = "  ";
+        return ladder;
+    }
+
+    private String[][] drawingStick(String[][] ladder, int i, int j) {
+        if (j % 2 == 0){
+            ladder[i][j] = "|";
+        }
+        return ladder;
+    }
+
+    private int getRandomNum() {
+        Random random = new Random();
+        return random.nextInt(2);
+    }
+
+    private void printLadder(String[][] ladder) {
         for (String[] strings : ladder) {
             for (String string : strings) {
                 System.out.print(string);
@@ -39,6 +65,8 @@ public class Ladder {
         int ladderHeight = sc.nextInt();
 
         Ladder ladder = new Ladder();
-        ladder.makeLadder(people, ladderHeight);
+        String[][] StringLadder = ladder.makeLadder(people, ladderHeight);
+
+        ladder.printLadder(StringLadder);
     }
 }
