@@ -40,6 +40,23 @@ public class AppConfig {
 
 ---
 
+## LadderGame
+
+```java
+@Component
+@Setter @Getter
+public class LadderGame {
+
+    private LadderElement[][] ladder;
+
+}
+```
+- 사다리 게임을 정의한 LadderGame 클래스를 정의
+- getter로 이차원 배열을 반환함.
+- setter를 통해 사다리를 설정함.
+
+---
+
 ## LadderElement (enum)
 ```java
 @RequiredArgsConstructor
