@@ -20,6 +20,47 @@
 
 ---
 
+## GameClient 클래스
+```java
+public class GameClient {
+
+    private InputView inputView;
+    private OutputView outputView;
+    private GameInitializer gameInitializer;
+    private GameResultService gameResultService;
+
+    public GameClient() {
+        init();
+    }
+
+    private void init() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        inputView = ac.getBean(InputView.class);
+        outputView = ac.getBean(OutputView.class);
+        gameInitializer = ac.getBean(GameInitializer.class);
+        gameResultService = ac.getBean(GameResultService.class);
+    }
+
+    public void run() {
+        initGame();
+        LadderElement[][] ladder = gameResultService.getLadder();
+        outputView.printLadder(ladder);
+    }
+
+    private void initGame() {
+        int entry = inputView.inputEntry();
+        int height = inputView.inputHeight();
+        gameInitializer.initLadder(entry, height);
+    }
+}
+```
+- 실제 실행 클래스
+- run() 메서드를 호출하여 실행함.
+- AppConfig 클래스를 설정으로 하고, 컴포넌트 스캔을 하여 빈을 자동 등록 및 의존관계 주입
+- 등록된 빈들을 기반으로 작업을 수행함.
+
+---
+
 ## AppConfig 클래스
 
 ```java
