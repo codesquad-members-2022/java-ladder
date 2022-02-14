@@ -10,7 +10,7 @@ public class Ladder {
 
     //TODO 사다리 정보를 설정하는 메서드
     public char[][] initLadderInformation() {
-        int personCount = person.getPersonCount();
+        int personCount = person.getPersonCount() * 2 - 1;
         information = new char[maxHigh][personCount];
         standingLadderFrame(personCount);
         return randomSetting(personCount);
