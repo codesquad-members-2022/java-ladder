@@ -1,10 +1,7 @@
 package com.ttasjwi.LadderGame.view.output;
 
-import com.ttasjwi.LadderGame.game.init.LadderElement;
-import com.ttasjwi.LadderGame.view.output.OutputView;
+import com.ttasjwi.LadderGame.game.LadderElement;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 @Component
 public class OutputViewImpl implements OutputView {

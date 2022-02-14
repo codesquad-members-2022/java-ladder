@@ -1,4 +1,4 @@
-package com.ttasjwi.LadderGame.game.init;
+package com.ttasjwi.LadderGame.game;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

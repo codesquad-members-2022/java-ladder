@@ -1,5 +1,6 @@
 package com.ttasjwi.LadderGame.game.init;
 
+import com.ttasjwi.LadderGame.game.LadderElement;
 import com.ttasjwi.LadderGame.game.LadderGame;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package com.ttasjwi.LadderGame;
 
 import com.ttasjwi.LadderGame.game.result.GameResultService;
 import com.ttasjwi.LadderGame.game.init.GameInitializer;
-import com.ttasjwi.LadderGame.game.init.LadderElement;
+import com.ttasjwi.LadderGame.game.LadderElement;
 import com.ttasjwi.LadderGame.view.input.InputView;
 import com.ttasjwi.LadderGame.view.output.OutputView;
 import org.springframework.context.ApplicationContext;
