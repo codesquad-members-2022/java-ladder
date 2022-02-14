@@ -22,7 +22,7 @@
 
 ## AppConfig 클래스
 
-```
+```java
 @Configuration
 @ComponentScan
 public class AppConfig {
@@ -41,7 +41,7 @@ public class AppConfig {
 ---
 
 ## LadderElement (enum)
-```
+```java
 @RequiredArgsConstructor
 @Getter
 public enum LadderElement {
