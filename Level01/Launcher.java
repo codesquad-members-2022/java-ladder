@@ -32,4 +32,13 @@ public class Launcher {
 
         return ladder;
     }
+
+    private void insertLegAndBridge(String[][] ladder, Launcher launcher, int i, int j) {
+        if (j % 2 == 0) {
+            ladder[i][j] = "|";
+        } else {
+            launcher.randomMakeBridge();
+            ladder[i][j] = randomMakeBridge();
+        }
+    }
 }
