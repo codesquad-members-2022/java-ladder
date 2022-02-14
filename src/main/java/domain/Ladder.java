@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Ladder {
@@ -12,6 +13,20 @@ public class Ladder {
         this.playersCount = playersCount;
         this.maxLadderHeight = maxLadderHeight;
         this.ladder = new String[this.maxLadderHeight][(2 * this.playersCount) - 1];
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < ladder.length; i++) {
+            for (int j = 0; j < (2 * this.playersCount) - 1; j++) {
+                sb.append(ladder[i][j]);
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
     public void generateLadder() {
