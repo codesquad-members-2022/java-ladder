@@ -1,32 +1,32 @@
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import view.PrintView;
+
 public class LadderGame {
 
+    private static final char HEIGHT = '|';
+    private static final char WIDTH = '-';
+    private static final char VOID = ' ';
+    private static final int MAX_RANDOM_NUMBER = 10;
+
+    private final List<String> peoples;
     private final int peopleCount;
     private final int ladderHeight;
     private final char[][] ladderBoard;
-    private final char HEIGHT = '|';
-    private final char WIDTH = '-';
-    private final char VOID = ' ';
-    private final int MAX_RANDOM_NUMBER = 10;
 
-    public LadderGame(int peopleCount, int ladderHeight) {
-        this.peopleCount = peopleCount;
+    public LadderGame(String peopleList, int ladderHeight) {
+        peoples = splitPeopleList(peopleList);
+        peopleCount = peoples.size();
         this.ladderHeight = ladderHeight;
         this.ladderBoard = new char[ladderHeight][peopleCount * 2 - 1];
         initBoard();
     }
 
-    public void start() {
-        makeRandomLadder();
-        showLadder();
-    }
-
-    private void showLadder() {
-        for (char[] chars : ladderBoard) {
-            for (char aChar : chars) {
-                System.out.print(aChar);
-            }
-            System.out.println();
-        }
+    private List<String> splitPeopleList(String peopleList) {
+        return Stream.of(peopleList.split(","))
+            .collect(Collectors.toList());
     }
 
     private void initBoard() {

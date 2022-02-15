@@ -22,4 +22,8 @@ public class InputView {
     public static void scannerClose() {
         sc.close();
     }
+
+    public static String inputPeopleName() {
+        return sc.nextLine();
+    }
 }
