@@ -22,7 +22,7 @@ public class LadderGame {
     public void build() {
         int width = user * 2 - 1;
         arr = new String[height][width];
-
+      
         for (int i = 0; i < arr.length; i++) {
             addLadderUnit(i);
         }
