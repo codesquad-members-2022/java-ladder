@@ -1,4 +1,4 @@
-package step01.view;
+package step2.view;
 
 import java.util.Arrays;
 import java.util.List;

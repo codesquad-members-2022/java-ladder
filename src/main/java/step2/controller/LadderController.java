@@ -1,7 +1,7 @@
-package step0.controller;
+package step2.controller;
 
-import step0.view.InputView;
-import step0.view.OutputView;
+import step2.view.InputView;
+import step2.view.OutputView;
 
 import java.util.List;
 import java.util.Random;
