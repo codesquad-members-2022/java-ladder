@@ -40,16 +40,16 @@ public class Ladder {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int h = 0; h < height; ++h) {
             appendRow(sb, h);
-            sb.append('\n');
         }
         return sb.toString();
     }
-    private void appendRow(StringBuffer sb, int h) {
+    private void appendRow(StringBuilder sb, int h) {
         for (int w = 0; w < width; ++w) {
             sb.append(Element.POLE.ch).append(w < width - 1 ? shape[h][w].ch : "");
         }
+        sb.append('\n');
     }
 }
