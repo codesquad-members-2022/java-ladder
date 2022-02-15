@@ -93,3 +93,5 @@
 - [X] else 사용 금지
 - [X] **배열 대신 ``ArrayList``와 ``Generic``을 활용해 구현한다.**
 
+- restore 사용법
+- 
