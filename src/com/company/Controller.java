@@ -1,6 +1,6 @@
 package com.company;
 
-public class Organizer {
+public class Controller {
     int[] getSadariInfo() {
         int peopleCount = Input.getPeopleCount();
         int sadariHeight = Input.getSadariHeight();
