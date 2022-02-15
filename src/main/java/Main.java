@@ -1,12 +1,12 @@
 public class Main {
 
     public static void main(String[] args) {
-        run();
-    }
+        Client client = new Client();
 
-    private static void run() {
-        new Client();
+        client.input();
+
         LadderGame ladderGame = new LadderGame();
+
         ladderGame.build();
     }
 }
