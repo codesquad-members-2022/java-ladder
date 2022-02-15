@@ -26,7 +26,7 @@ public class Valid {
         return count;
     }
 
-    public static int checkHeight(int height) {
+    public static int checkHeightReturn(int height) {
         if(height < MIN_HEIGHT) {
             throw new IllegalArgumentException(HEIGHT_ERROR_MESSGAE);
         }
