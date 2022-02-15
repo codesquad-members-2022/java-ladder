@@ -13,7 +13,7 @@ public class Input {
     }
 
     public static int getSadariHeight() {
-        Scanner sc = new Scanner(System.in); // Scanner를 멤버변수로 빼면 어떨까? 이렇게도 쓰나?
+        Scanner sc = new Scanner(System.in);
         System.out.println("사다리의 높이는 몇인가요?");
         System.out.print("> ");
 
