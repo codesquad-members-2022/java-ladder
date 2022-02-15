@@ -8,7 +8,8 @@ public class GameService {
     public static final char SPACE = ' ';
 
     public char[][] makeLadder(int personNumber, int height) {
-        char[][] ladder = new char[height][personNumber+2];
+        int ladderWidth = 1 + (personNumber-1)*2;
+        char[][] ladder = new char[height][ladderWidth];
         fillHeightLine(ladder);
         fillLadder(ladder);
         return ladder;
@@ -34,7 +35,7 @@ public class GameService {
 
     private void fillHeightLine(char[][] ladder) {
         for(int i = 0; i < ladder.length; i++){
-            for(int j = 0; j < ladder[1].length; j += 2){
+            for(int j = 0; j < ladder[0].length; j += 2){
                 ladder[i][j] = HEIGHT;
             }
         }
