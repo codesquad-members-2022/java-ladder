@@ -4,6 +4,7 @@ public class Ladder {
     private static final char RAIL = '|';
     private static final char STEP = '-';
     private static final char EMPTY = ' ';
+    private static final int STEP_WIDTH = 1;
 
     private final char[][] ladderBars;
     private final Random random = new Random();
@@ -14,19 +15,27 @@ public class Ladder {
 
     public String render() {
         StringBuilder sb = new StringBuilder();
+
         for (char[] row : ladderBars) {
             sb.append(row);
             sb.append(System.lineSeparator());
         }
+
         return sb.toString();
     }
 
     private char[][] drawLadderBars(int height, int persons) {
-        char[][] randomLadderBars = new char[height][2 * persons - 1];
+        char[][] randomLadderBars = new char[height][getWidth(persons)];
+
         for (char[] row : randomLadderBars) {
             drawLadderRow(row);
         }
+
         return randomLadderBars;
+    }
+
+    private int getWidth(int persons) {
+        return persons + STEP_WIDTH * (persons - 1);
     }
 
     private void drawLadderRow(char[] ladderRow) {
