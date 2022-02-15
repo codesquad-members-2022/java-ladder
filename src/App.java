@@ -1,11 +1,11 @@
 public class App {
     public static void main(String[] args){
 
-        int userNumber = InputView.getUserNumberInput();
+        String[] userNames = InputView.getUsersNames();
 
         int sadariNumber = InputView.getSadariNumberInput();
 
-        Sadari s = new Sadari(userNumber, sadariNumber);
+        Sadari s = new Sadari(userNames.length, sadariNumber);
 
         OutputView.printGraphicalSadari( s.getSadari() );
 
