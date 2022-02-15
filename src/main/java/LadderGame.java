@@ -48,7 +48,7 @@ public class LadderGame {
         }
     }
 
-    void userToBlink() {
+    private void userToBlink() {
         user = user * 2 - 1;
     }
 }
