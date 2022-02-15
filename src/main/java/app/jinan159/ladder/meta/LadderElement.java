@@ -1,12 +1,12 @@
 package app.jinan159.ladder.meta;
 
-public enum Elements {
+public enum LadderElement {
 
     V_LINE("|"),
     H_LINE("-"),
     EMPTY(" ");
 
-    Elements(String mark) {
+    LadderElement(String mark) {
         this.mark = mark;
     }
 

@@ -1,9 +1,9 @@
 package app.jinan159.ladder.stretegy;
 
-import app.jinan159.ladder.meta.Elements;
+import app.jinan159.ladder.meta.LadderElement;
 
 public interface LadderGameMapStretegy {
 
-        Elements getLadderElementsOnPotision(int x, int y);
+        LadderElement getLadderElementOnPotision(int x, int y);
 
 }

@@ -1,6 +1,6 @@
 package app.jinan159.ladder;
 
-import app.jinan159.ladder.meta.Elements;
+import app.jinan159.ladder.meta.LadderElement;
 import app.jinan159.ladder.meta.GameMap;
 import app.jinan159.ladder.stretegy.DefaultGameMapStretegy;
 import app.jinan159.ladder.stretegy.LadderGameMapStretegy;
@@ -54,7 +54,7 @@ public class LadderGame {
 
     private void prepareRow(GameMap gameMap, int y) {
         for (int x = 0; x < gameMap.getWidth(); x++) {
-            Elements element = stretegy.getLadderElementsOnPotision(x, y);
+            LadderElement element = stretegy.getLadderElementOnPotision(x, y);
             gameMap.set(x, y, element);
         }
     }

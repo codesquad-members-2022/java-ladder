@@ -2,17 +2,17 @@ package app.jinan159.ladder.meta;
 
 public class GameMap {
 
-    private final Elements[][] gameMap;
+    private final LadderElement[][] gameMap;
 
     public GameMap(int participantCount, int height) {
-        this.gameMap = new Elements[height][participantCount * 2 - 1];
+        this.gameMap = new LadderElement[height][participantCount * 2 - 1];
     }
 
-    public Elements get(int x, int y) {
+    public LadderElement get(int x, int y) {
         return gameMap[y][x];
     }
 
-    public void set(int x, int y, Elements value) {
+    public void set(int x, int y, LadderElement value) {
         gameMap[y][x] = value;
     }
 
