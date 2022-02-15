@@ -24,7 +24,7 @@ class InputValidatorTest {
     @ValueSource(strings = {"not number", "1.23"})
     @DisplayName("0~9 외의 문자가 포함된 문자열을 입력한 경우, 숫자를 입력해달라는 메시지를 담은 IAE")
     void positiveIntegerNotNumber(String input) {
-        assertThatThrownBy(() -> iv.positiveInteger("not number"))
+        assertThatThrownBy(() -> iv.positiveInteger(input))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("숫자(정수)를 입력해주세요.");
     }
