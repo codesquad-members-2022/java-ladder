@@ -4,21 +4,19 @@ public class LadderGame {
 
     private static final Random random = new Random();
 
+    private String[][] ladder;
+
     public void start() {
         int playerCount = Input.inputRules("참여할 사람은 몇 명인가요?");
         int ladderHeight = Input.inputRules("최대 사다리 높이는 몇 개인가요?");
 
-        String[][] ladder = createLadder(playerCount, ladderHeight);
-
-        Output.printLadder(ladder);
+        createLadder(playerCount, ladderHeight);
     }
 
-    private static String[][] createLadder(int playerCount, int ladderHeight) {
-        String[][] ladder = new String[ladderHeight][(playerCount * 2) - 1];
+    private void createLadder(int playerCount, int ladderHeight) {
+        ladder = new String[ladderHeight][(playerCount * 2) - 1];
 
         addLadderData(ladder);
-
-        return ladder;
     }
 
     private static void addLadderData(String[][] ladder) {
@@ -33,6 +31,15 @@ public class LadderGame {
                 }
             }
         }
+    }
+
+    public void getResult() {
+        if(ladder == null) {
+            System.out.println("진행된 게임이 없습니다.");
+            return;
+        }
+
+        Output.printLadder(ladder);
     }
 
 }
