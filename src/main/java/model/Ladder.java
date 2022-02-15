@@ -38,9 +38,11 @@ public class Ladder {
         int indexValue = (h + 1) * (w + 1) + w + 1;
         int randomValue = (int) (Math.random() * height * width + 1);
         int maxValue = Math.max(indexValue, randomValue);
-        return IntStream.rangeClosed(2, (int) Math.sqrt(maxValue)).filter(value ->
-                (indexValue % value == 0 && randomValue % value == 0)
-        ).findAny().isPresent();
+        return commonFactorExist(indexValue, randomValue, maxValue);
+    }
+    private boolean commonFactorExist(int indexValue, int randomValue, int maxValue) {
+        return IntStream.rangeClosed(2, (int) Math.sqrt(maxValue)).anyMatch(value ->
+                (indexValue % value == 0 && randomValue % value == 0));
     }
 
     @Override
