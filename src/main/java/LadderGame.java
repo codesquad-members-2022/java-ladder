@@ -31,12 +31,15 @@ public class LadderGame {
 
     private void addLadderUnit(int i) {
         for (int j = 0; j < arr[i].length; j++) {
-            if (j % 2 == 1) {
-                lineOrBlank(i, j);
-            } else {
-                arr[i][j] = LADDERUNIT;
-            }
+            setUnit(i, j);
         }
+    }
+
+    private String setUnit(int i, int j) {
+        if (j % 2 == 1) {
+            return lineOrBlank(i, j);
+        }
+        return arr[i][j] = LADDERUNIT;
     }
 
     private String lineOrBlank(int i, int j) {
