@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -6,22 +7,26 @@ import view.PrintView;
 
 public class LadderGame {
 
-    private static final char HEIGHT = '|';
-    private static final char WIDTH = '-';
-    private static final char VOID = ' ';
+    private static final String HEIGHT = "|";
+    private static final String WIDTH = "-----";
+    private static final String VOID = "     ";
     private static final int MAX_RANDOM_NUMBER = 10;
 
     private final List<String> peoples;
     private final int peopleCount;
     private final int ladderHeight;
-    private final char[][] ladderBoard;
+    private final ArrayList<ArrayList<String>> ladder;
 
     public LadderGame(String peopleList, int ladderHeight) {
         peoples = splitPeopleList(peopleList);
         peopleCount = peoples.size();
         this.ladderHeight = ladderHeight;
-        this.ladderBoard = new char[ladderHeight][peopleCount * 2 - 1];
-        initBoard();
+        ladder = new ArrayList<>();
+        initLadderList(ladderHeight);
+    }
+
+    public void start() {
+        PrintView.showLadder(ladder);
     }
 
     private List<String> splitPeopleList(String peopleList) {
@@ -29,21 +34,18 @@ public class LadderGame {
             .collect(Collectors.toList());
     }
 
+    private void initLadderList(int ladderHeight) {
+        for (int i = 0; i < ladderHeight; i++) {
+            ladder.add(new ArrayList<>());
+        }
+        initBoard();
+        makeRandomLadder();
+    }
+
     private void initBoard() {
         for (int i = 0; i < ladderHeight; i++) {
-            putInitWidth(i);
+            ladder.get(i).add(HEIGHT);
         }
-    }
-
-    private void putInitWidth(int height) {
-        for (int j = 0; j < peopleCount * 2 - 1; j += 2) {
-            ladderBoard[height][j] = HEIGHT;
-        }
-    }
-
-    public void start() {
-        makeRandomLadder();
-        PrintView.showLadder(ladderBoard);
     }
 
     private void makeRandomLadder() {
@@ -52,18 +54,20 @@ public class LadderGame {
         }
     }
 
-    private void makeRow(int i) {
-        for (int j = 1; j < peopleCount * 2 - 1; j += 2) {
-            putRandomLine(i, j);
+    private void makeRow(int height) {
+        ArrayList<String> width = ladder.get(height);
+        for (int i = 0; i < peopleCount - 1; i++) {
+            putRandomLine(width);
+            width.add(HEIGHT);
         }
     }
 
-    private void putRandomLine(int i, int j) {
+    private void putRandomLine(ArrayList<String> width) {
         if (isPutLine()) {
-            ladderBoard[i][j] = WIDTH;
+            width.add(WIDTH);
             return;
         }
-        ladderBoard[i][j] = VOID;
+        width.add(VOID);
     }
     
     private boolean isPutLine() {

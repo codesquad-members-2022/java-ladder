@@ -5,11 +5,6 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static int inputPeopleNumber() {
-        PrintView.requestPeopleNumber();
-        return inputIntValue();
-    }
-
     public static int inputLadderHeight() {
         PrintView.requestLadderHeight();
         return inputIntValue();
@@ -20,6 +15,7 @@ public class InputView {
     }
 
     public static String inputPeopleName() {
+        PrintView.requestPeopleName();
         return sc.nextLine();
     }
 
