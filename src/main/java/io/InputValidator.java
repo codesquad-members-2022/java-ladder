@@ -29,11 +29,10 @@ public class InputValidator {
     }
 
     private boolean isContainNotNumberCharacter(String input) {
+        boolean contain = false;
         for (char ch : input.toCharArray()) {
-            if (!isNumberCharacter(ch)) {
-                return true;
-            }
+            contain = !isNumberCharacter(ch);
         }
-        return false;
+        return contain;
     }
 }
