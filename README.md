@@ -153,6 +153,16 @@ public int getHeight() {
         }
 * ```
 
+#### 3. 접근 제한자 변경
+* `private`, `public` 구분하여 변경
+```java
+
+public String getStringLine(int line);
+
+// -->
+
+private String getStringLine(int line);
+* ```
 
 
 
