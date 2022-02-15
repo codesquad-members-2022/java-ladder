@@ -71,6 +71,5 @@ public class Board {
                 System.out.print(b[row][col]);
             }
         }
-
     }
 }

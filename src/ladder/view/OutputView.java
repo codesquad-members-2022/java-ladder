@@ -1,12 +1,21 @@
 package ladder.view;
 
 public class OutputView {
+
+    private static final StringBuilder sb = new StringBuilder();
+
     public void print(String[][] board) {
-        for (int row = 0; row < board.length; row++) {
-            System.out.println();
-            for (int col = 0; col < board[0].length; col++) {
-                System.out.print(board[row][col]);
-            }
+        sb.setLength(0);
+        for (String[] strings : board) {
+            sb.append("\n");
+            add(strings, board[0].length);
+        }
+        System.out.println(sb);
+    }
+
+    private void add(String[] strings, int length) {
+        for (int col = 0; col < length; col++) {
+            sb.append(strings[col]);
         }
     }
 }
