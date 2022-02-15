@@ -5,14 +5,14 @@ import static java.lang.Math.*;
 public class Ladder {
     private final int height;
     private final int width;
-    private final char[][] shape;
+    private final Element[][] shape;
 
-    private enum Mark {
+    private enum Element {
         BLANK(' '), LINE('-'), POLE('|');
 
         private final char ch;
 
-        Mark(char ch) {
+        Element(char ch) {
             this.ch = ch;
         }
     }
@@ -20,7 +20,7 @@ public class Ladder {
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
-        this.shape = new char[height][width];
+        this.shape = new Element[height][width];
         initShape();
     }
 
@@ -34,8 +34,8 @@ public class Ladder {
             shape[h][w] = allocElement();
         }
     }
-    private char allocElement() {
-        return random() * 10 < 5.5 ? Mark.LINE.ch : Mark.BLANK.ch;
+    private Element allocElement() {
+        return random() * 10 < 5.5 ? Element.LINE : Element.BLANK;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Ladder {
     }
     private void appendRow(StringBuffer sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append(Mark.POLE.ch).append(w < width - 1 ? shape[h][w] : "");
+            sb.append(Element.POLE.ch).append(w < width - 1 ? shape[h][w].ch : "");
         }
     }
 }
