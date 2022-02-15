@@ -164,6 +164,47 @@ public String getStringLine(int line);
 private String getStringLine(int line);
 * ```
 
+#### 4. `PrintView`에서 `Ladder 정보`를 받아 처리하도록 변경
+* 기존 `Ladder`클래스에서 `toString()`메서드로 출력 결과를 `PrintView`로 넘겨주던 것을 **정보**만 넘겨주고 출력 처리는 `PrintView`에서 하도록 변경
+* `Ladder`클래스에서 `ladder` 배열을 그냥 넘겨주지 않고 복사해서 넘겨주도록 함
+
+```java
+// Ladder class
+public boolean[][] getLadder() {
+    boolean[][] copyLadder = new boolean[height][numPlayer - 1];
+    for (int line = 0; line < height; ++line) {
+        System.arraycopy(ladder[line], 0, copyLadder[line], 0, ladder[line].length);
+        }
+
+    return copyLadder;
+}
+
+// PrintView class
+public void printLadder() {
+    final boolean[][] ladder = this.ladder.getLadder();
+    final int height = this.ladder.getHeight();
+    final int numSteps = this.ladder.getNumSteps();
+
+    StringBuilder sb = new StringBuilder();
+    for (int line = 0; line < height; ++line) {
+        sb.append(getStringLine(ladder[line], numSteps));
+        sb.append("\n");
+    }
+
+    System.out.println(sb);
+}
+
+private StringBuilder getStringLine(boolean[] line, int numSteps) {
+    StringBuilder strLine = new StringBuilder(SIDE_RAIL);
+    for (int step = 0; step < numSteps; ++step) {
+        strLine.append(line[step] ? STEP : BLANK);
+        strLine.append(SIDE_RAIL);
+    }
+
+    return strLine;
+}
+```
+
 
 
 
