@@ -44,14 +44,19 @@ public class Ladder {
         }
     }
 
+    private StringBuilder appendLadderRow(StringBuilder sb, int row) {
+        for (String col : ladder[row]) {
+            sb.append(col);
+        }
+        sb.append("\n");
+        return sb;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (String[] row : ladder) {
-            for (String col : row) {
-                sb.append(col);
-            }
-            sb.append("\n");
+        for (int row = 0; row < ladder.length; row++) {
+            appendLadderRow(sb, row);
         }
         return sb.toString();
     }
