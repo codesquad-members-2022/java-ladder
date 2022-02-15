@@ -1,7 +1,7 @@
 
 class Ladder {
-	String[][] makeLadder(int peopleNumber, int ladderHeight){
-		String[][] ladder = new String[ladderHeight][(peopleNumber * 2) - 1];
+	char[][] makeLadder(int peopleNumber, int ladderHeight){
+		char[][] ladder = new char[ladderHeight][(peopleNumber * 2) - 1];
 		LadderLine ladderLine = new LadderLine();
 
 		for(int row = 0; row < ladder.length; row++){

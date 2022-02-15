@@ -1,18 +1,21 @@
 import java.util.Random;
 
 class LadderLine {
-	String makeLadderLine(int column){
+	char makeLadderLine(int column){
+		final char LADDER_FRAME = '|';
+		final char LADDER_LINE = '-';
+		final char BLANK = ' ';
 		Random random = new Random();
 
 		if(column % 2 == 0){
-			return "|";
+			return LADDER_FRAME;
 		}
 
 		if(random.nextBoolean()){
-			return "-";
+			return LADDER_LINE;
 		}
 
-		return " ";
+		return BLANK;
 
 	}
 }
