@@ -45,23 +45,39 @@ public class Main {
 ```java
 public class GameApplication {
 
-    public GameApplication() {
-        init();
-    }
+  private AppConfig ac;
+  private InputView inputView;
+  private OutputView outputView;
+  private LadderGameService ladderGameService;
 
-    private void init() {
-        AppConfig ac = AppConfig.getInstance();
-    }
+  public GameApplication() {
+    init();
+  }
 
-    public void run() {
-        System.out.println("Hello, World!");
-        System.out.println("Bye, World!");
-    }
+  private void init() {
+    ac = AppConfig.getInstance();
+    inputView = ac.inputView();
+    outputView = ac.outputView();
+    ladderGameService = ac.ladderGameService();
+  }
+
+  public void run() {
+    initLadderGame();
+    Ladder ladder = ladderGameService.getLadder();
+    outputView.printLadder(ladder);
+    ac.close();
+  }
+
+  public void initLadderGame() {
+    int entry = inputView.inputEntry();
+    int height = inputView.inputHeight();
+    ladderGameService.initLadderGame(entry,height);
+  }
 }
 ```
 - 실제 실행 역할을 담당함.
 - 생성자 호출 시, init 메서드를 호출하여 초기화
-- AppConfig 인스턴스를 기반으로 초기화한다.
+- AppConfig 인스턴스를 기반으로, 의존 인스턴스들을 초기화한다.
 - run 메서드를 호출하면 실행됨
 
 ---
