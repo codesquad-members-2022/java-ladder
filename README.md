@@ -63,7 +63,7 @@ public class GameApplication {
 
   public void run() {
     initLadderGame();
-    Ladder ladder = ladderGameService.getLadder();
+    Ladder ladder = ladderGameService.getCopyOfResultLadder();
     outputView.printLadder(ladder);
     ac.close();
   }
@@ -133,43 +133,35 @@ public class AppConfig {
 ```java
 public class LadderGame {
 
-    private final Ladder ladder;
+  private final Ladder ladder;
 
-    public LadderGame(Ladder ladder) {
-        this.ladder = ladder;
-    }
+  LadderGame(Ladder ladder) {
+    this.ladder = ladder;
+  }
 
-    public Ladder getLadder() {
-        return this.ladder;
-    }
-
+  Ladder getLadder() {
+    return this.ladder;
+  }
 }
 ```
 - 사다리 게임을 정의한 LadderGame 클래스를 정의
-- getter로 ladder을 반환함.
+- 같은 패키지 안에서만 생성 가능
+- getter로 ladder을 반환함. (같은 패키지 안에서만 호출가능)
 
 ---
 ## Ladder
 ```java
 public class Ladder {
 
-    private LadderElement[][] ladderElements;
+  private final LadderElement[][] ladderElements;
 
-    public Ladder(LadderElement[][] ladderElements) {
-        this.ladderElements = ladderElements;
-    }
+  Ladder(LadderElement[][] ladderElements) {
+    this.ladderElements = ladderElements;
+  }
 
-    public int width() {
-        return ladderElements[0].length;
-    }
-
-    public int height() {
-        return ladderElements.length;
-    }
-
-    public LadderElement[][] getLadderElements() {
-        return ladderElements;
-    }
+  public LadderElement[][] getLadderElements() {
+    return ladderElements;
+  }
 }
 ```
 - 사다리를 정의한 클래스
@@ -212,10 +204,12 @@ public enum LadderElement {
 ```java
 public interface LadderFactory {
 
-    Ladder create(int entry, int height);
+  Ladder create(int entry, int height);
+  Ladder copy(Ladder original);
 }
+
 ```
-- Ladder을 생성하는 역할
+- Ladder을 생성하고, 복사하는 역할
 - 구현체 : LadderFactoryImpl
 
 ---
@@ -224,13 +218,13 @@ public interface LadderFactory {
 ```java
 public interface LadderGameService {
 
-    void initLadderGame(int entry, int height);
-    Ladder getLadder();
+  void initLadderGame(int entry, int height);
+  Ladder getCopyOfResultLadder();
 }
 ```
 - LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
 - initLadderGame : 사다리 게임 초기화
-- getLadder : LadderGame으로부터, Ladder을 가져옴
+- getCopyOfResultLadder : 게임의 결과로부터, Ladder를 반아온 뒤, Ladder을 복사하여 반환.
 - 구현체 : LadderGameServiceImpl
 
 ---
