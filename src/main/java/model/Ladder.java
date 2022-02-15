@@ -1,5 +1,7 @@
 package model;
 
+import java.util.stream.IntStream;
+
 import static java.util.Arrays.*;
 
 public class Ladder {
@@ -35,12 +37,9 @@ public class Ladder {
         int indexValue = (h + 1) * (w + 1) + w + 1;
         int randomValue = (int) (Math.random() * height * width + 1);
         int maxValue = Math.max(indexValue, randomValue);
-        for (int value = 2; value * value <= maxValue; ++value) {
-            if (indexValue % value == 0 && randomValue % value == 0) {
-                return true;
-            }
-        }
-        return false;
+        return IntStream.rangeClosed(2, (int) Math.sqrt(maxValue)).filter(value ->
+                (indexValue % value == 0 && randomValue % value == 0)
+        ).findAny().isPresent();
     }
 
     @Override
