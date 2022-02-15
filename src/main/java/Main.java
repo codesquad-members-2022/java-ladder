@@ -7,6 +7,6 @@ public class Main {
     private static void run() {
         new Client();
         LadderGame ladderGame = new LadderGame();
-        ladderGame.makeLadder();
+        ladderGame.build();
     }
 }
