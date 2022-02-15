@@ -30,11 +30,15 @@ public class Board {
     private String[][] createBoard(int height) {
         String[][] board = new String[height][width.getValue()];
         for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width.getValue(); col++) {
-                board[row][col] = getSymbol(board, row, col);
-            }
+            fillBoard(board, row);
         }
         return board;
+    }
+
+    private void fillBoard(String[][] board, int row) {
+        for (int col = 0; col < width.getValue(); col++) {
+            board[row][col] = getSymbol(board, row, col);
+        }
     }
 
     private String getSymbol(String[][] board, int row, int col) {
@@ -45,7 +49,6 @@ public class Board {
             return board[row][col] = LADDER;
         }
         return board[row][col] = BLANK;
-
     }
 }
 
