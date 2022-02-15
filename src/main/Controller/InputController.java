@@ -8,15 +8,20 @@ public class InputController {
     public static int[] inputNumber() {
         int[] result = new int[2];
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            showUserInputMsg();
-            result[0] = Integer.parseInt(br.readLine());
-            showHeightInputMsg();
-            result[1] = Integer.parseInt(br.readLine());
+            input(result, br);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return result;
     }
+
+    private static void input(int[] result, BufferedReader br) throws IOException {
+        showUserInputMsg();
+        result[0] = Integer.parseInt(br.readLine());
+        showHeightInputMsg();
+        result[1] = Integer.parseInt(br.readLine());
+    }
+
     private static void showUserInputMsg() {
         System.out.println("참여할 사람은 몇 명인가요?");
     }
