@@ -22,16 +22,15 @@ public class InputValidator {
         return 0 < n;
     }
 
-    private boolean isNumberCharacter(char ch) {
+    private boolean isNumberAscii(int ch) {
         return '0' <= ch && ch <= '9';
     }
 
     private boolean isContainNotNumberCharacter(String input) {
-        boolean contain = false;
-        for (char ch : input.toCharArray()) {
-            contain = !isNumberCharacter(ch);
-        }
-        return contain;
+        return input.chars()
+            .filter(ch -> !isNumberAscii(ch))
+            .findAny()
+            .isPresent();
     }
 
     private IllegalArgumentException subdivideNumberFormatException(String input) {
