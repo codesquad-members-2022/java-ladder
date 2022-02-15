@@ -3,9 +3,9 @@ package model;
 import static java.lang.Math.*;
 
 public class Ladder {
+    private final Element[][] shape;
     private final int height;
     private final int width;
-    private final Element[][] shape;
 
     private enum Element {
         BLANK(' '), LINE('-'), POLE('|');
