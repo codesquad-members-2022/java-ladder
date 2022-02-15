@@ -31,11 +31,11 @@ public class LadderGame {
 
     private void addLadderUnit(int col) {
         for (int row = 0; row < arr[col].length; row++) {
-            setUnit(col, row);
+            createUnit(col, row);
         }
     }
 
-    private String setUnit(int col, int row) {
+    private String createUnit(int col, int row) {
         if (row % 2 == 1) {
             return createRandomLine(col, row);
         }
