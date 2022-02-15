@@ -99,12 +99,21 @@ public class Main {
 
 ### 실행 결과
 
-![img.png](/Users/dukcode/study/codesquad/backend/01/java-ladder/readme_image/level_1_result.png)
+![img.png](./readme_image/level_1_result.png)
 
 
 
 
 ## 사다리 게임 2단계 - 리팩토링 맛보기
+
+
+
+
+
+
+
+
+
 ## 사다리 게임 3단계 - 사다리 모양 개선
 ## 사다리 게임 4단계 - 리팩토링 2
 ## 사다리 게임 5단계 - 실행 결과 출력
