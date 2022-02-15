@@ -2,8 +2,6 @@ package model;
 
 import java.util.stream.IntStream;
 
-import static java.util.Arrays.*;
-
 public class Ladder {
     private int height;
     private int width;
@@ -16,10 +14,6 @@ public class Ladder {
 
         Mark(char ch) {
             this.ch = ch;
-        }
-
-        char getCh() {
-            return ch;
         }
     }
 
@@ -60,7 +54,7 @@ public class Ladder {
     }
     private void appendRow(StringBuffer sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append(Mark.POLE.getCh()).append(w < width - 1 ? shape[h][w] : "");
+            sb.append(Mark.POLE.ch).append(w < width - 1 ? shape[h][w] : "");
         }
     }
 }
