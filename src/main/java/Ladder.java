@@ -10,7 +10,7 @@ public class Ladder {
         if (!validateLadderInput(userCount, ladderHeight)) {
             throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
         }
-        ladders = new char[ladderHeight][(userCount * 2) - 1];
+        ladders = new char[ladderHeight][calculateLadderWidth(userCount)];
         setLadders();
     }
 
@@ -18,7 +18,8 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (char[] ladder : ladders) {
-            sb.append(String.valueOf(ladder).replaceAll(",","") + "\n");
+            sb.append(ladder);
+            sb.append("\n");
         }
         return sb.toString();
     }
@@ -44,6 +45,10 @@ public class Ladder {
             return USER_LINE;
         }
         return ((int)(Math.random() * 2)) == 1 ? CONNECTION_LINE : EMPTY_SPACE;
+    }
+
+    private int calculateLadderWidth(int userCount) {
+        return userCount * 2 - 1;
     }
 
 }
