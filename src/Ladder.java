@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Ladder {
     private String[][] ladder;
-    private int random;
+    private String step;
 
     public void makeLadder(int people, int height) {
         this.ladder = new String[height][people];
@@ -11,24 +11,23 @@ public class Ladder {
                 if (j%2 == 0){
                     ladder[i][j] ="|";
                 }  else {
-                    makeRandom();
-                    if (random == 0) {
-                        ladder[i][j] = " ";
-                    } else {
-                        ladder[i][j] = "-";
-                    }
+                    ladder[i][j] = makeRandomSteps();
                 }
             }
         }
         print(ladder);
     }
-    
 
-    public int makeRandom(){
+    public String makeRandomSteps(){
         Random rd = new Random();
         int random = rd.nextInt(100) % 2;
-        this.random = random;
-        return random;
+        if (random == 0) {
+            step = " ";
+        }
+        if (random == 1) {
+            step = "-";
+        }
+        return step;
     }
 
     public void print(String[][] ladder) {
