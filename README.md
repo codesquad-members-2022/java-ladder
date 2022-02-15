@@ -22,3 +22,21 @@
   - **그 외에는 추가한 라이브러리는 없다.**
 
 ---
+
+## AppConfig 클래스
+```java
+public class AppConfig {
+
+    private static AppConfig instance = new AppConfig();
+
+    private AppConfig() {}
+
+    public static AppConfig getInstance() {
+        return instance;
+    }
+
+}
+```
+- 주요 싱글톤 인스턴스들의 의존성을 관리해주는 설정 클래스 (싱글톤)
+
+---
