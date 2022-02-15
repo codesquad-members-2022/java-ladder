@@ -3,7 +3,7 @@ package main;
 public enum LadderElement {
     VERTICAL("|"),
     HORIZONTAL("-----"),
-    SPACE("     ");
+    BLANK("     ");
 
     private final String str;
 

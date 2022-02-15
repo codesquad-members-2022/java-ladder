@@ -48,29 +48,35 @@ public class LadderGame {
     }
 
     private void changeLine(int row) {
+        boolean next = true;
+
         for (int col = 0; col < width; col++) {
-            changeChar(row, col);
+            next = changeElement(row, col, next);
         }
     }
 
-    private void changeChar(int row, int col) {
+    private boolean changeElement(int row, int col, boolean prev) {
+        boolean next = prev;
+
         if (col % 2 == 0) {
             this.map[row][col] = LadderElement.VERTICAL;
         }
         if (col % 2 != 0) {
-            changeRandomChar(row, col);
+            next = changeSpace(row, col, prev);
         }
+        return next;
     }
 
-    private void changeRandomChar(int row, int col) {
+    private boolean changeSpace(int row, int col, boolean next) {
         boolean rand = RandomUtil.nextBoolean();
 
-        if (rand) {
-            this.map[row][col] = LadderElement.SPACE;
-        }
-        if (!rand) {
+        if (next && rand) {
             this.map[row][col] = LadderElement.HORIZONTAL;
         }
+        if (!next || !rand) {
+            this.map[row][col] = LadderElement.BLANK;
+        }
+        return !next || !rand;
     }
 
 }
