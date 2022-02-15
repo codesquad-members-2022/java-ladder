@@ -1,12 +1,6 @@
-import java.util.Random;
-
 public class LadderGame {
 
-    private static final Random random = new Random();
-
     private char[][] ladder;
-    private int width;
-    private int height;
 
     public void start() {
         int playerCount = Input.value("참여할 사람은 몇 명인가요?");
@@ -19,22 +13,21 @@ public class LadderGame {
         createLadder();
     }
 
-    private void init(int playerCount, int ladderHeight) {
-        this.width = (playerCount * 2) - 1;
-        this.height = ladderHeight;
+    private void init(int playerCount, int height) {
+        int width = (playerCount * 2) - 1;
+
+        ladder = new char[height][width];
     }
 
     private void createLadder() {
-        ladder = new char[height][width];
-
-        for (int i = 0; i < ladder.length; i++) {
-            addLadderData(i);
+        for (int row = 0; row < ladder.length; row++) {
+            addLadderData(row);
         }
     }
 
-    private void addLadderData(int i) {
-        for (int j = 0; j < ladder[i].length; j++) {
-            ladder[i][j] = check(j);
+    private void addLadderData(int row) {
+        for (int col = 0; col < ladder[row].length; col++) {
+            ladder[row][col] = check(col);
         }
     }
 
@@ -43,7 +36,7 @@ public class LadderGame {
             return '|';
         }
 
-        if (random.nextBoolean()) {
+        if (Random.nextBoolean()) {
             return '-';
         }
 
