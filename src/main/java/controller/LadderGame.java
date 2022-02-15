@@ -4,14 +4,14 @@ import domain.Ladder;
 import view.InputView;
 import view.OutputView;
 
-public class GameController {
+public class LadderGame {
 
-    public void ladderGameStart() {
-        Ladder ladder = gameReady();
+    public void start() {
+        Ladder ladder = ready();
         OutputView.printLadder(ladder);
     }
 
-    private Ladder gameReady() {
+    private Ladder ready() {
         int playersCount = InputView.getPlayersCount();
         int maxLadderHeight = InputView.getMaxLadderHeight();
 
