@@ -6,9 +6,9 @@ import view.InputView;
 import view.OutputView;
 
 public class Application {
-    private InputView iv;
-    private OutputView ov;
-    private Controller controller;
+    private final InputView iv;
+    private final OutputView ov;
+    private final Controller controller;
 
     public Application() {
         this.iv = InputView.getInstance();
