@@ -9,8 +9,8 @@ public class LadderGame {
     private int height;
 
     public void start() {
-        int playerCount = Input.inputRules("참여할 사람은 몇 명인가요?");
-        int ladderHeight = Input.inputRules("최대 사다리 높이는 몇 개인가요?");
+        int playerCount = Input.value("참여할 사람은 몇 명인가요?");
+        int ladderHeight = Input.value("최대 사다리 높이는 몇 개인가요?");
 
         Input.close();
 

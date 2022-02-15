@@ -4,7 +4,7 @@ public class Input {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    public static int inputRules(String message) {
+    public static int value(String message) {
         System.out.println(message);
 
         return sc.nextInt();
