@@ -29,11 +29,11 @@ public class Board {
     }
 
     public int countPlayers() {
-        return frame[0].length/2+1;
+        return players;
     }
 
     public int getLadderHeight() {
-        return frame.length;
+        return height;
     }
 
     public void generateFrame() {
@@ -52,7 +52,7 @@ public class Board {
     }
 
     private void draw(int row) {
-        for (int col = 0; col < getLadderHeight() ; col++) {
+        for (int col = 0; col < frame[row].length ; col++) {
             frame[row][col] = drawLine(col);
         }
     }
