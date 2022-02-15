@@ -63,10 +63,6 @@ public class LadderGame {
     }
 
     private boolean isPutLine() {
-        return makeRandomValue() > 5;
-    }
-
-    private int makeRandomValue() {
-        return (int)(Math.random() * 10 + 1);
+        return (int)(Math.random() * 10) % 2 == 0;
     }
 }
