@@ -2,14 +2,14 @@ package controller;
 
 import model.Ladder;
 
-public class Controller {
-    private static Controller controller;
+public class LadderController {
+    private static LadderController controller;
 
-    private Controller() {}
+    private LadderController() {}
 
-    public static Controller getInstance() {
+    public static LadderController getInstance() {
         if (controller == null) {
-            controller = new Controller();
+            controller = new LadderController();
         }
         return controller;
     }
