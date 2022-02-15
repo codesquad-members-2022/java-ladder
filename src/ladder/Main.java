@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        PrintView pv = new PrintView();
+        InputView pv = new InputView();
 
         pv.questionNumberOfParticipants();
         int numberOfParticipants = s.nextInt();

@@ -3,11 +3,11 @@ package ladder;
 public class LadderGame {
 
     private int[][] ghostLeg;
-    private PrintView printView;
+    private InputView printView;
 
     public LadderGame(int numberOfParticipants, int LegLength) {
         this.ghostLeg = creatGhostLeg(numberOfParticipants, LegLength);
-        this.printView = new PrintView();
+        this.printView = new InputView();
     }
 
     private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
