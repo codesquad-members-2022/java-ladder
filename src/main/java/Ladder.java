@@ -32,11 +32,15 @@ public class Ladder {
         }
     }
 
+    private void initLadderRow(int row) {
+        for (int col = 0; col < ladder[row].length; col++) {
+            fillLadderElement(row, col);
+        }
+    }
+
     private void initLadder() {
         for (int row = 0; row < ladder.length; row++) {
-            for (int col = 0; col < ladder[row].length; col++) {
-                fillLadderElement(row, col);
-            }
+            initLadderRow(row);
         }
     }
 
