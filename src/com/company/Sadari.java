@@ -11,23 +11,27 @@ public class Sadari {
     }
 
     private char[][] makeSadariArray(int peopleCount, int height) {
-        char[][] sadari = new char[height][peopleCount + peopleCount - 1 ];
+        char[][] sadariArray = new char[height][peopleCount + peopleCount - 1 ];
         for (int i = 0; i < height; i++) {
-            char[] line = new char[peopleCount + peopleCount - 1];
-            for (int j = 0; j < peopleCount + peopleCount - 1; j++) {
-                if (j % 2 == 0) {
-                    line[j] = '|';
-                } else {
-                    if (getRandomLine()) {
-                        line[j] = '-';
-                    } else {
-                        line[j] = ' ';
-                    }
-                }
-            }
-            sadari[i] = line;
+            sadariArray[i] = makeLine(peopleCount);
         }
-        return sadari;
+        return sadariArray;
+    }
+
+    private char[] makeLine(int peopleCount) {
+        char[] line = new char[peopleCount + peopleCount - 1];
+        for (int i = 0; i < peopleCount + peopleCount - 1; i++) {
+            line[i] = getLineComponent(i);
+        }
+        return line;
+    }
+
+    private char getLineComponent(int index) {
+        if (index % 2 == 0)
+            return '|';
+        if (getRandomLine())
+            return '-';
+        return ' ';
     }
 
     public char[][] getSadari() {
