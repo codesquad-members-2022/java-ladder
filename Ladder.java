@@ -35,7 +35,7 @@ public class Ladder {
                 Random random = new Random();
                 boolean randomLine = random.nextBoolean();
                 if (w % 2 == 1 && randomLine == true) {
-                    this.ladder[h][w] = "----";
+                    this.ladder[h][w] = "-";
                 }
             }
         }
