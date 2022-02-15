@@ -30,4 +30,8 @@ public class InputView {
     private int getValue() {
         return sc.nextInt();
     }
+
+    public void close() {
+        sc.close();
+    }
 }

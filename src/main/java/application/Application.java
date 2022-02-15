@@ -21,5 +21,6 @@ public class Application {
         int height = iv.ladderHeight();
         Ladder ladder = controller.getLadder(height, width);
         ov.printLadder(ladder);
+        iv.close();
     }
 }
