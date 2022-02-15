@@ -12,12 +12,12 @@ public class Main {
     }
 
     public static int enterNumberOfPeople() {
-        out.println(Message.NUBER_OF_PEOPLE.get());
+        out.println("참여할 사람은 몇 명인가요?");
         return in.inputNumber();
     }
 
     public static int enterLadderDepth() {
-        out.println(Message.DEPTH_OF_LADDER.get());
+        out.println("최대 사다리 높이는 몇 개인가요?");
         return in.inputNumber();
     }
 }
