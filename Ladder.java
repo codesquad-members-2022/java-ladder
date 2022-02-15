@@ -21,7 +21,7 @@ public class Ladder {
                     ladder[h][w] = "|";
                 }
                 if (w % 2 == 1) {
-                    ladder[h][w] = "    ";
+                    ladder[h][w] = " ";
                 }
             }
         }
