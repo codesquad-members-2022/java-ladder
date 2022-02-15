@@ -7,10 +7,10 @@ public class LadderGame {
 
     private void inputValue() {
         Input input = new Input();
-        Screen screen = new Screen();
+        Output output = new Output();
 
-        int userCount = screen.printUserCountBar(input);
-        int ladderMaxHigh = screen.printLadderMaxHighBar(input);
+        int userCount = output.printUserCountBar(input);
+        int ladderMaxHigh = output.printLadderMaxHighBar(input);
 
         createLadder(userCount, ladderMaxHigh);
         input.close();

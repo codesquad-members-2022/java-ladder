@@ -33,7 +33,7 @@ public class Ladder {
     }
 
     public void printLadder(String[][] ladder) {
-        Screen screen = new Screen();
-        screen.printLadder(ladder);
+        Output output = new Output();
+        output.printLadder(ladder);
     }
 }
