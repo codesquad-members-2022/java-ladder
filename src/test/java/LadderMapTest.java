@@ -29,5 +29,16 @@ class LadderMapTest {
         }
     }
 
+    @Test
+    void cloneMap() throws NoSuchFieldException, IllegalAccessException {
+        LadderMap ladderMap = new LadderMap(5, 5);
 
+        Field field = ladderMap.getClass().getDeclaredField("map");
+        field.setAccessible(true);
+
+        char[][] map = (char[][]) field.get(ladderMap);
+        char[][] cloneMap = ladderMap.getCloneMap();
+
+        assertNotEquals(map, cloneMap);
+    }
 }
