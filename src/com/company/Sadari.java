@@ -3,11 +3,11 @@ package com.company;
 import java.util.Random;
 
 public class Sadari {
-    char[][] sadari;
+    char[][] sadariArray;
     String[] people;
 
     public Sadari(int peopleCount, int height) {
-        this.sadari = makeSadariArray(peopleCount, height);
+        this.sadariArray = makeSadariArray(peopleCount, height);
     }
 
     private char[][] makeSadariArray(int peopleCount, int height) {
@@ -34,8 +34,8 @@ public class Sadari {
         return ' ';
     }
 
-    public char[][] getSadari() {
-        return this.sadari;
+    public char[][] getSadariArray() {
+        return this.sadariArray;
     }
 
     private boolean getRandomLine() {
