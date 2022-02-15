@@ -21,6 +21,7 @@ public class LadderGame {
     }
 
     public void build() {
+ 
         arr = new String[height][user];
 
         for (int i = 0; i < arr.length; i++) {
