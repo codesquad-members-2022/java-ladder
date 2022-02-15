@@ -1,18 +1,19 @@
 package app.jinan159.ladder;
 
 import app.jinan159.ladder.meta.Elements;
+import app.jinan159.ladder.meta.GameMap;
 
 import java.util.Scanner;
 
 public class LadderGame {
 
-    private final Elements[][] gameMap;
+    private final GameMap gameMap;
 
     public LadderGame() {
         Scanner sc = new Scanner(System.in);
         int participantCount = readParticipantCount(sc);
         int height = readHeight(sc);
-        this.gameMap = setGameMapSize(participantCount * 2 - 1, height);
+        this.gameMap = new GameMap(participantCount, height);
 
         prepareGameMap(this.gameMap);
     }
@@ -35,55 +36,48 @@ public class LadderGame {
         }
     }
 
-    private Elements[][] setGameMapSize(int width, int height) {
-        return new Elements[height][width];
-    }
-
-    private void prepareGameMap(Elements[][] gameMap) {
-        for (int h = 0; h < gameMap.length; h++) {
-            prepareRow(gameMap, h);
+    private void prepareGameMap(GameMap gameMap) {
+        for (int y = 0; y < gameMap.getHeight(); y++) {
+            prepareRow(gameMap, y);
         }
     }
 
-    private void prepareRow(Elements[][] gameMap, int h) {
-        for (int w = 0; w < gameMap[0].length; w++) {
-            prepareColumn(w, h);
+    private void prepareRow(GameMap gameMap, int y) {
+        for (int x = 0; x < gameMap.getWidth(); x++) {
+            prepareColumn(x, y);
         }
     }
 
-    private void prepareColumn(int w, int h) {
-        if (w % 2 == 0) setValueOnGameMap(w, h, Elements.V_LINE);
-        if (w % 2 == 1) setHorizontalValueOnGameMap(w, h);
+    private void prepareColumn(int x, int y) {
+        if (x % 2 == 0) gameMap.set(x, y, Elements.V_LINE);
+        if (x % 2 == 1) setHorizontalValueOnGameMap(x, y);
     }
 
-    private void setValueOnGameMap(int width, int height, Elements elements) {
-        gameMap[height][width] = elements;
-    }
-    private void setHorizontalValueOnGameMap(int width, int height) {
-        if (isEmptyPosition(width, height)) {
-            setValueOnGameMap(width, height, Elements.EMPTY);
+    private void setHorizontalValueOnGameMap(int x, int y) {
+        if (isEmptyPosition(x, y)) {
+            gameMap.set(x, y, Elements.EMPTY);
             return;
         }
 
-        setValueOnGameMap(width, height, Elements.H_LINE);
+        gameMap.set(x, y, Elements.H_LINE);
     }
 
     // 빈 공간이 들어올 자리인지, 아닌지를 반환하는 가상의 알고리즘
-    private boolean isEmptyPosition(int width, int height) {
-        return ((width * height) + (width + height)) % 3 == 0;
+    private boolean isEmptyPosition(int x, int y) {
+        return ((x * y) + (x + y)) % 3 == 0;
     }
 
     // public method
     public void startGame() {
-        for(Elements[] row : gameMap) {
-            printRow(row);
-            System.out.println();
+        for (int h = 0; h < gameMap.getHeight(); h++) {
+            printRow(gameMap, h);
         }
     }
 
-    private void printRow(Elements[] row) {
-        for(Elements col : row) {
-            System.out.print(col.getMark());
+    private void printRow(GameMap gameMap, int y) {
+        for (int x = 0; x < gameMap.getWidth(); x++) {
+            System.out.print(gameMap.get(x, y).getMark());
         }
+        System.out.println();
     }
 }
