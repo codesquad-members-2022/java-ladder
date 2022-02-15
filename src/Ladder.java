@@ -6,11 +6,6 @@ public class Ladder {
 
     public void makeLadder(int people, int height) {
         this.ladder = new String[height][people];
-
-        makeLadder2(ladder);
-    }
-
-    public void makeLadder2(String[][] ladder){
         for (int i = 0; i < ladder.length; i++) {
             for (int j = 0; j < ladder[i].length; j++) {
                 if (j%2 == 0){
@@ -25,9 +20,9 @@ public class Ladder {
                 }
             }
         }
-        this.ladder = ladder;
         print(ladder);
     }
+    
 
     public int makeRandom(){
         Random rd = new Random();
