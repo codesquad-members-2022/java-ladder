@@ -17,10 +17,14 @@ public class View {
     public static void printLadderMap(char[][] map) {
         System.out.println();
         for (char[] line : map) {
-            IntStream.range(0, line.length)
-                    .mapToObj(i -> line[i])
-                    .forEach(System.out::print);
-            System.out.println();
+            printLine(line);
         }
+    }
+
+    private static void printLine(char[] line) {
+        for (char c : line) {
+            System.out.print(c);
+        }
+        System.out.println();
     }
 }
