@@ -13,9 +13,9 @@ public class LadderGame {
     private static final int MAX_RANDOM_NUMBER = 10;
 
     private final List<String> peoples;
+    private final ArrayList<ArrayList<String>> ladder;
     private final int peopleCount;
     private final int ladderHeight;
-    private final ArrayList<ArrayList<String>> ladder;
     private boolean forwardVoid = true;
 
     public LadderGame(String peopleList, int ladderHeight) {
@@ -39,13 +39,16 @@ public class LadderGame {
     }
 
     private void initBoard() {
-        ArrayList<String> width;
         for (int i = 0; i < ladderHeight; i++) {
-            width = ladder.get(i);
-            width.add(voidBuilder());
-            width.add(HEIGHT);
+            setForwardBoard(i);
         }
         makeRandomLadder();
+    }
+
+    private void setForwardBoard(int height) {
+        List<String> width = ladder.get(height);
+        width.add(voidBuilder());
+        width.add(HEIGHT);
     }
 
     private String voidBuilder() {
@@ -68,8 +71,8 @@ public class LadderGame {
 
     private void putRandomLine(ArrayList<String> width) {
         if (isPutLine() && forwardVoid) {
-            width.add(WIDTH);
             forwardVoid = false;
+            width.add(WIDTH);
             return;
         }
         forwardVoid = true;
