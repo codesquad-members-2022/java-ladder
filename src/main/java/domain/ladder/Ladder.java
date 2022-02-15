@@ -4,7 +4,7 @@ public class Ladder {
 
     private final LadderElement[][] ladderElements;
 
-    public Ladder(LadderElement[][] ladderElements) {
+    Ladder(LadderElement[][] ladderElements) {
         this.ladderElements = ladderElements;
     }
 
