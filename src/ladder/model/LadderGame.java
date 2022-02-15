@@ -2,14 +2,13 @@ package ladder.model;
 
 public class LadderGame {
 
-    private LadderGame (){};
+    private Board board;
 
-    private static final LadderGame instance = new LadderGame();
+    public LadderGame(Board board) {
+        this.board = board;
+    }
 
-    public static final LadderGame getInstance() {
-        if(instance == null){
-            return new LadderGame();
-        }
-        return instance;
+    public String[][] getResult(){
+        return board.getBoard();
     }
 }

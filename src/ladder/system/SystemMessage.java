@@ -11,8 +11,6 @@ public enum SystemMessage {
 
     @Override
     public String toString() {
-        return "SystemMessage{" +
-                "description='" + description + '\'' +
-                '}';
+        return description + "[사람 숫자 -> Enter -> 사다리 높이]";
     }
 }
