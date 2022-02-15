@@ -2,6 +2,8 @@ package domain.ladder;
 
 public class LadderFactoryImpl implements LadderFactory{
 
+    private static final float HORIZONTAL_LINE_PROBABILITY = 0.5f;
+
     public static LadderFactoryImpl instance = new LadderFactoryImpl();
 
     private LadderFactoryImpl() {}
@@ -51,9 +53,14 @@ public class LadderFactoryImpl implements LadderFactory{
     }
 
     private LadderElement randomLadderElement() {
-        double randomFloat = Math.random();
-        boolean randomBool = (0<= randomFloat) && (randomFloat < 0.5);
+        boolean randomBool = generateRandomBool(HORIZONTAL_LINE_PROBABILITY);
         return (randomBool) ? LadderElement.HORIZONTAL_LINE : LadderElement.EMPTY_LINE;
+    }
+
+    private boolean generateRandomBool(float probabilityOfTrue) {
+        double randomFloat = Math.random();
+        boolean randomBool = (0<= randomFloat) && (randomFloat < probabilityOfTrue);
+        return randomBool;
     }
 
     private int ladderWidth(int entry) {
