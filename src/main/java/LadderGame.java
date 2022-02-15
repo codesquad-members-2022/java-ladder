@@ -7,6 +7,7 @@ public class LadderGame {
     private final InputView input = new InputView();
     private final InputValidator validator = new InputValidator();
     private final OutputView output = new OutputView();
+
     private Ladder ladder;
 
     public void run() {
