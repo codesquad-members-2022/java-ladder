@@ -28,8 +28,9 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     @Override
-    public Ladder getLadder() {
-        return ladderGame.getLadder();
+    public Ladder getCopyOfResultLadder() {
+        Ladder original = ladderGame.getLadder();
+        return ladderFactory.copy(original);
     }
 
 }
