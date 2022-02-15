@@ -1,5 +1,7 @@
 package domain.ladder;
 
+import java.util.stream.IntStream;
+
 public class LadderFactoryImpl implements LadderFactory{
 
     private static final float HORIZONTAL_LINE_PROBABILITY = 0.5f;
@@ -15,10 +17,10 @@ public class LadderFactoryImpl implements LadderFactory{
     @Override
     public Ladder create(int entry, int height) {
         LadderElement[][] ladderElements = new LadderElement[height][ladderWidth(entry)];
-        for (int y=0; y<ladderHeight(ladderElements); y++) {
-            setVerticalLine(ladderElements, y);
-            setHorizontalLine(ladderElements, y);
-        }
+
+        setAllVerticalLine(ladderElements);
+        setAllHorizontalLine(ladderElements);
+
         return new Ladder(ladderElements);
     }
 
@@ -27,29 +29,40 @@ public class LadderFactoryImpl implements LadderFactory{
         LadderElement[][] originalElements = original.getLadderElements();
         LadderElement[][] copyElements = new LadderElement[ladderHeight(originalElements)][ladderWidth(originalElements)];
 
-        for (int y=0; y<ladderHeight(copyElements); y++) {
-            copyRow(originalElements, copyElements, y);
-        }
-
+        copyAllRow(originalElements, copyElements);
         return new Ladder(copyElements);
     }
 
+    private void setAllVerticalLine(LadderElement[][] ladderElements) {
+        IntStream.range(0, ladderHeight(ladderElements))
+                .forEach(row -> setVerticalLine(ladderElements, row));
+    }
+
+    private void setAllHorizontalLine(LadderElement[][] ladderElements) {
+        IntStream.range(0, ladderHeight(ladderElements))
+                .forEach(row -> setHorizontalLine(ladderElements, row));
+    }
+
     private void setVerticalLine(LadderElement[][] ladderElements, int row) {
-        for (int x=0; x<ladderWidth(ladderElements); x += 2) {
-            ladderElements[row][x] = LadderElement.VERTICAL_LINE;
-        }
+        IntStream.range(0, ladderWidth(ladderElements))
+                .filter(column -> column%2 == 0)
+                .forEach(column -> ladderElements[row][column] = LadderElement.VERTICAL_LINE);
     }
 
     private void setHorizontalLine(LadderElement[][] ladderElements, int row) {
-        for (int x=1; x< ladderWidth(ladderElements); x += 2) {
-            ladderElements[row][x] = randomLadderElement();
-        }
+        IntStream.range(0, ladderWidth(ladderElements))
+                .filter(column -> column%2 != 0)
+                .forEach(column -> ladderElements[row][column] = randomLadderElement());
+    }
+
+    private void copyAllRow(LadderElement[][] originalElements, LadderElement[][] copyElements) {
+        IntStream.range(0, ladderHeight(copyElements))
+                .forEach(row -> copyRow(originalElements, copyElements, row));
     }
 
     private void copyRow(LadderElement[][] originalElements, LadderElement[][] copyElements, int row) {
-        for (int x = 0; x < ladderWidth(copyElements); x++) {
-            copyElements[row][x] = originalElements[row][x];
-        }
+        IntStream.range(0, ladderWidth(copyElements))
+                .forEach(column -> copyElements[row][column] = originalElements[row][column]);
     }
 
     private LadderElement randomLadderElement() {
