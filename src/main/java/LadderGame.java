@@ -17,10 +17,11 @@ public class LadderGame {
         this.user = user;
         this.height = height;
         userToBlink();
-        makeLadder();
+        build();
     }
 
-    public void makeLadder() {
+    public void build() {
+ 
         arr = new String[height][user];
 
         for (int i = 0; i < arr.length; i++) {
