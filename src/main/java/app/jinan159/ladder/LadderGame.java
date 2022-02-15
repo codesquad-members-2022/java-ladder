@@ -30,19 +30,35 @@ public class LadderGame {
     // ------- initialize private method ---------
     private int readParticipantCount(Scanner sc) {
         try {
-            System.out.println("참여할 사람은 몇 명 인가요?");
-            return sc.nextInt();
+            System.out.println("참여할 사람은 몇 명 인가요?(1명 이상)");
+            int count = sc.nextInt();
+            validateParticipantCount(count);
+            return count;
         } catch (Exception e) {
             return readParticipantCount(sc);
         }
     }
 
+    private void validateParticipantCount(int count) {
+        if (count <= 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private int readHeight(Scanner sc) {
         try {
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
-            return sc.nextInt();
+            System.out.println("최대 사다리 높이는 몇 개인가요?(1개 이상)");
+            int height = sc.nextInt();
+            validateHeight(height);
+            return height;
         } catch (Exception e) {
             return readHeight(sc);
+        }
+    }
+
+    private void validateHeight(int height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException();
         }
     }
 
