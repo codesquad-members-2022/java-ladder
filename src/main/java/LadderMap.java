@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class LadderMap {
     private char[][] map;
@@ -13,13 +14,15 @@ public class LadderMap {
     private void initMap(int personCount, int ladderHeight) {
         map = new char[ladderHeight][personCount * 2 - 1];
         for (char[] line : map) {
-            for (int i = 0; i < line.length; i++) {
-                line[i] = '|';
-                if (i % 2 == 1) {
-                    line[i] = randomCreateLadderOrBlank();
-                }
-            }
+            initLine(line);
         }
+    }
+
+    private void initLine(char[] line) {
+        Arrays.fill(line, '|');
+        IntStream.range(0, line.length)
+                .filter(i -> i % 2 == 1)
+                .forEach(i -> line[i] = randomCreateLadderOrBlank());
     }
 
     private char randomCreateLadderOrBlank() {
