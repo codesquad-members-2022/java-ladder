@@ -16,6 +16,7 @@ public class LadderGame {
     private final int peopleCount;
     private final int ladderHeight;
     private final ArrayList<ArrayList<String>> ladder;
+    private boolean forwardVoid = true;
 
     public LadderGame(String peopleList, int ladderHeight) {
         peoples = splitPeopleList(peopleList);
@@ -39,13 +40,13 @@ public class LadderGame {
             ladder.add(new ArrayList<>());
         }
         initBoard();
-        makeRandomLadder();
     }
 
     private void initBoard() {
         for (int i = 0; i < ladderHeight; i++) {
             ladder.get(i).add(HEIGHT);
         }
+        makeRandomLadder();
     }
 
     private void makeRandomLadder() {
@@ -63,10 +64,12 @@ public class LadderGame {
     }
 
     private void putRandomLine(ArrayList<String> width) {
-        if (isPutLine()) {
+        if (isPutLine() && forwardVoid) {
             width.add(WIDTH);
+            forwardVoid = false;
             return;
         }
+        forwardVoid = true;
         width.add(VOID);
     }
     
