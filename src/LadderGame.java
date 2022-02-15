@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class LadderGame {
-    public static void main(String[] args) {
+    public void run() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("참여할 인원 수를 입력하십시오.");
