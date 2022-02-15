@@ -84,6 +84,38 @@ public class AppConfig {
 
 ---
 
+## Ladder
+```java
+public class Ladder {
+
+    private LadderElement[][] ladderElements;
+
+    public Ladder(LadderElement[][] ladderElements) {
+        this.ladderElements = ladderElements;
+    }
+
+    public int width() {
+        return ladderElements[0].length;
+    }
+
+    public int height() {
+        return ladderElements.length;
+    }
+
+    public LadderElement[][] getLadderElements() {
+        return ladderElements;
+    }
+}
+```
+- 사다리를 정의한 클래스
+- `LadderElement`를 이차원배열로 함.
+- 여기서 많은 고민을 했다.
+  - 사다리 내용물을 출력하려면 ladderElements 정보가 필요함
+  - Output에 ladderElements 배열정보를 넘기기엔, 변경가능성이 커져버림.
+  - 그렇다고 ladderElements 측이 toString과 같은 메서드를 가지고 있기엔 이 역시도, ladder의 책임이 불필요하게 늘어난다.
+
+---
+
 ## LadderElement (enum)
 ```java
 public enum LadderElement {
