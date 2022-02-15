@@ -7,6 +7,7 @@ public class Ladder {
     private String step;
 
     public void makeLadder(int people, int height) {
+        people = people * 2 - 1;
         this.ladder = new String[height][people];
         for (int i = 0; i < ladder.length; i++) {
             for (int j = 0; j < ladder[i].length; j++) {
