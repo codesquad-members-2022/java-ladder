@@ -23,7 +23,7 @@ public class Board {
         return new Width(width);
     }
 
-    public String[][] getBoard(){
+    public String[][] getBoard() {
         return createBoard(this.height);
     }
 
@@ -45,5 +45,6 @@ public class Board {
             return board[row][col] = LADDER;
         }
         return board[row][col] = BLANK;
+
     }
 }
