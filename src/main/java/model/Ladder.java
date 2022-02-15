@@ -30,14 +30,7 @@ public class Ladder {
         initShape();
     }
 
-    private char[][] initShape() {
-        for (int h = 0; h < height; ++h) {
-            fill(shape[h], Mark.BLANK.getCh());
-        }
-        assignLine();
-        return shape;
-    }
-    private void assignLine() {
+    private void initShape() {
         for (int h = 0; h < height; ++h) {
             assignLine(h);
         }
