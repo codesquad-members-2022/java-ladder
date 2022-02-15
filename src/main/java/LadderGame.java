@@ -37,12 +37,12 @@ public class LadderGame {
 
     private String setUnit(int i, int j) {
         if (j % 2 == 1) {
-            return lineOrBlank(i, j);
+            return createRandomLine(i, j);
         }
         return arr[i][j] = LADDERUNIT;
     }
 
-    private String lineOrBlank(int i, int j) {
+    private String createRandomLine(int i, int j) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
             return arr[i][j] = LINEUNIT;

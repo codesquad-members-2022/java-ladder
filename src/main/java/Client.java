@@ -8,10 +8,10 @@ public class Client {
     public void input() {
         Scanner sc = new Scanner(System.in);
 
-        Output.userCountNoti();
+        Output.printUserCountNoti();
         int n = sc.nextInt();
 
-        Output.ladderCountNoti();
+        Output.printLadderCountNoti();
         int m = sc.nextInt();
 
         LadderGame ladderGame = new LadderGame();
