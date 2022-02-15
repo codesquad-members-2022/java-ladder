@@ -19,7 +19,7 @@ public class StringUtil {
         int gap = LadderElement.getGap();
         int margin = gap / 2 - name.length() / 2;
 
-        char[] wrap = new char[5];
+        char[] wrap = new char[gap];
         Arrays.fill(wrap, ' ');
 
         for (int ind = 0; ind < name.length(); ind++) {

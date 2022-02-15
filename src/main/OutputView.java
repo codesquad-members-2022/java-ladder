@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Arrays;
 import java.util.List;
 import main.util.StringUtil;
 
@@ -13,27 +14,31 @@ public class OutputView {
         System.out.println(Message.OUTPUT_VIEW_RESULT.get());
         printNames(ladderGame.getNames());
 
-        for (LadderElement[] chars : ladderGame.getMap()) {
-            printLine(chars);
+        for (LadderElement[] elements : ladderGame.getMap()) {
+            printLine(elements);
         }
     }
 
     public void printNames(List<String> names) {
+        StringBuilder sb = new StringBuilder();
+
         for (String name : names) {
-            System.out.print(StringUtil.wrapName(name) + ' ');
+            sb.append(StringUtil.wrapName(name)).append(' ');
         }
-        System.out.println();
+        System.out.println(sb);
     }
 
-    private void printLine(LadderElement[] chars) {
-        int margin = LadderElement.getGap() / 2;
-        String blanks = " ".repeat(margin);
+    private void printLine(LadderElement[] elements) {
+        String blanks = " ".repeat(LadderElement.getGap() / 2);
+        StringBuilder sb = new StringBuilder();
 
-        System.out.print(blanks);
-        for (LadderElement chr : chars) {
-            System.out.print(chr.get());
+        sb.append(blanks);
+        for (LadderElement element : elements) {
+            sb.append(element.get());
         }
-        System.out.println(blanks);
+        sb.append(blanks);
+
+        System.out.println(sb);
     }
 
 }
