@@ -190,3 +190,16 @@ public interface LadderGameService {
 
 ---
 
+## Validator (interface)
+```java
+public interface Validator {
+
+  void entryValidate(int entry);
+  void heightValidate(int height);
+
+}
+```
+- 입력값에 대한 유효성 검사, 유효하지 않으면 예외를 throw
+- 구현체 : ValidatorImpl
+
+---
