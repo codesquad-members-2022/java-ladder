@@ -23,10 +23,14 @@ public class OutputView {
     }
 
     private static void appendRadder(StringBuilder sb, int[][] lines, int row_i, int col_i) {
-        if (lines[row_i][col_i] == 1 && lines[row_i][col_i + 1] == 1) {
+        if (isRadder(col_i, lines[row_i])) {
             sb.append("|-");
             return;
         }
         sb.append("| ");
+    }
+
+    private static boolean isRadder(int col_i, int[] lines) {
+        return lines[col_i] == 1 && lines[col_i + 1] == 1;
     }
 }
