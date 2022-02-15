@@ -6,13 +6,10 @@ public class DefaultGameMapStretegy implements LadderGameMapStretegy {
     @Override
     public LadderElement getLadderElementOnPotision(int x, int y) {
         // 홀수 번째 column은 세로줄을 입력함
-        if (x % 2 == 0) {
-            return LadderElement.V_LINE;
-        }
+        if (x % 2 == 0) return LadderElement.V_LINE;
 
-        if (isEmptyPosition(x, y)) {
-            return LadderElement.EMPTY;
-        }
+        // 가상의 알고리즘 상으로, empty
+        if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
 
         return LadderElement.H_LINE;
     }
