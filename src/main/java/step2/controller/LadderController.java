@@ -22,16 +22,21 @@ public class LadderController {
     }
 
     private void fillLadder(char[][] ladder) {
-        Random random = new Random();
         for(int i = 0; i < ladder.length; i++){
             for(int j = 1; j < ladder[1].length; j += 2){
-                if(random.nextInt(10) < 4){
-                    ladder[i][j] = '-';
-                    continue;
-                }
-                ladder[i][j] = ' ';
+                fillRandomLadder(ladder, i, j);
             }
         }
+    }
+
+    private void fillRandomLadder(char[][] ladder, int i, int j) {
+        Random random = new Random();
+        if(random.nextInt(10) < 4){
+            ladder[i][j] = '-';
+            return;
+        }
+
+        ladder[i][j] = ' ';
     }
 
     private void fillHeightLine(char[][] ladder) {
