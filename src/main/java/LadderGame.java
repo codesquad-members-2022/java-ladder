@@ -9,7 +9,7 @@ public class LadderGame {
     public LadderGame(int peopleCount, int ladderHeight) {
         this.peopleCount = peopleCount;
         this.ladderHeight = ladderHeight;
-        this.ladderBoard = new char[ladderHeight][peopleCount + 2];
+        this.ladderBoard = new char[ladderHeight][peopleCount * 2 - 1];
         initBoard();
     }
 
@@ -20,7 +20,7 @@ public class LadderGame {
     }
 
     private void putInitWidth(int height) {
-        for (int j = 0; j < peopleCount + 2; j+=2) {
+        for (int j = 0; j < peopleCount * 2 - 1; j += 2) {
             ladderBoard[height][j] = '|';
         }
     }
@@ -37,7 +37,7 @@ public class LadderGame {
     }
 
     private void makeRow(int i) {
-        for (int j = 1; j < peopleCount + 2; j+=2) {
+        for (int j = 1; j < peopleCount * 2 - 1; j += 2) {
             putRandomLine(i, j);
         }
     }
