@@ -37,19 +37,21 @@ public class Launcher {
     }
 
     private void insertLegAndBridge(char[][] ladder, Launcher launcher, int i, int j) {
+        launcher.randomMakeBridge();
+
         if (j % 2 == 0) {
             ladder[i][j] = '|';
-        } else {
-            launcher.randomMakeBridge();
-            ladder[i][j] = randomMakeBridge();
+            return;
         }
+        ladder[i][j] = randomMakeBridge();
+        return;
     }
 
     private char randomMakeBridge() {
         Random random = new Random();
         int a = random.nextInt(2);
 
-        if(a == 0){
+        if (a == 0) {
             return '-';
         }
         return ' ';
