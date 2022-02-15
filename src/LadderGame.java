@@ -1,23 +1,16 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class LadderGame {
 
-    private static final Scanner sc = new Scanner(System.in);
     private static final Random random = new Random();
 
     public void start() {
-        int playerCount = inputRules("참여할 사람은 몇 명인가요?");
-        int ladderHeight = inputRules("최대 사다리 높이는 몇 개인가요?");
+        int playerCount = Input.inputRules("참여할 사람은 몇 명인가요?");
+        int ladderHeight = Input.inputRules("최대 사다리 높이는 몇 개인가요?");
 
         String[][] ladder = createLadder(playerCount, ladderHeight);
 
         Output.printLadder(ladder);
-    }
-
-    private static int inputRules(String x) {
-        System.out.println(x);
-        return sc.nextInt();
     }
 
     private static String[][] createLadder(int playerCount, int ladderHeight) {
