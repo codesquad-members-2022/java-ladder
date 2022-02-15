@@ -220,3 +220,16 @@ public interface InputView {
 - InputViewImpl : 구현체
 
 ---
+
+## OutputView (interface)
+```java
+public interface OutputView {
+
+    void printLadder(Ladder ladder);
+
+}
+```
+- OutputView : 결과 출력 역할을 담당하는 인터페이스
+- OutputViewImpl : 구현체
+
+---
