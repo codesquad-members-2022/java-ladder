@@ -10,6 +10,8 @@ public class Main {
         OutputView.printMaxHeightOfLadderQueryText();
         int maxHeightOfLadder = InputView.giveInt();
 
+        InputView.closeScanner();
+
         Game game = new Game();
         game.init(numOfPeople, maxHeightOfLadder);
 
