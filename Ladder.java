@@ -1,10 +1,12 @@
 import java.util.Random;
 
 public class Ladder {
-    private int memberCount;
-    private int height;
+    private final int memberCount;
+    private final int height;
     private String[][] ladder;
 
+    Random random = new Random();
+    StringBuilder sb = new StringBuilder();
 
     public Ladder(int memberCount, int height) {
         ladder = new String[height][(memberCount * 2) - 1];
@@ -15,40 +17,45 @@ public class Ladder {
 
     private String[][] createLadder() {
         ladder = new String[height][(memberCount * 2) - 1];
-        for (int h = 0; h < height; h++) {
-            for (int w = 0; w < ladder[h].length; w++) {
-                if (w % 2 == 0) {
-                    ladder[h][w] = "|";
-                }
-                if (w % 2 == 1) {
-                    ladder[h][w] = " ";
-                }
-            }
+        for (int row = 0; row < height; row++) {
+            ladderRowData(row);
         }
-        createLine(ladder);
         return ladder;
     }
 
-    private void createLine(String[][] ladder) {
-        for (int h = 0; h < height; h++) {
-            for (int w = 0; w < ladder[h].length; w++) {
-                Random random = new Random();
-                boolean randomLine = random.nextBoolean();
-                if (w % 2 == 1 && randomLine == true) {
-                    this.ladder[h][w] = "-";
-                }
-            }
+    private void ladderRowData(int row) {
+        for (int col = 0; col < ladder[row].length; col++) {
+            rowElements(row, col);
         }
     }
 
+    private void rowElements(int row, int col) {
+        if (col % 2 == 0) {
+            ladder[row][col] = "|";
+        }
+        if (col % 2 == 1) {
+            ladder[row][col] = randomLine(random.nextBoolean());
+        }
+    }
+
+    private String randomLine(boolean trueCheck) {
+        if (trueCheck) {
+            return "-";
+        }
+        return " ";
+    }
+
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int h = 0; h < height; h++) {
-            for (int w = 0; w <ladder[h].length; w++) {
-                sb.append(ladder[h][w]);
-            }
+        for (int height = 0; height < this.height; height++) {
+            addRowData(sb, height);
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private void addRowData(StringBuilder sb, int height) {
+        for (int width = 0; width < ladder[height].length; width++) {
+            sb.append(ladder[height][width]);
+        }
     }
 }
