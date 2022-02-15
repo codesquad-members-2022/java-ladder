@@ -13,20 +13,20 @@ public class Sadari {
     private char[][] makeSadariArray(int peopleCount, int height) {
         char[][] sadariArray = new char[height][peopleCount + peopleCount - 1 ];
         for (int i = 0; i < height; i++) {
-            sadariArray[i] = makeLine(peopleCount);
+            sadariArray[i] = makeRow(peopleCount);
         }
         return sadariArray;
     }
 
-    private char[] makeLine(int peopleCount) {
-        char[] line = new char[peopleCount + peopleCount - 1];
+    private char[] makeRow(int peopleCount) {
+        char[] Row = new char[peopleCount + peopleCount - 1];
         for (int i = 0; i < peopleCount + peopleCount - 1; i++) {
-            line[i] = getLineComponent(i);
+            Row[i] = getRowComponent(i);
         }
-        return line;
+        return Row;
     }
 
-    private char getLineComponent(int index) {
+    private char getRowComponent(int index) {
         if (index % 2 == 0)
             return '|';
         if (getRandomLine())
