@@ -16,25 +16,31 @@ public class LadderGame {
     private void createLadder(int playerCount, int ladderHeight) {
         ladder = new String[ladderHeight][(playerCount * 2) - 1];
 
-        addLadderData(ladder);
-    }
-
-    private static void addLadderData(String[][] ladder) {
         for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                if (j == 0 || j % 2 == 0) {
-                    ladder[i][j] = "|";
-                } else if (random.nextBoolean()) {
-                    ladder[i][j] = "-";
-                } else {
-                    ladder[i][j] = " ";
-                }
-            }
+            addLadderData(ladder, i);
         }
     }
 
+    private static void addLadderData(String[][] ladder, int i) {
+        for (int j = 0; j < ladder[i].length; j++) {
+            ladder[i][j] = check(ladder, i, j);
+        }
+    }
+
+    private static String check(String[][] ladder, int i, int j) {
+        if (j == 0 || j % 2 == 0) {
+            return "|";
+        }
+
+        if (random.nextBoolean()) {
+            return ladder[i][j] = "-";
+        }
+
+        return ladder[i][j] = " ";
+    }
+
     public void getResult() {
-        if(ladder == null) {
+        if (ladder == null) {
             System.out.println("진행된 게임이 없습니다.");
             return;
         }
