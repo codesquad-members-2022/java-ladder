@@ -8,6 +8,10 @@ import java.util.Random;
 
 public class LadderController {
 
+    public static final char LADDER = '-';
+    public static final char HEIGHT = '|';
+    public static final char SPACE = ' ';
+
     public void run() {
         List<Integer> playerArguments = InputView.requestInfo();
         char[][] ladder = makeLadder(playerArguments.get(0), playerArguments.get(1));
@@ -32,17 +36,17 @@ public class LadderController {
     private void fillRandomLadder(char[][] ladder, int i, int j) {
         Random random = new Random();
         if(random.nextInt(10) < 4){
-            ladder[i][j] = '-';
+            ladder[i][j] = LADDER;
             return;
         }
 
-        ladder[i][j] = ' ';
+        ladder[i][j] = SPACE;
     }
 
     private void fillHeightLine(char[][] ladder) {
         for(int i = 0; i < ladder.length; i++){
             for(int j = 0; j < ladder[1].length; j += 2){
-                ladder[i][j] = '|';
+                ladder[i][j] = HEIGHT;
             }
         }
     }
