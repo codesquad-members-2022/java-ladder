@@ -10,8 +10,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public Ladder getLadder() {
+    Ladder getLadder() {
         return this.ladder;
     }
-
 }
