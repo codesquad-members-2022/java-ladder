@@ -2,6 +2,9 @@ package ladder.model;
 
 import ladder.utils.RandomGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     private final int height;
@@ -12,6 +15,7 @@ public class Board {
     private static final String LADDER = "-";
 
     private String[][] board;
+    private List<String> symbols;
 
     public Board(int width, int height) {
         this.width = getWidth(width);
@@ -28,6 +32,11 @@ public class Board {
     }
 
     private String[][] createBoard(int height) {
+        List<String> symbols = new ArrayList<>();
+        int totalCount = this.width.getValue() * this.height;
+        for(int index=0; index<totalCount; index++){
+
+        }
         String[][] board = new String[height][width.getValue()];
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width.getValue(); col++) {
