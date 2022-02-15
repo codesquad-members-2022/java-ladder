@@ -5,38 +5,49 @@ public class LadderGame {
     private static final Random random = new Random();
 
     private String[][] ladder;
+    private int width;
+    private int height;
 
     public void start() {
         int playerCount = Input.inputRules("참여할 사람은 몇 명인가요?");
         int ladderHeight = Input.inputRules("최대 사다리 높이는 몇 개인가요?");
 
-        createLadder(playerCount, ladderHeight);
+        Input.close();
+
+        init(playerCount, ladderHeight);
+
+        createLadder();
     }
 
-    private void createLadder(int playerCount, int ladderHeight) {
-        ladder = new String[ladderHeight][(playerCount * 2) - 1];
+    private void init(int playerCount, int ladderHeight) {
+        this.width = (playerCount * 2) - 1;
+        this.height = ladderHeight;
+    }
+
+    private void createLadder() {
+        ladder = new String[height][width];
 
         for (int i = 0; i < ladder.length; i++) {
-            addLadderData(ladder, i);
+            addLadderData(i);
         }
     }
 
-    private static void addLadderData(String[][] ladder, int i) {
+    private void addLadderData(int i) {
         for (int j = 0; j < ladder[i].length; j++) {
-            ladder[i][j] = check(ladder, i, j);
+            ladder[i][j] = check(i, j);
         }
     }
 
-    private static String check(String[][] ladder, int i, int j) {
+    private String check(int i, int j) {
         if (j == 0 || j % 2 == 0) {
             return "|";
         }
 
         if (random.nextBoolean()) {
-            return ladder[i][j] = "-";
+            return "-";
         }
 
-        return ladder[i][j] = " ";
+        return " ";
     }
 
     public void getResult() {
