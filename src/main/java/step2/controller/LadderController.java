@@ -1,5 +1,6 @@
 package step2.controller;
 
+import step2.service.GameService;
 import step2.view.InputView;
 import step2.view.OutputView;
 
@@ -8,46 +9,10 @@ import java.util.Random;
 
 public class LadderController {
 
-    public static final char LADDER = '-';
-    public static final char HEIGHT = '|';
-    public static final char SPACE = ' ';
-
     public void run() {
         List<Integer> playerArguments = InputView.requestInfo();
-        char[][] ladder = makeLadder(playerArguments.get(0), playerArguments.get(1));
+        GameService gameService = new GameService();
+        char[][] ladder = gameService.makeLadder(playerArguments.get(0), playerArguments.get(1));
         OutputView.showLadder(ladder);
-    }
-
-    private char[][] makeLadder(int personNumber, int height) {
-        char[][] ladder = new char[height][personNumber+2];
-        fillHeightLine(ladder);
-        fillLadder(ladder);
-        return ladder;
-    }
-
-    private void fillLadder(char[][] ladder) {
-        for(int i = 0; i < ladder.length; i++){
-            for(int j = 1; j < ladder[1].length; j += 2){
-                fillRandomLadder(ladder, i, j);
-            }
-        }
-    }
-
-    private void fillRandomLadder(char[][] ladder, int i, int j) {
-        Random random = new Random();
-        if(random.nextInt(10) < 4){
-            ladder[i][j] = LADDER;
-            return;
-        }
-
-        ladder[i][j] = SPACE;
-    }
-
-    private void fillHeightLine(char[][] ladder) {
-        for(int i = 0; i < ladder.length; i++){
-            for(int j = 0; j < ladder[1].length; j += 2){
-                ladder[i][j] = HEIGHT;
-            }
-        }
     }
 }
