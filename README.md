@@ -68,19 +68,48 @@ public class GameApplication {
 
 ## AppConfig 클래스
 ```java
+
 public class AppConfig {
 
-    private static AppConfig instance = new AppConfig();
+  private static AppConfig instance = new AppConfig();
 
-    private AppConfig() {}
+  private AppConfig() {}
 
-    public static AppConfig getInstance() {
-        return instance;
+  public static AppConfig getInstance() {
+    return instance;
+  }
+
+  public LadderGameService ladderGameService() {
+    return LadderGameServiceImpl.getInstance(ladderFactory());
+  }
+
+  public LadderFactory ladderFactory() {
+    return LadderFactoryImpl.getInstance();
+  }
+
+  public Validator validator() {
+    return ValidatorImpl.getInstance();
+  }
+
+  public InputView inputView() {
+    return InputViewImpl.getInstance(validator());
+  }
+
+  public OutputView outputView() {
+    return OutputViewImpl.getInstance();
+  }
+
+  public void close() {
+    try {
+      inputView().close();
+    } catch (Exception e) {
+      System.out.println("자원 반환 실패");
     }
-
+  }
 }
 ```
 - 주요 싱글톤 인스턴스들의 의존성을 관리해주는 설정 클래스 (싱글톤)
+- 자원을 반환하려면, 수동으로 close 메서드를 호출하여 자원을 반환해야함.
 
 ---
 ## LadderGame
