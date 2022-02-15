@@ -1,12 +1,21 @@
 public class Output {
 
+    private static final StringBuilder sb = new StringBuilder();
+
     public static void printLadder(String[][] ladder) {
         for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[0].length; j++) {
-                System.out.print(ladder[i][j]);
-            }
-            System.out.println();
+            addLadderData(ladder, i);
         }
+
+        System.out.println(sb);
+    }
+
+    private static void addLadderData(String[][] ladder, int i) {
+        for (int j = 0; j < ladder[i].length; j++) {
+            sb.append(ladder[i][j]);
+        }
+
+        sb.append("\n");
     }
 
 }
