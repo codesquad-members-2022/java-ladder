@@ -3,10 +3,9 @@ import java.util.Scanner;
 public class Client {
 
     public Client() {
-        input();
     }
 
-    private void input() {
+    public void input() {
         Scanner sc = new Scanner(System.in);
 
         Output.userCountNoti();
