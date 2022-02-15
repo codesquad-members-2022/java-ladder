@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        InputView pv = new InputView();
+        Scanner scanner = new Scanner(System.in);
+        InputView pv = new InputView(scanner);
 
         pv.questionNumberOfParticipants();
         int numberOfParticipants = s.nextInt();
