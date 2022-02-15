@@ -29,28 +29,28 @@ public class LadderGame {
         Output.printLadderGame(arr);
     }
 
-    private void addLadderUnit(int i) {
-        for (int j = 0; j < arr[i].length; j++) {
-            setUnit(i, j);
+    private void addLadderUnit(int col) {
+        for (int row = 0; row < arr[col].length; row++) {
+            setUnit(col, row);
         }
     }
 
-    private String setUnit(int i, int j) {
-        if (j % 2 == 1) {
-            return createRandomLine(i, j);
+    private String setUnit(int col, int row) {
+        if (row % 2 == 1) {
+            return createRandomLine(col, row);
         }
-        return arr[i][j] = LADDERUNIT;
+        return arr[col][row] = LADDERUNIT;
     }
 
-    private String createRandomLine(int i, int j) {
+    private String createRandomLine(int col, int row) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            return arr[i][j] = LINEUNIT;
+            return arr[col][row] = LINEUNIT;
         }
-        return arr[i][j] = BLANK;
+        return arr[col][row] = BLANK;
     }
 
-    private void userToBlank() {
-        user = user * 2 - 1;
+    private int userToBlank() {
+        return user = user * 2 - 1;
     }
 }

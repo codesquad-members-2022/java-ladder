@@ -5,9 +5,9 @@ public class Main {
 
         client.input();
 
-        LadderGame ladderGame = new LadderGame();
-
-        ladderGame.build();
+//        LadderGame ladderGame = new LadderGame();
+//
+//        ladderGame.build();
 
     }
 }
