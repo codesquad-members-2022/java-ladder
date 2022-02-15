@@ -6,6 +6,8 @@ public class Board {
 
     private final int height;
     private final Width width;
+    private static final int ZERO = 0;
+    private static final int EVEN_NUMBER = 2;
 
     private static final String COLUMN = "|";
     private static final String BLANK = " ";
@@ -13,42 +15,58 @@ public class Board {
 
     private String[][] board;
 
-    public Board(int width, int height) {
-        this.width = getWidth(width);
+    public Board(int height, int width) {
         this.height = height;
-        this.board = createBoard(width);
+        this.width = getWidth(width);
+        this.board = createBoard();
     }
 
     private Width getWidth(int width) {
         return new Width(width);
     }
 
-    public String[][] getBoard() {
-        return createBoard(this.height);
-    }
+    private String[][] createBoard() {
+        int height = this.height;
+        int width = this.width.getValue();
+        String[][] board = new String[height][width];
 
-    private String[][] createBoard(int height) {
-        String[][] board = new String[height][width.getValue()];
         for (int row = 0; row < height; row++) {
             fillBoard(board, row);
         }
         return board;
     }
 
-    private void fillBoard(String[][] board, int row) {
-        for (int col = 0; col < width.getValue(); col++) {
-            board[row][col] = getSymbol(board, row, col);
+    private void fillBoard(String[][] board, int height) {
+        int width = this.width.getValue();
+
+        for (int column = 0; column < width; column++) {
+            board[height][column] = getSymbol(board, height, column);
         }
     }
 
-    private String getSymbol(String[][] board, int row, int col) {
-        if (col % 2 == 0) {
-            return board[row][col] = COLUMN;
+    private String getSymbol(String[][] board, int height, int column) {
+        if (isEvenNumber(column)) {
+            return board[height][column] = COLUMN;
         }
-        if (RandomGenerator.getValue() % 2 == 0) {
-            return board[row][col] = LADDER;
+        if (isEvenNumber(RandomGenerator.getValue())) {
+            return board[height][column] = LADDER;
         }
-        return board[row][col] = BLANK;
+        return board[height][column] = BLANK;
+    }
+
+    private boolean isEvenNumber(int column) {
+        return column % EVEN_NUMBER == ZERO;
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board(5, 3);
+        String[][] b = board.createBoard();
+        for (int row = 0; row < 5; row++) {
+            System.out.println();
+            for (int col = 0; col < 5; col++) {
+                System.out.print(b[row][col]);
+            }
+        }
+
     }
 }
-
