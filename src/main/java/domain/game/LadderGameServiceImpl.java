@@ -7,8 +7,8 @@ public class LadderGameServiceImpl implements LadderGameService {
 
     private static LadderGameServiceImpl instance;
 
-    private LadderGame ladderGame;
     private final LadderFactory ladderFactory;
+    private LadderGame ladderGame;
 
     private LadderGameServiceImpl(LadderFactory ladderFactory) {
         this.ladderFactory = ladderFactory;
