@@ -17,7 +17,7 @@ class LadderMapTest {
     void initMap() {
         LadderMap ladderMap = new LadderMap(3, 5);
 
-        char[][] map = ladderMap.getMap();
+        char[][] map = ladderMap.getCloneMap();
         for (char[] line : map) {
             for (int i = 0; i < line.length; i++) {
                 if (i % 2 == 1) {
@@ -28,4 +28,6 @@ class LadderMapTest {
             }
         }
     }
+
+
 }

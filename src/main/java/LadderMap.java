@@ -33,7 +33,11 @@ public class LadderMap {
         return ' ';
     }
 
-    public char[][] getMap() {
-        return map;
+    public char[][] getCloneMap() {
+        char[][] cloneMap = new char[map.length][map[0].length];
+        for (int i = 0; i < map.length; i++) {
+            System.arraycopy(map[i], 0, cloneMap[i], 0, map[i].length);
+        }
+        return cloneMap;
     }
 }
