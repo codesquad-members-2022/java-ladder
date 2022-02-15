@@ -12,4 +12,9 @@ public class InputView {
         OutputView.printSadariNumberMessage();
         return input.nextInt();
     }
+
+    public static String[] getUsersNames(){
+        String userNamesInputLine = input.nextLine();
+        return userNamesInputLine.split(",");
+    }
 }
