@@ -11,7 +11,7 @@ public class Sadari {
     }
 
     private char[][] makeSadariArray(int peopleCount, int height) {
-        char[][] sadariArray = new char[height][peopleCount + peopleCount - 1 ];
+        char[][] sadariArray = new char[height][peopleCount + peopleCount - 1];
         for (int i = 0; i < height; i++) {
             sadariArray[i] = makeRow(peopleCount);
         }

@@ -4,8 +4,7 @@ public class Controller {
     int[] getSadariInfo() {
         int peopleCount = Input.getPeopleCount();
         int sadariHeight = Input.getSadariHeight();
-        int[] answer = new int[]{peopleCount, sadariHeight};
-        return answer;
+        return new int[]{peopleCount, sadariHeight};
     }
 
     void init() {
