@@ -6,20 +6,20 @@ public class Ladder {
     Scanner sc = new Scanner(System.in);
     Random ran = new Random();
 
-    public int InputInfo(String Questions){
+    public int inputInfo(String Questions){
         System.out.println(Questions);
         return sc.nextInt();
     }
 
-    public String[][] LadderInfo(int Player, int LadderHeight){
+    public String[][] ladderInfo(int Player, int LadderHeight){
 
         String[][] ladder = new String[LadderHeight][Player*2-1];
-        MakeLadder(ladder);
+        makeLadder(ladder);
 
         return ladder;
     }
 
-    private void MakeLadder(String[][] ladder){
+    private void makeLadder(String[][] ladder){
         String[] RandomLine = {" ", "-"};
         for (int i = 0; i < ladder.length; i++) {
             for (int j = 0; j < ladder[i].length; j++) {
@@ -32,7 +32,7 @@ public class Ladder {
         }
     }
 
-    public void PrintLadder(String[][] ladder){
+    public void printLadder(String[][] ladder){
         for (int i = 0; i < ladder.length; i++) {
             for (int j = 0; j < ladder[i].length; j++) {
                 System.out.print(ladder[i][j]);

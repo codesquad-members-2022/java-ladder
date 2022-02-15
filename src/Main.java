@@ -1,15 +1,11 @@
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Ladder ladder = new Ladder();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("참여할 사람은 몇명인가요?");
-        int Player = sc.nextInt();
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int LadderHeight = sc.nextInt();
+        int player = ladder.inputInfo("참여할 사람은 몇명인가요?");
+        int height = ladder.inputInfo("최대 사다리 높이는 몇 개인가요?");
 
-        ladder.Player(Player,LadderHeight);
+        ladder.printLadder(ladder.ladderInfo(player, height));
     }
 }
