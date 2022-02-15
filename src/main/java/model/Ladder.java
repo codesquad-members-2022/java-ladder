@@ -3,9 +3,9 @@ package model;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private int height;
-    private int width;
-    private char[][] shape;
+    private final int height;
+    private final int width;
+    private final char[][] shape;
 
     private enum Mark {
         BLANK(' '), LINE('-'), POLE('|');
