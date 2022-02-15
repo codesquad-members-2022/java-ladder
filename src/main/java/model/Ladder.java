@@ -37,9 +37,9 @@ public class Ladder {
     private char allocElement(int h, int w) {
         int indexValue = (h + 1) * (w + 1) + w + 1;
         int randomValue = (int) (Math.random() * height * width + 1);
-        return commonFactorExist(indexValue, randomValue) ? Mark.LINE.ch : Mark.BLANK.ch;
+        return existCommonFactor(indexValue, randomValue) ? Mark.LINE.ch : Mark.BLANK.ch;
     }
-    private boolean commonFactorExist(int indexValue, int randomValue) {
+    private boolean existCommonFactor(int indexValue, int randomValue) {
         return IntStream.rangeClosed(2, (int) Math.sqrt(Math.max(indexValue, randomValue)))
                 .anyMatch(value -> (indexValue % value == 0 && randomValue % value == 0));
     }
