@@ -1,6 +1,6 @@
 package model;
 
-import java.util.stream.IntStream;
+import static java.lang.Math.*;
 
 public class Ladder {
     private final int height;
@@ -31,17 +31,11 @@ public class Ladder {
     }
     private void assignLine(int h) {
         for (int w = 0; w < width; ++w) {
-            shape[h][w] = allocElement(h, w);
+            shape[h][w] = allocElement();
         }
     }
-    private char allocElement(int h, int w) {
-        int indexValue = (h + 1) * (w + 1) + w + 1;
-        int randomValue = (int) (Math.random() * height * width + 1);
-        return existCommonFactor(indexValue, randomValue) ? Mark.LINE.ch : Mark.BLANK.ch;
-    }
-    private boolean existCommonFactor(int indexValue, int randomValue) {
-        return IntStream.rangeClosed(2, (int) Math.sqrt(Math.max(indexValue, randomValue)))
-                .anyMatch(value -> (indexValue % value == 0 && randomValue % value == 0));
+    private char allocElement() {
+        return random() * 10 < 5.5 ? Mark.LINE.ch : Mark.BLANK.ch;
     }
 
     @Override
