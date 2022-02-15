@@ -6,13 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int count = InputView.askHowManyPlayers();
-        int height = InputView.askLadderHeight();
-
-        Board board = new Board(count,height);
-        board.generateFrame();
-
-        OutputView.showBoard(board);
-
+        LadderGame ladderGame = new LadderGame();
+        ladderGame.init();
+        ladderGame.run();
     }
 }
