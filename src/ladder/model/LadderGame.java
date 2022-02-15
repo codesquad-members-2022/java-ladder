@@ -9,7 +9,7 @@ public class LadderGame {
     }
 
     public String[][] getResult() {
-        return board.getBoard();
+        return null;
     }
     private LadderGame (){};
 

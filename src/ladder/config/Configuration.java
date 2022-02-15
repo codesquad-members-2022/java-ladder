@@ -8,4 +8,5 @@ public class Configuration {
 
     public static final GameManager gameManager = GameManager.getInstance();
     public static final RandomGenerator randomGenerator = RandomGenerator.getInstance();
+
 }
