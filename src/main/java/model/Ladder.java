@@ -9,6 +9,20 @@ public class Ladder {
     private int width;
     private char[][] shape;
 
+    private enum Mark {
+        BLANK(' '), LINE('-'), POLE('|');
+
+        private final char ch;
+
+        Mark(char ch) {
+            this.ch = ch;
+        }
+
+        char getCh() {
+            return ch;
+        }
+    }
+
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
@@ -18,7 +32,7 @@ public class Ladder {
 
     private char[][] initShape() {
         for (int h = 0; h < height; ++h) {
-            fill(shape[h], ' ');
+            fill(shape[h], Mark.BLANK.getCh());
         }
         assignLine();
         return shape;
@@ -30,7 +44,7 @@ public class Ladder {
     }
     private void assignLine(int h) {
         for (int w = 0; w < width; ++w) {
-            shape[h][w] = isLine(h, w) ? '-' : ' ';
+            shape[h][w] = isLine(h, w) ? Mark.LINE.ch : Mark.BLANK.ch;
         }
     }
     private boolean isLine(int h, int w) {
@@ -53,7 +67,7 @@ public class Ladder {
     }
     private void appendRow(StringBuffer sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append('|').append(w < width - 1 ? shape[h][w] : "");
+            sb.append(Mark.POLE.getCh()).append(w < width - 1 ? shape[h][w] : "");
         }
     }
 }
