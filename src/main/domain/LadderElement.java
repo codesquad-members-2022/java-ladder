@@ -1,4 +1,4 @@
-package main;
+package main.domain;
 
 public enum LadderElement {
     VERTICAL("|"),

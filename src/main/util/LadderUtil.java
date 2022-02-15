@@ -3,7 +3,7 @@ package main.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import main.LadderElement;
+import main.domain.LadderElement;
 
 public class LadderUtil {
 

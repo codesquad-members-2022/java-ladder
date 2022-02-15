@@ -1,6 +1,9 @@
 package main;
 
+import main.domain.LadderGame;
 import main.util.StringUtil;
+import main.view.InputView;
+import main.view.OutputView;
 
 public class GameController {
 

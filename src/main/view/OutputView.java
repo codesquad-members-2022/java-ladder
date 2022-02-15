@@ -1,6 +1,8 @@
-package main;
+package main.view;
 
 import java.util.List;
+import main.domain.LadderElement;
+import main.domain.LadderGame;
 import main.util.StringUtil;
 
 public class OutputView {

@@ -2,7 +2,7 @@ package main.util;
 
 import java.util.Arrays;
 import java.util.List;
-import main.LadderElement;
+import main.domain.LadderElement;
 
 public class StringUtil {
 
