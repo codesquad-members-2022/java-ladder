@@ -24,14 +24,18 @@ public class Ladder {
         return (n == 0) ? EMPTY : LINE;
     }
 
+    private void fillLadderElement(int row, int col) {
+        if (isPillar(col)) {
+            ladder[row][col] = PILLAR;
+        } else {
+            ladder[row][col] = createRandomLine();
+        }
+    }
+
     private void initLadder() {
         for (int row = 0; row < ladder.length; row++) {
             for (int col = 0; col < ladder[row].length; col++) {
-                if (isPillar(col)) {
-                    ladder[row][col] = PILLAR;
-                } else {
-                    ladder[row][col] = createRandomLine();
-                }
+                fillLadderElement(row, col);
             }
         }
     }
