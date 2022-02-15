@@ -7,8 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main.initOption();
-        char[][] resultLadder = ladder.initLadderInformation();
-        output.printLadder(resultLadder);
+        output.printLadder(ladder.initLadderInformation());
     }
 
     private static void initOption() {
