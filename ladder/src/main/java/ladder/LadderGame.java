@@ -1,6 +1,9 @@
 package ladder;
 
 public class LadderGame {
+
+    int userCount;
+    int ladderMaxHigh;
     public void run() {
         inputValue();
     }
@@ -9,10 +12,16 @@ public class LadderGame {
         Input input = new Input();
         Output output = new Output();
 
-        int userCount = output.printUserCountBar(input);
-        int ladderMaxHigh = output.printLadderMaxHighBar(input);
-
-        createLadder(userCount, ladderMaxHigh);
+        while (true) {
+            try {
+                userCount = output.printUserCountBar(input);
+                ladderMaxHigh = output.printLadderMaxHighBar(input);
+                createLadder(userCount, ladderMaxHigh);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("잘못된 입력입니다.");
+            }
+        }
         input.close();
     }
 
