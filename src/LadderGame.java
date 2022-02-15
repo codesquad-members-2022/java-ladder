@@ -1,18 +1,14 @@
-import java.util.Scanner;
-
 public class LadderGame {
-    public void run() {
-        Scanner sc = new Scanner(System.in);
+    private final InputView inputView = new InputView();
 
-        System.out.println(SystemMessage.UI_INPUT_PLAYER_COUNT.getMessage());
-        int playerCount = Integer.parseInt(sc.nextLine());
-        System.out.println(SystemMessage.UI_INPUT_LADDER_HEIGHT.getMessage());
-        int height = Integer.parseInt(sc.nextLine());
+    public void run() {
+        int playerCount = inputView.getInt(SystemMessage.UI_INPUT_PLAYER_COUNT.getMessage());
+        int height = inputView.getInt(SystemMessage.UI_INPUT_LADDER_HEIGHT.getMessage());
         System.out.println();
 
         Ladder ladder = new Ladder(height, playerCount);
         System.out.println(ladder.render());
 
-        sc.close();
+        inputView.close();
     }
 }
