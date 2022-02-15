@@ -28,9 +28,9 @@ public class Board {
     }
 
     private String[][] createBoard(int height) {
-        String[][] board = new String[width.getValue()][height];
-        for (int row = 0; row < width.getValue(); row++) {
-            for (int col = 0; col < height; col++) {
+        String[][] board = new String[height][width.getValue()];
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width.getValue(); col++) {
                 board[row][col] = getSymbol(board, row, col);
             }
         }
