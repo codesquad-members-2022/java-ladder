@@ -9,5 +9,8 @@ public class Main {
         m = Input.getNumber();
 
         Input.scannerClose();
+
+        Ladder ladder = new Ladder(n, m);
+        Output.messageAboutLadder(ladder.Info());
     }
 }

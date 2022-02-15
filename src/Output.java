@@ -8,7 +8,7 @@ public class Output {
         System.out.println("최대 사다리 높이는 몇 개 인가요?");
     }
 
-    public static void messageAboutLadder() {
-
+    public static void messageAboutLadder(String info) {
+        System.out.println(info);
     }
 }
