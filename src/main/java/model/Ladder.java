@@ -23,11 +23,12 @@ public class Ladder {
     }
     private void assignLine() {
         for (int h = 0; h < height; ++h) {
-            for (int w = 0; w < width; ++w) {
-                if (isLine(h, w)) {
-                    shape[h][w] = '-';
-                }
-            }
+            assignLine(h);
+        }
+    }
+    private void assignLine(int h) {
+        for (int w = 0; w < width; ++w) {
+            shape[h][w] = isLine(h, w) ? '-' : ' ';
         }
     }
     private boolean isLine(int h, int w) {
