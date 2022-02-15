@@ -21,15 +21,15 @@ public class Ladder {
         this.height = height;
         this.width = width;
         this.shape = new Element[height][width];
-        initShape();
+        makeShape();
     }
 
-    private void initShape() {
+    private void makeShape() {
         for (int h = 0; h < height; ++h) {
-            assignLine(h);
+            makeRow(h);
         }
     }
-    private void assignLine(int h) {
+    private void makeRow(int h) {
         for (int w = 0; w < width; ++w) {
             shape[h][w] = allocElement();
         }
