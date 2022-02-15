@@ -1,6 +1,7 @@
 package application;
 
 import controller.LadderController;
+import controller.Controller;
 import model.Ladder;
 import view.InputView;
 import view.OutputView;
@@ -9,11 +10,13 @@ public class Application {
     private InputView iv;
     private OutputView ov;
     private LadderController controller;
+    private Controller controller;
 
     public Application() {
         this.iv = InputView.getInstance();
         this.ov = OutputView.getInstance();
         this.controller = LadderController.getInstance();
+        this.controller = Controller.getInstance();
     }
 
     public void run() {
