@@ -1,7 +1,7 @@
 class OutView {
-	void print(String[][] ladder){
-		for(String[] row : ladder){
-			for(String line : row){
+	void print(char[][] ladder){
+		for(char[] row : ladder){
+			for(char line : row){
 				System.out.print(line);
 			}
 			System.out.println();
