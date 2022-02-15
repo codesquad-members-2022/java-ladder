@@ -32,12 +32,6 @@ public class LadderFactoryImpl implements LadderFactory{
         return new Ladder(copyElements);
     }
 
-    private void copyRow(LadderElement[][] originalElements, LadderElement[][] copyElements, int y) {
-        for (int x = 0; x < ladderWidth(copyElements); x++) {
-            copyElements[y][x] = originalElements[y][x];
-        }
-    }
-
     private void setVerticalLine(LadderElement[][] ladderElements, int row) {
         for (int x=0; x<ladderWidth(ladderElements); x += 2) {
             ladderElements[row][x] = LadderElement.VERTICAL_LINE;
@@ -50,6 +44,11 @@ public class LadderFactoryImpl implements LadderFactory{
         }
     }
 
+    private void copyRow(LadderElement[][] originalElements, LadderElement[][] copyElements, int row) {
+        for (int x = 0; x < ladderWidth(copyElements); x++) {
+            copyElements[row][x] = originalElements[row][x];
+        }
+    }
 
     private LadderElement randomLadderElement() {
         double randomFloat = Math.random();
