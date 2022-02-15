@@ -6,7 +6,7 @@ public class LadderGame {
 
     private final Ladder ladder;
 
-    public LadderGame(Ladder ladder) {
+    LadderGame(Ladder ladder) {
         this.ladder = ladder;
     }
 
