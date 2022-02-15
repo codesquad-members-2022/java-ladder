@@ -16,12 +16,12 @@ public class LadderGame {
     public void init(int user, int height) {
         this.user = user;
         this.height = height;
-        userToBlank();
         build();
     }
 
     public void build() {
-        arr = new String[height][user];
+        int width = user * 2 - 1;
+        arr = new String[height][width];
 
         for (int i = 0; i < arr.length; i++) {
             addLadderUnit(i);
@@ -48,9 +48,5 @@ public class LadderGame {
             return arr[col][row] = LINEUNIT;
         }
         return arr[col][row] = BLANK;
-    }
-
-    private int userToBlank() {
-        return user = user * 2 - 1;
     }
 }
