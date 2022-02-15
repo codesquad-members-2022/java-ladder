@@ -10,11 +10,30 @@ public class InputValidator {
             }
             return n;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
+            if (input.isEmpty() || input.isBlank()) {
+                throw new IllegalArgumentException("값을 입력해주세요.");
+            }
+            if (isContainNotNumberCharacter(input)) {
+                throw new IllegalArgumentException("숫자를 입력해주세요.");
+            }
+            throw new IllegalArgumentException("int 범위를 초과합니다.");
         }
     }
 
     private boolean isPositiveInteger(int n) {
         return 0 < n;
+    }
+
+    private boolean isNumberCharacter(char ch) {
+        return '0' <= ch && ch <= '9';
+    }
+
+    private boolean isContainNotNumberCharacter(String input) {
+        for (char ch : input.toCharArray()) {
+            if (!isNumberCharacter(ch)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
