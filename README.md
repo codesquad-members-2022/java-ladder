@@ -162,3 +162,31 @@ public enum LadderElement {
   - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
 
 ---
+
+## LadderFactory (interface)
+```java
+public interface LadderFactory {
+
+    Ladder create(int entry, int height);
+}
+```
+- Ladder을 생성하는 역할
+- 구현체 : LadderFactoryImpl
+
+---
+
+## LadderGameService (interface)
+```java
+public interface LadderGameService {
+
+    void initLadderGame(int entry, int height);
+    Ladder getLadder();
+}
+```
+- LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
+- initLadderGame : 사다리 게임 초기화
+- getLadder : LadderGame으로부터, Ladder을 가져옴
+- 구현체 : LadderGameServiceImpl
+
+---
+
