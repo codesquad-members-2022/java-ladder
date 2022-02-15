@@ -3,6 +3,10 @@ public class LadderGame {
     private final int peopleCount;
     private final int ladderHeight;
     private final char[][] ladderBoard;
+    private final char HEIGHT = '|';
+    private final char WIDTH = '-';
+    private final char VOID = ' ';
+    private final int MAX_RANDOM_NUMBER = 10;
 
     public LadderGame(int peopleCount, int ladderHeight) {
         this.peopleCount = peopleCount;
@@ -33,7 +37,7 @@ public class LadderGame {
 
     private void putInitWidth(int height) {
         for (int j = 0; j < peopleCount * 2 - 1; j += 2) {
-            ladderBoard[height][j] = '|';
+            ladderBoard[height][j] = HEIGHT;
         }
     }
 
@@ -56,17 +60,17 @@ public class LadderGame {
 
     private void putRandomLine(int i, int j) {
         if (isPutLine()) {
-            ladderBoard[i][j] = '-';
+            ladderBoard[i][j] = WIDTH;
             return;
         }
-        ladderBoard[i][j] = ' ';
+        ladderBoard[i][j] = VOID;
     }
     
     private boolean isPutLine() {
-        return makeRandomValue() > 5;
+        return makeRandomValue() > (MAX_RANDOM_NUMBER / 2);
     }
 
     private int makeRandomValue() {
-        return (int)(Math.random() * 10 + 1);
+        return (int)(Math.random() * MAX_RANDOM_NUMBER + 1);
     }
 }
