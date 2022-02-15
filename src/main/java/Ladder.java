@@ -16,10 +16,15 @@ public class Ladder {
 
     private String[][] getDrawingLadder(String[][] ladder) {
         for (int i = 0; i < ladder.length; i++) { //세로
-            for (int j = 0; j < ladder[i].length; j++) {//가로
-                ladder = drawingLine(ladder, i, j);
-                ladder = drawingStick(ladder, i, j);
-            }
+            ladder = getMakeLine(ladder, i);
+        }
+        return ladder;
+    }
+
+    private String[][] getMakeLine(String[][] ladder, int i) {
+        for (int j = 0; j < ladder[i].length; j++) {//가로
+            ladder = drawingLine(ladder, i, j);
+            ladder = drawingStick(ladder, i, j);
         }
         return ladder;
     }
