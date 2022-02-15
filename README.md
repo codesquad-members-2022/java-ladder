@@ -18,7 +18,7 @@
 
 - [x] 들여쓰기 depth를 2단계에서 1단계로 줄이기
 - [x] else를 사용하지 않기
-- [ ] 무의미한 enum 사용 없애기  
+- [x] 무의미한 enum 사용 없애기  
   ㄴ 1단계에서 구현한 Message를 enum으로 만들어 얻을 수 있는 장점은, 상수로 선언한 message 문자열을 단순히 한 곳에 몰아 넣은 것 말곤 다른 장점이 없다. 또, enum은 관련이 있는 상수들의 집합을 묶을 때 사용하는데, message의 각각 내용들이 딱히 관련이 있는 것도 아니다.
 
 
@@ -70,3 +70,24 @@ initLadderRow() 메서드의 for문에서 수행하던 로직을 홀수와 짝�
 
 initLadderRow()는 Row를 생성하기 위한 사전 작업을 하고, 필요한 준비물을 determineLineShape() 메서드로 전달한다.  
 determineLineShape()는 전달받은 StringBuilder 객체에 값을 넣어준다. 이 때 전달받은 line이 홀수인지, 짝수인지 판단하는 것은 validateEven() 메서드에 맡긴다.
+
+```java
+public enum Message {
+    NUBER_OF_PEOPLE("참여할 사람은 몇 명인가요?"),
+    DEPTH_OF_LADDER("최대 사다리 높이는 몇 개인가요?");
+
+    private String message;
+
+    private Message(String message) {
+        this.message = message;
+    }
+
+    public String get() {
+        return message;
+    }
+}
+```
+
+enum class Message를 삭제하고, 해당 문자열을 상수로 선언하여 사용할 지, 문자열로 바로 전달하는게 좋을 지 고민했다.
+
+"참여할 사람은 몇 명인가요?", "최대 사다리 높이는 몇 개인가요?"는 인원수와, 사다리 높이를 입력받는 메서드에서 출력 객체에 전달해줄 때 한 번 사용될 뿐, 다른 곳에서 재사용 될 일이 없는 문자열이라고 생각되어 상수 선언하지 않고, 바로 문자열로 전달해주는 방식으로 바꾸었다.
