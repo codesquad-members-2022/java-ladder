@@ -5,12 +5,12 @@ public class LadderGame {
         Scanner sc = new Scanner(System.in);
 
         System.out.println(SystemMessage.UI_INPUT_PLAYER_COUNT.getMessage());
-        int n = Integer.parseInt(sc.nextLine());
+        int playerCount = Integer.parseInt(sc.nextLine());
         System.out.println(SystemMessage.UI_INPUT_LADDER_HEIGHT.getMessage());
-        int m = Integer.parseInt(sc.nextLine());
+        int height = Integer.parseInt(sc.nextLine());
         System.out.println();
 
-        Ladder ladder = new Ladder(m, n);
+        Ladder ladder = new Ladder(height, playerCount);
         System.out.println(ladder.render());
 
         sc.close();

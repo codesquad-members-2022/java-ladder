@@ -9,8 +9,8 @@ public class Ladder {
     private final char[][] ladderBars;
     private final Random random = new Random();
 
-    public Ladder(int height, int persons) {
-        this.ladderBars = drawLadderBars(height, persons);
+    public Ladder(int height, int playerCount) {
+        this.ladderBars = drawLadderBars(height, playerCount);
     }
 
     public String render() {
@@ -24,8 +24,8 @@ public class Ladder {
         return sb.toString();
     }
 
-    private char[][] drawLadderBars(int height, int persons) {
-        char[][] randomLadderBars = new char[height][getWidth(persons)];
+    private char[][] drawLadderBars(int height, int playerCount) {
+        char[][] randomLadderBars = new char[height][getWidth(playerCount)];
 
         for (char[] row : randomLadderBars) {
             drawLadderRow(row);
@@ -34,8 +34,8 @@ public class Ladder {
         return randomLadderBars;
     }
 
-    private int getWidth(int persons) {
-        return persons + STEP_WIDTH * (persons - 1);
+    private int getWidth(int playerCount) {
+        return playerCount + STEP_WIDTH * (playerCount - 1);
     }
 
     private void drawLadderRow(char[] ladderRow) {
