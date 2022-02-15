@@ -26,10 +26,6 @@ public class LadderGame {
         initLadderList(ladderHeight);
     }
 
-    public void start() {
-        PrintView.showLadder(ladder);
-    }
-
     private List<String> splitPeopleList(String peopleList) {
         return Stream.of(peopleList.split(","))
             .collect(Collectors.toList());
@@ -43,10 +39,26 @@ public class LadderGame {
     }
 
     private void initBoard() {
+        ArrayList<String> width;
         for (int i = 0; i < ladderHeight; i++) {
-            ladder.get(i).add(HEIGHT);
+            width = ladder.get(i);
+            width.add(voidMaker());
+            width.add(HEIGHT);
         }
         makeRandomLadder();
+    }
+
+    private String voidMaker() {
+        int firstPeopleNameLength = peoples.get(0).length();
+        return voidBuilder(firstPeopleNameLength);
+    }
+
+    private String voidBuilder(int i) {
+        StringBuilder sb = new StringBuilder();
+        if (i >= 3) {
+            return sb.append(" ".repeat(2)).toString();
+        }
+        return sb.append(" ".repeat(Math.max(0, i - 1))).toString();
     }
 
     private void makeRandomLadder() {
@@ -79,5 +91,9 @@ public class LadderGame {
 
     private int makeRandomValue() {
         return (int)(Math.random() * MAX_RANDOM_NUMBER + 1);
+    }
+
+    public void start() {
+        PrintView.showLadder(ladder);
     }
 }
