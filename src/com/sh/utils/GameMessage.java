@@ -9,6 +9,7 @@ public interface GameMessage {
 	// scope
 	Integer MIN_NUMBER_OF_PEOPLE = 2;
 	Integer MAX_NUMBER_OF_PEOPLE = 15;
+	Integer MIN_HEIGHT_OF_LADDER = MIN_NUMBER_OF_PEOPLE-1;
 	Integer MAX_HEIGHT_OF_LADDER = 20;
 
 	// game guide
