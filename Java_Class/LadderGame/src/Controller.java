@@ -1,5 +1,3 @@
-package LadderGame;
-
 public class Controller {
     private final Input input;
     private final LadderMaker maker;

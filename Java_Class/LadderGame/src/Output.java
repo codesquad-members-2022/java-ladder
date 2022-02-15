@@ -1,5 +1,3 @@
-package LadderGame;
-
 import java.util.Arrays;
 
 public class Output {

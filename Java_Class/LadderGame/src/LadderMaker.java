@@ -1,5 +1,3 @@
-package LadderGame;
-
 import java.util.Random;
 
 public class LadderMaker {
