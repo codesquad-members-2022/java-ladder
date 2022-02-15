@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class LadderGame {
 
-    String[][] arr;
-    int user;
-    int height;
+    private String[][] arr;
+    private int user;
+    private int height;
     private static final String LADDERUNIT = "|";
     private static final String LINEUNIT = "-";
     private static final String BLANK = " ";
