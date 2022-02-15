@@ -6,11 +6,11 @@ public class Launcher {
     private String[][] result;
 
     public void run() {
-        player = Print.inputPlayer();
-        height = Print.inputHeight();
+        player = Prompt.inputPlayer();
+        height = Prompt.inputHeight();
         result = makeLadder(player,height);
 
-        Print.result(result);
+        Printer.result(result);
     }
 
     private String[][] makeLadder(int player, int height) {
