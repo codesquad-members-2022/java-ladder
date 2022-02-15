@@ -13,10 +13,9 @@ public class View {
         return new LadderMap(personCount, ladderHeight);
     }
 
-    public static void printLadderMap(LadderMap ladderMap) {
-        System.out.println(1);
+    public static void printLadderMap(char[][] map) {
         System.out.println();
-        for (char[] line : ladderMap.getMap()) {
+        for (char[] line : map) {
             for (char c : line) {
                 System.out.print(c);
             }
