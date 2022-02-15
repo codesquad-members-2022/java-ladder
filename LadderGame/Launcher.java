@@ -27,12 +27,16 @@ public class Launcher {
         Launcher launcher = new Launcher();
 
         for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                insertLegAndBridge(ladder, launcher, i, j);
-            }
+            makeColumnWise(ladder, launcher, i);
         }
 
         return ladder;
+    }
+
+    private void makeColumnWise(String[][] ladder, Launcher launcher, int i) {
+        for (int j = 0; j < ladder[i].length; j++) {
+            insertLegAndBridge(ladder, launcher, i, j);
+        }
     }
 
     private void insertLegAndBridge(String[][] ladder, Launcher launcher, int i, int j) {

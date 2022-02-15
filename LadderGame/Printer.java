@@ -11,10 +11,14 @@ public class Printer {
     public static void result(String[][] makeLadder) {
         System.out.println();
         for(String[] i : makeLadder){
-            for(String j : i){
-                System.out.print(j);
-            }
+            printColumnWise(i);
             System.out.println();
+        }
+    }
+
+    private static void printColumnWise(String[] i) {
+        for(String j : i){
+            System.out.print(j);
         }
     }
 }
