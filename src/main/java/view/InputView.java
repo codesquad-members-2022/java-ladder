@@ -32,6 +32,8 @@ public class InputView {
     }
 
     public void close() {
-        sc.close();
+        if (sc != null) {
+            sc.close();
+        }
     }
 }
