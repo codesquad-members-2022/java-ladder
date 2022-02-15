@@ -25,11 +25,7 @@ public class Ladder {
     }
 
     private void fillLadderElement(int row, int col) {
-        if (isPillar(col)) {
-            ladder[row][col] = PILLAR;
-        } else {
-            ladder[row][col] = createRandomLine();
-        }
+        ladder[row][col] = (isPillar(col)) ? PILLAR : createRandomLine();
     }
 
     private void initLadderRow(int row) {
