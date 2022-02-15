@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 public class OutputController {
     private static final Consumer<String[]> printLadder = a -> {
-        Arrays.stream(a).forEach(System.out::println);
+        Arrays.stream(a).forEach(System.out::printf);
         System.out.println("");
     };
     public static void showLadder(String[][] ladderArr) {
