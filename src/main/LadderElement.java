@@ -11,11 +11,11 @@ public enum LadderElement {
         this.str = str;
     }
 
-    public String get() {
-        return str;
-    }
-
     public static int getGap() {
         return HORIZONTAL.get().length();
+    }
+
+    public String get() {
+        return str;
     }
 }

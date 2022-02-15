@@ -29,8 +29,9 @@ public class StringUtil {
     }
 
     private static void validateName(String name) {
-        if (name.length() > 5)
+        if (name.length() > 5) {
             throw new IllegalArgumentException();
+        }
     }
 
 }
