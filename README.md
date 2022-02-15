@@ -203,3 +203,20 @@ public interface Validator {
 - 구현체 : ValidatorImpl
 
 ---
+
+## InputView (interface)
+```java
+public interface InputView {
+
+    int inputEntry();
+    int inputHeight();
+    void close();
+}
+```
+- InputView : 사용자로부터 입력을 받는 역할을 정의한 인터페이스
+  - inputEntry : 참가자 수
+  - inputHeight : 사다리 높이
+  - close : 입력에 사용했던 자원 반환
+- InputViewImpl : 구현체
+
+---
