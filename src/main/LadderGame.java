@@ -51,12 +51,13 @@ public class LadderGame {
             this.map[row][col] = LadderChar.VERTICAL;
         }
         if (col % 2 != 0) {
-            boolean rand = RandomUtil.nextBoolean();
-            getRandomChar(row, col, rand);
+            changeRandomChar(row, col);
         }
     }
 
-    private void getRandomChar(int row, int col, boolean rand) {
+    private void changeRandomChar(int row, int col) {
+        boolean rand = RandomUtil.nextBoolean();
+
         if (rand) {
             this.map[row][col] = LadderChar.SPACE;
         }
