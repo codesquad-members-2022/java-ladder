@@ -9,6 +9,12 @@ public class Ladder {
 
     private final String[][] ladder;
 
+    public Ladder(int entry, int height) {
+        int width = entry + (entry - 1);
+        this.ladder = new String[height][width];
+        initLadder();
+    }
+
     private boolean isPillar(int col) {
         return col % 2 == 0;
     }
@@ -28,12 +34,6 @@ public class Ladder {
                 }
             }
         }
-    }
-
-    public Ladder(int entry, int height) {
-        int width = entry + (entry - 1);
-        this.ladder = new String[height][width];
-        initLadder();
     }
 
     @Override
