@@ -8,6 +8,6 @@ public class App {
         Sadari s = new Sadari(userNumber, sadariNumber);
 
         OutputView.printGraphicalSadari( s.getSadari() );
-        d
+
     }
 }
