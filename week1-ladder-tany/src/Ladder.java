@@ -12,7 +12,6 @@ public class Ladder {
     public char[][] initLadderInformation() {
         int personCount = person.getPersonCount() * 2 - 1;
         information = new char[maxHigh][personCount];
-        setLadderFrame(personCount);
         return setRandomStep(personCount);
     }
 
