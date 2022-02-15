@@ -27,10 +27,7 @@ public class InputValidator {
     }
 
     private boolean isContainNotNumberCharacter(String input) {
-        return input.chars()
-            .filter(this::isNotNumberAscii)
-            .findAny()
-            .isPresent();
+        return input.chars().anyMatch(this::isNotNumberAscii);
     }
 
     private IllegalArgumentException subdivideNumberFormatException(String input) {
