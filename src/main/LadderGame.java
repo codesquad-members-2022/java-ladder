@@ -10,7 +10,7 @@ public class LadderGame {
 
     private int height;
     private int width;
-    private LadderChar[][] map;
+    private LadderElement[][] map;
 
     public LadderGame(List<String> names, int numLadder) {
         this.names = names;
@@ -20,12 +20,16 @@ public class LadderGame {
     public void createMap() {
         this.width = getWidth();
         this.height = getHeight();
-        this.map = new LadderChar[height][width];
+        this.map = new LadderElement[height][width];
 
         changePlane();
     }
 
-    public LadderChar[][] getMap() {
+    public List<String> getNames() {
+        return this.names;
+    }
+
+    public LadderElement[][] getMap() {
         return this.map;
     }
 
@@ -51,7 +55,7 @@ public class LadderGame {
 
     private void changeChar(int row, int col) {
         if (col % 2 == 0) {
-            this.map[row][col] = LadderChar.VERTICAL;
+            this.map[row][col] = LadderElement.VERTICAL;
         }
         if (col % 2 != 0) {
             changeRandomChar(row, col);
@@ -62,10 +66,10 @@ public class LadderGame {
         boolean rand = RandomUtil.nextBoolean();
 
         if (rand) {
-            this.map[row][col] = LadderChar.SPACE;
+            this.map[row][col] = LadderElement.SPACE;
         }
         if (!rand) {
-            this.map[row][col] = LadderChar.HORIZONTAL;
+            this.map[row][col] = LadderElement.HORIZONTAL;
         }
     }
 
