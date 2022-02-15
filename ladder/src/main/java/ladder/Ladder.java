@@ -7,9 +7,8 @@ public class Ladder {
     private final int userCount;
     private final int ladderHeight;
     private static final String PILLAR = "|";
-    private static final String SPACE = " ";
-    private static final String LINE = "-";
-    private final String[] ladderUnit = {SPACE, LINE, LINE};
+    private final String[] ladderUnit = {" ", "-", "-"};
+    private final Random random = new Random(System.currentTimeMillis());
 
     public Ladder(int userCount, int ladderHigh) {
         this.userCount = userCount;
@@ -19,20 +18,31 @@ public class Ladder {
 
     private void createLadder() {
         String[][] ladder = new String[ladderHeight][ladderWidth()];
-        Random random = new Random(System.currentTimeMillis());
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                if (j % 2 == 0) {
-                    ladder[i][j] = PILLAR;
-                    continue;
-                }
-                ladder[i][j] = ladderUnit[random.nextInt(ladderUnit.length)];
-                if (j != 1 && ladder[i][j - 2].equals(ladderUnit[1])) {
-                    ladder[i][j] = ladderUnit[0];
-                }
-            }
+        for (int row = 0; row < ladder.length; row++) {
+            ladderUnitArrangement(ladder, row);
         }
         printLadder(ladder);
+    }
+
+    private void ladderUnitArrangement(String[][] ladder, int row) {
+        for (int col = 0; col < ladder[row].length; col++) {
+            ladder[row][col] = ladderLineArrangement(col);
+            isDuplicateLine(ladder, row, col);
+        }
+    }
+
+    private String ladderLineArrangement(int col) {
+        return isEven(col) ? PILLAR : ladderUnit[random.nextInt(ladderUnit.length)];
+    }
+
+    private void isDuplicateLine(String[][] ladder, int row, int col) {
+        if (col > 1 && ladder[row][col - 2].equals(ladderUnit[1])) {
+            ladder[row][col] = ladderUnit[0];
+        }
+    }
+
+    private boolean isEven(int col) {
+        return col % 2 == 0;
     }
 
     private int ladderWidth() {
