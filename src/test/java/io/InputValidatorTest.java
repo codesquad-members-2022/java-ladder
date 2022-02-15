@@ -11,12 +11,29 @@ class InputValidatorTest {
 
     InputValidator iv = new InputValidator();
 
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    @DisplayName("빈 문자열 또는 공백를 입력한 경우, 값을 입력해달라는 메시지를 담은 IAE")
+    void positiveIntegerEmptyOrBlank(String input) {
+        assertThatThrownBy(() -> iv.positiveInteger(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("값을 입력해주세요.");
+    }
+
     @Test
     @DisplayName("문자를 입력한 경우, 숫자를 입력해달라는 메시지를 담은 IAE")
     void positiveIntegerNotNumber() {
         assertThatThrownBy(() -> iv.positiveInteger("not number"))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("숫자를 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("int 범위를 초과한 값을 입력한 경우, 범위를 초과했다는 메시지를 담은 IAE")
+    void positiveIntegerNotInteger() {
+        assertThatThrownBy(() -> iv.positiveInteger("123456789123456789"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("int 범위를 초과합니다.");
     }
 
     @ParameterizedTest
