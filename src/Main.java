@@ -10,4 +10,6 @@ public class Main {
 
         ladder.printLadder(ladder.ladderInfo(playerCount, ladderHeight));
     }
+
+
 }
