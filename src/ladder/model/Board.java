@@ -21,6 +21,10 @@ public class Board {
         this.board = createBoard();
     }
 
+    public String[][] getBoard(){
+        return this.board;
+    }
+
     private Width getWidth(int width) {
         return new Width(width);
     }
