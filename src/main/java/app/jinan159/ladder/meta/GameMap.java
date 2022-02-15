@@ -23,4 +23,25 @@ public class GameMap {
     public int getHeight() {
         return gameMap.length;
     }
+
+    public String gameMapToString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (LadderElement[] row : this.gameMap) {
+            sb.append(rowToString(row));
+            sb.append('\n');
+        }
+
+        return sb.toString();
+    }
+
+    private String rowToString(LadderElement[] row) {
+        StringBuilder sb = new StringBuilder();
+        for (LadderElement col : row) {
+            sb.append(col.getMark());
+        }
+
+        return sb.toString();
+    }
+
 }

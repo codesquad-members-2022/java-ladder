@@ -61,16 +61,11 @@ public class LadderGame {
 
     // ------- public method ---------
     public void startGame() {
-        for (int h = 0; h < gameMap.getHeight(); h++) {
-            printRow(gameMap, h);
-        }
+        printGameMap();
     }
 
     // ------- private method ---------
-    private void printRow(GameMap gameMap, int y) {
-        for (int x = 0; x < gameMap.getWidth(); x++) {
-            System.out.print(gameMap.get(x, y).getMark());
-        }
-        System.out.println();
+    private void printGameMap() {
+        System.out.println(gameMap.gameMapToString());
     }
 }
