@@ -1,10 +1,11 @@
 import java.util.Random;
 
 class LadderLine {
+	private static final char LADDER_FRAME = '|';
+	private static final char LADDER_LINE = '-';
+	private static final char BLANK = ' ';
+
 	char makeLadderLine(int column){
-		final char LADDER_FRAME = '|';
-		final char LADDER_LINE = '-';
-		final char BLANK = ' ';
 		Random random = new Random();
 
 		if(column % 2 == 0){
@@ -16,6 +17,5 @@ class LadderLine {
 		}
 
 		return BLANK;
-
 	}
 }
