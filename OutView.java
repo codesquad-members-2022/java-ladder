@@ -1,10 +1,14 @@
 class OutView {
 	void print(char[][] ladder){
 		for(char[] row : ladder){
-			for(char line : row){
-				System.out.print(line);
-			}
-			System.out.println();
+			printRow(row);
 		}
+	}
+
+	void printRow(char[] row){
+		for(char character : row){
+			System.out.print(character);
+		}
+		System.out.println();
 	}
 }
