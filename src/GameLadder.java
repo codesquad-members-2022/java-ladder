@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameLadder {
@@ -10,6 +11,45 @@ public class GameLadder {
         return new int[]{numOfPeople, heightOfLadder};
     }
 
+    public void start(int[] gameInfo) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i< gameInfo[1]; i++) {
+            for(int j=0; j< gameInfo[0]; j++){
+                sb.append("|");
+                if(j==gameInfo[0]-1){
+                    break;
+                }
+                sb.append(makeLadderLine());
+            }
+            sb.append(System.lineSeparator());
+        }
+        print(sb);
+    }
+
+    private void print(StringBuilder stringBuilder) {
+        System.out.println(stringBuilder);
+    }
+
+    private String makeLadderLine() {
+        boolean isLineExist =  isExist(randomNumber());
+        if(isLineExist) {
+            return "-";
+        }
+        return " ";
+    }
+
+    private int randomNumber(){
+        Random random =  new Random();
+        return random.nextInt(2);
+    }
+
+
+    private boolean isExist(int number) {
+        if(number == 0) {
+            return false;
+        }
+        return true;
+    }
 
     private int inputNumber() {
         return new Scanner(System.in).nextInt();
