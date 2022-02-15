@@ -7,7 +7,7 @@ public class Main {
 
         LadderGame ladderGame = new LadderGame();
 
-        ladderGame.makeLadder();
+        ladderGame.build();
 
     }
 }
