@@ -83,7 +83,27 @@ public class AppConfig {
 - 주요 싱글톤 인스턴스들의 의존성을 관리해주는 설정 클래스 (싱글톤)
 
 ---
+## LadderGame
 
+```java
+public class LadderGame {
+
+    private final Ladder ladder;
+
+    public LadderGame(Ladder ladder) {
+        this.ladder = ladder;
+    }
+
+    public Ladder getLadder() {
+        return this.ladder;
+    }
+
+}
+```
+- 사다리 게임을 정의한 LadderGame 클래스를 정의
+- getter로 ladder을 반환함.
+
+---
 ## Ladder
 ```java
 public class Ladder {
