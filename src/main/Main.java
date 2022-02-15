@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Scanner;
+import main.util.ParseUtil;
 
 public class Main {
 
@@ -11,7 +12,7 @@ public class Main {
         InputView inputView = new InputView(scanner, outputView);
 
         LadderGame ladderGame = new LadderGame(
-            inputView.getNumPerson(),
+            ParseUtil.parseNames(inputView.getNames()),
             inputView.getNumLadder()
         );
         ladderGame.createMap();

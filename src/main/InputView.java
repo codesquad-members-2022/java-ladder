@@ -12,9 +12,9 @@ public class InputView {
         this.outputView = outputView;
     }
 
-    public int getNumPerson() {
-        outputView.printMessage(Message.INPUT_NUM_PERSON.get());
-        return scanner.nextInt();
+    public String getNames() {
+        outputView.printMessage(Message.INPUT_NAMES.get());
+        return scanner.nextLine();
     }
 
     public int getNumLadder() {

@@ -1,16 +1,19 @@
 package main;
 
+import java.util.List;
+import main.util.RandomUtil;
+
 public class LadderGame {
 
-    private final int numPerson;
+    private final List<String> names;
     private final int numLadder;
 
     private int height;
     private int width;
     private LadderChar[][] map;
 
-    public LadderGame(int numPerson, int numLadder) {
-        this.numPerson = numPerson;
+    public LadderGame(List<String> names, int numLadder) {
+        this.names = names;
         this.numLadder = numLadder;
     }
 
@@ -27,7 +30,7 @@ public class LadderGame {
     }
 
     private int getWidth() {
-        return 2 * this.numPerson - 1;
+        return 2 * this.names.size() - 1;
     }
 
     private int getHeight() {
