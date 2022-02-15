@@ -6,15 +6,14 @@ public class LadderGame {
     }
 
     private void inputValue() {
-        Screen screen = new Screen();
         Input input = new Input();
+        Screen screen = new Screen();
 
-        screen.printUserCountBar();
-        int userCount = input.inputString();
-        screen.printLadderMaxHighBar();
-        int ladderMaxHigh = input.inputString();
+        int userCount = screen.printUserCountBar(input);
+        int ladderMaxHigh = screen.printLadderMaxHighBar(input);
 
         createLadder(userCount, ladderMaxHigh);
+        input.close();
     }
 
     private void createLadder(int userCount, int ladderHigh) {
