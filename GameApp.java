@@ -6,7 +6,7 @@ public class GameApp {
 
     public void run() {
         UserInterface ui = new UserInterface();
-        int playerCnt = ui.inputPlayerCnt(), ladderHeight = ui.inputLadderCount();
+        int playerCnt = ui.inputPlayerCnt(), ladderHeight = ui.inputLadderHeight();
 
         GameDisplay.showLadderInfo(getLadderInfo(playerCnt, ladderHeight));
     }
