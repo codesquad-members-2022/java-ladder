@@ -16,5 +16,6 @@ public class Client {
 
         LadderGame ladderGame = new LadderGame();
         ladderGame.init(n, m);
+        sc.close();
     }
 }
