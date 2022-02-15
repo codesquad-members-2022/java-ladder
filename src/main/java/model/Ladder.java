@@ -37,12 +37,11 @@ public class Ladder {
     private boolean isLine(int h, int w) {
         int indexValue = (h + 1) * (w + 1) + w + 1;
         int randomValue = (int) (Math.random() * height * width + 1);
-        int maxValue = Math.max(indexValue, randomValue);
-        return commonFactorExist(indexValue, randomValue, maxValue);
+        return commonFactorExist(indexValue, randomValue);
     }
-    private boolean commonFactorExist(int indexValue, int randomValue, int maxValue) {
-        return IntStream.rangeClosed(2, (int) Math.sqrt(maxValue)).anyMatch(value ->
-                (indexValue % value == 0 && randomValue % value == 0));
+    private boolean commonFactorExist(int indexValue, int randomValue) {
+        return IntStream.rangeClosed(2, (int) Math.sqrt(Math.max(indexValue, randomValue)))
+                .anyMatch(value -> (indexValue % value == 0 && randomValue % value == 0));
     }
 
     @Override
