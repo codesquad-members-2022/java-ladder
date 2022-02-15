@@ -4,13 +4,13 @@ import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private static final String BLANK = " ";
-    private static final String RUNG = "-";
-    private static final String RAIL = "|";
+    private static final char BLANK = ' ';
+    private static final char RUNG = '-';
+    private static final char RAIL = '|';
     private final int userNum;
     private final int height;
     private final int space;
-    private final String[][] ladderArr;
+    private final Character[][] ladderArr;
 
     public Ladder(int userNum, int height) {
         this.userNum = userNum;
@@ -19,26 +19,22 @@ public class Ladder {
         ladderArr = createLadder();
     }
 
-    private String[][] createLadder() {
-        String[][] result = new String[height][userNum + space];
+    private Character[][] createLadder() {
+        Character[][] result = new Character[height][userNum + space];
         IntStream.range(0, height).forEach(i -> IntStream.range(0, userNum + space)
                 .forEach(j -> generate(result, i, j)));
         return result;
     }
 
-    private void generate(String[][] result, int i, int j) {
+    private void generate(Character[][] result, int i, int j) {
         if (j % 2 == 0) {
             result[i][j] = RAIL;
             return;
         }
-        result[i][j] = generateRandomRung();
+        result[i][j] = (Math.random() > 0.5) ? BLANK : RUNG;
     }
 
-    private String generateRandomRung() {
-        return (Math.random() > 0.5) ? BLANK : RUNG;
-    }
-
-    public String[][] getLadderArr() {
+    public Character[][] getLadderArr() {
         return ladderArr;
     }
 }
