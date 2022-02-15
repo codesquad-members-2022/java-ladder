@@ -8,7 +8,7 @@ public class Printer {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void result(String[][] makeLadder) {
+    public static void PrintResult(String[][] makeLadder) {
         System.out.println();
         for(String[] i : makeLadder){
             printColumnWise(i);

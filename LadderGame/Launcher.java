@@ -10,7 +10,7 @@ public class Launcher {
         height = Prompt.inputHeight();
         result = makeLadder(player,height);
 
-        Printer.result(result);
+        Printer.PrintResult(result);
     }
 
     private String[][] makeLadder(int player, int height) {
