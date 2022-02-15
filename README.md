@@ -23,6 +23,24 @@
 
 ---
 
+## Main 클래스
+
+```java
+
+public class Main {
+
+    public static void main(String[] args) {
+        GameApplication gameApplication = new GameApplication();
+        gameApplication.run();
+    }
+}
+```
+- main 메서드가 정의된 클래스
+- GameApplication 인스턴스 생성
+- run 메서드 호출
+
+---
+
 ## GameApplication
 ```java
 public class GameApplication {
