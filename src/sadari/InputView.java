@@ -14,7 +14,7 @@ public class InputView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         return scn.nextInt();
     }
-    
+
     public void close(){
         if (scn != null) {
             scn.close();
