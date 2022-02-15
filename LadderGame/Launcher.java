@@ -1,14 +1,11 @@
 import java.util.Random;
 
 public class Launcher {
-    private int player;
-    private int height;
-    private String[][] result;
 
     public void run() {
-        player = Prompt.inputPlayer();
-        height = Prompt.inputHeight();
-        result = makeLadder(player,height);
+        int player = Prompt.inputPlayer();
+        int height = Prompt.inputHeight();
+        String[][] result = makeLadder(player, height);
 
         Printer.PrintResult(result);
     }
