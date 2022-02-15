@@ -1,3 +1,5 @@
+package sadari;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,3 +14,4 @@ public class Main {
         scn.close();
     }
 }
+

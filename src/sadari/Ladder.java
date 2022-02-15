@@ -1,3 +1,5 @@
+package sadari;
+
 import java.util.Random;
 
 public class Ladder {
@@ -36,3 +38,4 @@ public class Ladder {
         }
     }
 }
+
