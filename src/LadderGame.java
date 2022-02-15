@@ -4,9 +4,9 @@ public class LadderGame {
     public void run() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("참여할 인원 수를 입력하십시오.");
+        System.out.println(SystemMessage.UI_INPUT_PLAYER_COUNT.getMessage());
         int n = Integer.parseInt(sc.nextLine());
-        System.out.println("사다리의 높이를 입력하십시오.");
+        System.out.println(SystemMessage.UI_INPUT_LADDER_HEIGHT.getMessage());
         int m = Integer.parseInt(sc.nextLine());
         System.out.println();
 
