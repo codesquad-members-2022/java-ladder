@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class View {
     private static Scanner sc = new Scanner(System.in);
@@ -16,9 +17,9 @@ public class View {
     public static void printLadderMap(char[][] map) {
         System.out.println();
         for (char[] line : map) {
-            for (char c : line) {
-                System.out.print(c);
-            }
+            IntStream.range(0, line.length)
+                    .mapToObj(i -> line[i])
+                    .forEach(System.out::print);
             System.out.println();
         }
     }
