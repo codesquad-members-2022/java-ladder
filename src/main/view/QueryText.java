@@ -1,4 +1,4 @@
-package view;
+package main.view;
 
 public enum QueryText {
     NUM_OF_ATTENDANTS("참여할 사람은 몇 명인가요?"),
