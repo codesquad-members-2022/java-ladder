@@ -8,26 +8,23 @@ public class Ladder {
         this.ladder = new String[height][people];
         for (int i = 0; i < ladder.length; i++) {
             for (int j = 0; j < ladder[i].length; j++) {
-                if (j%2 == 0){
-                    ladder[i][j] ="|";
-                }  else {
-                    ladder[i][j] = makeRandomSteps();
-                }
+                ladder[i][j] = drawLines(j);
             }
         }
         print(ladder);
     }
 
-    public String makeRandomSteps(){
+    public String drawLines(int j){
         Random rd = new Random();
         int random = rd.nextInt(100) % 2;
+        if (j % 2 == 0) {
+            return step ="|";
+        }
         if (random == 0) {
-            step = " ";
+            return step = " ";
         }
-        if (random == 1) {
-            step = "-";
-        }
-        return step;
+
+        return step = "-";
     }
 
     public void print(String[][] ladder) {
