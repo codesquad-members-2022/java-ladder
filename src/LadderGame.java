@@ -4,7 +4,7 @@ public class LadderGame {
 
     private static final Random random = new Random();
 
-    private String[][] ladder;
+    private char[][] ladder;
     private int width;
     private int height;
 
@@ -25,7 +25,7 @@ public class LadderGame {
     }
 
     private void createLadder() {
-        ladder = new String[height][width];
+        ladder = new char[height][width];
 
         for (int i = 0; i < ladder.length; i++) {
             addLadderData(i);
@@ -34,20 +34,20 @@ public class LadderGame {
 
     private void addLadderData(int i) {
         for (int j = 0; j < ladder[i].length; j++) {
-            ladder[i][j] = check(i, j);
+            ladder[i][j] = check(j);
         }
     }
 
-    private String check(int i, int j) {
+    private char check(int j) {
         if (j == 0 || j % 2 == 0) {
-            return "|";
+            return '|';
         }
 
         if (random.nextBoolean()) {
-            return "-";
+            return '-';
         }
 
-        return " ";
+        return ' ';
     }
 
     public void getResult() {
