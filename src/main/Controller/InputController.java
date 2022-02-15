@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputController {
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
     public static int inputNumber(String msg) {
         int result = 0;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             printMessage(msg);
             result = Integer.parseInt(br.readLine());
         } catch (IOException e) {
@@ -18,5 +20,9 @@ public class InputController {
 
     private static void printMessage(String msg) {
         System.out.println(msg);
+    }
+
+    public static void close() throws IOException {
+        br.close();
     }
 }
