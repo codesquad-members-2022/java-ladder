@@ -27,6 +27,7 @@ public class Ladder {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int line = 0; line < height; ++line) {

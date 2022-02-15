@@ -138,6 +138,21 @@ public int getHeight() {
         }
 ```
 
+#### 2. 어노테이션 추가
+* 'Ladder'클래스의 `toString()`메서드에 어노테이션을 추가했다.
+```java
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int line = 0; line < height; ++line) {
+            sb.append(getStringLine(line));
+            sb.append("\n");
+        }
+
+        return new String(sb);
+        }
+* ```
+
 
 
 
