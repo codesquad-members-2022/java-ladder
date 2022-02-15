@@ -5,9 +5,9 @@ public class LadderGame {
     String[][] arr;
     int user;
     int height;
-    String ladderUnit = "|";
-    String lineUnit = "-";
-    String blank = " ";
+    private static final String LADDERUNIT = "|";
+    private static final String LINEUNIT = "-";
+    private static final String BLANK = " ";
 
     LadderGame() {
 
@@ -16,7 +16,7 @@ public class LadderGame {
     public void init(int user, int height) {
         this.user = user;
         this.height = height;
-        userToBlink();
+        userToBlank();
         makeLadder();
     }
 
@@ -34,21 +34,20 @@ public class LadderGame {
             if (j % 2 == 1) {
                 lineOrBlank(i, j);
             } else {
-                arr[i][j] = ladderUnit;
+                arr[i][j] = LADDERUNIT;
             }
         }
     }
 
-    private void lineOrBlank(int i, int j) {
+    private String lineOrBlank(int i, int j) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            arr[i][j] = lineUnit;
-        } else {
-            arr[i][j] = blank;
+            return arr[i][j] = LINEUNIT;
         }
+        return arr[i][j] = BLANK;
     }
 
-    private void userToBlink() {
+    private void userToBlank() {
         user = user * 2 - 1;
     }
 }
