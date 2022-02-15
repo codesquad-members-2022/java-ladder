@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     public static int inputPeopleNumber() {
         PrintView.requestPeopleNumber();
@@ -19,11 +19,11 @@ public class InputView {
         return sc.nextInt();
     }
 
-    public static void scannerClose() {
-        sc.close();
-    }
-
     public static String inputPeopleName() {
         return sc.nextLine();
+    }
+
+    public static void scannerClose() {
+        sc.close();
     }
 }

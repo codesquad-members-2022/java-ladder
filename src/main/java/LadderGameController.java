@@ -11,5 +11,7 @@ public class LadderGameController {
 
         LadderGame ladderGame = new LadderGame(nameList, ladderHeight);
         ladderGame.start();
+
+        InputView.scannerClose();
     }
 }
