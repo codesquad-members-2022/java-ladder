@@ -1,7 +1,7 @@
 package main;
 
 import java.util.List;
-import main.util.RandomUtil;
+import main.util.LadderUtil;
 
 public class LadderGame {
 
@@ -10,7 +10,7 @@ public class LadderGame {
 
     private int height;
     private int width;
-    private LadderElement[][] map;
+    private List<List<LadderElement>> map;
 
     public LadderGame(List<String> names, int numLadder) {
         this.names = names;
@@ -18,27 +18,27 @@ public class LadderGame {
     }
 
     public void createMap() {
-        this.width = getWidth();
-        this.height = getHeight();
-        this.map = new LadderElement[height][width];
+        height = getHeight();
+        width = getWidth();
+        map = LadderUtil.create2DList(height, width);
 
         changePlane();
     }
 
     public List<String> getNames() {
-        return this.names;
+        return names;
     }
 
-    public LadderElement[][] getMap() {
-        return this.map;
+    public List<List<LadderElement>> getMap() {
+        return map;
     }
 
     private int getWidth() {
-        return 2 * this.names.size() - 1;
+        return 2 * names.size() - 1;
     }
 
     private int getHeight() {
-        return this.numLadder;
+        return numLadder;
     }
 
     private void changePlane() {
@@ -59,7 +59,7 @@ public class LadderGame {
         boolean next = prev;
 
         if (col % 2 == 0) {
-            this.map[row][col] = LadderElement.VERTICAL;
+            this.map.get(row).set(col, LadderElement.VERTICAL);
         }
         if (col % 2 != 0) {
             next = changeSpace(row, col, prev);
@@ -68,13 +68,13 @@ public class LadderGame {
     }
 
     private boolean changeSpace(int row, int col, boolean next) {
-        boolean rand = RandomUtil.nextBoolean();
+        boolean rand = LadderUtil.nextBoolean();
 
         if (next && rand) {
-            this.map[row][col] = LadderElement.HORIZONTAL;
+            this.map.get(row).set(col, LadderElement.HORIZONTAL);
         }
         if (!next || !rand) {
-            this.map[row][col] = LadderElement.BLANK;
+            this.map.get(row).set(col, LadderElement.BLANK);
         }
         return !next || !rand;
     }

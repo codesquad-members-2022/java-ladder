@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(Message.OUTPUT_VIEW_RESULT.get());
         printNames(ladderGame.getNames());
 
-        for (LadderElement[] elements : ladderGame.getMap()) {
+        for (List<LadderElement> elements : ladderGame.getMap()) {
             printLine(elements);
         }
     }
@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private void printLine(LadderElement[] elements) {
+    private void printLine(List<LadderElement> elements) {
         String blanks = " ".repeat(LadderElement.getGap() / 2);
         StringBuilder sb = new StringBuilder();
 
