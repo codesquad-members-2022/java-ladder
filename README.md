@@ -106,9 +106,37 @@ public class Main {
 
 ## 사다리 게임 2단계 - 리팩토링 맛보기
 
+### 기능요구사항
+* [x] 1단계 요구사항과 동일함
 
+### 프로그래밍 요구사항
+* [x] 메서드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+* [x] 메서드가 한 가지 일만 하도록 최대한 작게 만들어라.
+* [x] 들여쓰기(indent) depth를 2단계에서 1단계로 줄여라.
+* [x] depth의 경우 if 문을 사용하는 경우 1단계의 depth가 증가한다. if 문 안에 while 문을 사용한다면 depth가 2단계가 된다.
+* [x] else를 사용하지 마라.
+* [x] 구현 순서를 고려하면서 프로그래밍한다.
+* [x] naming convention을 지키면서 프로그래밍한다.
 
+### 리팩토링 과정
 
+#### 1. 변수 인라인화
+* `ScanView`의 `getNumPlayer()`메서드와 `getHeight()`메서드의 필요 없는 변수를 인라인화 시켰다.
+```java
+    public int getnumplayer() {
+        system.out.println("참여할 사람은 몇 명인가요?");
+        int numplayer = sc.nextint();
+
+        return numplayer;
+        }
+        
+// -->        
+
+public int getHeight() {
+        System.out.println("최대 사다리 높이 는 몇 개 인가요?");
+        return sc.nextInt();
+        }
+```
 
 
 
