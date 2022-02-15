@@ -23,6 +23,31 @@
 
 ---
 
+## GameApplication
+```java
+public class GameApplication {
+
+    public GameApplication() {
+        init();
+    }
+
+    private void init() {
+        AppConfig ac = AppConfig.getInstance();
+    }
+
+    public void run() {
+        System.out.println("Hello, World!");
+        System.out.println("Bye, World!");
+    }
+}
+```
+- 실제 실행 역할을 담당함.
+- 생성자 호출 시, init 메서드를 호출하여 초기화
+- AppConfig 인스턴스를 기반으로 초기화한다.
+- run 메서드를 호출하면 실행됨
+
+---
+
 ## AppConfig 클래스
 ```java
 public class AppConfig {
