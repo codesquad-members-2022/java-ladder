@@ -13,22 +13,22 @@ public class InputValidator {
     }
 
     private void validateNumber(int n) {
-        if (!isPositiveInteger(n)) {
+        if (isNotPositiveInteger(n)) {
             throw new IllegalArgumentException("양수를 입력해주세요.");
         }
     }
 
-    private boolean isPositiveInteger(int n) {
-        return 0 < n;
+    private boolean isNotPositiveInteger(int n) {
+        return n < 1;
     }
 
-    private boolean isNumberAscii(int ch) {
-        return '0' <= ch && ch <= '9';
+    private boolean isNotNumberAscii(int ch) {
+        return ch < '0' || ch > '9';
     }
 
     private boolean isContainNotNumberCharacter(String input) {
         return input.chars()
-            .filter(ch -> !isNumberAscii(ch))
+            .filter(this::isNotNumberAscii)
             .findAny()
             .isPresent();
     }
