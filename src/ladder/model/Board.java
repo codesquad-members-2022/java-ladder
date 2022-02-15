@@ -45,4 +45,15 @@ public class Board {
         }
         return board[row][col] = " ";
     }
+
+    public static void main(String[] args) {
+        Board board = new Board(7, 5);
+        String[][] bo = board.getBoard(5, 7);
+        for (int row = 0; row < 7; row++) {
+            System.out.println();
+            for (int col = 0; col < 5; col++) {
+                System.out.print(bo[row][col]);
+            }
+        }
+    }
 }
