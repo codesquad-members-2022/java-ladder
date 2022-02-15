@@ -5,12 +5,16 @@ public class InputValidator {
     public int positiveInteger(String input) throws IllegalArgumentException {
         try {
             int n = Integer.parseInt(input);
-            if (!isPositiveInteger(n)) {
-                throw new IllegalArgumentException("양수를 입력해주세요.");
-            }
+            validateNumber(n);
             return n;
         } catch (NumberFormatException e) {
             throw subdivideNumberFormatException(input);
+        }
+    }
+
+    private void validateNumber(int n) {
+        if (!isPositiveInteger(n)) {
+            throw new IllegalArgumentException("양수를 입력해주세요.");
         }
     }
 
