@@ -8,16 +8,16 @@ public class Printer {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void PrintResult(String[][] makeLadder) {
+    public static void printResult(char[][] makeLadder) {
         System.out.println();
-        for(String[] i : makeLadder){
+        for(char[] i : makeLadder){
             printColumnWise(i);
             System.out.println();
         }
     }
 
-    private static void printColumnWise(String[] i) {
-        for(String j : i){
+    private static void printColumnWise(char[] i) {
+        for(char j : i){
             System.out.print(j);
         }
     }
