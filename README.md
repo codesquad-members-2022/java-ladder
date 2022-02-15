@@ -83,3 +83,30 @@ public class AppConfig {
 - 주요 싱글톤 인스턴스들의 의존성을 관리해주는 설정 클래스 (싱글톤)
 
 ---
+
+## LadderElement (enum)
+```java
+public enum LadderElement {
+
+    VERTICAL_LINE('|'),
+    HORIZONTAL_LINE('-'),
+    EMPTY_LINE(' ');
+
+    private char symbol;
+
+    LadderElement(char symbol) {
+        this.symbol = symbol;
+    }
+
+    public char getSymbol() {
+        return this.symbol;
+    }
+}
+```
+- 사다리의 구성 요소들을 enum으로 정의
+- 요소
+  - 세로라인은 VERTICAL_LINE
+  - 가로라인은 HORIZONTAL_LINE
+  - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
+
+---
