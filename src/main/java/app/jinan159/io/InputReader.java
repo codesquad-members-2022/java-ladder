@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class InputReader implements Closeable {
 
     private final static String Q_NUMBER_OF_PARTICIPANTS = "참여할 사람은 몇 명 인가요?(1명 이상)";
-    private final static String Q_MAX_LADDER_HEIGHT = "참여할 사람은 몇 명 인가요?(1명 이상)";
+    private final static String Q_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?(1개 이상)";
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
     private final static String ALERT_VALIDATION_FAILED = "(주의) 입력하신 숫자를 다시한번 확인해 주세요.";
     private final static int READ_FAILED = -1;
