@@ -2,7 +2,7 @@ package view;
 
 import java.util.Scanner;
 
-import static message.InputViewMessage.*;
+import static message.GameMessage.*;
 
 public class InputView {
     private static InputView iv;

@@ -11,6 +11,8 @@ import view.OutputView;
 
 import java.util.List;
 
+import static message.GameMessage.RUNTIME_ERROR_MESSAGE;
+
 public class Application {
     private final InputView iv;
     private final OutputView ov;
@@ -23,11 +25,17 @@ public class Application {
     }
 
     public void run() {
-        List<Player> players = readPlayers();
-        int height = readLadderHeight();
-        Game game = ready(players, height);
-        ov.printGame(game);
-        iv.close();
+        try {
+            List<Player> players = readPlayers();
+            int height = readLadderHeight();
+            Game game = ready(players, height);
+            ov.printGame(game);
+        } catch (RuntimeException e) {
+            ov.printErrMsg(RUNTIME_ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            iv.close();
+        }
     }
     private List<Player> readPlayers() {
         while (true) {

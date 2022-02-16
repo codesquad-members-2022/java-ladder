@@ -8,7 +8,7 @@ import model.game.ladder.element.Pole;
 import static util.RandomUtils.nextDouble;
 
 public class Ladder {
-    private Shape<Element> shape;
+    private final Shape<Element> shape;
     private final Line line;
     private final None none;
     private final Pole pole;
@@ -38,13 +38,14 @@ public class Ladder {
             try {
                 shape.addElement(h, allocElement(h, w));
             } catch (IllegalArgumentException e) {
-               e.getStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }
     private Element allocElement(int h, int w) {
         return nextDouble() * 10 < 5.5 && isValid(h, w) ? line : none;
     }
+
     private boolean isValid(int h, int w) {
         return w == 0 || (shape.getElement(h, w - 1) != line);
     }
@@ -57,12 +58,14 @@ public class Ladder {
         }
         return sb.toString();
     }
+
     private void appendRow(StringBuilder sb, int h) {
         for (int w = 0; w < width; ++w) {
             sb.append(pole).append(getOutput(shape, h, w));
         }
         sb.append('\n');
     }
+
     private String getOutput(Shape<Element> shape, int h, int w) {
         return w < width - 1 ? shape.getElement(h, w).toString() : "";
     }
