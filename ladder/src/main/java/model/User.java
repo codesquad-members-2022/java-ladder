@@ -12,4 +12,13 @@ public class User {
     public void setID(long sequence) {
         this.id = sequence;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public boolean isSameUsername(String name) {
+        return this.name.equals(name);
+    }
 }

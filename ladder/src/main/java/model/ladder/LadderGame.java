@@ -1,14 +1,18 @@
 package model.ladder;
 
+import java.util.stream.Stream;
+
 import exception.WrongInputException;
 import io.Input;
 import io.Output;
 import model.Ladder;
+import model.User;
+import repository.UserRepository;
 
 public class LadderGame {
 
-    int userCount;
-    int ladderMaxHigh;
+    UserRepository userRepository = UserRepository.getInstance();
+
     public void run() {
         inputValue();
     }
@@ -16,22 +20,37 @@ public class LadderGame {
     private void inputValue() {
         Input input = new Input();
         Output output = new Output();
-
         while (true) {
             try {
-                userCount = output.printUserCountBar(input);
-                ladderMaxHigh = output.printLadderMaxHighBar(input);
-                createLadder(userCount, ladderMaxHigh);
+                String username = output.printInputUsernameBar(input);
+                int ladderMaxHigh = output.printLadderMaxHighBar(input);
+                init(username, ladderMaxHigh);
                 break;
             } catch (WrongInputException e) {
-                System.out.println("잘못된 입력입니다.");
+                System.out.println(e.getMessage());
             }
         }
         input.close();
     }
 
+    public void init(String username, int ladderMaxHigh) {
+        createLadder(getUserCount(username), ladderMaxHigh);
+        createUser(username);
+    }
+
+    private int getUserCount(String username) {
+        return (int) Stream.of(username.split(",")).count();
+    }
+
     private void createLadder(int userCount, int ladderHigh) {
         Ladder ladder = new Ladder(userCount, ladderHigh);
+    }
 
+    public void createUser(String username) {
+        Stream.of(username.split(","))
+                .forEach(s -> {
+                    User user = new User(s);
+                    userRepository.save(user);
+                });
     }
 }

@@ -1,6 +1,8 @@
-package Repository;
+package repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.User;
@@ -23,5 +25,13 @@ public class UserRepository {
         userStore.put(sequence, user);
         sequence++;
         return user;
+    }
+
+    public List<User> findAllUser() {
+        return new ArrayList<>(userStore.values());
+    }
+
+    public void clear() {
+        userStore.clear();
     }
 }
