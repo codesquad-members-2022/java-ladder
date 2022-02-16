@@ -1,3 +1,5 @@
+package main.model;
+
 public class Game {
 
     private int numOfPeople;
@@ -11,8 +13,8 @@ public class Game {
         ladder = new Ladder(numOfPeople, maxHeightOfLadder);
     }
 
-    public String showLadderBoard() {
-        return ladder.toString();
+    public String[][] returnLadderBoard() {
+        return ladder.returnBoard();
     }
 
 }

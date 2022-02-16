@@ -1,5 +1,8 @@
-import view.InputView;
-import view.OutputView;
+package main;
+
+import main.model.Game;
+import main.view.InputView;
+import main.view.OutputView;
 
 public class Main {
 
@@ -10,10 +13,11 @@ public class Main {
         OutputView.printMaxHeightOfLadderQueryText();
         int maxHeightOfLadder = InputView.giveInt();
 
+        InputView.closeScanner();
+
         Game game = new Game();
         game.init(numOfPeople, maxHeightOfLadder);
 
-        OutputView.printLadderBoard(game.showLadderBoard());
-
+        OutputView.printLadderBoard(game.returnLadderBoard());
     }
 }
