@@ -21,6 +21,8 @@ public class LadderGameManager {
     }
 
     public void showLadder() {
-        OutputController.showLadder(ladderGame.getLadderArr());
+//        OutputController.showLadder(ladderGame.getLadderArr());
+        ladderGame.printLadderGame();
     }
+
 }
