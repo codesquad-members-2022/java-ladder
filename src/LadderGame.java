@@ -8,7 +8,7 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(height, playerCount);
 
-        outputView.printWithSpacing(ladder.render());
+        outputView.printLadder(ladder);
 
         inputView.close();
     }

@@ -3,4 +3,8 @@ public class OutputView {
         System.out.println();
         System.out.println(message);
     }
+
+    public void printLadder(Ladder ladder) {
+        printWithSpacing(ladder.render());
+    }
 }
