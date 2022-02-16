@@ -7,9 +7,11 @@ public class Ladder {
     private ArrayList<String> ladder;
     private Random random;
 
-    public Ladder(int numberOfPeople, int ladderDepth) {
+    public Ladder(String[] peoples, int ladderDepth) {
         this.ladder = new ArrayList<>();
         this.random = new Random();
+
+        int numberOfPeople = peoples.length;
 
         IntStream.range(0, ladderDepth)
                 .forEach(row -> ladder.add(initLadderRow(numberOfPeople * 2 - 1)));

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputManager {
@@ -9,5 +10,22 @@ public class InputManager {
 
     public int inputNumber() {
         return sc.nextInt();
+    }
+
+    public String inputString() {
+        return sc.next();
+    }
+
+    public String[] separateCommasFromString(String words) {
+        return words.split(",");
+    }
+
+    public void validatePlayerNameLength(String[] peoples, int limitLength) {
+        boolean tooLongName = Arrays.stream(peoples)
+                .anyMatch(name -> name.length() > limitLength);
+        if (tooLongName) {
+            throw new IllegalArgumentException("각 플레이어의 이름은 5글자 이하로 설정해야 합니다.");
+        }
+        return;
     }
 }
