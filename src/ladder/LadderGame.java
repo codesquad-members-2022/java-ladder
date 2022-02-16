@@ -11,24 +11,27 @@ public class LadderGame {
     }
 
     private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
-        int row = LegLength;
-        int column = (numberOfParticipants * 2) - 1;
-        int[][] ghostLeg = createArr(row, column);
+        int rowLength = LegLength;
+        int columnLength = (numberOfParticipants * 2) - 1;
+        int[][] ghostLeg = createArr(rowLength, columnLength);
         return ghostLeg;
     }
 
-    private int[][] createArr(int row, int column) {
-        int[][] arr = new int[row][column];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                if (j % 2 == 0) {
-                    arr[i][j] = 2;
-                    continue;
-                }
-                arr[i][j] = (int) (Math.random() * 2);
+    private int[][] createArr(int rowLength, int columnLength) {
+        int[][] arr = new int[rowLength][columnLength];
+        for (int row = 0; row < rowLength; row++) {
+            for (int column = 0; column < columnLength; column++) {
+                arr[row][column] = insertElement(column);
             }
         }
         return arr;
+    }
+
+    private int insertElement(int column) {
+        if (column % 2 == 0) {
+            return 2;
+        }
+        return  (int) (Math.random() * 2);
     }
 
     public void start() {
