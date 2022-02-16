@@ -12,6 +12,7 @@ public class LadderGame {
 
     public void start() {
         Ladder ladder = init();
+        OutputView.printPlayersName(playerNameList);
         OutputView.printLadder(ladder);
     }
 
