@@ -45,7 +45,6 @@ public class Ladder {
     private Element allocElement(int h, int w) {
         return nextDouble() * 10 < 5.5 && isValid(h, w) ? line : none;
     }
-
     private boolean isValid(int h, int w) {
         return w == 0 || (shape.getElement(h, w - 1) != line);
     }

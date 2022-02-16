@@ -19,7 +19,7 @@ public class Shape<T> {
         this.width = width;
     }
 
-    public void addElement(int row, T element) throws IllegalArgumentException {
+    public void addElement(int row, T element) {
         if (row >= height) {
             throw new IllegalArgumentException(getRowIndexErrMsg(height));
         }
@@ -39,7 +39,7 @@ public class Shape<T> {
         return shape.get(row).get(col);
     }
     private boolean boundaryCheck(int row, int col) {
-        return row < 0 || row > height - 1 || col < 0 || col > width - 1;
+        return row >= 0 || row < height || col >= 0 || col < width;
     }
 
     public int getHeight() {
