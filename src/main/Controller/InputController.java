@@ -10,16 +10,16 @@ public class InputController {
     private InputController() {
     }
 
-    public static int inputNumber(String msg) {
-        int result = 0;
-        try {
-            printMessage(msg);
-            result = Integer.parseInt(br.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
+    public static int inputNumber(String msg) throws IOException {
+        printMessage(msg);
+        return Integer.parseInt(br.readLine());
     }
+
+    public static String[] inputStringWithDelimiter(String msg, String delimiter) throws IOException {
+        printMessage(msg);
+        return br.readLine().split(delimiter);
+    }
+
 
     private static void printMessage(String msg) {
         System.out.println(msg);
