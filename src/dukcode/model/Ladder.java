@@ -52,8 +52,17 @@ public class Ladder {
     private void initLine(int line) {
         Random rd = new Random();
         for (int step = 0; step < numSteps; ++step) {
-            ladder[line][step] = rd.nextBoolean();
+            ladder[line][step] = getStep(rd, line, step);
         }
+    }
+
+    private boolean getStep(Random rd, int line, int step) {
+        if (step == 0) {
+            return rd.nextBoolean();
+        }
+
+        // 왼쪽에 step이 존재하면 false, 없으면 random
+        return ladder[line][step - 1] ? false : rd.nextBoolean();
     }
 
 }
