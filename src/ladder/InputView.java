@@ -3,24 +3,38 @@ package src.ladder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class InputView {
 
-    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private final Scanner scanner = new Scanner(System.in);
 
     public int inputNumber() {
-        int number = 0;
+        String numberString = "";
         try {
-            number = Integer.parseInt(bufferedReader.readLine());
+            numberString = scanner.nextLine();
+            validate(numberString);
         } catch (NumberFormatException e) {
-            ErrorMessage.NUMBER_FORMAT_EXCCEPTION.getMessage();
-            return inputNumber();
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return inputNumber();
         }
-        return number;
+        return Integer.parseInt(numberString);
     }
+
+    private void validate(String numberString) throws NumberFormatException {
+        if (isNotAllNumber(numberString)) {
+            throw new NumberFormatException("숫자만 입력해주세요.");
+        }
+    }
+
+    private boolean isNotAllNumber(String numberString) {
+        return numberString.chars().anyMatch(this::isNotNumber);
+    }
+
+    private boolean isNotNumber(int ch) {
+        return  ch < '0' || '9' < ch;
+    }
+
 
 
 }
