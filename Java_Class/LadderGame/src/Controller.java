@@ -12,10 +12,8 @@ public class Controller {
         LadderMaker ladderMaker = new LadderMaker(input.getNameList().size(), input.getHeight());
         ladderMaker.make();
 
-        output.printConsole(input.getNameList());   // [pobi,honux,crong,jk]
-        for (String row : ladderMaker.getLadderList()) {  // [ {row1},{row2}..]
-            output.printConsole(row);
-        }
+        output.printNames(input.getNameList(),6);   // [pobi,honux,crong,jk]
+        output.printLadder(ladderMaker.getLadderList());    // [{row1},{row2}..]
     }
 
 }
