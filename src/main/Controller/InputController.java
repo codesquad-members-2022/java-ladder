@@ -20,7 +20,6 @@ public class InputController {
         return br.readLine().split(delimiter);
     }
 
-
     private static void printMessage(String msg) {
         System.out.println(msg);
     }
