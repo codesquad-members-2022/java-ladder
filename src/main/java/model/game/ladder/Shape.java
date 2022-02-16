@@ -1,7 +1,6 @@
 package model.game.ladder;
 
 import message.ShapeMessage;
-import model.game.ladder.element.Element;
 import model.game.ladder.element.Line;
 import model.game.ladder.element.None;
 import model.game.ladder.element.Pole;
@@ -9,7 +8,7 @@ import model.game.ladder.element.Pole;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shape<T extends Element> {
+public class Shape<T> {
     Line line;
     None none;
     Pole pole;

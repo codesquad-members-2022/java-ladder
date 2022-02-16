@@ -5,7 +5,7 @@ import model.game.ladder.element.Element;
 import static java.lang.Math.*;
 
 public class Ladder {
-    private final Shape shape;
+    private final Shape<Element> shape;
     private final int height;
     private final int width;
 
