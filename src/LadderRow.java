@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class LadderRow {
+    private final List<Boolean> steps;
+    private final Random random = new Random();
+
+    public LadderRow(int width) {
+        steps = new ArrayList<>(width);
+        build(width);
+    }
+
+    public boolean hasStepAt(int xPosition) {
+        return steps.get(xPosition);
+    }
+
+    public boolean isEmpty(int xPosition) {
+        return !(hasStepAt(xPosition));
+    }
+
+    private void build(int width) {
+        for (int i = 0; i < width; i++) {
+            steps.add(drawStep(i));
+        }
+    }
+
+    private boolean drawStep(int xPosition) {
+        if (xPosition == 0 || isEmpty(xPosition - 1)) {
+            return randomize();
+        }
+
+        return false;
+    }
+
+    private boolean randomize() {
+        return random.nextBoolean();
+    }
+}

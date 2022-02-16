@@ -1,53 +1,45 @@
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final char RAIL = '|';
-    private static final char STEP = '-';
-    private static final char EMPTY = ' ';
-    private static final int STEP_WIDTH = 1;
+    private static final String RAIL = "|";
+    private static final String STEP = "-";
+    private static final String EMPTY = " ";
+    private static final int STEP_WIDTH = Players.NAME_LENGTH_LIMIT;
+    private static final String SECTION_WITH_STEP = RAIL + STEP.repeat(STEP_WIDTH);
+    private static final String SECTION_WITHOUT_STEP = RAIL + EMPTY.repeat(STEP_WIDTH);
 
-    private final char[][] ladderBars;
-    private final Random random = new Random();
+    private final int height;
+    private final int width;
+    private final List<LadderRow> ladderRowList;
 
     public Ladder(int height, int playerCount) {
-        this.ladderBars = drawLadderBars(height, playerCount);
+        this.height = height;
+        this.width = playerCount - 1;
+        this.ladderRowList = new ArrayList<>(width);
+        build();
     }
 
     public String render() {
+        return ladderRowList.stream()
+                .map(this::renderRow)
+                .collect(Collectors.joining());
+    }
+
+    private StringBuilder renderRow(LadderRow ladderRow) {
         StringBuilder sb = new StringBuilder();
 
-        for (char[] row : ladderBars) {
-            sb.append(row);
-            sb.append(System.lineSeparator());
+        for (int i = 0; i < width; i++) {
+            sb.append(ladderRow.hasStepAt(i) ? SECTION_WITH_STEP : SECTION_WITHOUT_STEP);
         }
 
-        return sb.toString();
+        return sb.append(RAIL).append(System.lineSeparator());
     }
 
-    private char[][] drawLadderBars(int height, int playerCount) {
-        char[][] randomLadderBars = new char[height][getWidth(playerCount)];
-
-        for (char[] row : randomLadderBars) {
-            drawLadderRow(row);
+    private void build() {
+        for (int i = 0; i < height; i++) {
+            ladderRowList.add(new LadderRow(width));
         }
-
-        return randomLadderBars;
-    }
-
-    private int getWidth(int playerCount) {
-        return playerCount + STEP_WIDTH * (playerCount - 1);
-    }
-
-    private void drawLadderRow(char[] ladderRow) {
-        ladderRow[0] = RAIL;
-
-        for (int i = 1; i < ladderRow.length - 1; i += 2) {
-            ladderRow[i] = drawRandomStep();
-            ladderRow[i + 1] = RAIL;
-        }
-    }
-
-    private char drawRandomStep() {
-        return random.nextBoolean() ? STEP : EMPTY;
     }
 }
