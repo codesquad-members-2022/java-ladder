@@ -2,30 +2,22 @@ package app.jinan159.ladder;
 
 import app.jinan159.ladder.io.InputReader;
 import app.jinan159.ladder.io.OutputWriter;
-import app.jinan159.ladder.meta.LadderElement;
 import app.jinan159.ladder.meta.GameMap;
-import app.jinan159.ladder.stretegy.DefaultGameMapStretegy;
-import app.jinan159.ladder.stretegy.LadderGameMapStretegy;
+import app.jinan159.ladder.meta.LadderElement;
 
 import java.io.IOException;
 
 public class LadderGame {
 
     private final GameMap gameMap;
-    private final LadderGameMapStretegy stretegy;
 
     public LadderGame() throws IOException {
-        this(new DefaultGameMapStretegy());
-    }
-
-    public LadderGame(LadderGameMapStretegy stretegy) throws IOException {
         try (InputReader reader = new InputReader()) {
             int participantCount = reader.readParticipantCount();
             int height = reader.readHeight();
             this.gameMap = new GameMap(participantCount, height);
         }
 
-        this.stretegy = stretegy;
         prepareGameMap(this.gameMap);
     }
 
@@ -37,9 +29,24 @@ public class LadderGame {
 
     private void prepareRow(GameMap gameMap, int y) {
         for (int x = 0; x < gameMap.getWidth(); x++) {
-            LadderElement element = stretegy.getLadderElementOnPotision(x, y);
+            LadderElement element = getLadderElementOnPotision(x, y);
             gameMap.set(x, y, element);
         }
+    }
+
+    private LadderElement getLadderElementOnPotision(int x, int y) {
+        // 홀수 번째 column은 세로줄을 입력함
+        if (x % 2 == 0) return LadderElement.V_LINE;
+
+        // 가상의 알고리즘 상으로, empty
+        if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
+
+        return LadderElement.H_LINE;
+    }
+
+    // 빈 공간이 들어올 자리인지, 아닌지를 반환하는 가상의 알고리즘
+    private boolean isEmptyPosition(int x, int y) {
+        return ((x * y) + (x + y)) % 3 == 0;
     }
 
     // ------- public method ---------
