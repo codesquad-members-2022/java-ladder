@@ -36,7 +36,7 @@ public class Ladder {
 
     private String initNameTag(String name, int numberOfPadding) {
         StringBuilder sb = new StringBuilder();
-        if (validateEven(numberOfPadding)) {
+        if (isEven(numberOfPadding)) {
             sb.append(initPadding(numberOfPadding / 2));
             sb.append(name);
             sb.append(initPadding(numberOfPadding / 2));
@@ -59,20 +59,20 @@ public class Ladder {
     }
 
     private String setDefaultPaddingLadderModel() {
-        if (validateEven(NAME_TAG_SIZE)) {
+        if (isEven(NAME_TAG_SIZE)) {
             return initPadding(NAME_TAG_SIZE / 2 - 1);
         }
         return initPadding(NAME_TAG_SIZE / 2);
     }
 
     private String determineLineShape(int line) {
-        if (validateEven(line)) {
+        if (isEven(line)) {
             return "|";
         }
         return initRandomShape();
     }
 
-    private boolean validateEven(int number) {
+    private boolean isEven(int number) {
         return number % 2 == 0;
     }
 
