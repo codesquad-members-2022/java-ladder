@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.LadderRow;
@@ -49,8 +48,9 @@ public class PrintView {
     }
 
     private static void ladderPrinter(List<LadderRow> ladderBoard) {
-        ladderBoard.stream()
-            .map(LadderRow::getRow)
-            .forEach(System.out::print);
+        for (LadderRow ladderRow : ladderBoard) {
+            ladderRow.getRow().forEach(System.out::print);
+            System.out.println();
+        }
     }
 }
