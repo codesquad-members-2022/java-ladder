@@ -23,11 +23,15 @@ public class Input {
 
 	public static List<User> getUserName() {
 		System.out.println("참여할 사람 이름을 입력하세요.");
-		String userNameWithComma = sc.nextLine();
-		String[] userNames = userNameWithComma.split(",");
+		String[] userNames = sc.nextLine().split(",");
 		List<User> userList = new ArrayList<>();
 		for (String user : userNames) {
-			userList.add(new User(user));
+			try {
+				userList.add(new User(user));
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+				return getUserName();
+			}
 		}
 		return userList;
 	}
