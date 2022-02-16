@@ -9,8 +9,7 @@ public class Ladder {
 
     private final String[][] ladder;
 
-    public Ladder(int entry, int height) {
-        int width = entry + (entry - 1);
+    public Ladder(int width, int height) {
         this.ladder = new String[height][width];
         initLadder();
     }

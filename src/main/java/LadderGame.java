@@ -17,9 +17,9 @@ public class LadderGame {
 
     private void initGame() {
         initPlayers();
-        int entry = players.count();
+        int width = players.count() * 2 - 1;
         int height = getHeight();
-        this.ladder = new Ladder(entry, height);
+        this.ladder = new Ladder(width, height);
         output.print(players.toString());
         output.print(ladder.toString());
     }
