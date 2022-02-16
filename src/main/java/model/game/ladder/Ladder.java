@@ -4,9 +4,7 @@ import model.game.ladder.element.Element;
 import model.game.ladder.element.Line;
 import model.game.ladder.element.None;
 import model.game.ladder.element.Pole;
-import util.RandomUtil;
 
-import static java.lang.Math.*;
 import static util.RandomUtil.nextDouble;
 
 public class Ladder {

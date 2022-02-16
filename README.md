@@ -44,7 +44,9 @@
   │   │    │   └── 📘Game.java
   │   │    ├── 📁util
   │   │    │   ├── 📘GameUtil.java 
-  │   │    │   └── 📘Parser.java
+  │   │    │   ├── 📘Parser.java 
+  │   │    │   ├── 📘RandomUtil.java 
+  │   │    │   └── 📘StringUtil.java
   │   │    ├── 📁view
   │   │    │   ├── 📘InputView.java
   │   │    │   └── 📘OutputView.java
