@@ -1,22 +1,27 @@
-package main;
+package main.laddergame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LadderGame {
     private static final String BLANK = "     ";
     private static final String RUNG = "-----";
     private static final String RAIL = "|";
+    private static final String LEFT_MARGIN = "  ";
+
     private final int playerNum;
     private final int height;
     private final int width;
     private final List<List<String>> ladderArr = new ArrayList<>();
+    private final String[] playerNames;
 
     private boolean previous = false;
 
     public LadderGame(int playerNum, int height, String[] playerNames) {
         this.playerNum = playerNum;
         this.height = height;
+        this.playerNames = playerNames;
         width = playerNum * 2 - 1;
         createLadder();
     }
@@ -54,9 +59,16 @@ public class LadderGame {
 
     public void printLadderGame() {
         // 사다리정보와 유저정보 출력
+        printUserNames();
         ladderArr.stream().forEach(a -> {
+            System.out.printf(LEFT_MARGIN);
             a.stream().forEach(s -> System.out.print(s));
             System.out.println("");
         });
+    }
+
+    private void printUserNames() {
+        Arrays.stream(playerNames).forEach(s -> System.out.printf("%5s ", s));
+        System.out.println("");
     }
 }

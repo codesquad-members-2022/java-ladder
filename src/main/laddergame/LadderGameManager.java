@@ -1,7 +1,6 @@
-package main;
+package main.laddergame;
 
-import main.Controller.InputController;
-import main.Controller.OutputController;
+import main.controller.InputController;
 
 import java.io.IOException;
 
@@ -21,7 +20,6 @@ public class LadderGameManager {
     }
 
     public void showLadder() {
-//        OutputController.showLadder(ladderGame.getLadderArr());
         ladderGame.printLadderGame();
     }
 
