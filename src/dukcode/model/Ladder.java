@@ -10,6 +10,23 @@ public class Ladder {
 
     public Ladder() {}
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getNumSteps() {
+        return numPlayer - 1;
+    }
+
+    public boolean[][] getLadder() {
+        boolean[][] copyLadder = new boolean[height][numPlayer - 1];
+        for (int line = 0; line < height; ++line) {
+            System.arraycopy(ladder[line], 0, copyLadder[line], 0, ladder[line].length);
+        }
+
+        return copyLadder;
+    }
+
     public void init(int numPlayer, int height) {
         this.numPlayer = numPlayer;
         this.height = height;
@@ -27,23 +44,4 @@ public class Ladder {
         }
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int line = 0; line < height; ++line) {
-            sb.append(getStringLine(line));
-            sb.append("\n");
-        }
-
-        return new String(sb);
-    }
-
-    public String getStringLine(int line) {
-        StringBuilder strLine = new StringBuilder("|");
-        for (int step = 0; step < numPlayer -1; ++step) {
-            strLine.append(ladder[line][step] ? "-" : " ");
-            strLine.append("|");
-        }
-
-        return new String(strLine);
-    }
 }
