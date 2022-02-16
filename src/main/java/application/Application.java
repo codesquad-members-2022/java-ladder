@@ -1,10 +1,14 @@
 package application;
 
 import controller.LadderController;
+import model.game.Game;
 import model.game.ladder.Ladder;
+import model.game.player.Player;
 import util.Parser;
 import view.InputView;
 import view.OutputView;
+
+import java.util.List;
 
 public class Application {
     private final InputView iv;
@@ -18,10 +22,11 @@ public class Application {
     }
 
     public void run() {
-        int width = Parser.getPlayers(iv.playerNames()).size();
+        List<Player> players = Parser.getPlayers(iv.playerNames());
         int height = iv.ladderHeight();
-        Ladder ladder = ladderController.getLadder(height, width);
-        ov.printLadder(ladder);
+        Ladder ladder = ladderController.getLadder(height, players.size());
+        Game game = new Game(ladder, players);
+        ov.printGame(game);
         iv.close();
     }
 }

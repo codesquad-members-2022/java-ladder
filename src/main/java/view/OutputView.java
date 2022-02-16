@@ -1,6 +1,6 @@
 package view;
 
-import model.game.ladder.Ladder;
+import model.game.Game;
 
 public class OutputView {
     private static OutputView ov;
@@ -14,7 +14,7 @@ public class OutputView {
         return ov;
     }
 
-    public void printLadder(Ladder ladder) {
-        System.out.println(ladder);
+    public void printGame(Game game) {
+        System.out.println(game);
     }
 }
