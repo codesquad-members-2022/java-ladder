@@ -9,11 +9,11 @@ public class GameController {
 
     public void run() {
         try {
-            LadderGame ladderGame = new LadderGame(
+            LadderGame game = new LadderGame(
                 InputUtil.parseNames(InputView.getNames()),
                 InputView.getNumLadder()
             );
-            OutputView.printGame(ladderGame);
+            OutputView.printGame(game);
 
         } catch (IllegalArgumentException e) {
             OutputView.printIllegalException();

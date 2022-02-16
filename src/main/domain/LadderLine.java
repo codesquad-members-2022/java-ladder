@@ -20,17 +20,18 @@ public class LadderLine {
         boolean next = true;
 
         for (int ind = 0; ind < length; ind++) {
-            LadderElement element = add(ind, next, RandomUtil.nextBoolean());
+            boolean rand = RandomUtil.nextBoolean();
+            LadderElement element = add(ind, next, rand);
             next = element.getNext(next);
         }
     }
 
     // public for test
     public LadderElement add(int ind, boolean next, boolean rand) {
-        LadderElement ladderElement = LadderOperation.create(ind, next, rand);
-        elements.add(ladderElement);
+        LadderElement element = LadderOperation.create(ind, next, rand);
+        elements.add(element);
 
-        return ladderElement;
+        return element;
     }
 
     @Override

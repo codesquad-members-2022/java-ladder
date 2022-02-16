@@ -11,9 +11,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printGame(LadderGame ladderGame) {
+    public static void printGame(LadderGame game) {
         printMessage(EXECUTE_RESULT);
-        System.out.println(ladderGame);
+        System.out.println(game);
     }
 
     public static void printIllegalException() {
