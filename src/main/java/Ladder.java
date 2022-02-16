@@ -4,4 +4,10 @@ public class Ladder {
     public Ladder(String name) {
         this.name = name;
     }
+
+
+
+    public String getName() {
+        return name;
+    }
 }
