@@ -1,24 +1,34 @@
 package sadari;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private String[][] ladder;
+    private List<List<String>> ladderList = new ArrayList<>();
     private String step;
+    private final int width;
+    private final int height;
 
-    public void makeLadder(int people, int height) {
-        people = people * 2 - 1;
-        this.ladder = new String[height][people];
-        for (int row = 0; row < ladder.length; row++) {
-            checkLadderParts(row);
-        }
-        print(ladder);
+    public Ladder(int width, int height) {
+        this.width = width * 2 - 1;
+        this.height = height;
+        makeLadder(height);
     }
 
-    public void checkLadderParts (int row) {
-        for (int column = 0; column < ladder[row].length; column++) {
-            ladder[row][column] = drawLines(column);
+    public void makeLadder(int height) {
+        for (int row = 0; row < height; row++){
+            ladderList.add(checkLadderParts());
         }
+        print(ladderList);
+    }
+
+    public ArrayList<String> checkLadderParts() {
+        ArrayList<String> innerList = new ArrayList<>();
+        for (int column = 0; column < width; column++){
+            innerList.add(drawLines(column));
+        }
+        return innerList;
     }
 
     public String drawLines(int column){
@@ -34,13 +44,12 @@ public class Ladder {
         return step = "-";
     }
 
-    public void print(String[][] ladder) {
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                System.out.print(ladder[i][j]);
-            }
+    public void print(List<List<String>> ladderList) {
+        for (List<String> strings : ladderList){
+            strings.stream().forEach(System.out::print);
             System.out.println();
         }
     }
 }
+
 
