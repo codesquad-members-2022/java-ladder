@@ -6,21 +6,21 @@ public class LadderGame {
     private static final char BLANK = ' ';
     private static final char RUNG = '-';
     private static final char RAIL = '|';
-    private final int userNum;
+    private final int playerNum;
     private final int height;
-    private final int space;
+    private final int width;
     private final Character[][] ladderArr;
 
-    public LadderGame(int userNum, int height) {
-        this.userNum = userNum;
+    public LadderGame(int playerNum, int height, String[] playerNames) {
+        this.playerNum = playerNum;
         this.height = height;
-        space = userNum - 1;
+        width = playerNum*2 - 1;
         ladderArr = createLadder();
     }
 
     private Character[][] createLadder() {
-        Character[][] result = new Character[height][userNum + space];
-        IntStream.range(0, height).forEach(i -> IntStream.range(0, userNum + space)
+        Character[][] result = new Character[height][width];
+        IntStream.range(0, height).forEach(i -> IntStream.range(0, width)
                 .forEach(j -> generate(result, i, j)));
         return result;
     }
