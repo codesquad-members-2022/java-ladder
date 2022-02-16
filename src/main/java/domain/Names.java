@@ -21,4 +21,13 @@ public class Names {
     public int getPlayersCount() {
         return names.size();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String name : names) {
+            stringBuilder.append(String.format("%6s",name));
+        }
+        return stringBuilder.toString();
+    }
 }
