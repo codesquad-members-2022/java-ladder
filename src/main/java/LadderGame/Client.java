@@ -26,6 +26,10 @@ public class Client {
         sc.close();
     }
 
+    public String[] getUserList() {
+        return userList;
+    }
+
     private int getLadderHeight() {
         Output.printLadderCountNotification();
         return sc.nextInt();
