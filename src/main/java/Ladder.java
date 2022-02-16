@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class Ladder {
 
-    private static final String PILLAR = "|";
-    private static final String LINE = "-";
+    private static final String RAIL = "|";
+    private static final String STEP = "-";
     private static final String EMPTY = " ";
     private static final Random random = new Random();
 
@@ -15,17 +15,17 @@ public class Ladder {
         initLadder();
     }
 
-    private boolean isPillar(int col) {
+    private boolean isRail(int col) {
         return col % 2 == 0;
     }
 
-    private String createRandomLine() {
+    private String createRandomStep() {
         int n = random.nextInt(2);
-        return (n == 0) ? EMPTY : LINE;
+        return (n == 0) ? EMPTY : STEP;
     }
 
     private void fillLadderElement(int row, int col) {
-        ladder[row][col] = (isPillar(col)) ? PILLAR : createRandomLine();
+        ladder[row][col] = (isRail(col)) ? RAIL : createRandomStep();
     }
 
     private void initLadderRow(int row) {
