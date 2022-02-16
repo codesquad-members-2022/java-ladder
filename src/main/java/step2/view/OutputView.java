@@ -1,4 +1,4 @@
-package step0.view;
+package step2.view;
 
 public class OutputView {
     public static void showLadder(char[][] ladder) {

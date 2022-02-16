@@ -1,6 +1,6 @@
-package step0;
+package step2;
 
-import step0.controller.LadderController;
+import step2.controller.LadderController;
 
 public class Main {
     public static void main(String[] args) {
