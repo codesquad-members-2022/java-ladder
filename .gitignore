@@ -175,4 +175,6 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+/Users/donggilee/Desktop/codesquad-masterscourse-2022/week1/src/test/java/study
+
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,sonar,macos
