@@ -1,65 +1,54 @@
 public class Ladder {
-    private final int ladderWidth;
-    private final int ladderHeight;
-    private String[][] ladders;
+
+    private static final char USER_LINE= '|';
+    private static final char CONNECTION_LINE= '-';
+    private static final char EMPTY_SPACE = ' ';
+    private char[][] ladders;
 
 
-    public Ladder(int n, int m) {
-        if (!validateUserInput(n) || !validateLineInput(m)) {
+    public Ladder(int userCount, int ladderHeight) {
+        if (!validateLadderInput(userCount, ladderHeight)) {
             throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
         }
-        ladderWidth = (n * 2) - 1;
-        ladderHeight = m;
-        ladders = new String[ladderHeight][ladderWidth];
+        ladders = new char[ladderHeight][calculateLadderWidth(userCount)];
         setLadders();
-    }
-
-    public int getLadderWidth() {
-        return ladderWidth;
-    }
-
-    public int getLadderHeight() {
-        return ladderHeight;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            for (int j = 0; j < ladderWidth; j++) {
-                sb.append(ladders[i][j]);
-            }
+        for (char[] ladder : ladders) {
+            sb.append(ladder);
             sb.append("\n");
         }
         return sb.toString();
     }
 
     private void setLadders() {
-        for (int i = 0; i < ladderHeight; i++) {
-            for (int j = 0; j < ladderWidth; j += 2) {
-                ladders[i][j] = "|";
-            }
-        }
-
-        for (int i = 0; i < ladderHeight; i++) {
-            for (int j = 1; j < ladderWidth; j += 2) {
-                ladders[i][j] = ((int)(Math.random() * 2)) == 1 ? "-" : " ";
-            }
+        for (char[] ladder : ladders) {
+            drawLadderRow(ladder);
         }
     }
 
-    private boolean validateUserInput(int userCount) {
-        if (userCount < 2) {
-            return false;
-        }
-        return true;
+    private boolean validateLadderInput(int userCount, int lineCount) {
+        return userCount >= 2 && lineCount >=1;
     }
 
-    private boolean validateLineInput(int lineCount) {
-        if (lineCount < 1) {
-            return false;
+    private void drawLadderRow(char[] ladderRow) {
+        for (int i = 0; i < ladderRow.length; i++) {
+            ladderRow[i] = isUserLine(i);
         }
-        return true;
     }
+
+    private char isUserLine(int n) {
+        if (n % 2 == 0) {
+            return USER_LINE;
+        }
+        return ((int)(Math.random() * 2)) == 1 ? CONNECTION_LINE : EMPTY_SPACE;
+    }
+
+    private int calculateLadderWidth(int userCount) {
+        return userCount * 2 - 1;
+    }
+
 }
