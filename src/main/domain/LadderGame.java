@@ -56,27 +56,11 @@ public class LadderGame {
     }
 
     private boolean changeElement(int row, int col, boolean prev) {
-        boolean next = prev;
-
-        if (col % 2 == 0) {
-            this.map.get(row).set(col, LadderElement.VERTICAL);
-        }
-        if (col % 2 != 0) {
-            next = changeSpace(row, col, prev);
-        }
-        return next;
-    }
-
-    private boolean changeSpace(int row, int col, boolean next) {
         boolean rand = LadderUtil.nextBoolean();
+        LadderElement ladderElement = LadderOperation.create(col, prev, rand);
 
-        if (next && rand) {
-            this.map.get(row).set(col, LadderElement.HORIZONTAL);
-        }
-        if (!next || !rand) {
-            this.map.get(row).set(col, LadderElement.BLANK);
-        }
-        return !next || !rand;
+        ladderElement.change(map, row, col);
+        return ladderElement.next(prev);
     }
 
 }
