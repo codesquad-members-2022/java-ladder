@@ -13,10 +13,6 @@ public class InputView {
         return getLine(INPUT_PLAYER_NAMES).split(STRING_DELIMITER);
     }
 
-    public int getPlayerCount() {
-        return getInt(INPUT_PLAYER_COUNT);
-    }
-
     public int getLadderHeight() {
         return getInt(INPUT_LADDER_HEIGHT);
     }

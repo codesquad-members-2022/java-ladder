@@ -4,8 +4,10 @@ public class LadderGame {
 
     public void run() {
         String[] playerNames = inputView.getPlayerNames();
-        int playerCount = inputView.getPlayerCount();
+        Players players = new Players(playerNames);
+
         int height = inputView.getLadderHeight();
+        int playerCount = players.count();
 
         Ladder ladder = new Ladder(height, playerCount);
 
