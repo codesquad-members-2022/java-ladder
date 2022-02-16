@@ -9,4 +9,8 @@ public class Input {
     public static void scannerClose() {
         sc.close();
     }
+
+    public static String getPlayer() {
+        return sc.nextLine();
+    }
 }
