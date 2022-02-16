@@ -2,16 +2,19 @@ package domain;
 
 import Util.Valid;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static Util.Valid.checkPlayers;
 
 public class Board {
 
     private static final String VERTICAL = "|";
+
     private final int players;
     private final int height;
-    private final String[][] frame;
+    private final List<List<String>> frame;
     private final Line line;
 
 //    public Board(int players, int height) {
@@ -24,7 +27,7 @@ public class Board {
     public Board(int players, int height) {
         this.players = Valid.checkPlayersReturn(players);
         this.height = Valid.checkHeightReturn(height);
-        frame = new String[this.height][(this.players*2)-1];
+        frame = new ArrayList<>();
         line = new Line();
     }
 
@@ -37,24 +40,24 @@ public class Board {
     }
 
     public void generateFrame() {
-        for (int row = 0; row < frame.length ; row++) {
-            draw(row);
+        for (int row = 0; row < height ; row++) {
+            frame.add(draw(row));
         }
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (String[] strings : frame) {
-            stringBuilder.append(Arrays.toString(strings).replaceAll("\\[|\\]|,","")).append('\n');
-        }
+        frame.forEach(floor -> stringBuilder.append(floor.toString().replaceAll("\\[|\\]|,","")).append('\n'));
         return stringBuilder.toString();
     }
 
-    private void draw(int row) {
-        for (int col = 0; col < frame[row].length ; col++) {
-            frame[row][col] = drawLine(col);
+    private List<String> draw(int row) {
+        List<String> floor = new ArrayList<>();
+        for (int col = 0; col < players*2-1 ; col++) {
+            floor.add(drawLine(col));
         }
+        return floor;
     }
 
     private String drawLine(int col) {
