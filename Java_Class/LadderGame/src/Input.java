@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,5 +61,13 @@ public class Input {
         return Arrays.stream(nameInput.split(","))
             .map(String::trim)
             .collect(Collectors.toList());
+    }
+
+    public List<String> getNameList() {
+        return names;
+    }
+
+    public int getHeight() {
+        return ladderHeight;
     }
 }

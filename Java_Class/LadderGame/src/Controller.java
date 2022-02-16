@@ -11,10 +11,10 @@ public class Controller {
 
     protected void runApp() {
         input.processInput();
+        maker.makeLadder(input.getNameList().size(),input.getHeight());
 
-        // maker.makeLadder(inputArray) 수정 요함
-
-        String[][] ladder = maker.getLadderArray();
-        output.printConsole(ladder);
+        // List<List<String>> 을 받도록 수정 예정
+        // String[][] ladder = maker.getLadderList();
+        // output.printConsole(ladder);
     }
 }
