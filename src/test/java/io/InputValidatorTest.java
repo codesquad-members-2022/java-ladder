@@ -51,4 +51,21 @@ class InputValidatorTest {
     void positiveIntegerPositiveNumber() {
         assertThat(iv.positiveInteger("50")).isEqualTo(50);
     }
+
+    @Test
+    @DisplayName("이름을 쉼표로 구분하여 입력하면, split한 결과를 리턴")
+    void names_O() {
+        String[] names = iv.names("pobi, honux, crong, jk");
+        String[] expected = {"pobi", "honux", "crong", "jk"};
+        assertThat(names).containsExactly(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi honux crong jk", "pobi, "})
+    @DisplayName("이름을 쉼표로 구분하여 2명 이하일 때, IAE")
+    void names_X(String input) {
+        assertThatThrownBy(() -> iv.names(input))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("이름을 쉼표로 구분하여 2명 이상 입력해주세요.");
+    }
 }
