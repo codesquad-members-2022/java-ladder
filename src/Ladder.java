@@ -4,7 +4,6 @@ public class Ladder {
     private int numberOfPeople;
     private int heightOfLadder;
     private char[][] charLadder;
-//    private StringBuilder sb;
 
     Ladder(int n, int m) {
         this.numberOfPeople = n;
@@ -13,18 +12,18 @@ public class Ladder {
     }
 
     private void init() {
-        this.charLadder = makeLadder();
+        this.charLadder = make();
     }
 
-    private char[][] makeLadder() {
+    private char[][] make() {
         char[][] ladder = new char[heightOfLadder][numberOfPeople-1];
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder[i] = makeRowOfLadder();
+            ladder[i] = makeRow();
         }
         return ladder;
     }
 
-    private char[] makeRowOfLadder() {
+    private char[] makeRow() {
         char[] rowOfLadder = new char[numberOfPeople-1];
         for (int i = 0; i < rowOfLadder.length; i++) {
             rowOfLadder[i] = setRandomValue();
