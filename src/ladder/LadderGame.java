@@ -1,11 +1,16 @@
 package ladder;
 
+import java.util.List;
+
 public class LadderGame {
 
+    private List<String> participants;
     private int[][] ghostLeg;
     private OutputView ov;
 
-    public LadderGame(int numberOfParticipants, int LegLength) {
+    public LadderGame(List<String> participants, int LegLength) {
+        this.participants = participants;
+        int numberOfParticipants = participants.size();
         this.ghostLeg = creatGhostLeg(numberOfParticipants, LegLength);
         this.ov = new OutputView();
     }
