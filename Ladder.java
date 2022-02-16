@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private String[][] ladder;
@@ -9,23 +10,27 @@ public class Ladder {
         this.ladder = new String[ladderDepth][1];
         this.random = new Random();
 
-        for (int i = 0; i < ladderDepth; i++) {
-            ladder[i][0] = initLadderLow(numberOfPeople + (numberOfPeople - 1));
-        }
+        IntStream.range(0, ladderDepth)
+                .forEach(row -> ladder[row][0] = initLadderRow(numberOfPeople * 2 - 1));
     }
 
-    private String initLadderLow(int LadderLine) {
+    private String initLadderRow(int ladderLine) {
         StringBuilder sb = new StringBuilder();
 
         // 열이 짝수라면 "|", 홀수라면 " " or "-" 입력
-        for (int i = 0; i < LadderLine; i++) {
-            if (i % 2 == 0) {
-                sb.append("|");
-                continue;
-            }
-            sb.append(initRandomLine());
-        }
+        IntStream.range(0, ladderLine).forEach(line -> determineLineShape(line, sb));
         return sb.toString();
+    }
+
+    private StringBuilder determineLineShape(int line, StringBuilder sb) {
+        if (validateEven(line)) {
+            return sb.append("|");
+        }
+        return sb.append(initRandomLine());
+    }
+
+    private boolean validateEven(int number) {
+        return number % 2 == 0;
     }
 
     private String initRandomLine() {
