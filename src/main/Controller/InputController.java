@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 public class InputController {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    private InputController() {
+    }
+
     public static int inputNumber(String msg) {
         int result = 0;
         try {
