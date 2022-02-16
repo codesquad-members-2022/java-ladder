@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 
 import domain.LadderRow;
+import domain.NameFormat;
 
 public class PrintView {
 
@@ -26,25 +27,9 @@ public class PrintView {
         System.out.println();
     }
 
-    private static String formattingName(String s) {
-        if (s.length() == 1) {
-            s = "  " + s + "   ";
-            return s;
-        }
-        if (s.length() == 2) {
-            s = "  " + s + "  ";
-            return s;
-        }
-        if (s.length() == 3) {
-            s = " " + s + "  ";
-            return s;
-        }
-        if (s.length() == 4) {
-            s = s + "  ";
-            return s;
-        }
-        s = s + " ";
-        return s;
+    private static String formattingName(String name) {
+        NameFormat format = NameFormat.getFormatter(name.length());
+        return format.makeForm(name);
     }
 
     private static void ladderPrinter(List<LadderRow> ladderBoard) {
