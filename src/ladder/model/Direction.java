@@ -2,10 +2,6 @@ package ladder.model;
 
 public class Direction {
 
-    private static final int MOVING_LEFT = -1;
-    private static final int IN_PLACE = 0;
-    private static final int MOVING_RIGHT = 1;
-
     private final boolean left;
     private final boolean right;
 
@@ -17,5 +13,17 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
 
+    }
+
+    public Direction next() {
+        return null;
+    }
+
+    public boolean isLeft() {
+        return false;
+    }
+
+    public boolean isRight() {
+        return false;
     }
 }

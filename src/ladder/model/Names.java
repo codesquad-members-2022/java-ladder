@@ -3,6 +3,7 @@ package ladder.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class Names {
@@ -12,11 +13,16 @@ public class Names {
     private final List<Name> names;
 
     public Names(List<Name> names) {
+        validateNames(names);
         if (names.isEmpty()) {
             this.names = Collections.emptyList();
             return;
         }
         this.names = names;
+    }
+
+    private void validateNames(List<Name> names) {
+        Objects.requireNonNull(names);
     }
 
     public List<Name> getElements() {

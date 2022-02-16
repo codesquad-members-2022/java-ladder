@@ -5,7 +5,7 @@ import ladder.utils.RandomGenerator;
 public class Board {
 
     private final int height;
-    private final Width width;
+    private final Height height;
     private static final int ZERO = 0;
     private static final int EVEN_NUMBER = 2;
 
@@ -17,7 +17,7 @@ public class Board {
 
     public Board(int height, int width) {
         this.height = height;
-        this.width = getWidth(width);
+        this.height = getWidth(width);
         this.board = createBoard();
     }
 
@@ -25,13 +25,13 @@ public class Board {
         return this.board;
     }
 
-    private Width getWidth(int width) {
-        return new Width(width);
+    private Height getWidth(int width) {
+        return new Height(width);
     }
 
     private String[][] createBoard() {
         int height = this.height;
-        int width = this.width.getValue();
+        int width = this.height.getValue();
         String[][] board = new String[height][width];
 
         for (int row = 0; row < height; row++) {
@@ -41,7 +41,7 @@ public class Board {
     }
 
     private void fillBoard(String[][] board, int height) {
-        int width = this.width.getValue();
+        int width = this.height.getValue();
 
         for (int column = 0; column < width; column++) {
             board[height][column] = getSymbol(board, height, column);
