@@ -9,19 +9,22 @@ public class LadderLine {
 	public LadderLine(int userNumber) {
 		ladder = new StringBuilder();
 		int ladderRow = 2 * userNumber - 1;
-		makeLadderLine(ladderRow);
+		makeLadder(ladderRow);
 	}
 
-	private void makeLadderLine(int ladderRow) {
+	private void makeLadder(int ladderRow) {
 		for (int i = 1; i <= ladderRow; i++) {
-			if (i % 2 == 1) {
-				ladder.append("|");
-			} else {
-				boolean step = isStep();
-				previousStep = step;
-				ladder.append(step ? "-----" : "     ");
-			}
+			makeLadderLine(i);
+		}
+	}
 
+	private void makeLadderLine(int i) {
+		if (i % 2 == 1) {
+			ladder.append("|");
+		} else {
+			boolean step = isStep();
+			previousStep = step;
+			ladder.append(step ? "-----" : "     ");
 		}
 	}
 
