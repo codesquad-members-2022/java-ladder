@@ -17,4 +17,8 @@ public class Names {
         String[] arr = names.split(",");
         Collections.addAll(this.names, arr);
     }
+
+    public int getPlayersCount() {
+        return names.size();
+    }
 }
