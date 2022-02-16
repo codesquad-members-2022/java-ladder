@@ -4,16 +4,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        PrintView pv = new PrintView();
-
-        pv.questionNumberOfParticipants();
-        int numberOfParticipants = s.nextInt();
-
-        pv.questionLegLength();
-        int LegLength = s.nextInt();
-
-        LadderGame gl = new LadderGame(numberOfParticipants,LegLength);
+        Scanner scanner = new Scanner(System.in);
+        InputView pv = new InputView(scanner);
+        LadderGame gl = new LadderGame(pv.getParticipantsNum(), pv.getLadderHeight());
         gl.start();
+        scanner.close();
     }
 }

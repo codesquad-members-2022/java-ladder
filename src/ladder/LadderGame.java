@@ -3,30 +3,42 @@ package ladder;
 public class LadderGame {
 
     private int[][] ghostLeg;
-    private PrintView printView;
+    private OutputView ov;
 
     public LadderGame(int numberOfParticipants, int LegLength) {
         this.ghostLeg = creatGhostLeg(numberOfParticipants, LegLength);
-        this.printView = new PrintView();
+        this.ov = new OutputView();
     }
 
     private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
-        int row = LegLength;
-        int column = numberOfParticipants + (numberOfParticipants - 1);
-        int[][] ghostLeg = new int[row][column];
-
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j += 2) {
-                ghostLeg[i][j] = 1;
-            }
-            for (int j = 1; j < column; j += 2) {
-                ghostLeg[i][j] = (int) (Math.random() * 2);
-            }
-        }
+        int rowLength = LegLength;
+        int columnLength = (numberOfParticipants * 2) - 1;
+        int[][] ghostLeg = createArr(rowLength, columnLength);
         return ghostLeg;
     }
 
+    private int[][] createArr(int rowLength, int columnLength) {
+        int[][] arr = new int[rowLength][columnLength];
+        for (int row = 0; row < rowLength; row++) {
+            insertElementAtColumn(arr[row], columnLength);
+        }
+        return arr;
+    }
+
+    private void insertElementAtColumn(int[] arr, int columnLength) {
+        for (int column = 0; column < columnLength; column++) {
+            arr[column] = insertElement(column);
+        }
+    }
+
+    private int insertElement(int column) {
+        if (column % 2 == 0) {
+            return 2;
+        }
+        return (int) (Math.random() * 2);
+    }
+
     public void start() {
-        printView.printGhostLeg(ghostLeg);
+        ov.printGhostLeg(ghostLeg);
     }
 }
