@@ -10,27 +10,28 @@ public class Ladder {
 
     private ArrayList<String> ladder;
     private Random random;
-    private int numberOfPeople;
+    private int numberOfPlayer;
     private String[] nameTags;
+    private boolean lastRandomShapeIsLine;
 
     public Ladder(String[] names, int ladderDepth) {
         this.ladder = new ArrayList<>();
         this.random = new Random();
-        this.numberOfPeople = names.length;
-        this.nameTags = wrapPeopleName(names);
+        this.numberOfPlayer = names.length;
+        this.nameTags = wrapPlayerName(names);
+        this.lastRandomShapeIsLine = false;
 
         IntStream.range(0, ladderDepth)
-                .forEach(row -> ladder.add(initLadderRow(numberOfPeople * 2 - 1)));
+                .forEach(row -> ladder.add(initLadderRow(numberOfPlayer * 2 - 1)));
     }
 
-    private String[] wrapPeopleName(String[] names) {
+    private String[] wrapPlayerName(String[] names) {
         return Arrays.stream(names)
                 .map(name -> {
                     // 지정 된 NAME_TAG_SIZE에서 입력받은 name의 길이만큼 빼서 추가해야 할 padding의 갯수를 구한다.
                     int numberOfPadding = NAME_TAG_SIZE - name.length();
                     return initNameTag(name, numberOfPadding);
-                })
-                .toArray(String[]::new);
+                }).toArray(String[]::new);
     }
 
     private String initNameTag(String name, int numberOfPadding) {
@@ -76,10 +77,17 @@ public class Ladder {
     }
 
     private String initRandomShape() {
-        if (random.nextBoolean()) {
+        if (lastRandomShapeIsLine) {
+            setLastRandomShapeIsLine(false);
             return initPadding(NAME_TAG_SIZE - 1);
         }
-        return initLine(NAME_TAG_SIZE - 1);
+
+        // 랜덤 모양(line or padding) 생성 로직
+        if (random.nextBoolean()) {
+            setLastRandomShapeIsLine(true);
+            return initLine(NAME_TAG_SIZE - 1);
+        }
+        return initPadding(NAME_TAG_SIZE - 1);
     }
 
     private String initPadding(int numberOfPadding) {
@@ -100,5 +108,9 @@ public class Ladder {
 
     public String[] getNameTags() {
         return nameTags;
+    }
+
+    public void setLastRandomShapeIsLine(boolean lastRandomShapeIsLine) {
+        this.lastRandomShapeIsLine = lastRandomShapeIsLine;
     }
 }
