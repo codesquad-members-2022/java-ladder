@@ -27,7 +27,7 @@ public class Line {
         if(!isValidLadderStartPosition(startPosition)){
             throw new IllegalArgumentException(INVALID_INPUT_LADDER_POSITION_MESSAGE);
         }
-        if(!isAlreadyMakeLadder(startPosition)){
+        if(!isAlreadyExistedLadder(startPosition)){
             throw new IllegalArgumentException(ALREADY_MAKE_LADDER_MESSAGE);
         }
         columns[startPosition] = 1;
@@ -35,7 +35,7 @@ public class Line {
         return true;
     }
 
-    private boolean isAlreadyMakeLadder(int startPosition) {
+    private boolean isAlreadyExistedLadder(int startPosition) {
         return !isMarkedPosition(startPosition) && !isMarkedPosition(startPosition+1);
     }
 
