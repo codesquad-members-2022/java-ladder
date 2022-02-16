@@ -1,12 +1,11 @@
 import java.util.Scanner;
 
-public class InputLadder {
+public class Input {
 
     Scanner sc = new Scanner(System.in);
-    OutputLadder outputLadder = new OutputLadder();
 
     public int ladderInfo(String str){
-        outputLadder.printRules(str);
+        System.out.println(str);
         return sc.nextInt();
     }
 

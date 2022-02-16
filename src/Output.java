@@ -1,8 +1,5 @@
-public class OutputLadder {
+public class Output {
 
-    public void printRules(String str){
-        System.out.println(str);
-    }
 
     public void printLadder(char[][] ladder){
         for (int i = 0; i < ladder.length; i++) {
