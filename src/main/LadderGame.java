@@ -2,7 +2,7 @@ package main;
 
 import java.util.stream.IntStream;
 
-public class Ladder {
+public class LadderGame {
     private static final char BLANK = ' ';
     private static final char RUNG = '-';
     private static final char RAIL = '|';
@@ -11,7 +11,7 @@ public class Ladder {
     private final int space;
     private final Character[][] ladderArr;
 
-    public Ladder(int userNum, int height) {
+    public LadderGame(int userNum, int height) {
         this.userNum = userNum;
         this.height = height;
         space = userNum - 1;

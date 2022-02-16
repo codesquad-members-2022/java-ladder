@@ -6,7 +6,7 @@ import main.Controller.OutputController;
 import java.io.IOException;
 
 public class LadderGameManager {
-    private Ladder ladder;
+    private LadderGame ladderGame;
 
     public void init() {
         int playerNum = InputController.inputNumber("참여할 사람은 몇 명인가요?");
@@ -16,11 +16,11 @@ public class LadderGameManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ladder = new Ladder(playerNum, ladderHeight);
+        ladderGame = new LadderGame(playerNum, ladderHeight);
 
     }
 
     public void showLadder() {
-        OutputController.showLadder(ladder.getLadderArr());
+        OutputController.showLadder(ladderGame.getLadderArr());
     }
 }
