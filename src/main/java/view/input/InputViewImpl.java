@@ -25,8 +25,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public int inputEntry() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        System.out.print(ENTRY_PROMPT);
+        requestInputEntry();
         try {
             int intEntry = inputInt();
             validator.entryValidate(intEntry);
@@ -41,8 +40,7 @@ public class InputViewImpl implements InputView {
 
     @Override
     public int inputHeight() {
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        System.out.print(HEIGHT_PROMPT);
+        requestInputHeight();
         try {
             int intHeight = inputInt();
             validator.heightValidate(intHeight);
@@ -53,6 +51,16 @@ public class InputViewImpl implements InputView {
             e.printStackTrace();
         }
         return inputHeight();
+    }
+
+    private void requestInputEntry() {
+        System.out.println("참여할 사람은 몇 명인가요?");
+        System.out.print(ENTRY_PROMPT);
+    }
+
+    private void requestInputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+        System.out.print(HEIGHT_PROMPT);
     }
 
     private int inputInt() {
