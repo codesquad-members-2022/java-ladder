@@ -45,8 +45,11 @@ public class Ladder {
     }
     private void appendRow(StringBuilder sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append(shape.pole).append(w < width - 1 ? shape.getElement(h, w) : "");
+            sb.append(shape.pole).append(getOutput(shape, h, w));
         }
         sb.append('\n');
+    }
+    private String getOutput(Shape shape, int h, int w) {
+        return w < width - 1 ? shape.getElement(h, w).toString() : "";
     }
 }
