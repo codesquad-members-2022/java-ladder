@@ -1,6 +1,7 @@
 package app.jinan159.ladder;
 
 import app.jinan159.io.InputReader;
+import app.jinan159.io.OutputWriter;
 import app.jinan159.ladder.meta.LadderElement;
 import app.jinan159.ladder.meta.GameMap;
 import app.jinan159.ladder.stretegy.DefaultGameMapStretegy;
@@ -43,12 +44,9 @@ public class LadderGame {
     }
 
     // ------- public method ---------
-    public void startGame() {
-        printGameMap();
-    }
-
-    // ------- private method ---------
-    private void printGameMap() {
-        System.out.println(gameMap.gameMapToString());
+    public void startGame() throws IOException {
+        try (OutputWriter writer = new OutputWriter()) {
+            writer.write(gameMap.gameMapToString());
+        }
     }
 }
