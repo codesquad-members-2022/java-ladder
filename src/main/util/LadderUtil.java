@@ -17,12 +17,12 @@ public class LadderUtil {
         List<List<LadderElement>> plane = new ArrayList<>();
 
         for (int row = 0; row < height; ++row) {
-            plane.add(createList(width));
+            plane.add(create1DList(width));
         }
         return plane;
     }
 
-    public static List<LadderElement> createList(int width) {
+    public static List<LadderElement> create1DList(int width) {
         ArrayList<LadderElement> line = new ArrayList<>();
 
         for (int col = 0; col < width; ++col) {

@@ -7,12 +7,14 @@ import main.util.StringUtil;
 
 public class OutputView {
 
+    private static final String EXECUTE_RESULT = "\n실행결과\n";
+
     public static void printMessage(String message) {
         System.out.println(message);
     }
 
     public static void printGame(LadderGame ladderGame) {
-        printMessage(Message.OUTPUT_VIEW_RESULT.get());
+        printMessage(EXECUTE_RESULT);
 
         StringBuilder sb = new StringBuilder();
         appendNames(sb, ladderGame.getNames());
