@@ -1,5 +1,7 @@
 public class Ladder {
 
+    private static final char[] widthLine = {'-', ' '};
+    private static final char pole = '|';
     private char[][] frame;
 
     public Ladder(int people, int ladderHight) {
@@ -11,16 +13,14 @@ public class Ladder {
     }
 
     private char line(int people, int number) {
-        char[] line = {'-', ' '};
         if (number < people - 1) {
-            return line[randomNumber()];
+            return widthLine[randomNumber()];
         }
         return ' ';
     }
 
     private char[] makeOneHight(int people) {
         char[] ladderLine = new char[people * 2];
-        char pole = '|';
         for (int i = 0; i < people * 2; i = i + 2) {
             ladderLine[i] = pole;
             ladderLine[i + 1] = line(people, i / 2);
