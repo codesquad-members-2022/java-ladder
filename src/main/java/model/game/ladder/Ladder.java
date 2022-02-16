@@ -4,8 +4,10 @@ import model.game.ladder.element.Element;
 import model.game.ladder.element.Line;
 import model.game.ladder.element.None;
 import model.game.ladder.element.Pole;
+import util.RandomUtil;
 
 import static java.lang.Math.*;
+import static util.RandomUtil.nextDouble;
 
 public class Ladder {
     private final Shape<Element> shape;
@@ -39,7 +41,7 @@ public class Ladder {
         }
     }
     private Element allocElement(int h, int w) {
-        return random() * 10 < 5.5 && isValid(h, w) ? line : none;
+        return nextDouble() * 10 < 5.5 && isValid(h, w) ? line : none;
     }
     private boolean isValid(int h, int w) {
         return w == 0 || (shape.getElement(h, w - 1) != line);
