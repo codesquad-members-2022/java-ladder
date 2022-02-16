@@ -21,6 +21,7 @@ public class View {
     }
 
     public static void printMap(List<String> map) {
+        System.out.println("\n실행 결과\n");
         map.stream().forEach(System.out::println);
     }
 }
