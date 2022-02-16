@@ -226,7 +226,83 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 * [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 
 ### 구현 과정
+#### 1. 이름을 입력받도록 수정
+* `PrintView`에서 이름을 입력받고 길이가 5자가 넘으면 5자로 수정해서 넘기도록 변경함
+   ```java
+    public String[] getPlayerName() {
+        System.out.println("참여할 사람의 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
+        String[] namePlayers = sc.nextLine().split(",");
+        for (int i = 0; i < namePlayers.length; ++i) {
+            namePlayers[i] = getNameLengthBelow5(namePlayers[i].trim());
+        }
+        return namePlayers;
+        }
+
+    private String getNameLengthBelow5(String name) {
+        if (name.length() <= 5) {
+            return name;
+        }
+
+        return name.substring(0, 5);
+        }
+   ```
+
+* `Ladder` 클래스에 이름에 관한 멤버변수를 추가하고 `init()`시 이름도 초기화하도록 함.
+   ```java
+    public void init(String[] namePlayers, int height) {
+        this.namePlayers = namePlayers;
+        this.numPlayer = namePlayers.length;
+        this.numSteps = namePlayers.length - 1;
+        this.height = height;
+
+        ladder = new ArrayList<>();
+        for (int lineNum = 0; lineNum < height; ++lineNum) {
+            initLine(lineNum);
+        }
+    }
+   ```
+#### 2. 이름을 출력하도록 구현
+* `PrintView` 클래스에서 이름 앞 뒤로 패딩을 붙여 출력하도록 구현
+   ```java   
+    private String getNameWithPadding(String name) {
+        int count = 0;
+        while (name.length() < 5) {
+            name = count % 2 == 0 ? " " + name : name + " ";
+            count++;
+        }
+
+        return name;
+    }
+   ```
+#### 3. 라인이 겹치지 않도록 구현
+* 사다리 초기화 시에 왼쪽에 step(발판)이 있으면 step이 없고, 왼쪽에 step이 없으면 random한 값을 가지도록 구현
+   ```java
+    private void initLine(int lineNum) {
+        Random rd = new Random();
+        ArrayList<Boolean> line = new ArrayList<Boolean>();
+        for (int step = 0; step < numSteps; ++step) {
+            line.add(getStep(line, rd, step));
+        }
+        ladder.add(line);
+    }
+
+    private boolean getStep(ArrayList<Boolean> line, Random rd, int step) {
+        if (step == 0) {
+            return rd.nextBoolean();
+        }
+
+        // 왼쪽에 step 존재하면 false, 없으면 random
+        return !line.get(step - 1) && rd.nextBoolean();
+    }
+   ```
+#### 4. 배열 대신 `ArrayList`로 구현
+* `Ladder`클래스에서 사다리를 `List<List<Boolean>>`을 가지도록 구현
+   ```java
+    private List<List<Boolean>> ladder;
+   ```
+
 ### 실행 결과
+![level_2_result](readme_image/level_2_result.png)
 
 ## 사다리 게임 4단계 - 리팩토링 2
 ## 사다리 게임 5단계 - 실행 결과 출력
