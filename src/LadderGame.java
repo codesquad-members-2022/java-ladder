@@ -3,6 +3,7 @@ public class LadderGame {
     private final OutputView outputView = new OutputView();
 
     public void run() {
+        String[] playerNames = inputView.getPlayerNames();
         int playerCount = inputView.getPlayerCount();
         int height = inputView.getLadderHeight();
 
