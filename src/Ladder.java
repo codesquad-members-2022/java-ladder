@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class Ladder {
 
-
     Random ran = new Random();
     char[][] ladder;
     int playerCount;
