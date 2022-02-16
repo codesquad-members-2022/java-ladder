@@ -1,23 +1,32 @@
 package main.controller;
 
+import main.InputValidator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputController {
+
+
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static InputValidator validator = new InputValidator();
 
     private InputController() {
     }
 
-    public static int inputNumber(String msg) throws IOException {
+    public static int inputPositiveNumber(String msg) throws IOException {
         printMessage(msg);
-        return Integer.parseInt(br.readLine());
+        int posNumber = Integer.parseInt(br.readLine());
+        validator.isPosNumber(posNumber);
+        return posNumber;
     }
 
-    public static String[] inputStringWithDelimiter(String msg, String delimiter) throws IOException {
+    public static String[] inputStringWithDelimiter(String msg, String delimiter, int max) throws IOException {
         printMessage(msg);
-        return br.readLine().split(delimiter);
+        String[] names = br.readLine().split(delimiter);
+        validator.isInRange(names, max);
+        return names;
     }
 
     private static void printMessage(String msg) {
