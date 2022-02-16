@@ -1,16 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        int n; // number of people
-        int m; // height of ladder
+        int numberOfPeople;
+        int heightOfLadder;
         Output.messageAboutNumber();
-        n = Input.getNumber();
+        numberOfPeople = Input.getNumber();
 
         Output.messageAboutHeight();
-        m = Input.getNumber();
+        heightOfLadder = Input.getNumber();
 
         Input.scannerClose();
 
-        Ladder ladder = new Ladder(n, m);
+        Ladder ladder = new Ladder(numberOfPeople, heightOfLadder);
         Output.messageAboutLadder(ladder.Info());
     }
 }
