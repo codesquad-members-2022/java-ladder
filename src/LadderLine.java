@@ -18,13 +18,13 @@ public class LadderLine {
 		}
 	}
 
-	private void makeLadderLine(int i) {
-		if (i % 2 == 1) {
+	private void makeLadderLine(int rowIdx) {
+		if (rowIdx % 2 == 1) {
 			ladder.append("|");
 		} else {
-			boolean step = isStep();
-			previousStep = step;
-			ladder.append(step ? "-----" : "     ");
+			boolean isStep = isStep();
+			previousStep = isStep;
+			ladder.append(isStep ? "-----" : "     ");
 		}
 	}
 
