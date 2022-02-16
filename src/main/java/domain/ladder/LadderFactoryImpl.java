@@ -16,12 +16,17 @@ public class LadderFactoryImpl implements LadderFactory{
 
     @Override
     public Ladder create(int entry, int height) {
-        LadderElement[][] ladderElements = new LadderElement[height][ladderWidth(entry)];
+        LadderElement[][] ladderElements = makeLadderFrame(entry, height);
 
         setAllVerticalLine(ladderElements);
         setAllHorizontalLine(ladderElements);
 
         return new Ladder(ladderElements);
+    }
+
+    private LadderElement[][] makeLadderFrame(int entry, int height) {
+        int width = 2*entry -1;
+        return new LadderElement[height][width];
     }
 
     @Override
@@ -74,10 +79,6 @@ public class LadderFactoryImpl implements LadderFactory{
         double randomFloat = Math.random();
         boolean randomBool = (0<= randomFloat) && (randomFloat < probabilityOfTrue);
         return randomBool;
-    }
-
-    private int ladderWidth(int entry) {
-        return 2*entry - 1;
     }
 
     private int ladderWidth(LadderElement[][] ladder) {
