@@ -31,7 +31,7 @@ public class Line {
             throw new IllegalArgumentException(ALREADY_MAKE_LADDER_MESSAGE);
         }
         columns[startPosition] = 1;
-        columns[startPosition + 1] = 1;
+        columns[startPosition + 1] = 2;
         return true;
     }
 
@@ -44,6 +44,20 @@ public class Line {
     }
 
     public boolean isMarkedPosition(int position) {
-        return columns[position] == 1;
+        return columns[position] == 1 || columns[position] == 2;
+    }
+
+    public void show() {
+        System.out.print("  ");
+        for(int i = 0; i < columns.length-1; i++){
+            System.out.print("|");
+            if(columns[i] == 1 && columns[i+1] == 2){
+                System.out.print("-----");
+                continue;
+            }
+            System.out.print("     ");
+        }
+        System.out.print("|");
+        System.out.println();
     }
 }
