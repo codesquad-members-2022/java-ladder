@@ -4,7 +4,11 @@ import domain.Ladder;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
+
+    private List<String> playerNameList;
 
     public void start() {
         Ladder ladder = init();
@@ -13,7 +17,8 @@ public class LadderGame {
 
     private Ladder init() {
         InputView.init();
-        int playersCount = InputView.getPlayersCount();
+        playerNameList = InputView.getPlayersName();
+        int playersCount = playerNameList.size();
         int maxLadderHeight = InputView.getMaxLadderHeight();
         InputView.close();
 
