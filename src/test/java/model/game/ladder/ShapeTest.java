@@ -12,32 +12,38 @@ import static org.assertj.core.api.Assertions.*;
 
 class ShapeTest {
     private Shape<Element> shape;
+    private Line line;
+    private None none;
+    private Pole pole;
 
     @BeforeEach
     void before() {
-        shape = new Shape(3, 5, 1); /* 높이가 3, 너비가 5 인 사다리 */
+        shape = new Shape(3, 5); /* 높이가 3, 너비가 5 인 사다리 */
+        line = new Line(1);
+        none = new None(1);
+        pole = new Pole();
     }
 
     @Test
     void testAddElementFail() {
-        assertThatThrownBy(() -> shape.addElement(shape.getHeight(), shape.line))
+        assertThatThrownBy(() -> shape.addElement(shape.getHeight(), line))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ShapeMessage.getRowIndexErrMsg(shape.getHeight()));
 
         for (int w = 0; w < shape.getWidth(); ++w) {
-            shape.addElement(0, shape.line);
+            shape.addElement(0, line);
         }
-        assertThatThrownBy(() -> shape.addElement(0, shape.line))
+        assertThatThrownBy(() -> shape.addElement(0, line))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ShapeMessage.getColIndexErrMsg(0, shape.getWidth()));
     }
 
     @Test
     void testGetElement() {
-        shape.addElement(0, shape.line);
-        shape.addElement(0, shape.none);
-        shape.addElement(0, shape.pole);
-        shape.addElement(1, shape.line);
+        shape.addElement(0, line);
+        shape.addElement(0, none);
+        shape.addElement(0, pole);
+        shape.addElement(1, line);
 
         assertThat(shape.getElement(0, 0)).isInstanceOf(Line.class);
         assertThat(shape.getElement(0, 1)).isInstanceOf(None.class);

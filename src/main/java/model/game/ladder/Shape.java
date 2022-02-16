@@ -11,24 +11,17 @@ import java.util.List;
 import static message.ShapeMessage.*;
 
 public class Shape<T> {
-    Line line;
-    None none;
-    Pole pole;
-
     private List<List<T>> shape;
     private int height;
     private int width;
 
-    public Shape(int height, int width, int elementSize) {
+    public Shape(int height, int width) {
         this.shape = new ArrayList<>();
         for (int h = 0; h < height; ++h) {
             this.shape.add(new ArrayList<>());
         }
         this.height = height;
         this.width = width;
-        this.line = new Line(elementSize);
-        this.none = new None(elementSize);
-        this.pole = new Pole();
     }
 
     public void addElement(int row, T element) {

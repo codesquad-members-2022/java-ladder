@@ -1,18 +1,28 @@
 package model.game.ladder;
 
 import model.game.ladder.element.Element;
+import model.game.ladder.element.Line;
+import model.game.ladder.element.None;
+import model.game.ladder.element.Pole;
 
 import static java.lang.Math.*;
 
 public class Ladder {
     private final Shape<Element> shape;
+    private Line line;
+    private None none;
+    private Pole pole;
+
     private final int height;
     private final int width;
 
     public Ladder(int height, int width, int maxNameLength) {
         this.height = height;
         this.width = width;
-        this.shape = new Shape(height, width, maxNameLength);
+        this.shape = new Shape(height, width);
+        this.line = new Line(maxNameLength);
+        this.none = new None(maxNameLength);
+        this.pole = new Pole();
         createLine();
     }
 
@@ -29,10 +39,10 @@ public class Ladder {
         }
     }
     private Element allocElement(int h, int w) {
-        return random() * 10 < 5.5 && isValid(h, w) ? shape.line : shape.none;
+        return random() * 10 < 5.5 && isValid(h, w) ? line : none;
     }
     private boolean isValid(int h, int w) {
-        return w == 0 || (shape.getElement(h, w - 1) != shape.line);
+        return w == 0 || (shape.getElement(h, w - 1) != line);
     }
 
     @Override
@@ -45,7 +55,7 @@ public class Ladder {
     }
     private void appendRow(StringBuilder sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append(shape.pole).append(getOutput(shape, h, w));
+            sb.append(pole).append(getOutput(shape, h, w));
         }
         sb.append('\n');
     }
