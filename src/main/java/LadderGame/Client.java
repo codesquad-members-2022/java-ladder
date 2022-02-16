@@ -21,7 +21,7 @@ public class Client {
 
         LadderGame ladderGame = new LadderGame();
 
-        ladderGame.init(getUserList(), getLadderHeight());
+        ladderGame.init(getUserCount(), getLadderHeight());
 
         sc.close();
     }
@@ -36,7 +36,7 @@ public class Client {
         userList = sc.nextLine().trim().split(",");
     }
 
-    private int getUserList() {
+    private int getUserCount() {
         return userList.length;
     }
 }
