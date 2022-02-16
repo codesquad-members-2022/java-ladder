@@ -22,21 +22,19 @@ public class LadderMap {
     private void addMapFirstLine() {
         StringBuilder sb = new StringBuilder();
         int size = ladderList.size();
-        sb.append(String.format("%8s", ladderList.get(0).getName()));
-        for (int i = 1; i < size - 1; i++) {
-            sb.append(String.format("%6s", ladderList.get(i).getName()));
+        sb.append("  ");
+        for (int i = 0; i < size; i++) {
+            String name = ladderList.get(i).getName();
+            sb.append(String.format("%5s", name) + " ");
         }
-        sb.append(String.format("%4s", ladderList.get(size - 1).getName()));
         map.add(sb.toString());
     }
 
     private void addMapLine() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getBlankString());
-        sb.append("|");
+        sb.append(getBlankString() + "|");
         for (int j = 1; j < ladderList.size(); j++) {
-            sb.append(getBlankOrLadderString());
-            sb.append("|");
+            sb.append(getBlankOrLadderString() + "|");
         }
         map.add(sb.toString());
     }
