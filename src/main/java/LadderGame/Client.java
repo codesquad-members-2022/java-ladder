@@ -15,14 +15,14 @@ public class Client {
     public Client() {
     }
 
-    public void input() {
-
+    public void run() {
 
         inputUser();
 
         LadderGame ladderGame = new LadderGame();
 
         ladderGame.init(getUserList(), getLadderHeight());
+
         sc.close();
     }
 
