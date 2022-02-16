@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class InputView {
 
-    static Input input = new Input();
+    private static Input input = new Input();
     private static final int ELEMENTS_SIZE = 2;
 
     public static InputView getInstance() {

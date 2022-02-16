@@ -7,10 +7,14 @@ import java.util.List;
 
 public class LadderLineFactory {
 
+    private static final int START = 0;
+    private static final int BEFORE_LAST = 2;
+
     public static List<LadderLine> getLadderLines(int nameCount, Height height) {
         int totalCount = height.getValue();
         List<LadderLine> ladderLines = new ArrayList<>();
-        for (int index = 0; index < totalCount; index++) {
+
+        for (int index = START; index < totalCount; index++) {
             LadderLine ladderLine = getLadderLine(nameCount);
             ladderLines.add(ladderLine);
         }
@@ -48,6 +52,7 @@ public class LadderLineFactory {
     }
 
     private static Point getBeforeLastPoint(List<Point> points, int index) {
-        return points.get(index - 2);
+        int beforeLast = index - BEFORE_LAST;
+        return points.get(beforeLast);
     }
 }
