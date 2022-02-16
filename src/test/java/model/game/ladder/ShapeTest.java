@@ -1,5 +1,6 @@
 package model.game.ladder;
 
+import message.ShapeMessage;
 import model.game.ladder.element.Element;
 import model.game.ladder.element.Line;
 import model.game.ladder.element.None;
@@ -26,13 +27,15 @@ class ShapeTest {
     @Test
     void testAddElementFail() {
         assertThatThrownBy(() -> shape.addElement(shape.getHeight(), line))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ShapeMessage.getRowIndexErrMsg(shape.getHeight()));
 
         for (int w = 0; w < shape.getWidth(); ++w) {
             shape.addElement(0, line);
         }
         assertThatThrownBy(() -> shape.addElement(0, line))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ShapeMessage.getColIndexErrMsg(0, shape.getWidth()));
     }
 
     @Test
