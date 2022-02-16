@@ -30,7 +30,7 @@ public class Input {
         String value = scanner.nextLine();
         int parseInt = validateValue(value);
         Number number = new Number(parseInt);
-        people = number.getNumber();
+        people = number.get();
     }
 
     private void askHight() {
@@ -38,7 +38,7 @@ public class Input {
         String value = scanner.nextLine();
         int parseInt = validateValue(value);
         Number number = new Number(parseInt);
-        hight = number.getNumber();
+        hight = number.get();
     }
 
     private int checkZero(int value) {
