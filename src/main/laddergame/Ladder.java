@@ -21,6 +21,7 @@ public class Ladder {
 
     private void build() {
         for (int i = 0; i < height; i++) {
+            previous = false;
             ladderArr.add(generate(i));
         }
     }
