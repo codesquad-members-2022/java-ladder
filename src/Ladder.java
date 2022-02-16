@@ -4,29 +4,38 @@ public class Ladder {
     private static final char RAIL = '|';
     private static final char STEP = '-';
     private static final char EMPTY = ' ';
+    private static final int STEP_WIDTH = 1;
 
     private final char[][] ladderBars;
     private final Random random = new Random();
 
-    public Ladder(int height, int persons) {
-        this.ladderBars = drawLadderBars(height, persons);
+    public Ladder(int height, int playerCount) {
+        this.ladderBars = drawLadderBars(height, playerCount);
     }
 
     public String render() {
         StringBuilder sb = new StringBuilder();
+
         for (char[] row : ladderBars) {
             sb.append(row);
             sb.append(System.lineSeparator());
         }
+
         return sb.toString();
     }
 
-    private char[][] drawLadderBars(int height, int persons) {
-        char[][] randomLadderBars = new char[height][2 * persons - 1];
+    private char[][] drawLadderBars(int height, int playerCount) {
+        char[][] randomLadderBars = new char[height][getWidth(playerCount)];
+
         for (char[] row : randomLadderBars) {
             drawLadderRow(row);
         }
+
         return randomLadderBars;
+    }
+
+    private int getWidth(int playerCount) {
+        return playerCount + STEP_WIDTH * (playerCount - 1);
     }
 
     private void drawLadderRow(char[] ladderRow) {

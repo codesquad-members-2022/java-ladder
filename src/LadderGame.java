@@ -1,18 +1,15 @@
-import java.util.Scanner;
-
 public class LadderGame {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
-        System.out.println("참여할 인원 수를 입력하십시오.");
-        int n = Integer.parseInt(sc.nextLine());
-        System.out.println("사다리의 높이를 입력하십시오.");
-        int m = Integer.parseInt(sc.nextLine());
-        System.out.println();
+    public void run() {
+        int playerCount = inputView.getInt(SystemMessage.UI_INPUT_PLAYER_COUNT.getMessage());
+        int height = inputView.getInt(SystemMessage.UI_INPUT_LADDER_HEIGHT.getMessage());
 
-        Ladder ladder = new Ladder(m, n);
-        System.out.println(ladder.render());
+        Ladder ladder = new Ladder(height, playerCount);
 
-        sc.close();
+        outputView.printLadder(ladder);
+
+        inputView.close();
     }
 }
