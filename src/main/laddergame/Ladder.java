@@ -16,10 +16,10 @@ public class Ladder {
     public Ladder(int width, int height) {
         this.width = width;
         this.height = height;
-        createLadder();
+        build();
     }
 
-    private void createLadder() {
+    private void build() {
         for (int i = 0; i < height; i++) {
             ladderArr.add(generate(i));
         }
