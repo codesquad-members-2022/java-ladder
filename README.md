@@ -239,7 +239,8 @@ step2의 코드의 사용자 View를 개선하고 내부 로직을 요구사항�
 <div markdown="1">
 
 #### 결과
-![Step3 출력화면](https://i.imgur.com/iD8f2wq.jpg)
+
+![step3결과](https://i.imgur.com/xMKNlQS.jpg)
 
 - [x] 사다리 게임에 참여하는 플레이어의 이름을 최대 5글자까지 부여할 수 있다.
 - [x] 사다리 출력시 이름도 같이 출력한다.
