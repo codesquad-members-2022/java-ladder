@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shape<T extends Element> {
-    private List<List<T>> shape;
-    private int height;
-    private int width;
-
     Line line;
     None none;
     Pole pole;
+
+    private List<List<T>> shape;
+    private int height;
+    private int width;
 
     public Shape(int height, int width) {
         this.shape = new ArrayList<>();
