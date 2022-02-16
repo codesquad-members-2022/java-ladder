@@ -9,9 +9,9 @@ import static java.lang.Math.*;
 
 public class Ladder {
     private final Shape<Element> shape;
-    private Line line;
-    private None none;
-    private Pole pole;
+    private final Line line;
+    private final None none;
+    private final Pole pole;
 
     private final int height;
     private final int width;
@@ -19,7 +19,7 @@ public class Ladder {
     public Ladder(int height, int width, int maxNameLength) {
         this.height = height;
         this.width = width;
-        this.shape = new Shape(height, width);
+        this.shape = new Shape<>(height, width);
         this.line = new Line(maxNameLength);
         this.none = new None(maxNameLength);
         this.pole = new Pole();
@@ -59,7 +59,7 @@ public class Ladder {
         }
         sb.append('\n');
     }
-    private String getOutput(Shape shape, int h, int w) {
+    private String getOutput(Shape<Element> shape, int h, int w) {
         return w < width - 1 ? shape.getElement(h, w).toString() : "";
     }
 }

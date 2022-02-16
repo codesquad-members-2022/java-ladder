@@ -1,8 +1,8 @@
 package view;
 
-import message.InputViewMessage;
-
 import java.util.Scanner;
+
+import static message.InputViewMessage.*;
 
 public class InputView {
     private static InputView iv;
@@ -20,12 +20,12 @@ public class InputView {
     }
 
     public String playerNames() {
-        System.out.println(InputViewMessage.REQUEST_PLAYER_NAMES);
+        System.out.println(REQUEST_PLAYER_NAMES);
         return getLine();
     }
 
     public int ladderHeight() {
-        System.out.println(InputViewMessage.REQUEST_LADDER_HEIGHT);
+        System.out.println(REQUEST_LADDER_HEIGHT);
         return getValue();
     }
 

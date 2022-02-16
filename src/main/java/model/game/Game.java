@@ -7,8 +7,8 @@ import util.GameUtil;
 import java.util.List;
 
 public class Game {
-    private Ladder ladder;
-    private List<Player> players;
+    private final Ladder ladder;
+    private final List<Player> players;
 
     public Game(Ladder ladder, List<Player> players) {
         this.ladder = ladder;
@@ -17,7 +17,7 @@ public class Game {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         int gap = GameUtil.getMaxPlayerName(players) + 1;
         for (Player player : players) {
             sb.append(String.format("%-" + gap + "s", player));

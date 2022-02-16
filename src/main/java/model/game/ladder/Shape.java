@@ -1,19 +1,14 @@
 package model.game.ladder;
 
-import message.ShapeMessage;
-import model.game.ladder.element.Line;
-import model.game.ladder.element.None;
-import model.game.ladder.element.Pole;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static message.ShapeMessage.*;
 
 public class Shape<T> {
-    private List<List<T>> shape;
-    private int height;
-    private int width;
+    private final List<List<T>> shape;
+    private final int height;
+    private final int width;
 
     public Shape(int height, int width) {
         this.shape = new ArrayList<>();

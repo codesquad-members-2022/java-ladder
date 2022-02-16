@@ -4,7 +4,7 @@ public class None implements Element {
     private String str = " ";
 
     public None(int length) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         while (length-- > 0) {
             sb.append(this.str);
         }
