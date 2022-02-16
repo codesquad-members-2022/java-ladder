@@ -13,6 +13,24 @@ public class Ladder {
         this.ladder = new char[heightLadder][playerCount*2-1];
     }
 
+
+
+    public char[][] makeLine(char[][] ladder){
+        if (ran.nextBoolean()){
+            ladder[heightLadder][playerCount] = ' ';
+            return ladder;
+        }
+        ladder[heightLadder][playerCount] = '-';
+        return ladder;
+    }
+
+    public char[][] makeStick(){
+        if (playerCount % 2 == 0) {
+            ladder[heightLadder][playerCount] = '|';
+        }
+        return ladder;
+    }
+
     public char[][] makeLadder(){
         char[] RandomLine = {' ', '-'};
 
