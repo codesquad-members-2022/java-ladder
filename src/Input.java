@@ -1,4 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Input {
 
@@ -6,11 +9,8 @@ public class Input {
 
 	private Input() {}
 
-	public static int[] getUserInput() {
-		int[] userInput = new int[2];
-		userInput[0] = getIntInput("참여할 사람은 몇 명인가요?");
-		userInput[1] = getIntInput("최대 사다리 높이는 몇 개인가요?");
-		return userInput;
+	public static int getLadderHeight(String message) {
+		return getIntInput(message);
 	}
 
 	private static int getIntInput(String message) {
@@ -18,6 +18,18 @@ public class Input {
 		int intInput = sc.nextInt();
 		sc.nextLine();
 		return intInput;
+	}
+
+	public static List<String> getUserName() {
+		System.out.println("참여할 사람 이름을 입력하세요.");
+		String userNameWithComma = sc.nextLine();
+		List<String> userNames = Arrays.stream(userNameWithComma.split(",")).collect(Collectors.toList());
+		return validateUserName(userNames);
+	}
+
+	private static List<String> validateUserName(List<String> userNames) {
+		//todo 사람 이름 5글자 이하 확인
+		return userNames;
 	}
 
 	public static void close() {
