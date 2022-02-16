@@ -5,13 +5,13 @@ import application.game.Game;
 import application.domain.ladder.Ladder;
 import application.domain.player.Player;
 import application.util.Parser;
-import application.util.GameUtils;
 import application.view.InputView;
 import application.view.OutputView;
 
 import java.util.List;
 
 import static application.message.GameMessage.RUNTIME_ERROR_MESSAGE;
+import static application.util.GameUtils.*;
 
 public class Application {
     private final InputView iv;
@@ -50,7 +50,7 @@ public class Application {
         return iv.ladderHeight();
     }
     private Game ready(List<Player> players, int height) {
-        Ladder ladder = ladderController.getLadder(height, players.size(), GameUtils.getMaxPlayerName(players));
+        Ladder ladder = ladderController.getLadder(height, players.size(), getLongestNameLength(players));
         return new Game(ladder, players);
     }
 }
