@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class Ladder {
 
-    Random ran = new Random();
-    char[][] ladder;
-    int playerCount;
-    int heightLadder;
+    private Random ran = new Random();
+    private char[][] ladder;
+    private int playerCount;
+    private int heightLadder;
 
     public Ladder(int playerCount, int heightLadder) {
         this.playerCount = playerCount;
