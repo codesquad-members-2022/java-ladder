@@ -1,14 +1,16 @@
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
+
+    private InputView() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static int getInputNumer(String message) {
         OutputView.printMessage(message);
-        int result = Integer.parseInt(scanner.nextLine());
-        return result;
+        return Integer.parseInt(scanner.nextLine());
     }
-
 
     public static void close() {
         scanner.close();

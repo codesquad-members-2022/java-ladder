@@ -1,11 +1,10 @@
 import java.util.Random;
 
 public class Ladder {
-
     private int playerCount;
     private int ladderMaxHeight;
     private int[][] lines;
-    private static Random rnd = new Random();
+    private static final Random rnd = new Random();
 
     private Ladder() {
     }
@@ -22,25 +21,30 @@ public class Ladder {
         return lines;
     }
 
-    public void drawRandomLines() {
-        int row = ladderMaxHeight;
-        int col = playerCount;
 
-        for (int row_i = 0; row_i < row; row_i++) {
-            for (int col_i = 0; col_i < col - 1; col_i++) {
-                if (isRandomDraw())
-                    drawLine(row_i, col_i);
-            }
+    public void drawRandomLines() {
+        for (int ladderPos = 0; ladderPos < ladderMaxHeight; ladderPos++) {
+            drawRandomLine(ladderPos);
         }
+    }
+
+    public void drawRadder(int row, int col) {
+        lines[row][col] = 1;
+        lines[row][col + 1] = 1;
+    }
+
+    private void drawRandomLine(int ladderPos) {
+        for (int playerPos = 0; playerPos < playerCount - 1; playerPos++) {
+            drawRandomRadder(ladderPos, playerPos);
+        }
+    }
+
+    private void drawRandomRadder(int ladderPos, int playerPos) {
+        if (isRandomDraw())
+            drawRadder(ladderPos, playerPos);
     }
 
     private boolean isRandomDraw() {
         return rnd.nextBoolean();
     }
-
-    public void drawLine(int row, int col) {
-        lines[row][col] = 1;
-        lines[row][col + 1] = 1;
-    }
-
 }
