@@ -1,3 +1,5 @@
+package LadderGame;
+
 import java.util.Scanner;
 
 public class Client {

@@ -1,3 +1,5 @@
+package LadderGame;
+
 public class Output {
 
     private static StringBuilder sb = new StringBuilder();
