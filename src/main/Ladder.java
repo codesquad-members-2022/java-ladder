@@ -1,6 +1,5 @@
 package main;
 
-import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 public class Ladder {
