@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -8,11 +9,13 @@ public class LadderMaker {
 
     private final Random random = new Random();
     private List<List<String>> ladder;
+    private List<String> tempList;
     private final int width;
     private final int height;
 
-    public LadderMaker(int width, int height) {
-        this.width = width;
+    public LadderMaker(int nameCount, int height) {
+        ladder = new ArrayList<>();
+        this.width = nameCount * 2 - 1;
         this.height = height;
     }
 
@@ -23,26 +26,34 @@ public class LadderMaker {
     }
 
     private void makeRow(int row) {
+        tempList = new ArrayList<>();
         for (int column = 0; column < width; column++) {
-            drawLine(row, column);
+            tempList.add(drawLine(row, column));
         }
+        ladder.add(tempList);
     }
 
-    private void drawLine(int row, int column) {
+    private String drawLine(int row, int column) {
         if (column % 2 == 0) {
-            ladder.get(row).add(VERTICAL);
-            return;
+            return VERTICAL;
         }
-        if (random.nextBoolean()) {
-            ladder.get(row).add(HORIZONTAL);
-            return;
+        if (random.nextBoolean() && isBlank(column)) {
+            return HORIZONTAL;
         }
-        ladder.get(row).add(BLANKSPACE);
+        return BLANKSPACE;
     }
 
+    private boolean isBlank(int column) {
+        if (column == 1) {
+            return true;
+        }
+        if (BLANKSPACE.equals(tempList.get(column - 2))) {
+            return true;
+        }
+        return false;
+    }
 
     protected List<List<String>> getLadderList() {
         return ladder;
     }
-
 }
