@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Input {
 
@@ -22,9 +20,13 @@ public class Input {
 	}
 
 	public static List<User> getUserName() {
+		List<User> userList = new ArrayList<>();
 		System.out.println("참여할 사람 이름을 입력하세요.");
 		String[] userNames = sc.nextLine().split(",");
-		List<User> userList = new ArrayList<>();
+		return stringArrToListUser(userList, userNames);
+	}
+
+	private static List<User> stringArrToListUser(List<User> userList, String[] userNames) {
 		for (String user : userNames) {
 			try {
 				userList.add(new User(user));
