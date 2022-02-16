@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public class LadderFactoryImpl implements LadderFactory{
 
-    private static final float HORIZONTAL_LINE_PROBABILITY = 0.5f;
+    private static final float ATTACH_HORIZONTAL_LINE_PROBABILITY = 0.5f;
 
     public static LadderFactoryImpl instance = new LadderFactoryImpl();
 
@@ -66,8 +66,8 @@ public class LadderFactoryImpl implements LadderFactory{
     }
 
     private LadderElement randomLadderElement() {
-        boolean randomBool = generateRandomBool(HORIZONTAL_LINE_PROBABILITY);
-        return (randomBool) ? LadderElement.HORIZONTAL_LINE : LadderElement.EMPTY_LINE;
+        boolean attachHorizontalLine = generateRandomBool(ATTACH_HORIZONTAL_LINE_PROBABILITY);
+        return (attachHorizontalLine) ? LadderElement.HORIZONTAL_LINE : LadderElement.EMPTY_LINE;
     }
 
     private boolean generateRandomBool(float probabilityOfTrue) {
