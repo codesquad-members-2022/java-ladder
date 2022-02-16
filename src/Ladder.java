@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Ladder {
     private final int WIDTH = 5;
-    private final int CENTER_OF_LETTERS = WIDTH/2;
+    private final int CENTER_OF_LETTERS = (WIDTH / 2) + 1;
     private int numberOfPeople;
     private int heightOfLadder;
     private List<String> players;
@@ -32,18 +32,34 @@ public class Ladder {
     private List<Character> makeRow() {
         List<Character> rowOfLadder = new ArrayList<>();
         for (int i = 0; i < numberOfPeople - 1; i++) {
-            rowOfLadder.add(setRandomValue());
+            rowOfLadder.add(setRandomValue(rowOfLadder, i));
         }
         return rowOfLadder;
     }
 
-    private char setRandomValue() {
+    private char setRandomValue(List<Character> rowOfLadder, int index) {
         Random rand = new Random();
         int temp = rand.nextInt(2); // 0, 1 중 하나의 값
-        if (temp == 0) {
-            return ' ';
+        if (temp == 1 && !checkLineOverlap(rowOfLadder, index)) {
+            return '-';
         }
-        return '-';
+
+        return ' ';
+    }
+
+    private boolean checkLineOverlap(List<Character> rowOfLadder, int index) {
+        if (index != 0) {
+            return isLine(rowOfLadder, index);
+        }
+        return false;
+    }
+
+    private boolean isLine(List<Character> rowOfLadder, int index) {
+        char valueOfLine = rowOfLadder.get(index - 1);
+        if (valueOfLine == '-'){
+            return true;
+        }
+        return false;
     }
 
     public String Info() {
@@ -79,7 +95,7 @@ public class Ladder {
 
     private String putPlayers() {
         StringBuilder sb = new StringBuilder();
-        for (String player : players){
+        for (String player : players) {
             sb.append(checkPlayer(player));
             sb.append(" ");
         }
@@ -88,15 +104,15 @@ public class Ladder {
     }
 
     private String checkPlayer(String player) {
-    if (player.length() >= WIDTH){
-        return player.substring(0, 5);
-    }
+        if (player.length() >= WIDTH) {
+            return player.substring(0, 5);
+        }
         return addPadding(player);
     }
 
     private String addPadding(String player) {
         StringBuilder sb = new StringBuilder();
-        if (player.length() <= CENTER_OF_LETTERS){
+        if (player.length() <= CENTER_OF_LETTERS) {
             sb.append(addLeftPadding(player));
         }
         sb.append(player);
@@ -105,14 +121,14 @@ public class Ladder {
         return sb.toString();
     }
 
-    private String addLeftPadding(String player){
-        if (player.length() < CENTER_OF_LETTERS){
+    private String addLeftPadding(String player) {
+        if (player.length() < CENTER_OF_LETTERS) {
             return "  ";
         }
         return " ";
     }
 
-    private String addRightPadding(String player){
+    private String addRightPadding(String player) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < WIDTH - player.length(); i++) {
             sb.append(" ");
