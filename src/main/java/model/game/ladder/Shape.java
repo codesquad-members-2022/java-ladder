@@ -8,6 +8,8 @@ import model.game.ladder.element.Pole;
 import java.util.ArrayList;
 import java.util.List;
 
+import static message.ShapeMessage.*;
+
 public class Shape<T> {
     Line line;
     None none;
@@ -31,10 +33,10 @@ public class Shape<T> {
 
     public void addElement(int row, T element) {
         if (row >= height) {
-            throw new IllegalArgumentException(ShapeMessage.getRowIndexErrMsg(height));
+            throw new IllegalArgumentException(getRowIndexErrMsg(height));
         }
         if (getSize(row) >= width) {
-            throw new IllegalArgumentException(ShapeMessage.getColIndexErrMsg(row, width));
+            throw new IllegalArgumentException(getColIndexErrMsg(row, width));
         }
         shape.get(row).add(element);
     }

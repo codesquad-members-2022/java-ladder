@@ -17,4 +17,8 @@ public class OutputView {
     public void printGame(Game game) {
         System.out.println(game);
     }
+
+    public void printErrMsg(String msg) {
+        System.out.println(msg);
+    }
 }

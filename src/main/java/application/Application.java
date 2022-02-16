@@ -23,12 +23,28 @@ public class Application {
     }
 
     public void run() {
-        List<Player> players = Parser.getPlayers(iv.playerNames());
-        int height = iv.ladderHeight();
+        List<Player> players = readPlayers();
+        int height = readLadderHeight();
+        Game game = ready(players, height);
+        ov.printGame(game);
+        iv.close();
+    }
+    private List<Player> readPlayers() {
+        while (true) {
+            try {
+                return Parser.getPlayers(iv.playerNames());
+            } catch (IllegalArgumentException e) {
+                ov.printErrMsg(e.getMessage());
+            }
+        }
+    }
+    private int readLadderHeight() {
+        return iv.ladderHeight();
+    }
+    private Game ready(List<Player> players, int height) {
         Ladder ladder = ladderController.getLadder(height, players.size()
                 , GameUtil.getMaxPlayerName(players));
         Game game = new Game(ladder, players);
-        ov.printGame(game);
-        iv.close();
+        return game;
     }
 }
