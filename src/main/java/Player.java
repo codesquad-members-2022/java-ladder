@@ -4,7 +4,7 @@ class Player {
 
     private String name;
 
-    public Player(String name) {
+    public Player(String name) throws IllegalStateException {
         validateName(name);
         this.name = name;
     }
@@ -13,7 +13,7 @@ class Player {
         return name;
     }
 
-    private void validateName(String name) {
+    private void validateName(String name) throws IllegalArgumentException {
         if (name == null || name.isEmpty() || name.isBlank()) {
             throw new IllegalArgumentException("플레이어의 이름을 입력해주세요.");
         }

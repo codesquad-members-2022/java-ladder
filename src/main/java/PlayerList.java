@@ -8,7 +8,7 @@ public class PlayerList {
     private PlayerList() {
     }
     
-    public static PlayerList of(String... names) {
+    public static PlayerList of(String... names) throws IllegalArgumentException {
         PlayerList players = new PlayerList();
         for (String name : names) {
             players.add(new Player(name));
