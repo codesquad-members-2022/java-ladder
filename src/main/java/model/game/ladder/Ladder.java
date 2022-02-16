@@ -5,7 +5,7 @@ import model.game.ladder.element.Line;
 import model.game.ladder.element.None;
 import model.game.ladder.element.Pole;
 
-import static util.RandomUtil.nextDouble;
+import static util.RandomUtils.nextDouble;
 
 public class Ladder {
     private final Shape<Element> shape;

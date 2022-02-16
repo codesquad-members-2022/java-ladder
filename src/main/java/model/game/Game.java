@@ -2,11 +2,11 @@ package model.game;
 
 import model.game.ladder.Ladder;
 import model.game.player.Player;
-import util.GameUtil;
+import util.GameUtils;
 
 import java.util.List;
 
-import static util.StringUtil.rpad;
+import static util.StringUtils.rpad;
 
 public class Game {
     private final Ladder ladder;
@@ -20,7 +20,7 @@ public class Game {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int pad = GameUtil.getMaxPlayerName(players) + 1;
+        int pad = GameUtils.getMaxPlayerName(players) + 1;
         for (Player player : players) {
             sb.append(rpad(pad, player.toString()));
         }

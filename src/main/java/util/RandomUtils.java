@@ -2,7 +2,7 @@ package util;
 
 import java.util.Random;
 
-public class RandomUtil {
+public class RandomUtils {
     private static Random random = new Random();
 
     public static double nextDouble() {

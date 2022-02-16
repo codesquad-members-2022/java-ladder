@@ -5,7 +5,7 @@ import model.game.Game;
 import model.game.ladder.Ladder;
 import model.game.player.Player;
 import util.Parser;
-import util.GameUtil;
+import util.GameUtils;
 import view.InputView;
 import view.OutputView;
 
@@ -42,7 +42,7 @@ public class Application {
         return iv.ladderHeight();
     }
     private Game ready(List<Player> players, int height) {
-        Ladder ladder = ladderController.getLadder(height, players.size(), GameUtil.getMaxPlayerName(players));
+        Ladder ladder = ladderController.getLadder(height, players.size(), GameUtils.getMaxPlayerName(players));
         return new Game(ladder, players);
     }
 }
