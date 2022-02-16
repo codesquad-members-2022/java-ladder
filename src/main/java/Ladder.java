@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
     private int playerCount;
     private int ladderMaxHeight;
     private List<Line> lines;
-
-    private static final Random rnd = new Random();
 
     private Ladder() {
     }
@@ -54,6 +51,6 @@ public class Ladder {
     }
 
     private boolean isRandomDraw() {
-        return rnd.nextBoolean();
+        return RandomUtils.nextBoolean();
     }
 }
