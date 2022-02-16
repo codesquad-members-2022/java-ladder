@@ -14,6 +14,7 @@ public class LadderGame {
     public void run() {
         initGame();
         showResult();
+        terminate();
     }
 
     private void initGame() {
@@ -67,5 +68,9 @@ public class LadderGame {
     private void showResult() {
         output.print(players.toString());
         output.print(ladder.toString());
+    }
+
+    private void terminate() {
+        input.close();
     }
 }

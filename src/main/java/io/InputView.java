@@ -24,4 +24,8 @@ public class InputView {
         System.out.print(PROMPT);
         return sc.nextLine();
     }
+
+    public void close() {
+        sc.close();
+    }
 }
