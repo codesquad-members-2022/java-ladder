@@ -1,24 +1,21 @@
 public class Ladder {
 
-  private int numOfPeople;
-  private int numOfcolumns;
-  private int height;
+  private String ladderFrame;
+  private String ladderline;
 
-  public Ladder(int numOfPeople, int height) {
-    this.numOfPeople = numOfPeople;
-    this.height = height;
-    this.numOfcolumns = numOfPeople * 2 - 1;
+  public String getLadderFrame() {
+    return ladderFrame;
   }
 
-  public int getNumOfPeople() {
-    return numOfPeople;
+  public void setLadderFrame(String ladderFrame) {
+    this.ladderFrame = ladderFrame;
   }
 
-  public int getHeight() {
-    return height;
+  public String getLadderline() {
+    return ladderline;
   }
 
-  public int getNumOfcolumns() {
-    return numOfcolumns;
+  public void setLadderline(String ladderline) {
+    this.ladderline = ladderline;
   }
 }

@@ -5,16 +5,16 @@ public class LadderGame {
 
   private String[][] ladders;
 
-  public Ladder gameInfo() {
+  public Ladders gameInfo() {
     System.out.println("참여할 사람은 몇 명인가요?");
     int numOfPeople = inputNumber();
     System.out.println("최대 사다리 높이는 몇 개인가요?");
     int heightOfLadder = inputNumber();
 
-    return new Ladder(numOfPeople, heightOfLadder);
+    return new Ladders(numOfPeople, heightOfLadder);
   }
 
-  public String[][] makeLadder(Ladder ladder) {
+  public String[][] makeLadder(Ladders ladder) {
     initLadders(ladder);
 
     for (int whatFloor = 0; whatFloor < ladders.length; whatFloor++) {
@@ -23,7 +23,7 @@ public class LadderGame {
     return ladders;
   }
 
-  private void initLadders(Ladder ladder) {
+  private void initLadders(Ladders ladder) {
     ladders = new String[ladder.getHeight()][ladder.getNumOfcolumns()];
   }
 
@@ -31,27 +31,33 @@ public class LadderGame {
     return getOneFloorLadderShape(numOfColumns);
   }
 
-  private int getRemainder(int number) {
-    return number % 2;
-  }
 
   private String[] getOneFloorLadderShape(int numOfColumns) {
     String[] oneFloor = new String[numOfColumns];
 
-    for (int column = 0; column < numOfColumns; column++) {
-      if (getRemainder(column) == 0) {
-        oneFloor[column] = getLadderFrame();
-        continue;
-      }
-      oneFloor[column] = getLadderLine();
+    for (int column = 0; column < numOfColumns - 1; column += 2) {
+      Ladder ladder = getLadderShape(column, numOfColumns);
+      oneFloor[column] = ladder.getLadderFrame();
+      oneFloor[column + 1] = ladder.getLadderline();
     }
     return oneFloor;
+  }
+
+  private Ladder getLadderShape(int column, int numOfColumns) {
+    Ladder ladder = new Ladder();
+    ladder.setLadderFrame(LadderShape.LADDER_FRAME);
+    if (column == numOfColumns - 2) {
+      ladder.setLadderline(LadderShape.LADDER_LINE_NOEXIST);
+      return ladder;
+    }
+
+    ladder.setLadderline(getLadderLine());
+    return ladder;
   }
 
   private int inputNumber() {
     return new Scanner(System.in).nextInt();
   }
-
 
   public void printLadder() {
     for (int i = 0; i < ladders.length; i++) {
@@ -62,24 +68,12 @@ public class LadderGame {
     }
   }
 
-//  private String getLadderShape(int column) {
-//    if (getRemainder(column) == 0) {
-//      return getLadderFrame();
-//    }
-//    return getLadderLine();
-//  }
-
-
   private String getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
     if (isLineExist) {
-      return "-";
+      return LadderShape.LADDER_LINE_EXIST;
     }
-    return " ";
-  }
-
-  private String getLadderFrame() {
-    return "|";
+    return LadderShape.LADDER_LINE_NOEXIST;
   }
 
   private int randomNumber() {
@@ -93,6 +87,5 @@ public class LadderGame {
     }
     return true;
   }
-
 
 }
