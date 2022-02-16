@@ -11,7 +11,7 @@ public class LadderGame {
     public void init() {
         String playerNames = InputView.askPlayers();
         int height = InputView.askLadderHeight();
-        Names names = new Names(playerNames);
+        names = new Names(playerNames);
         board = new Board(names.getPlayersCount(), height);
     }
 
@@ -21,7 +21,7 @@ public class LadderGame {
     }
 
     public void showResult() {
-        //OutputView.showNames(names);
+        OutputView.showNames(names);
         OutputView.showBoard(board);
     }
 }
