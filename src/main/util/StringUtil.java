@@ -6,7 +6,7 @@ import main.domain.LadderElement;
 
 public class StringUtil {
 
-    public static List<String> parseNames(String line) {
+    public static List<String> parseNames(String line) throws IllegalArgumentException {
         List<String> names = List.of(line.split(","));
 
         for (String name : names) {
@@ -28,7 +28,7 @@ public class StringUtil {
         return new String(wrap);
     }
 
-    private static void validateName(String name) {
+    private static void validateName(String name) throws IllegalArgumentException {
         if (name.length() > 5) {
             throw new IllegalArgumentException();
         }

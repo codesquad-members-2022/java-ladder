@@ -8,13 +8,19 @@ import main.view.OutputView;
 public class GameController {
 
     public void run() {
-        LadderGame ladderGame = new LadderGame(
-            StringUtil.parseNames(InputView.getNames()),
-            InputView.getNumLadder()
-        );
-        ladderGame.createMap();
+        try {
+            LadderGame ladderGame = new LadderGame(
+                StringUtil.parseNames(InputView.getNames()),
+                InputView.getNumLadder()
+            );
+            ladderGame.createMap();
 
-        OutputView.printGame(ladderGame);
+            OutputView.printGame(ladderGame);
+
+        } catch (IllegalArgumentException e) {
+            OutputView.printIllegalException();
+        }
+
         InputView.closeScanner();
     }
 }

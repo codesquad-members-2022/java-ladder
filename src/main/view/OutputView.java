@@ -8,6 +8,7 @@ import main.util.StringUtil;
 public class OutputView {
 
     private static final String EXECUTE_RESULT = "\n실행결과\n";
+    private static final String ILLEGAL_INPUT = "\n이름은 최대 5글자까지만 입력 가능합니다.";
 
     public static void printMessage(String message) {
         System.out.println(message);
@@ -40,6 +41,10 @@ public class OutputView {
             sb.append(element.get());
         }
         sb.append(blanks).append("\n");
+    }
+
+    public static void printIllegalException() {
+        printMessage(ILLEGAL_INPUT);
     }
 
 }
