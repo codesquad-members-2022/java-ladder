@@ -29,5 +29,6 @@ public class OutputView {
 
     private void printElements(int element) {
         String stringElement = stringElements.get(element);
+        System.out.print(stringElement);
     }
 }
