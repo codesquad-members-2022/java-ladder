@@ -13,6 +13,10 @@ class Player {
         return name;
     }
 
+    public String getNameWithPadding() {
+        return String.format("%-5s", name);
+    }
+
     private void validateName(String name) throws IllegalArgumentException {
         if (name == null || name.isEmpty() || name.isBlank()) {
             throw new IllegalArgumentException("플레이어의 이름을 입력해주세요.");

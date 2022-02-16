@@ -20,6 +20,7 @@ public class LadderGame {
         int entry = players.count();
         int height = getHeight();
         this.ladder = new Ladder(entry, height);
+        output.print(players.toString());
         output.print(ladder.toString());
     }
 

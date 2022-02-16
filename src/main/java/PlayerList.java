@@ -23,4 +23,14 @@ public class PlayerList {
     public int count() {
         return players.size();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Player player : players) {
+            sb.append(player.getNameWithPadding());
+            sb.append("\t");
+        }
+        return sb.toString();
+    }
 }
