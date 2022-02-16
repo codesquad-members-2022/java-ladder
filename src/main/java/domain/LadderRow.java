@@ -5,10 +5,11 @@ import java.util.List;
 public class LadderRow {
 
     private static final String HEIGHT = "|";
-    private static final String WIDTH = "-----";
-    private static final String VOID = "     ";
+    private static final String WIDTH = "-";
+    private static final String VOID = " ";
     private static final int MAX_RANDOM_NUMBER = 10;
     private static final int DEFAULT_VOID_SIZE = 2;
+    private static final int DEFAULT_WIDTH = 5;
     private boolean forwardVoid = true;
     private final int peopleCount;
 
@@ -27,7 +28,7 @@ public class LadderRow {
     }
 
     private String voidBuilder() {
-        return " ".repeat(DEFAULT_VOID_SIZE);
+        return VOID.repeat(DEFAULT_VOID_SIZE);
     }
 
     private void makeRow() {
@@ -40,11 +41,11 @@ public class LadderRow {
     private void putRandomLine() {
         if (putLine() && forwardVoid) {
             forwardVoid = false;
-            row.add(WIDTH);
+            row.add(WIDTH.repeat(DEFAULT_WIDTH));
             return;
         }
         forwardVoid = true;
-        row.add(VOID);
+        row.add(VOID.repeat(DEFAULT_WIDTH));
     }
 
     private boolean putLine() {
