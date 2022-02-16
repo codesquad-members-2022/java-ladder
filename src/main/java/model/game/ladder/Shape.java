@@ -1,6 +1,6 @@
 package model.game.ladder;
 
-import message.LadderMessage;
+import message.ShapeMessage;
 import model.game.ladder.element.Element;
 
 import java.util.ArrayList;
@@ -22,10 +22,10 @@ public class Shape<T extends Element> {
 
     public void addElement(int row, T element) {
         if (row >= height) {
-            throw new IllegalArgumentException(LadderMessage.getRowIndexErrMsg(height));
+            throw new IllegalArgumentException(ShapeMessage.getRowIndexErrMsg(height));
         }
         if (getSize(row) >= width) {
-            throw new IllegalArgumentException(LadderMessage.getColIndexErrMsg(row, width));
+            throw new IllegalArgumentException(ShapeMessage.getColIndexErrMsg(row, width));
         }
         shape.get(row).add(element);
     }
