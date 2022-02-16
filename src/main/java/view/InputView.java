@@ -18,13 +18,13 @@ public class InputView {
         return sc.nextInt();
     }
 
-    public static void createScanner() {
+    public static void init() {
         if (sc == null) {
             sc = new Scanner(System.in);
         }
     }
 
-    public static void closeScanner() {
+    public static void close() {
         if (sc != null) {
             sc.close();
         }

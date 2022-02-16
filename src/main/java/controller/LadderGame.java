@@ -12,10 +12,10 @@ public class LadderGame {
     }
 
     private Ladder init() {
-        InputView.createScanner();
+        InputView.init();
         int playersCount = InputView.getPlayersCount();
         int maxLadderHeight = InputView.getMaxLadderHeight();
-        InputView.closeScanner();
+        InputView.close();
 
         return Ladder.getLadder(playersCount, maxLadderHeight);
     }
