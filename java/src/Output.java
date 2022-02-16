@@ -6,9 +6,10 @@ public class Output {
         }
     }
 
-    public void printLadder(char[][] ladder) {
-        for (int i = 0; i < ladder.length; i++) {
-            printOneHight(ladder[i]);
+    public void printLadder(Ladder ladder) {
+        char[][] frame = ladder.getLadder();
+        for (int i = 0; i < frame.length; i++) {
+            printOneHight(frame[i]);
             System.out.println();
         }
     }
