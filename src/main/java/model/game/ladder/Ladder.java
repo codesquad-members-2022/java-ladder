@@ -1,41 +1,35 @@
 package model.game.ladder;
 
+import model.game.ladder.element.Element;
+
 import static java.lang.Math.*;
 
 public class Ladder {
-    private final Element[][] shape;
+    private final Shape shape;
     private final int height;
     private final int width;
-
-    private enum Element {
-        BLANK(' '), LINE('-'), POLE('|');
-
-        private final char ch;
-
-        Element(char ch) {
-            this.ch = ch;
-        }
-    }
 
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
-        this.shape = new Element[height][width];
-        makeShape();
+        this.shape = new Shape(height, width);
+        createLine();
     }
 
-    private void makeShape() {
+    private void createLine() {
+        int height = shape.getHeight();
         for (int h = 0; h < height; ++h) {
-            makeRow(h);
+            createLine(h);
         }
     }
-    private void makeRow(int h) {
+    private void createLine(int h) {
+        int width = shape.getWidth();
         for (int w = 0; w < width; ++w) {
-            shape[h][w] = allocElement();
+            shape.addElement(h, allocElement());
         }
     }
     private Element allocElement() {
-        return random() * 10 < 5.5 ? Element.LINE : Element.BLANK;
+        return random() * 10 < 5.5 ? shape.line : shape.none;
     }
 
     @Override
@@ -48,7 +42,7 @@ public class Ladder {
     }
     private void appendRow(StringBuilder sb, int h) {
         for (int w = 0; w < width; ++w) {
-            sb.append(Element.POLE.ch).append(w < width - 1 ? shape[h][w].ch : "");
+            sb.append(shape.pole).append(w < width - 1 ? shape.getElement(h, w) : "");
         }
         sb.append('\n');
     }

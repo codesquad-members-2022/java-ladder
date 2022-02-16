@@ -2,6 +2,9 @@ package model.game.ladder;
 
 import message.ShapeMessage;
 import model.game.ladder.element.Element;
+import model.game.ladder.element.Line;
+import model.game.ladder.element.None;
+import model.game.ladder.element.Pole;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +14,10 @@ public class Shape<T extends Element> {
     private int height;
     private int width;
 
+    Line line;
+    None none;
+    Pole pole;
+
     public Shape(int height, int width) {
         this.shape = new ArrayList<>();
         for (int h = 0; h < height; ++h) {
@@ -18,6 +25,9 @@ public class Shape<T extends Element> {
         }
         this.height = height;
         this.width = width;
+        this.line = new Line(5);
+        this.none = new None(5);
+        this.pole = new Pole();
     }
 
     public void addElement(int row, T element) {
