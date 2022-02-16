@@ -13,6 +13,7 @@ public class Input {
     private void start() {
         askNumberOfPeople();
         askHight();
+        scanner.close();
     }
 
     private int validateValue(String value) {
