@@ -1,5 +1,7 @@
 package domain;
 
+import Util.Valid;
+
 import java.util.Arrays;
 
 import static Util.Valid.checkPlayers;
@@ -7,23 +9,31 @@ import static Util.Valid.checkPlayers;
 public class Board {
 
     private static final String VERTICAL = "|";
-
-
+    private final int players;
+    private final int height;
     private final String[][] frame;
     private final Line line;
 
+//    public Board(int players, int height) {
+//        Valid.checkPlayers(players);
+//        Valid.checkHegiht(height);
+//        frame = new String[height][(players*2)-1];
+//        line = new Line();
+//    }
+
     public Board(int players, int height) {
-        checkPlayers(players);
-        frame = new String[height][(players*2)-1];
+        this.players = Valid.checkPlayersReturn(players);
+        this.height = Valid.checkHeightReturn(height);
+        frame = new String[this.height][(this.players*2)-1];
         line = new Line();
     }
 
     public int countPlayers() {
-        return frame[0].length/2+1;
+        return players;
     }
 
     public int getLadderHeight() {
-        return frame.length;
+        return height;
     }
 
     public void generateFrame() {
@@ -42,7 +52,7 @@ public class Board {
     }
 
     private void draw(int row) {
-        for (int col = 0; col < getLadderHeight() ; col++) {
+        for (int col = 0; col < frame[row].length ; col++) {
             frame[row][col] = drawLine(col);
         }
     }

@@ -18,5 +18,9 @@ public class InputView {
         return Integer.parseInt(scanner.nextLine());
     }
 
+    public static void close() {
+        scanner.close();
+    }
+
 
 }
