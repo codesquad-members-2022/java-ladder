@@ -6,6 +6,8 @@ public class Ladder {
 
     private int height;
     private int numPlayer;
+    private int numSteps;
+    private String[] namePlayers;
     private boolean[][] ladder;
 
     public Ladder() {}
@@ -27,11 +29,13 @@ public class Ladder {
         return copyLadder;
     }
 
-    public void init(int numPlayer, int height) {
-        this.numPlayer = numPlayer;
+    public void init(String[] namePlayers, int height) {
+        this.namePlayers = namePlayers;
+        this.numPlayer = namePlayers.length;
+        this.numSteps = namePlayers.length - 1;
         this.height = height;
 
-        ladder = new boolean[height][numPlayer - 1];
+        ladder = new boolean[height][numSteps];
         for (int line = 0; line < height; ++line) {
             initLine(line);
         }
@@ -39,7 +43,7 @@ public class Ladder {
 
     private void initLine(int line) {
         Random rd = new Random();
-        for (int step = 0; step < numPlayer - 1; ++step) {
+        for (int step = 0; step < numSteps; ++step) {
             ladder[line][step] = rd.nextBoolean();
         }
     }
