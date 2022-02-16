@@ -19,6 +19,6 @@ public class GameController {
             OutputView.printIllegalException();
         }
 
-        InputView.closeScanner();
+        InputView.close();
     }
 }

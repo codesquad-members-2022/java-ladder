@@ -19,7 +19,7 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static void closeScanner() {
+    public static void close() {
         scanner.close();
     }
 }
