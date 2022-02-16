@@ -1,20 +1,21 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class LadderGame {
 
 	private char[][] ladderFrame;
 	private boolean[][] ladderFoothold;
-	private static final int USER_NUMBER_IDX = 0;
-	private static final int LADDER_HEIGHT_IDX = 1;
+	private List<String> users;
 	private Random random;
 	private int userNumber;
 	private int ladderHeight;
 
 	private void init() {
-		int[] userInput = Input.getUserInput();
-		userNumber = userInput[USER_NUMBER_IDX];
-		ladderHeight = userInput[LADDER_HEIGHT_IDX];
+		users = Input.getUserName();
+		userNumber = users.size();
+		ladderHeight = Input.getLadderHeight("최대 사다리 높이는 몇 개인가요?");
 		random = new Random();
 	}
 
