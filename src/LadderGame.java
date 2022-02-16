@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class LadderGame {
 
 
-  public Ladders gameInfo() {
+  public Ladders gameInfoStep1() {
     System.out.println("참여할 사람은 몇 명인가요?");
     int numOfPeople = inputNumber();
     System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -12,6 +12,18 @@ public class LadderGame {
 
     return new Ladders(numOfPeople, heightOfLadder);
   }
+
+  public void gameInfoStep2() {
+    System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    Scanner scanner = new Scanner(System.in);
+    String players = scanner.nextLine();
+
+    System.out.println("최대 사다리 높이는 몇 개인가요?");
+    int height = scanner.nextInt();
+
+    scanner.close();
+  }
+
 
   public Ladders makeLadder(Ladders ladders) {
     char[][] totalLadders = ladders.get();
