@@ -33,7 +33,13 @@ public class Shape<T> {
     }
 
     public T getElement(int row, int col) {
+        if (!boundaryCheck(row, col)) {
+            throw new IllegalArgumentException(getBoundaryErrMsg(row, col));
+        }
         return shape.get(row).get(col);
+    }
+    private boolean boundaryCheck(int row, int col) {
+        return row < 0 || row > height - 1 || col < 0 || col > width - 1;
     }
 
     public int getHeight() {
