@@ -43,7 +43,7 @@ public class Ladder {
         return sb.toString();
     }
 
-    private String rowString(List<String> row) {
+    private static String rowString(List<String> row) {
         StringBuilder sb = new StringBuilder();
 
         for (String value : row) {
@@ -51,13 +51,6 @@ public class Ladder {
         }
 
         return sb.toString();
-    }
-
-    private static String newLine(int height, int col) {
-        if (col == height - 1) {
-            return "\n";
-        }
-        return "";
     }
 
     private static int getWidth() {
@@ -79,18 +72,18 @@ public class Ladder {
 
     private static void initLadderColumn(int i) {
         for (int j = 0; j < getWidth(); j++) {
-            ladder.get(i).add(setElement(j));
+            ladder.get(i).add(setElement(j, rowString(ladder.get(i))));
         }
     }
 
-    private static String setElement(int j) {
+    private static String setElement(int j, String rowString) {
         if (j % 2 == 0 && j == 0) {
             return LADDER_VERTICAL_LINE_LEFT;
         }
         if (j % 2 == 0) {
             return LADDER_VERTICAL_LINE;
         }
-        if (getRandomBoolean()) {
+        if (getRandomBoolean() && !rowString.contains(LADDER_HORIZONTAL_LINE)) {
             return LADDER_HORIZONTAL_LINE;
         }
         return LADDER_BLANK;
