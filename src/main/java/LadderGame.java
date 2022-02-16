@@ -13,13 +13,12 @@ public class LadderGame {
 
     public void run() {
         initGame();
+        showResult();
     }
 
     private void initGame() {
         initPlayers();
         initLadder();
-        output.print(players.toString());
-        output.print(ladder.toString());
     }
 
     private void initPlayers() {
@@ -63,5 +62,10 @@ public class LadderGame {
             output.print(e.getMessage());
             return getEntry();
         }
+    }
+
+    private void showResult() {
+        output.print(players.toString());
+        output.print(ladder.toString());
     }
 }
