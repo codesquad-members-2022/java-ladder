@@ -1,9 +1,15 @@
 package model;
 
 public class User {
-    private final String username;
 
-    public User(String username) {
-        this.username = username;
+    private final String name;
+    private Long id;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public void setID(long sequence) {
+        this.id = sequence;
     }
 }
