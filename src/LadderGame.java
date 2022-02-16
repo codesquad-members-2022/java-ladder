@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class LadderGame {
 
@@ -6,6 +7,7 @@ public class LadderGame {
 	private boolean[][] ladderFoothold;
 	private static final int USER_NUMBER_IDX = 0;
 	private static final int LADDER_HEIGHT_IDX = 1;
+	private Random random;
 	private int userNumber;
 	private int ladderHeight;
 
@@ -13,6 +15,7 @@ public class LadderGame {
 		int[] userInput = Input.getUserInput();
 		userNumber = userInput[USER_NUMBER_IDX];
 		ladderHeight = userInput[LADDER_HEIGHT_IDX];
+		random = new Random();
 	}
 
 	public void start() {
@@ -38,14 +41,11 @@ public class LadderGame {
 	private void makeLadderFoothold() {
 		ladderFoothold = new boolean[ladderHeight][userNumber - 1];
 
-		for (int i = 0; i < ladderHeight; i++) {
-			for (int j = 0; j < userNumber - 1; j++) {
-				if (Math.random() < 0.3f) {
-					ladderFoothold[i][j] = true;
-				}
-			}
-		}
+		int randomRepeatNum = random.nextInt(ladderHeight * (userNumber - 1));
 
+		for (int i = 0; i < randomRepeatNum; i++) {
+			ladderFoothold[random.nextInt(ladderHeight)][random.nextInt(userNumber - 1)] = true;
+		}
 	}
 
 }
