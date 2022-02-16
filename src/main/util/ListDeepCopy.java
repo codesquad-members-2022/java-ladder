@@ -14,9 +14,7 @@ public class ListDeepCopy {
 
     public static List<String> string1dDeepCopy(List<String> org) {
         List<String> result = new ArrayList<>();
-        for (String item : org) {
-            result.add(new String(item));
-        }
+        result.addAll(org);
         return result;
     }
 }
