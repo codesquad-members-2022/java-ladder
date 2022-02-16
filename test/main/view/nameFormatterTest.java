@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 
 class nameFormatterTest {
     @Test
-    public void blankPaddingTest() {
+    void 사용자_이름_패딩_테스트() {
         //given
         String name = "r";
         //when
         String paddedName = nameFormatter.blankPadding(name);
         //then
-        assertEquals(paddedName,"  r  ");
+        assertEquals("  r  ", paddedName);
     }
 }
