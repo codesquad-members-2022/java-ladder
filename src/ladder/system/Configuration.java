@@ -1,5 +1,6 @@
 package ladder.system;
 
+import ladder.model.DrawingStrategy;
 import ladder.model.GameManager;
 import ladder.utils.RandomGenerator;
 import ladder.view.InputView;
@@ -10,4 +11,5 @@ public class Configuration {
     public static final GameManager gameManager = GameManager.getInstance();
     public static final InputView inputView = InputView.getInstance();
     public static final OutputView outputView = OutputView.getInstance();
+    public static DrawingStrategy strategy;
 }

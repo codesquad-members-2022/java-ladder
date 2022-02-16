@@ -9,15 +9,6 @@ public class LadderLine {
 
     private final List<Point> points;
 
-    void code(String destination){
-        workAt(destination);
-    }
-
-    void workAt(String destination){
-        String code = "해당 코드로 작업 처리";
-        System.out.println(code);
-    }
-
     public LadderLine(List<Point> points) {
         validateLadderLine(points);
         this.points = copy(points);

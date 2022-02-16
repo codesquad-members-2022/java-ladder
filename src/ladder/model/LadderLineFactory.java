@@ -9,13 +9,18 @@ public class LadderLineFactory {
 
     private static final int START = 0;
     private static final int BEFORE_LAST = 2;
+    private static DrawingStrategy strategy;
 
-    public static List<LadderLine> getLadderLines(int nameCount, Height height) {
+    static {
+        strategy = (LadderLineFactory::getLadderLine);
+    }
+
+    public static List<LadderLine> getLadderLines(int playerCount, Height height) {
         int totalCount = height.getValue();
         List<LadderLine> ladderLines = new ArrayList<>();
 
         for (int index = START; index < totalCount; index++) {
-            LadderLine ladderLine = getLadderLine(nameCount);
+            LadderLine ladderLine = strategy.drawLine(playerCount);
             ladderLines.add(ladderLine);
         }
         return ladderLines;
@@ -23,11 +28,12 @@ public class LadderLineFactory {
 
     private static LadderLine getLadderLine(int count) {
         List<Point> points = new ArrayList<>();
+
         Point point = getFirstPoint(points);
         points.addAll(getMiddlePoints(count, point));
-
         Point beforeLastPoint = getBeforeLastPoint(points, count);
         addLastPoint(points, beforeLastPoint);
+
         return new LadderLine(points);
     }
 
@@ -39,7 +45,8 @@ public class LadderLineFactory {
 
     private static List<Point> getMiddlePoints(int count, Point point) {
         List<Point> points = new ArrayList<>();
-        for (int index = 0; index < count - 1; index++) {
+
+        for (int index = START; index < count - 1; index++) {
             point = point.next();
             points.add(point);
         }

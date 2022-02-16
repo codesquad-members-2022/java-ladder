@@ -9,20 +9,19 @@ public class Counts {
     private static final List<Count> counts = new ArrayList<>();
 
     static {
-        for (int index = 0; index < LIMIT; index++) {
+        for (int index = 1; index < LIMIT; index++) {
             counts.add(new Count(index));
         }
     }
 
     private static Count of(int number) {
         return counts.stream()
-                .filter(count -> isSameValue(count, number))
+                .filter(count -> equalTo(count, number))
                 .findAny()
                 .orElseThrow();
     }
 
-    private static boolean isSameValue(Count count, int number) {
+    private static boolean equalTo(Count count, int number) {
         return count.getValue() == number;
     }
-
 }

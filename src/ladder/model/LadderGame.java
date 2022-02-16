@@ -2,15 +2,6 @@ package ladder.model;
 
 public class LadderGame {
 
-    private Board board;
-
-    public LadderGame(Board board) {
-        this.board = board;
-    }
-
-    public String[][] getResult() {
-        return this.board.getBoard();
-    }
     private LadderGame (){};
 
     private static final LadderGame instance = new LadderGame();

@@ -5,9 +5,18 @@ import java.util.Objects;
 public class Count {
 
     private final int value;
+    private final int minValue = 1;
+    private final int maxValue = 50;
 
     public Count(int value) {
+        validate(value);
         this.value = value;
+    }
+
+    private void validate(int value) {
+        if (value < minValue || value > maxValue) {
+            throw new IllegalStateException();
+        }
     }
 
     public int getValue() {
