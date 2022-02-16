@@ -9,14 +9,27 @@ public class OutputView {
         System.out.println(str);
     }
 
-    public static void print(List<Line> lines) {
+    public static void print(Ladder ladder) {
         StringBuilder sb = new StringBuilder();
 
+        appendPlayers(sb, ladder.getPlayers());
+        appendLines(sb, ladder.getLines());
+
+        System.out.println(sb);
+    }
+
+    private static void appendPlayers(StringBuilder sb, List<Player> players) {
+        sb.append("   ");
+        for (Player player : players) {
+            sb.append(String.format("%5s ", StringUtils.center(player.getName(), 5, ' ')));
+        }
+        sb.append("\n");
+    }
+
+    private static void appendLines(StringBuilder sb, List<Line> lines) {
         for (Line line : lines) {
             appendLine(sb, line);
         }
-
-        System.out.println(sb);
     }
 
     private static void appendLine(StringBuilder sb, Line line) {

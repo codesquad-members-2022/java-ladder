@@ -51,4 +51,8 @@ public class Ladder {
     private boolean isRandomDraw() {
         return RandomUtils.nextBoolean();
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

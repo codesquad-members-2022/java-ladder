@@ -8,7 +8,7 @@ public class GameController {
         Ladder ladder = Ladder.create(players, ladderMaxHeight);
         ladder.drawRandomLines();
 
-        OutputView.print(ladder.getLines());
+        OutputView.print(ladder);
         InputView.close();
     }
 
