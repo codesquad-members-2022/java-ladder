@@ -1,6 +1,7 @@
 package domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,11 +27,33 @@ public class LadderCreateTest {
     }
 
     @Test
+    @DisplayName("포지션들 출력하기")
     void generatePositionsTest(){
         Ladder ladder = new Ladder(LadderSize.create(3, 4));
         int[] positions = ladder.makeStartPositions();
         for (int position : positions) {
             System.out.println(position);
         }
+    }
+
+    @Test
+    void alreadyExistedPosition(){
+        int[] startPositions = {2, 3};
+        assertThat(Ladder.isExisted(startPositions, 2)).isTrue();
+        assertThat(Ladder.isExisted(startPositions, 7)).isFalse();
+    }
+
+    @Test
+    void alreadyExistedBeforePosition(){
+        int[] startPositions = {1, 4};
+        assertThat(Ladder.isExisted(startPositions, 2)).isTrue();
+        assertThat(Ladder.isExisted(startPositions, 7)).isFalse();
+    }
+
+    @Test
+    void alreadyExistedAfterPosition(){
+        int[] startPositions = {1, 4};
+        assertThat(Ladder.isExisted(startPositions, 3)).isTrue();
+        assertThat(Ladder.isExisted(startPositions, 7)).isFalse();
     }
 }

@@ -2,6 +2,7 @@ package domain;
 
 import java.rmi.dgc.Lease;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -36,14 +37,11 @@ public class Ladder {
         }
     }
 
-    private boolean isValidPersonNum(int numOfPerson) {
-        return numOfPerson >= 1;
-    }
+    private boolean isValidPersonNum(int numOfPerson) {return numOfPerson >= 1;}
     private boolean isValidHeight(int height) {return height > 0;}
 
     private void makeLines(int numOfPerson) {
-        IntStream.range(0, height)
-                .forEach(i -> lines.add(new Line(numOfPerson)));
+        IntStream.range(0, height).forEach(i -> lines.add(new Line(numOfPerson)));
     }
 
     int[] makeStartPositions() {
@@ -51,7 +49,12 @@ public class Ladder {
         int countOfLine = ladderSize.getCountOfLine(DEFAULT_PERCENT);
         int[] startPositions = new int[countOfLine];
         for (int i = 0; i < startPositions.length; i++) {
-            startPositions[i] = randomRangeInt(1, totalPositions);
+            int randomPosition = randomRangeInt(1, totalPositions);
+            if(ladderSize.isMultipleOfPersonNum(randomPosition) || isExisted(startPositions, randomPosition)){
+                i--;
+                continue;
+            }
+            startPositions[i] = randomPosition;
         }
         return startPositions;
     }
@@ -63,6 +66,11 @@ public class Ladder {
             list.add(new Position(ints[0], ints[1]));
         }
         return list;
+    }
+
+    static boolean isExisted(int[] startPositions, int randomPosition) {
+        return Arrays.stream(startPositions)
+                .anyMatch(p -> p == randomPosition || p == randomPosition-1 || p == randomPosition+1);
     }
 
     public List<Line> getLines() {
