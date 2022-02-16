@@ -1,6 +1,6 @@
 package application;
 
-import model.ladder.LadderGame;
+import model.game.LadderGame;
 
 public class Main {
     public static void main(String[] args) {

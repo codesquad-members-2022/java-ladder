@@ -1,4 +1,4 @@
-package model.ladder;
+package model.game;
 
 import java.util.stream.Stream;
 

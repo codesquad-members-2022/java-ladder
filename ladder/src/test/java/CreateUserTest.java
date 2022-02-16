@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.User;
-import model.ladder.LadderGame;
+import model.game.LadderGame;
 import repository.UserRepository;
 
 class CreateUserTest {
