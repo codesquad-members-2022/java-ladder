@@ -12,6 +12,14 @@ public class InputValidator {
         }
     }
 
+    public String[] names(String input) {
+        String[] names = input.replaceAll(" ", "").split(",");
+        if (names.length < 2) {
+            throw new IllegalArgumentException("이름을 쉼표로 구분하여 2명 이상 입력해주세요.");
+        }
+        return names;
+    }
+
     private void validateNumber(int n) {
         if (isNotPositiveInteger(n)) {
             throw new IllegalArgumentException("양수를 입력해주세요.");
