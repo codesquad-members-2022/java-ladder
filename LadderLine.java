@@ -5,7 +5,7 @@ class LadderLine {
 	private static final String LADDER_FRAME = "|";
 	private static final String LADDER_LINE = "-----";
 	private static final String BLANK = "     ";
-	private static boolean hasLine = true;
+	private boolean hasLine = true;
 
 	String make(int column){
 		if(column % 2 == 0){
