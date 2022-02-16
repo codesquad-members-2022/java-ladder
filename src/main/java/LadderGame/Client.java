@@ -20,13 +20,11 @@ public class Client {
 
         inputUser();
 
-        int n = userList.length;
-
         Output.printLadderCountNotification();
         int m = sc.nextInt();
 
         LadderGame ladderGame = new LadderGame();
-        ladderGame.init(n, m);
+        ladderGame.init(getUserList(), m);
         sc.close();
     }
 
@@ -34,5 +32,9 @@ public class Client {
     private void inputUser() {
         Output.printUserCountNotification();
         userList = sc.nextLine().trim().split(",");
+    }
+
+    private int getUserList() {
+        return userList.length;
     }
 }
