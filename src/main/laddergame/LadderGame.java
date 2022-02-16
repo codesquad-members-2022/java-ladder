@@ -61,11 +61,11 @@ public class LadderGame {
         // 사다리정보와 유저정보 출력
         printUserNames();
         for (List<String> strings : ladderArr) {
-            printOneHeight(strings);
+            printSingleUnit(strings);
         }
     }
 
-    private void printOneHeight(List<String> strings) {
+    private void printSingleUnit(List<String> strings) {
         System.out.print(LEFT_MARGIN);
         strings.stream().forEach(System.out::print);
         System.out.println("");
