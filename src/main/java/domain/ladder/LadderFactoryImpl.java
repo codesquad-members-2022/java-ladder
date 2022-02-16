@@ -16,12 +16,15 @@ public class LadderFactoryImpl implements LadderFactory{
 
     @Override
     public Ladder create(int entry, int height) {
-        LadderElement[][] ladderElements = makeLadderFrame(entry, height);
-
-        setAllVerticalLine(ladderElements);
-        setAllHorizontalLine(ladderElements);
-
+        LadderElement[][] ladderElements = makeLadderElements(entry, height);
         return new Ladder(ladderElements);
+    }
+
+    @Override
+    public Ladder copy(Ladder original) {
+        LadderElement[][] originalElements = original.getLadderElements();
+        LadderElement[][] copyElements = copyLadderElements(originalElements);
+        return new Ladder(copyElements);
     }
 
     private LadderElement[][] makeLadderFrame(int entry, int height) {
@@ -29,13 +32,11 @@ public class LadderFactoryImpl implements LadderFactory{
         return new LadderElement[height][width];
     }
 
-    @Override
-    public Ladder copy(Ladder original) {
-        LadderElement[][] originalElements = original.getLadderElements();
-        LadderElement[][] copyElements = new LadderElement[ladderHeight(originalElements)][ladderWidth(originalElements)];
-
-        copyAllRow(originalElements, copyElements);
-        return new Ladder(copyElements);
+    private LadderElement[][] makeLadderElements(int entry, int height) {
+        LadderElement[][] ladderElements = makeLadderFrame(entry, height);
+        setAllVerticalLine(ladderElements);
+        setAllHorizontalLine(ladderElements);
+        return ladderElements;
     }
 
     private void setAllVerticalLine(LadderElement[][] ladderElements) {
@@ -58,6 +59,16 @@ public class LadderFactoryImpl implements LadderFactory{
         IntStream.range(0, ladderWidth(ladderElements))
                 .filter(column -> column%2 != 0)
                 .forEach(column -> ladderElements[row][column] = randomLadderElement());
+    }
+
+    private LadderElement[][] copyLadderFrame(LadderElement[][] originalElements) {
+        return new LadderElement[ladderHeight(originalElements)][ladderWidth(originalElements)];
+    }
+
+    private LadderElement[][] copyLadderElements(LadderElement[][] originalElements) {
+        LadderElement[][] copyElements = copyLadderFrame(originalElements);
+        copyAllRow(originalElements, copyElements);
+        return copyElements;
     }
 
     private void copyAllRow(LadderElement[][] originalElements, LadderElement[][] copyElements) {
