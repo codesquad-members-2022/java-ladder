@@ -13,7 +13,6 @@ public class InputView {
 
     public List<Integer> getWidthAndHeight() {
         List<Integer> widthAndHeight = new ArrayList<>();
-        System.out.println(SystemMessage.INPUT_COUNT_AND_HEIGHT);
 
         while (widthAndHeight.size() < ELEMENTS_SIZE) {
             getValue(widthAndHeight);
