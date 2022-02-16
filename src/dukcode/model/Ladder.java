@@ -1,5 +1,7 @@
 package dukcode.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
@@ -8,7 +10,7 @@ public class Ladder {
     private int numPlayer;
     private int numSteps;
     private String[] namePlayers;
-    private boolean[][] ladder;
+    private List<List<Boolean>> ladder;
 
     public Ladder() {}
 
@@ -28,10 +30,10 @@ public class Ladder {
         return numPlayer - 1;
     }
 
-    public boolean[][] getLadder() {
-        boolean[][] copyLadder = new boolean[height][numPlayer - 1];
+    public Boolean[][] getLadder() {
+        Boolean[][] copyLadder = new Boolean[height][numSteps];
         for (int line = 0; line < height; ++line) {
-            System.arraycopy(ladder[line], 0, copyLadder[line], 0, ladder[line].length);
+            copyLadder[line] = ladder.get(line).toArray(new Boolean[numSteps]);
         }
 
         return copyLadder;
@@ -43,26 +45,28 @@ public class Ladder {
         this.numSteps = namePlayers.length - 1;
         this.height = height;
 
-        ladder = new boolean[height][numSteps];
-        for (int line = 0; line < height; ++line) {
-            initLine(line);
+        ladder = new ArrayList<>();
+        for (int lineNum = 0; lineNum < height; ++lineNum) {
+            initLine(lineNum);
         }
     }
 
-    private void initLine(int line) {
+    private void initLine(int lineNum) {
         Random rd = new Random();
+        ArrayList<Boolean> line = new ArrayList<Boolean>();
         for (int step = 0; step < numSteps; ++step) {
-            ladder[line][step] = getStep(rd, line, step);
+            line.add(getStep(line, rd, step));
         }
+        ladder.add(line);
     }
 
-    private boolean getStep(Random rd, int line, int step) {
+    private boolean getStep(ArrayList<Boolean> line, Random rd, int step) {
         if (step == 0) {
             return rd.nextBoolean();
         }
 
-        // 왼쪽에 step이 존재하면 false, 없으면 random
-        return ladder[line][step - 1] ? false : rd.nextBoolean();
+        // 왼쪽에 step 존재하면 false, 없으면 random
+        return !line.get(step - 1) && rd.nextBoolean();
     }
 
 }

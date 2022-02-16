@@ -15,7 +15,7 @@ public class PrintView {
 
     public void printLadder() {
         final String[] namePlayer = this.ladder.getNamePlayers();
-        final boolean[][] ladder = this.ladder.getLadder();
+        final Boolean[][] ladder = this.ladder.getLadder();
         final int height = this.ladder.getHeight();
         final int numSteps = this.ladder.getNumSteps();
 
@@ -43,7 +43,7 @@ public class PrintView {
         return name;
     }
 
-    private void printLadder(boolean[][] ladder, int height, int numSteps) {
+    private void printLadder(Boolean[][] ladder, int height, int numSteps) {
         StringBuilder sb = new StringBuilder();
         for (int line = 0; line < height; ++line) {
             sb.append(getStringLine(ladder[line], numSteps));
@@ -53,7 +53,7 @@ public class PrintView {
         System.out.println(sb);
     }
 
-    private StringBuilder getStringLine(boolean[] line, int numSteps) {
+    private StringBuilder getStringLine(Boolean[] line, int numSteps) {
         StringBuilder strLine = new StringBuilder("  " + SIDE_RAIL);
         for (int step = 0; step < numSteps; ++step) {
             strLine.append(line[step] ? STEP : BLANK);
