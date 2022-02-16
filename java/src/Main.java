@@ -8,6 +8,6 @@ public class Main {
         Ladder ladder = new Ladder(people, hight);
         Output output = new Output();
         output.printLadder(ladder);
-
     }
+
 }

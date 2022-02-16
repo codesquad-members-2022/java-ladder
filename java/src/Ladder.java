@@ -2,6 +2,7 @@ public class Ladder {
 
     private static final char[] widthLine = {'-', ' '};
     private static final char pole = '|';
+
     private char[][] frame;
 
     public Ladder(int people, int ladderHight) {
