@@ -20,18 +20,22 @@ public class LadderGame {
     private int[][] createArr(int rowLength, int columnLength) {
         int[][] arr = new int[rowLength][columnLength];
         for (int row = 0; row < rowLength; row++) {
-            for (int column = 0; column < columnLength; column++) {
-                arr[row][column] = insertElement(column);
-            }
+            insertElementAtColumn(arr[row], columnLength);
         }
         return arr;
+    }
+
+    private void insertElementAtColumn(int[] arr, int columnLength) {
+        for (int column = 0; column < columnLength; column++) {
+            arr[column] = insertElement(column);
+        }
     }
 
     private int insertElement(int column) {
         if (column % 2 == 0) {
             return 2;
         }
-        return  (int) (Math.random() * 2);
+        return (int) (Math.random() * 2);
     }
 
     public void start() {
