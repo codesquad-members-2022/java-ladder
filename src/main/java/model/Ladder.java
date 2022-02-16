@@ -1,56 +1,55 @@
 package model;
 
-import static java.util.Arrays.*;
+import static java.lang.Math.*;
 
 public class Ladder {
-    private int height;
-    private int width;
-    private char[][] shape;
+    private final Element[][] shape;
+    private final int height;
+    private final int width;
+
+    private enum Element {
+        BLANK(' '), LINE('-'), POLE('|');
+
+        private final char ch;
+
+        Element(char ch) {
+            this.ch = ch;
+        }
+    }
 
     public Ladder(int height, int width) {
         this.height = height;
         this.width = width;
-        this.shape = initShape();
+        this.shape = new Element[height][width];
+        makeShape();
     }
 
-    private char[][] initShape() {
-        char[][] shape = new char[height][width];
+    private void makeShape() {
         for (int h = 0; h < height; ++h) {
-            fill(shape[h], ' ');
-        }
-        assignLine(shape);
-        return shape;
-    }
-    private void assignLine(char[][] shape) {
-        for (int h = 0; h < height; ++h) {
-            for (int w = 0; w < width; ++w) {
-                if (isLine(h, w)) {
-                    shape[h][w] = '-';
-                }
-            }
+            makeRow(h);
         }
     }
-    private boolean isLine(int h, int w) {
-        int indexValue = (h + 1) * (w + 1) + w + 1;
-        int randomValue = (int) (Math.random() * height * width + 1);
-        int maxValue = Math.max(indexValue, randomValue);
-        for (int value = 2; value * value <= maxValue; ++value) {
-            if (indexValue % value == 0 && randomValue % value == 0) {
-                return true;
-            }
+    private void makeRow(int h) {
+        for (int w = 0; w < width; ++w) {
+            shape[h][w] = allocElement();
         }
-        return false;
+    }
+    private Element allocElement() {
+        return random() * 10 < 5.5 ? Element.LINE : Element.BLANK;
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int h = 0; h < height; ++h) {
-            for (int w = 0; w < width; ++w) {
-                sb.append('|').append(w < width - 1 ? shape[h][w] : "");
-            }
-            sb.append('\n');
+            appendRow(sb, h);
         }
         return sb.toString();
+    }
+    private void appendRow(StringBuilder sb, int h) {
+        for (int w = 0; w < width; ++w) {
+            sb.append(Element.POLE.ch).append(w < width - 1 ? shape[h][w].ch : "");
+        }
+        sb.append('\n');
     }
 }
