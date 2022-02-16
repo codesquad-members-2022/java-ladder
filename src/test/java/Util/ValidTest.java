@@ -10,11 +10,11 @@ class ValidTest {
     @Test
     void input_regex_test() {
 
-        String input2 = "honux,crong,jk,ivy";
-        assertEquals(Validation.checkInputNames(input2),input2);
+        String input1 = "honux,crong,jk,ivy";
+        assertDoesNotThrow(() ->Validation.checkInputNames(input1));
         //쉼표가 아닐 때
-        String input1 = "honux;crong;jk;ivy";
-        assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input1));
+        String input2 = "honux;crong;jk;ivy";
+        assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input2));
         // 1명
         String input3 = "honux";
         assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input3));
@@ -26,7 +26,7 @@ class ValidTest {
         assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input5));
         //10명
         String input6 = "honux,crong,jk,ivy,jay,tany,pio,jun,rouis,ttatj";
-        assertEquals(Validation.checkInputNames(input6),input6);
+        assertDoesNotThrow(() ->Validation.checkInputNames(input6));
         // 5글자 초과
         String input7 = "tattjw,tattjwi,cmsskkk,cmsskkkkkkkkkk";
         assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input7));

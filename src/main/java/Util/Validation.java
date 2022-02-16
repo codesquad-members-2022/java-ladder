@@ -39,12 +39,11 @@ public class Validation {
         return height;
     }
 
-    public static String checkInputNames(String input) {
+    public static void checkInputNames(String input) {
         Pattern pattern = Pattern.compile(INPUT_REGEX);
         Matcher matcher = pattern.matcher(input);
         if(!matcher.matches()) {
             throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
         }
-        return input;
     }
 }
