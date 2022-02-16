@@ -28,7 +28,7 @@ public class GameApplication {
         ac.close();
     }
 
-    public void initLadderGame() {
+    private void initLadderGame() {
         int entry = inputView.inputEntry();
         int height = inputView.inputHeight();
         ladderGameService.initLadderGame(entry,height);
