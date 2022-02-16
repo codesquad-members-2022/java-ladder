@@ -6,8 +6,7 @@ public class OutputManager {
     }
 
     public void println(Ladder ladder) {
-        Arrays.stream(ladder.getLadder())
-                .flatMap(Arrays::stream)
+        ladder.getLadder().stream()
                 .forEach(System.out::println);
     }
 }

@@ -1,17 +1,18 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private String[][] ladder;
+    private ArrayList<String> ladder;
     private Random random;
 
     public Ladder(int numberOfPeople, int ladderDepth) {
-        this.ladder = new String[ladderDepth][1];
+        this.ladder = new ArrayList<>();
         this.random = new Random();
 
         IntStream.range(0, ladderDepth)
-                .forEach(row -> ladder[row][0] = initLadderRow(numberOfPeople * 2 - 1));
+                .forEach(row -> ladder.add(initLadderRow(numberOfPeople * 2 - 1)));
     }
 
     private String initLadderRow(int ladderLine) {
@@ -40,7 +41,7 @@ public class Ladder {
         return " ";
     }
 
-    public String[][] getLadder() {
+    public ArrayList<String> getLadder() {
         return ladder;
     }
 }
