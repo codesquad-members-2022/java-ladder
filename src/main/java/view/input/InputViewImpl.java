@@ -25,15 +25,11 @@ public class InputViewImpl implements InputView {
 
     @Override
     public int inputEntry() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        System.out.print(ENTRY_PROMPT);
+        requestInputEntry();
         try {
-            String strEntry = scanner.nextLine();
-            int intEntry = Integer.parseInt(strEntry);
+            int intEntry = inputInt();
             validator.entryValidate(intEntry);
             return intEntry;
-        } catch (NumberFormatException nfe) {
-            System.out.println("사람 수는 숫자여야합니다.");
         } catch (IllegalArgumentException ile) {
             System.out.println(ile.getMessage());
         } catch (Exception e) {
@@ -44,21 +40,37 @@ public class InputViewImpl implements InputView {
 
     @Override
     public int inputHeight() {
-        System.out.println("최대 사다리 높이는 몇 개 인가요?");
-        System.out.print(HEIGHT_PROMPT);
+        requestInputHeight();
         try {
-            String strMaxHeight = scanner.nextLine();
-            int intHeight = Integer.parseInt(strMaxHeight);
+            int intHeight = inputInt();
             validator.heightValidate(intHeight);
             return intHeight;
-        } catch (NumberFormatException nfe) {
-            System.out.println("사다리 높이는 숫자여야합니다.");
         } catch (IllegalArgumentException ile) {
             System.out.println(ile.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return inputHeight();
+    }
+
+    private void requestInputEntry() {
+        System.out.println("참여할 사람은 몇 명인가요?");
+        System.out.print(ENTRY_PROMPT);
+    }
+
+    private void requestInputHeight() {
+        System.out.println("최대 사다리 높이는 몇 개 인가요?");
+        System.out.print(HEIGHT_PROMPT);
+    }
+
+    private int inputInt() {
+        String strInput = scanner.nextLine();
+        try {
+            int intInput = Integer.parseInt(strInput);
+            return intInput;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력해주세요.");
+        }
     }
 
     public void close() {

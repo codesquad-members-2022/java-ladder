@@ -23,6 +23,21 @@
 
 ---
 
+## 의존 관계도
+![Relationship.jpg](img/Relationship.jpg)
+- Main의 메인메서드에서 GameApplication을 생성, 호출
+- GameApplication은 AppConfig을 통해 의존관계를 주입받은채 초기화된다.
+- 사용자로부터 InputView를 통해 필요 인자를 입력받음
+  - InputView는 Validator을 의존하며, 이것이 유효성 검사를 해줌
+- 게임 초기화 : 필요 인자를 LadderGameService를 통해 전달함.
+  - 인자를 입력받으면 LadderFactory 에게 전달하여 Ladder을 생성
+  - 이를 기반으로 LadderGame 초기화
+- 결과 얻어오기 : LadderService에게 요청하여 얻어옴
+  - 사다리 받아오기 : 원본 가져오지 않고 LadderFactory에 의뢰하여 복사본을 생성하여 반환
+- 결과 출력 : OutputView에서 결과값을 전달받아 적절히 출력
+
+---
+
 ## Main 클래스
 
 ```java
@@ -63,12 +78,12 @@ public class GameApplication {
 
   public void run() {
     initLadderGame();
-    Ladder ladder = ladderGameService.getLadder();
+    Ladder ladder = ladderGameService.getCopyOfResultLadder();
     outputView.printLadder(ladder);
     ac.close();
   }
 
-  public void initLadderGame() {
+  private void initLadderGame() {
     int entry = inputView.inputEntry();
     int height = inputView.inputHeight();
     ladderGameService.initLadderGame(entry,height);
@@ -133,43 +148,35 @@ public class AppConfig {
 ```java
 public class LadderGame {
 
-    private final Ladder ladder;
+  private final Ladder ladder;
 
-    public LadderGame(Ladder ladder) {
-        this.ladder = ladder;
-    }
+  LadderGame(Ladder ladder) {
+    this.ladder = ladder;
+  }
 
-    public Ladder getLadder() {
-        return this.ladder;
-    }
-
+  Ladder getLadder() {
+    return this.ladder;
+  }
 }
 ```
 - 사다리 게임을 정의한 LadderGame 클래스를 정의
-- getter로 ladder을 반환함.
+- 같은 패키지 안에서만 생성 가능
+- getter로 ladder을 반환함. (같은 패키지 안에서만 호출가능)
 
 ---
 ## Ladder
 ```java
 public class Ladder {
 
-    private LadderElement[][] ladderElements;
+  private final LadderElement[][] ladderElements;
 
-    public Ladder(LadderElement[][] ladderElements) {
-        this.ladderElements = ladderElements;
-    }
+  Ladder(LadderElement[][] ladderElements) {
+    this.ladderElements = ladderElements;
+  }
 
-    public int width() {
-        return ladderElements[0].length;
-    }
-
-    public int height() {
-        return ladderElements.length;
-    }
-
-    public LadderElement[][] getLadderElements() {
-        return ladderElements;
-    }
+  public LadderElement[][] getLadderElements() {
+    return ladderElements;
+  }
 }
 ```
 - 사다리를 정의한 클래스
@@ -212,10 +219,12 @@ public enum LadderElement {
 ```java
 public interface LadderFactory {
 
-    Ladder create(int entry, int height);
+  Ladder create(int entry, int height);
+  Ladder copy(Ladder original);
 }
+
 ```
-- Ladder을 생성하는 역할
+- Ladder을 생성하고, 복사하는 역할
 - 구현체 : LadderFactoryImpl
 
 ---
@@ -224,13 +233,13 @@ public interface LadderFactory {
 ```java
 public interface LadderGameService {
 
-    void initLadderGame(int entry, int height);
-    Ladder getLadder();
+  void initLadderGame(int entry, int height);
+  Ladder getCopyOfResultLadder();
 }
 ```
 - LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
 - initLadderGame : 사다리 게임 초기화
-- getLadder : LadderGame으로부터, Ladder을 가져옴
+- getCopyOfResultLadder : 게임의 결과로부터, Ladder를 반아온 뒤, Ladder을 복사하여 반환.
 - 구현체 : LadderGameServiceImpl
 
 ---

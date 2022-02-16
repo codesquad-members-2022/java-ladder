@@ -7,8 +7,8 @@ public class LadderGameServiceImpl implements LadderGameService {
 
     private static LadderGameServiceImpl instance;
 
-    private LadderGame ladderGame;
     private final LadderFactory ladderFactory;
+    private LadderGame ladderGame;
 
     private LadderGameServiceImpl(LadderFactory ladderFactory) {
         this.ladderFactory = ladderFactory;
@@ -28,8 +28,9 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     @Override
-    public Ladder getLadder() {
-        return ladderGame.getLadder();
+    public Ladder getCopyOfResultLadder() {
+        Ladder original = ladderGame.getLadder();
+        return ladderFactory.copy(original);
     }
 
 }
