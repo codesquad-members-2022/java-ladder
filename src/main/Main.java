@@ -13,11 +13,11 @@ public class Main {
         OutputView.printMaxHeightOfLadderQueryText();
         int maxHeightOfLadder = InputView.giveInt();
 
-        InputView.closeScanner();
+        InputView.close();
 
         Game game = new Game();
         game.init(numOfPeople, maxHeightOfLadder);
 
-        OutputView.printLadderBoard(game.returnLadderBoard());
+        OutputView.printLadderBoard(game.getLadderBoard());
     }
 }

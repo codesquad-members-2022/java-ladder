@@ -12,7 +12,7 @@ public class InputView {
         return num;
     }
 
-    public static void closeScanner() {
+    public static void close() {
         scanner.close();
     }
 

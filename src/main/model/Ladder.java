@@ -40,7 +40,7 @@ public class Ladder {
         makeRandomLadderRow(random);
     }
 
-    public String[][] returnBoard() {
+    public String[][] getBoard() {
         return Util.string2dDeepCopy(stringBoard,height,width);
     }
 

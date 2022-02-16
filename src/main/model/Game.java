@@ -13,8 +13,8 @@ public class Game {
         ladder = new Ladder(numOfPeople, maxHeightOfLadder);
     }
 
-    public String[][] returnLadderBoard() {
-        return ladder.returnBoard();
+    public String[][] getLadderBoard() {
+        return ladder.getBoard();
     }
 
 }
