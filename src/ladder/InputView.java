@@ -15,12 +15,7 @@ public class InputView {
         this.scanner = scanner;
         this.validator = new Validator();
     }
-
-    public void askAboutParticipants() {
-        System.out.println(participantsQuestion);
-
-    }
-
+    
     public List<String> getParticipants() {
         System.out.println(participantsQuestion);
         List<String> participants = parsingParticipants();
