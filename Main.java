@@ -2,27 +2,25 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static final int LIMIT_NAME_LENGTH = 5;
-
     private static InputManager in = new InputManager();
     private static OutputManager out = new OutputManager();
 
     public static void main(String[] args) {
-        Ladder ladder = new Ladder(enterPeoples(), enterLadderDepth());
+        Ladder ladder = new Ladder(enterNames(), enterLadderDepth());
         out.println("");
-        out.println(ladder);
+        out.printLadderModel(ladder);
     }
 
-    public static String[] enterPeoples() {
+    public static String[] enterNames() {
         out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String[] peoples = in.separateCommasFromString(in.inputString());
+        String[] names = in.separateCommasFromString(in.inputString());
         try {
-            in.validatePlayerNameLength(peoples, LIMIT_NAME_LENGTH);
+            in.validateNameLength(names);
         } catch (IllegalArgumentException e) {
             out.println(e.getMessage());
-            enterPeoples();
+            enterNames();
         }
-        return peoples;
+        return names;
     }
 
     public static int enterLadderDepth() {

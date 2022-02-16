@@ -4,46 +4,101 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Ladder {
+    public static final int LEFT_PADDING_SIZE = 1;
+    public static final int RIGHT_PADDING_SIZE = 1;
+    public static final int NAME_TAG_SIZE = InputManager.LIMIT_NAME_LENGTH + LEFT_PADDING_SIZE + RIGHT_PADDING_SIZE;
+
     private ArrayList<String> ladder;
     private Random random;
+    private int numberOfPeople;
+    private String[] nameTags;
 
-    public Ladder(String[] peoples, int ladderDepth) {
+    public Ladder(String[] names, int ladderDepth) {
         this.ladder = new ArrayList<>();
         this.random = new Random();
-
-        int numberOfPeople = peoples.length;
+        this.numberOfPeople = names.length;
+        this.nameTags = wrapPeopleName(names);
 
         IntStream.range(0, ladderDepth)
                 .forEach(row -> ladder.add(initLadderRow(numberOfPeople * 2 - 1)));
     }
 
-    private String initLadderRow(int ladderLine) {
-        StringBuilder sb = new StringBuilder();
+    private String[] wrapPeopleName(String[] names) {
+        return Arrays.stream(names)
+                .map(name -> {
+                    // 지정 된 NAME_TAG_SIZE에서 입력받은 name의 길이만큼 빼서 추가해야 할 padding의 갯수를 구한다.
+                    int numberOfPadding = NAME_TAG_SIZE - name.length();
+                    return initNameTag(name, numberOfPadding);
+                })
+                .toArray(String[]::new);
+    }
 
-        // 열이 짝수라면 "|", 홀수라면 " " or "-" 입력
-        IntStream.range(0, ladderLine).forEach(line -> determineLineShape(line, sb));
+    private String initNameTag(String name, int numberOfPadding) {
+        StringBuilder sb = new StringBuilder();
+        if (validateEven(numberOfPadding)) {
+            sb.append(initPadding(numberOfPadding / 2));
+            sb.append(name);
+            sb.append(initPadding(numberOfPadding / 2));
+            return sb.toString();
+        }
+        sb.append(initPadding(numberOfPadding / 2));
+        sb.append(name);
+        sb.append(initPadding(numberOfPadding / 2 + 1));
         return sb.toString();
     }
 
-    private StringBuilder determineLineShape(int line, StringBuilder sb) {
-        if (validateEven(line)) {
-            return sb.append("|");
+    private String initLadderRow(int ladderLine) {
+        StringBuilder sb = new StringBuilder();
+
+        // 초기 띄어쓰기 설정
+        sb.append(setDefaultPaddingLadderModel());
+        // 열이 짝수라면 "|", 홀수라면 " " or "-" 입력
+        IntStream.range(0, ladderLine).forEach(line -> sb.append(determineLineShape(line)));
+        return sb.toString();
+    }
+
+    private String setDefaultPaddingLadderModel() {
+        if (validateEven(NAME_TAG_SIZE)) {
+            return initPadding(NAME_TAG_SIZE / 2 - 1);
         }
-        return sb.append(initRandomLine());
+        return initPadding(NAME_TAG_SIZE / 2);
+    }
+
+    private String determineLineShape(int line) {
+        if (validateEven(line)) {
+            return "|";
+        }
+        return initRandomShape();
     }
 
     private boolean validateEven(int number) {
         return number % 2 == 0;
     }
 
-    private String initRandomLine() {
+    private String initRandomShape() {
         if (random.nextBoolean()) {
-            return "-";
+            return initPadding(NAME_TAG_SIZE - 1);
         }
-        return " ";
+        return initLine(NAME_TAG_SIZE - 1);
+    }
+
+    private String initPadding(int numberOfPadding) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, numberOfPadding).forEach(i -> sb.append(" "));
+        return sb.toString();
+    }
+
+    private String initLine(int numberOfPadding) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, numberOfPadding).forEach(i -> sb.append("-"));
+        return sb.toString();
     }
 
     public ArrayList<String> getLadder() {
         return ladder;
+    }
+
+    public String[] getNameTags() {
+        return nameTags;
     }
 }
