@@ -14,8 +14,8 @@ public class LadderCreateTest {
         Ladder ladder = new Ladder(LadderSize.create(4, 5));
         assertThat(ladder.getHeight()).isEqualTo(4);
 
-        Ladder ladder2 = new Ladder(LadderSize.create(4, 5));
-        assertThat(ladder2.getHeight()).isEqualTo(4);
+        Ladder ladder2 = new Ladder(LadderSize.create(3, 5));
+        assertThat(ladder2.getHeight()).isEqualTo(3);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class LadderCreateTest {
     @Test
     @DisplayName("포지션들 출력하기")
     void generatePositionsTest(){
-        Ladder ladder = new Ladder(LadderSize.create(3, 4));
+        Ladder ladder = new Ladder(LadderSize.create(3, 5));
         int[] positions = ladder.makeStartPositions();
         for (int position : positions) {
             System.out.println(position);

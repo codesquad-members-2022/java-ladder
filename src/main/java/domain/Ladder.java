@@ -42,6 +42,11 @@ public class Ladder {
 
     private void makeLines(int numOfPerson) {
         IntStream.range(0, height).forEach(i -> lines.add(new Line(numOfPerson)));
+
+        List<Position> positionList = toPositions(makeStartPositions());
+        for (Position position : positionList) {
+            lines.get(position.getX()).makeLadderAt(position.getY()-1);
+        }
     }
 
     int[] makeStartPositions() {
