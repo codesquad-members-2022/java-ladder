@@ -1,7 +1,6 @@
 package main.laddergame;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LadderGame {
@@ -9,6 +8,7 @@ public class LadderGame {
     private static final String RUNG = "-----";
     private static final String RAIL = "|";
     private static final String LEFT_MARGIN = "  ";
+    private static final String DEFAULT_NAME = "men";
 
     private final int playerNum;
     private final int height;
@@ -60,15 +60,30 @@ public class LadderGame {
     public void printLadderGame() {
         // 사다리정보와 유저정보 출력
         printUserNames();
-        ladderArr.stream().forEach(a -> {
-            System.out.printf(LEFT_MARGIN);
-            a.stream().forEach(s -> System.out.print(s));
-            System.out.println("");
-        });
+        for (List<String> strings : ladderArr) {
+            printOneHeight(strings);
+        }
+    }
+
+    private void printOneHeight(List<String> strings) {
+        System.out.print(LEFT_MARGIN);
+        strings.stream().forEach(System.out::print);
+        System.out.println("");
     }
 
     private void printUserNames() {
-        Arrays.stream(playerNames).forEach(s -> System.out.printf("%5s ", s));
+        for (int i = 0; i < playerNames.length; i++) {
+            printUserName(playerNames[i]);
+        }
+
+        for (int i = playerNames.length; i < playerNum; i++) {
+            String playerName = DEFAULT_NAME + i;
+            printUserName(playerName);
+        }
         System.out.println("");
+    }
+
+    private void printUserName(String playerName) {
+        System.out.printf("%5s ", playerName);
     }
 }
