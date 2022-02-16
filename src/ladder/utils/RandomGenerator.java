@@ -23,7 +23,7 @@ public class RandomGenerator {
         return (random.nextInt() + RANGE) % DIVISION;
     }
 
-    public static boolean getBoolean(){
+    public boolean getBoolean(){
         return random.nextBoolean();
     }
 }

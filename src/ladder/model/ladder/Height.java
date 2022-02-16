@@ -5,15 +5,9 @@ import java.util.Objects;
 public class Height {
 
     private final int value;
-    private static final int ONE = 1;
-    private static final int DOUBLE = 2;
 
     public Height(int value) {
-        this.value = calculateWidth(value);
-    }
-
-    private int calculateWidth(int value) {
-        return value * DOUBLE - ONE;
+        this.value = value;
     }
 
     public int getValue() {

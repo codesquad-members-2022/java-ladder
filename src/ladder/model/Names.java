@@ -29,11 +29,7 @@ public class Names {
         return Collections.unmodifiableList(new ArrayList<>(names));
     }
 
-    public int getSize() {
-        return names.size();
-    }
-
-    public int checkNameByIndex(String name) {
+    public int findNameByIndex(String name) {
         final int end = this.names.size();
         return IntStream.range(START, end)
                 .filter(index -> checkNameByIndex(index, name))
@@ -52,4 +48,5 @@ public class Names {
     public int size() {
         return names.size();
     }
+
 }

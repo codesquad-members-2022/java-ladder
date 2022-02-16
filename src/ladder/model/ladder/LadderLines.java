@@ -1,20 +1,21 @@
 package ladder.model.ladder;
 
+import ladder.model.Names;
 import ladder.model.strategy.LadderLineFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class LadderLines {
 
     private final List<LadderLine> ladderLines;
 
-    public LadderLines(List<LadderLine> ladderLines, int playerCounts, Height height) {
-        validate(ladderLines);
+    public LadderLines(int playerCounts, Height height) {
         this.ladderLines = LadderLineFactory.getLadderLines(playerCounts, height);
     }
 
-    private void validate(List<LadderLine> ladderLines) {
-        Objects.requireNonNull(ladderLines);
+    public List<LadderLine> getLadderLines() {
+        return Collections.unmodifiableList(new ArrayList<>(ladderLines));
     }
 }

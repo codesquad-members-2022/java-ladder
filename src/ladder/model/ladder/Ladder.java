@@ -1,5 +1,7 @@
 package ladder.model.ladder;
 
+import ladder.model.Names;
+
 public class Ladder {
 
     private final LadderLines ladderLines;
@@ -8,7 +10,11 @@ public class Ladder {
         this.ladderLines = ladderLines;
     }
 
-    public LadderLines getLadderLines() {
-        return ladderLines;
+    public static Ladder getInstance() {
+        return null;
+    }
+
+    public LadderLines getLadderLines(Names names, Height height) {
+        return new LadderLines(names.size(), height);
     }
 }

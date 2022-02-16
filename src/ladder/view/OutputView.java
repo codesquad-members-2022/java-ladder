@@ -1,29 +1,45 @@
 package ladder.view;
 
+import ladder.model.Name;
+import ladder.model.Names;
+import ladder.model.ladder.LadderLines;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
 
-    private static final StringBuilder sb = new StringBuilder();
+    private static final String NAME_SPACE = "     ";
 
-    public static OutputView of() {
-        return null;
+    private OutputView() {
     }
+
+    private static final OutputView instance = new OutputView();
 
     public static OutputView getInstance() {
-        return null;
+        if (instance == null) {
+            return new OutputView();
+        }
+        return instance;
     }
 
-    public void print(String[][] board) {
-        sb.setLength(0);
-        for (String[] strings : board) {
-            sb.append("\n");
-            add(strings, board[0].length);
-        }
-        System.out.println(sb);
+    public void print(LadderLines ladderLines, Names names) {
+        printNames(names);
+        printLadder(ladderLines);
     }
 
-    private void add(String[] strings, int length) {
-        for (int col = 0; col < length; col++) {
-            sb.append(strings[col]);
-        }
+    private void printLadder(LadderLines ladderLines) {
+
+    }
+
+    private static void printNames(Names names) {
+        String result = names.getElements().stream()
+                .map(Name::getName)
+                .collect(Collectors.joining(NAME_SPACE));
+        print(result);
+    }
+
+    private static void print(String result) {
+        System.out.println(result);
     }
 }

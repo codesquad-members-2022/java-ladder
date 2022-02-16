@@ -1,10 +1,9 @@
 package ladder.model.strategy;
 
-import ladder.model.*;
+import ladder.model.DrawingStrategy;
 import ladder.model.ladder.Height;
 import ladder.model.ladder.LadderLine;
 import ladder.model.ladder.Point;
-import ladder.utils.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +19,11 @@ public class LadderLineFactory {
     }
 
     public static List<LadderLine> getLadderLines(int playerCount, Height height) {
-        int totalCount = height.getValue();
+        final int totalCount = height.getValue();
         List<LadderLine> ladderLines = new ArrayList<>();
 
         for (int index = START; index < totalCount; index++) {
-            LadderLine ladderLine = strategy.drawLine(playerCount);
+            LadderLine ladderLine = strategy.drawHorizontalLines(playerCount);
             ladderLines.add(ladderLine);
         }
         return ladderLines;
@@ -37,20 +36,18 @@ public class LadderLineFactory {
         points.addAll(getMiddlePoints(count, point));
         Point beforeLastPoint = getBeforeLastPoint(points, count);
         addLastPoint(points, beforeLastPoint);
-
         return new LadderLine(points);
     }
 
     private static Point getFirstPoint(List<Point> points) {
-        Point point = PointFactory.getFirstPoint(RandomGenerator.getBoolean());
+        Point point = PointFactory.getFirstPoint();
         points.add(point);
         return point;
     }
 
     private static List<Point> getMiddlePoints(int count, Point point) {
         List<Point> points = new ArrayList<>();
-
-        for (int index = START; index < count - 1; index++) {
+        for (int index = 1; index < count - 1; index++) {
             point = point.next();
             points.add(point);
         }
@@ -58,7 +55,7 @@ public class LadderLineFactory {
     }
 
     private static void addLastPoint(List<Point> points, Point point) {
-        point = point.last();
+        point = PointFactory.getLastPoint(point);
         points.add(point);
     }
 

@@ -14,6 +14,10 @@ public class LadderLine {
         this.points = copy(points);
     }
 
+    public int move(int index){
+        return points.get(index).move();
+    }
+
     private void validateLadderLine(List<Point> points) {
         Objects.requireNonNull(points);
     }
@@ -27,5 +31,9 @@ public class LadderLine {
             return Collections.emptyList();
         }
         return Collections.unmodifiableList(copy(this.points));
+    }
+
+    public List<Point> getValues() {
+        return Collections.unmodifiableList(new ArrayList<>(this.points));
     }
 }

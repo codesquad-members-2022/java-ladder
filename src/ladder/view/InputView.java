@@ -1,17 +1,31 @@
 package ladder.view;
 
+import ladder.model.Name;
+import ladder.model.Names;
+import ladder.model.ladder.Height;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static java.lang.System.in;
+import static java.lang.System.out;
+import static java.util.stream.Collectors.toList;
+
 public class InputView {
 
-    private static Input input = new Input();
-    private static final int ELEMENTS_SIZE = 2;
+    private static final String INPUT_PLAYER_NAMES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)\nex) pobi,honux,crong,jk\n";
+    private static final String INPUT_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?\n5";
+    private static final String EXECUTION_RESULT = "실행 결과";
+    private static final String COMMA = ",";
 
-    private InputView() {}
+    private InputView() {
+    }
+
     private static final InputView instance = new InputView();
 
     public static InputView getInstance() {
@@ -21,39 +35,25 @@ public class InputView {
         return instance;
     }
 
-    public List<Integer> getWidthAndHeight() {
-        List<Integer> widthAndHeight = new ArrayList<>();
+    public Names getPlayerNames() throws IOException {
 
-        while (widthAndHeight.size() < ELEMENTS_SIZE) {
-            getValue(widthAndHeight);
-        }
-        return widthAndHeight;
+        out.println(INPUT_PLAYER_NAMES);
+        List<Name> widthAndHeight = new ArrayList<>();
+        String input = br.readLine();
+
+        List<Name> names = Arrays.stream(input.split(COMMA))
+                .map(String::trim)
+                .map(Name::new)
+                .collect(toList());
+        return new Names(names);
     }
 
-    private void getValue(List<Integer> list) {
-        String value;
-        try {
-            value = input.br.readLine();
-            validateNumber(value);
-            list.add(Integer.valueOf(value));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Height getHeight() {
+        return new Height(3);
     }
 
-    private void validateNumber(String value) {
-        if (Character.isDigit(Integer.parseInt(value))) {
-            throw new NumberFormatException();
-        }
-    }
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer st = new StringTokenizer("");
 
-    static class Input {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer("");
 
-        public int integer() throws Exception {
-            if (!st.hasMoreElements()) st = new StringTokenizer(br.readLine());
-            return Integer.parseInt(st.nextToken());
-        }
-    }
 }

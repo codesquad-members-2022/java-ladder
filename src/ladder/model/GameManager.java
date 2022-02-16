@@ -1,29 +1,37 @@
 package ladder.model;
 
+import ladder.model.ladder.Height;
+import ladder.model.ladder.LadderLines;
 import ladder.system.Configuration;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.List;
-
 public class GameManager {
 
-    private InputView inputView = InputView.getInstance();
-    private OutputView outputView = OutputView.getInstance();
-    private LadderGame ladderGame = Configuration.ladderGame;
+    private static InputView inputView;
+    private static OutputView outputView;
+    private static LadderGame ladderGame;
 
     private static final GameManager instance = new GameManager();
 
-    private GameManager() {}
+    private GameManager() {
+        inputView = Configuration.inputView;
+        outputView = Configuration.outputView;
+        ladderGame = Configuration.ladderGame;
+    }
 
-    public static final GameManager getInstance() {
+    public static GameManager getInstance() {
         if (instance == null) {
             return new GameManager();
         }
         return instance;
     }
 
-    public void startGame() {
-        List<Integer> a = inputView.getWidthAndHeight();
+    public void startGame() throws Exception {
+        Names names = inputView.getPlayerNames();
+        Height height = inputView.getHeight();
+
+        LadderLines ladderLines = new LadderLines(names.size(), height);
+        outputView.print(ladderLines, names);
     }
 }

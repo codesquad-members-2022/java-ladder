@@ -18,11 +18,12 @@ public class Name {
         }
     }
 
+    public boolean equalTo(String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return this.name;
     }
 
-    public boolean equalTo(String name) {
-        return this.name.equals(name);
-    }
 }
