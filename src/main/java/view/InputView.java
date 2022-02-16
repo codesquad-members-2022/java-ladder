@@ -1,5 +1,7 @@
 package view;
 
+import message.InputViewMessage;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -18,12 +20,12 @@ public class InputView {
     }
 
     public String playerNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        System.out.println(InputViewMessage.REQUEST_PLAYER_NAMES);
         return getLine();
     }
 
     public int ladderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(InputViewMessage.REQUEST_LADDER_HEIGHT);
         return getValue();
     }
 
