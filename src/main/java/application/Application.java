@@ -1,7 +1,7 @@
 package application;
 
 import controller.LadderController;
-import model.Ladder;
+import model.game.ladder.Ladder;
 import view.InputView;
 import view.OutputView;
 

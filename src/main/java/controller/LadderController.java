@@ -1,6 +1,6 @@
 package controller;
 
-import model.Ladder;
+import model.game.ladder.Ladder;
 
 public class LadderController {
     private static LadderController controller;

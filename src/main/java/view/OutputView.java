@@ -1,6 +1,6 @@
 package view;
 
-import model.Ladder;
+import model.game.ladder.Ladder;
 
 public class OutputView {
     private static OutputView ov;

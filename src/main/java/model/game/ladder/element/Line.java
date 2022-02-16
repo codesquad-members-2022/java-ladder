@@ -1,4 +1,4 @@
-package model.element;
+package model.game.ladder.element;
 
 public class Line implements Element {
     private String str = "-";

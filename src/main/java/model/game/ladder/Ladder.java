@@ -1,4 +1,4 @@
-package model;
+package model.game.ladder;
 
 import static java.lang.Math.*;
 

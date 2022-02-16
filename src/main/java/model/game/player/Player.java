@@ -1,4 +1,4 @@
-package model;
+package model.game.player;
 
 public class Player {
     private String name;
