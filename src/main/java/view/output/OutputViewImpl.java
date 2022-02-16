@@ -19,21 +19,18 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printLadder(Ladder ladder) {
-        String ladderString = makeLadderString(ladder);
+        LadderElement[][] ladderElements = ladder.getLadderElements();
+        String ladderString = makeLadderString(ladderElements);
         System.out.print(ladderString);
     }
 
-    private String makeLadderString(Ladder ladder) {
-        LadderElement[][] ladderElements = ladder.getLadderElements();
-
-        String ladderString = Stream.of(ladderElements)
-                                    .map(this::ladderRowString)
-                                    .collect(Collectors.joining("\n"));
-
-        return ladderString;
+    private String makeLadderString(LadderElement[][] ladderElements) {
+        return Stream.of(ladderElements)
+                    .map(this::makeLadderRowString)
+                    .collect(Collectors.joining("\n"));
     }
 
-    private String ladderRowString(LadderElement[] ladderRow) {
+    private String makeLadderRowString(LadderElement[] ladderRow) {
         return Stream.of(ladderRow)
                     .map(LadderElement::getSymbol)
                     .map(String::valueOf)
