@@ -6,7 +6,7 @@ public class LadderRow {
 
     private static final Random random = new Random();
 
-    private final List<Element> row;
+    private final List<LadderElement> row;
 
     public LadderRow(int width) {
         row = new ArrayList<>();
@@ -20,20 +20,20 @@ public class LadderRow {
     }
 
     private boolean isOverlap(int col) {
-        return 2 < col && row.get(col - 2) != Element.EMPTY;
+        return 2 < col && row.get(col - 2) != LadderElement.EMPTY;
     }
 
-    private Element createRandomStep() {
+    private LadderElement createRandomStep() {
         int n = random.nextInt(2);
-        return (n == 0) ? Element.EMPTY : Element.STEP;
+        return (n == 0) ? LadderElement.EMPTY : LadderElement.STEP;
     }
 
-    private Element generateLadderElement(int col) {
+    private LadderElement generateLadderElement(int col) {
         if (isRail(col)) {
-            return Element.RAIL;
+            return LadderElement.RAIL;
         }
         if (isOverlap(col)) {
-            return Element.EMPTY;
+            return LadderElement.EMPTY;
         }
         return createRandomStep();
     }
@@ -41,7 +41,7 @@ public class LadderRow {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Element col : row) {
+        for (LadderElement col : row) {
             sb.append(col.getValue());
         }
         return sb.toString();

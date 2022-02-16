@@ -1,11 +1,11 @@
-public enum Element {
+public enum LadderElement {
     EMPTY("     "),
     STEP("-----"),
     RAIL("|");
 
     private final String value;
 
-    Element(String value) {
+    LadderElement(String value) {
         this.value = value;
     }
 
