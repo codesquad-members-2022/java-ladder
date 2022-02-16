@@ -10,7 +10,7 @@ public class Output {
         System.out.println(sb);
     }
 
-    public char[][] makeColumn(char[][] ladder, int row){
+    private char[][] makeColumn(char[][] ladder, int row){
         for (int column = 0; column < ladder[row].length; column++) {
             sb.append(ladder[row][column]);
         }

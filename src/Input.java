@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class Input {
 
-    Scanner sc = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     public int ladderInfo(String str){
         System.out.println(str);
-        return sc.nextInt();
+        return scanner.nextInt();
     }
 
-    public void inputClose(){
-        sc.close();
+    public void close(){
+        scanner.close();
     }
 }
