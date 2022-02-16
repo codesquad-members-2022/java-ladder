@@ -101,20 +101,19 @@
       return w == 0 || (shape.getElement(h, w - 1) != shape.line);
   }
   ```
-  - Shape 내에 Line, None, Pole 객체를 두었습니다.
-    - Shape 요소들을 출력할 때 그리고 비교할 때 같은 패키지 내의 Ladder 에서 바로 사용할 수 있도록 하기 위함입니다.
-    - 해당 객체들은 Shape 가 생성될 때 플레이어의 이름 중 가장 긴 값이 인자로 넘어오면 이를 기반으로 자신이 출력할 문자열을 재구성합니다.
+  - Ladder 내에 Line, None, Pole 객체를 두었습니다.
+    - 해당 객체들은 Ladder 가 생성될 때 플레이어의 이름 중 가장 긴 값이 인자로 넘어오면 이를 기반으로 자신이 출력할 문자열을 재구성합니다.
   ```java
-  public class Shape<T> {
-      Line line;
-      None none;
-      Pole pole;
+  public class Ladder {
+      private Line line;
+      private None none;
+      private Pole pole;
       ...
   
-      public Shape(...int elementSize) {
+      public Ladder(...int maxNameLength) {
           ...
-          this.line = new Line(elementSize);
-          this.none = new None(elementSize);
+          this.line = new Line(maxNameLength);
+          this.none = new None(maxNameLength);
           this.pole = new Pole();
       }
   }
