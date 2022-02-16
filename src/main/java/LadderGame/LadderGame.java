@@ -37,18 +37,20 @@ public class LadderGame {
         }
     }
 
-    private String createUnit(int col, int row) {
+    private void createUnit(int col, int row) {
         if (row % 2 == 1) {
-            return createRandomLine(col, row);
+            createRandomLine(col, row);
+            return ;
         }
-        return arr[col][row] = LADDERUNIT;
+        arr[col][row] = LADDERUNIT;
     }
 
-    private String createRandomLine(int col, int row) {
+    private void createRandomLine(int col, int row) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            return arr[col][row] = LINEUNIT;
+            arr[col][row] = LINEUNIT;
+            return ;
         }
-        return arr[col][row] = BLANK;
+        arr[col][row] = BLANK;
     }
 }

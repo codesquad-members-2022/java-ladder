@@ -1,5 +1,8 @@
 package LadderGame;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Client {
@@ -11,7 +14,7 @@ public class Client {
     //  |-----|-----| 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
 
     private static Scanner sc = new Scanner(System.in);
-    private static String[] userList;
+    private static List<String> userList;
     public Client() {
     }
 
@@ -26,7 +29,7 @@ public class Client {
         sc.close();
     }
 
-    public String[] getUserList() {
+    public List<String> getUserList() {
         return userList;
     }
 
@@ -37,10 +40,10 @@ public class Client {
 
     private void inputUser() {
         Output.printUserCountNotification();
-        userList = sc.nextLine().trim().split(",");
+        userList = new ArrayList<>(Arrays.asList(sc.nextLine().trim().split(",")));
     }
 
     private int getUserCount() {
-        return userList.length;
+        return userList.size();
     }
 }
