@@ -4,6 +4,14 @@ public class OutputView {
 
     private static final StringBuilder sb = new StringBuilder();
 
+    public static OutputView of() {
+        return null;
+    }
+
+    public static OutputView getInstance() {
+        return null;
+    }
+
     public void print(String[][] board) {
         sb.setLength(0);
         for (String[] strings : board) {

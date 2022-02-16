@@ -28,7 +28,7 @@ public class Names {
     }
 
     public int checkNameByIndex(String name) {
-        final int end = names.size();
+        final int end = this.names.size();
         return IntStream.range(START, end)
                 .filter(index -> checkNameByIndex(index, name))
                 .findAny()
@@ -36,10 +36,10 @@ public class Names {
     }
 
     private boolean checkNameByIndex(int index, String name) {
-        return get(index).equalTo(name);
+        return getNameByIndex(index).equalTo(name);
     }
 
-    public Name get(int index) {
+    public Name getNameByIndex(int index) {
         return names.get(index);
     }
 
