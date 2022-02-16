@@ -19,7 +19,7 @@ public class LadderGame {
         this.height = getHeight();
         this.map = new LadderChar[height][width];
 
-        addLadderChars();
+        changePlane();
     }
 
     public LadderChar[][] getMap() {
@@ -34,21 +34,35 @@ public class LadderGame {
         return this.numLadder;
     }
 
-    private void addLadderChars() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                addLadderChar(i, j);
-            }
+    private void changePlane() {
+        for (int row = 0; row < height; row++) {
+            changeLine(row);
         }
     }
 
-    private void addLadderChar(int i, int j) {
-        if (j % 2 == 0) {
-            this.map[i][j] = LadderChar.VERTICAL;
-        } else if (RandomUtil.nextBoolean()) {
-            this.map[i][j] = LadderChar.SPACE;
-        } else {
-            this.map[i][j] = LadderChar.HORIZONTAL;
+    private void changeLine(int row) {
+        for (int col = 0; col < width; col++) {
+            changeChar(row, col);
+        }
+    }
+
+    private void changeChar(int row, int col) {
+        if (col % 2 == 0) {
+            this.map[row][col] = LadderChar.VERTICAL;
+        }
+        if (col % 2 != 0) {
+            changeRandomChar(row, col);
+        }
+    }
+
+    private void changeRandomChar(int row, int col) {
+        boolean rand = RandomUtil.nextBoolean();
+
+        if (rand) {
+            this.map[row][col] = LadderChar.SPACE;
+        }
+        if (!rand) {
+            this.map[row][col] = LadderChar.HORIZONTAL;
         }
     }
 

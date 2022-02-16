@@ -7,14 +7,18 @@ public class OutputView {
     }
 
     public void printGame(LadderGame ladderGame) {
-        System.out.println("\n----------\n");
+        System.out.println(Message.OUTPUT_HORIZONTAL_LINE.get());
 
         for (LadderChar[] chars : ladderGame.getMap()) {
-            for (LadderChar chr : chars) {
-                System.out.print(chr.get());
-            }
-            System.out.println();
+            printLine(chars);
         }
+    }
+
+    private void printLine(LadderChar[] chars) {
+        for (LadderChar chr : chars) {
+            System.out.print(chr.get());
+        }
+        System.out.println();
     }
 
 }

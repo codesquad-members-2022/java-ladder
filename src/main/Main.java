@@ -17,6 +17,7 @@ public class Main {
         ladderGame.createMap();
 
         outputView.printGame(ladderGame);
+        inputView.closeScanner();
     }
 
 }

@@ -21,4 +21,8 @@ public class InputView {
         outputView.printMessage(Message.INPUT_NUM_LADDER.get());
         return scanner.nextInt();
     }
+
+    public void closeScanner() {
+        scanner.close();
+    }
 }
