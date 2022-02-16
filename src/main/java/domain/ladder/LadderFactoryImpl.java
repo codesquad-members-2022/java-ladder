@@ -54,13 +54,13 @@ public class LadderFactoryImpl implements LadderFactory {
 
     private void setRowVerticalLine(Ladder ladder, int row) {
         IntStream.range(0, ladder.width())
-                .filter(column -> column%2 == 0)
+                .filter(this::isEntryColumn)
                 .forEach(column -> setVerticalLine(ladder, row, column));
     }
 
     private void setRowHorizontalLine(Ladder ladder, int row) {
         IntStream.range(0, ladder.width())
-                .filter(column -> column%2 != 0)
+                .filter(this::isHorizontalLineColumn)
                 .forEach(column -> setHorizontalLine(ladder, row, column));
     }
 
@@ -69,7 +69,21 @@ public class LadderFactoryImpl implements LadderFactory {
     }
 
     private void setHorizontalLine(Ladder ladder, int row, int column) {
-        ladder.setLadderElement(column, row, randomLadderElement());
+        if (canDrawHorizontalLine(ladder, row, column)) {
+            ladder.setLadderElement(column, row, randomLadderElement());
+            return;
+        }
+        ladder.setLadderElement(column, row, LadderElement.EMPTY_LINE);
+    }
+
+    private boolean canDrawHorizontalLine(Ladder ladder, int row, int column) {
+        if (isEntryColumn(column)) {
+            return false;
+        }
+        if (column == 1) {
+            return true;
+        }
+        return ladder.getLadderElement(column - 2, row) == LadderElement.EMPTY_LINE;
     }
 
     private LadderElement randomLadderElement() {
@@ -83,4 +97,11 @@ public class LadderFactoryImpl implements LadderFactory {
         return randomBool;
     }
 
+    private boolean isEntryColumn(int column) {
+        return (column%2 == 0);
+    }
+
+    private boolean isHorizontalLineColumn(int column) {
+        return !isEntryColumn(column);
+    }
 }
