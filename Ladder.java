@@ -1,9 +1,11 @@
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
     private final int memberCount;
     private final int height;
     private String[][] ladder;
+
 
     Random random = new Random();
     StringBuilder sb = new StringBuilder();
@@ -35,14 +37,22 @@ public class Ladder {
         }
         if (col % 2 == 1) {
             ladder[row][col] = randomLine(random.nextBoolean());
+            duplicateCheck(row, col);
         }
     }
 
+    private void duplicateCheck(int row, int col) {
+        if (col >= 2 && ladder[row][col - 2].equals("----")) {
+            ladder[row][col] = "    ";
+        }
+    }
+
+
     private String randomLine(boolean trueCheck) {
         if (trueCheck) {
-            return "-";
+            return "----";
         }
-        return " ";
+        return "    ";
     }
 
     public String toString() {
