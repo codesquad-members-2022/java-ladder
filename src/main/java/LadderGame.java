@@ -17,9 +17,7 @@ public class LadderGame {
 
     private void initGame() {
         initPlayers();
-        int width = players.count() * 2 - 1;
-        int height = getHeight();
-        this.ladder = new Ladder(width, height);
+        initLadder();
         output.print(players.toString());
         output.print(ladder.toString());
     }
@@ -32,6 +30,12 @@ public class LadderGame {
             output.print(e.getMessage());
             initPlayers();
         }
+    }
+
+    private void initLadder() {
+        int width = players.count() * 2 - 1;
+        int height = getHeight();
+        this.ladder = new Ladder(width, height);
     }
 
     private String[] getPlayerNames() {
