@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class LadderMap {
+    private final static Random random = new Random();
     private List<Ladder> ladderList;
     private List<String> map = new ArrayList<>();;
     private int ladderHeight;
-    private final static Random random = new Random();
 
     public LadderMap(List<Ladder> ladderList, int ladderHeight) {
         this.ladderList = ladderList;
