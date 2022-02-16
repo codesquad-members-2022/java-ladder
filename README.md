@@ -192,19 +192,19 @@ public class Ladder {
 ```java
 public enum LadderElement {
 
-    VERTICAL_LINE('|'),
-    HORIZONTAL_LINE('-'),
-    EMPTY_LINE(' ');
+  VERTICAL_LINE("|"),
+  HORIZONTAL_LINE("-----"),
+  EMPTY_LINE("     ");
 
-    private char symbol;
+  private String symbol;
 
-    LadderElement(char symbol) {
-        this.symbol = symbol;
-    }
+  LadderElement(String symbol) {
+    this.symbol = symbol;
+  }
 
-    public char getSymbol() {
-        return this.symbol;
-    }
+  public String getSymbol() {
+    return this.symbol;
+  }
 }
 ```
 - 사다리의 구성 요소들을 enum으로 정의
