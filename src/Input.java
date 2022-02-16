@@ -6,7 +6,7 @@ public class Input {
          return sc.nextInt();
     }
 
-    public static void scannerClose() {
+    public static void Close() {
         sc.close();
     }
 

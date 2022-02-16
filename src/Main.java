@@ -12,7 +12,7 @@ public class Main {
         Output.messageAboutHeight();
         heightOfLadder = Input.getNumber();
 
-        Input.scannerClose();
+        Input.Close();
 
         Ladder ladder = new Ladder(players.size(), heightOfLadder);
         Output.messageAboutLadder(ladder.Info());
