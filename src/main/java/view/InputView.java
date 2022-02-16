@@ -17,9 +17,9 @@ public class InputView {
         return iv;
     }
 
-    public int numOfPlayers() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return getValue();
+    public String playerNames() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return getLine();
     }
 
     public int ladderHeight() {
@@ -29,6 +29,10 @@ public class InputView {
 
     private int getValue() {
         return sc.nextInt();
+    }
+
+    private String getLine() {
+        return sc.next();
     }
 
     public void close() {

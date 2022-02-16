@@ -2,6 +2,7 @@ package application;
 
 import controller.LadderController;
 import model.game.ladder.Ladder;
+import util.Parser;
 import view.InputView;
 import view.OutputView;
 
@@ -17,7 +18,7 @@ public class Application {
     }
 
     public void run() {
-        int width = iv.numOfPlayers();
+        int width = Parser.getPlayers(iv.playerNames()).size();
         int height = iv.ladderHeight();
         Ladder ladder = ladderController.getLadder(height, width);
         ov.printLadder(ladder);
