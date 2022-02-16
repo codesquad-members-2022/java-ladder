@@ -99,11 +99,11 @@
       }
   }
   private Element allocElement(int h, int w) {
-      return random() * 10 < 5.5 && isValid(h, w) ? shape.line : shape.none;
+      return random() * 10 < 5.5 && isValid(h, w) ? line : none;
   }
   // 같은 행 이전 열에 세로선이 놓였는 지 확인하는 메서드 (getElement 메서드 사용)
   private boolean isValid(int h, int w) {
-      return w == 0 || (shape.getElement(h, w - 1) != shape.line);
+      return w == 0 || (shape.getElement(h, w - 1) != line);
   }
   ```
   - Ladder 내에 Line, None, Pole 객체를 두었습니다.
