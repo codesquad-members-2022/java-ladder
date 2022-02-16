@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
 
     private static final String VALUE_ERROR_MESSAGE = "값을 잘못입력하셨습니다.";
-    private static final String ASK_NUMBER_OF_PEOPLE = "참여할 사람은 몇 명인가요?";
+    private static final String ASK_PEOPLE_NAME = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String ASK_LADDER_HIGHT = "최대 사다리 높이는 몇 개인가요?";
 
     private Scanner scanner;
-    private int people;
+    private List<String> people;
     private int hight;
 
     public Input() {
@@ -16,7 +19,7 @@ public class Input {
     }
 
     private void start() {
-        askNumberOfPeople();
+        askPeople();
         askHight();
         scanner.close();
     }
@@ -30,12 +33,11 @@ public class Input {
         }
     }
 
-    private void askNumberOfPeople() {
-        System.out.println(ASK_NUMBER_OF_PEOPLE);
+    private void askPeople() {
+        System.out.println(ASK_PEOPLE_NAME);
         String value = scanner.nextLine();
-        int parseInt = validateValue(value);
-        Number number = new Number(parseInt);
-        people = number.get();
+        String[] group = value.split(",");
+        people = new ArrayList<>(Arrays.asList(group));
     }
 
     private void askHight() {
@@ -47,14 +49,14 @@ public class Input {
     }
 
     private int checkZero(int value) {
-        if (people == 0 || hight == 0) {
+        if (people.size() == 0 || hight == 0) {
             return 0;
         }
         return value;
     }
 
-    public int getPeople() {
-        return checkZero(people);
+    public List<String> getPeople() {
+        return people;
     }
 
     public int getHight() {
