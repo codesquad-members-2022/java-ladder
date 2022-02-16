@@ -2,12 +2,12 @@ import java.util.Random;
 
 public class LadderGame {
 
-    String[][] arr;
-    int user;
-    int height;
-    String ladderUnit = "|";
-    String lineUnit = "-";
-    String blank = " ";
+    private String[][] arr;
+    private int user;
+    private int height;
+    private static final String LADDERUNIT = "|";
+    private static final String LINEUNIT = "-";
+    private static final String BLANK = " ";
 
     LadderGame() {
 
@@ -16,40 +16,37 @@ public class LadderGame {
     public void init(int user, int height) {
         this.user = user;
         this.height = height;
-        userToBlink();
         build();
     }
 
     public void build() {
- 
-        arr = new String[height][user];
-
+        int width = user * 2 - 1;
+        arr = new String[height][width];
+      
         for (int i = 0; i < arr.length; i++) {
             addLadderUnit(i);
         }
         Output.printLadderGame(arr);
     }
 
-    private void addLadderUnit(int i) {
-        for (int j = 0; j < arr[i].length; j++) {
-            if (j % 2 == 1) {
-                lineOrBlank(i, j);
-            } else {
-                arr[i][j] = ladderUnit;
-            }
+    private void addLadderUnit(int col) {
+        for (int row = 0; row < arr[col].length; row++) {
+            createUnit(col, row);
         }
     }
 
-    private void lineOrBlank(int i, int j) {
+    private String createUnit(int col, int row) {
+        if (row % 2 == 1) {
+            return createRandomLine(col, row);
+        }
+        return arr[col][row] = LADDERUNIT;
+    }
+
+    private String createRandomLine(int col, int row) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            arr[i][j] = lineUnit;
-        } else {
-            arr[i][j] = blank;
+            return arr[col][row] = LINEUNIT;
         }
-    }
-
-    void userToBlink() {
-        user = user * 2 - 1;
+        return arr[col][row] = BLANK;
     }
 }

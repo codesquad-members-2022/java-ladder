@@ -4,9 +4,5 @@ public class Main {
         Client client = new Client();
 
         client.input();
-
-        LadderGame ladderGame = new LadderGame();
-
-        ladderGame.build();
     }
 }
