@@ -8,6 +8,7 @@ import java.util.List;
 public class Board {
 
     private static final String VERTICAL = "|";
+    private static final String EMPTY_PART = "    ";
 
     private final int players;
     private final int height;
@@ -38,7 +39,7 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        frame.forEach(floor -> stringBuilder.append(floor.toString().replaceAll("\\[|\\]|,","")).append('\n'));
+        frame.forEach(floor -> floorToString(stringBuilder,floor));
         return stringBuilder.toString();
     }
 
@@ -56,5 +57,22 @@ public class Board {
         }
         return line.generateRandomLine(floor,col);
     }
+
+    private void floorToString(StringBuilder stringBuilder,List<String> floor) {
+        stringBuilder.append(EMPTY_PART);
+        for (String s : floor) {
+            stringBuilder.append(formatFrame(s));
+        }
+        stringBuilder.append('\n');
+    }
+
+    private String formatFrame(String part) {
+        if(part.equals(VERTICAL)) {
+            return part;
+        }
+        return String.format("%5s",part);
+    }
+
+
 }
 
