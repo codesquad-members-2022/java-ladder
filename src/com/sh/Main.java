@@ -5,28 +5,34 @@ import static com.sh.utils.Output.*;
 
 import java.util.List;
 
+import com.sh.domains.Ladder;
+import com.sh.domains.LadderService;
 import com.sh.domains.Players;
 
 public class Main {
     private static Configuration configuration = Configuration.getInstance();
 
     public static void main(String[] args) {
-        var settings = configuration.getSettings();
-        List<String> names = settings.getListOfNames();
-        int height = settings.getHeight(names.size());
+        run();
+    }
 
-        Players players = new Players(names);
-        Ladder ladder = new Ladder(players.numberOf(), height);
+    private static void run() {
+        try {
+            var settings = configuration.getSettings();
+            List<String> names = settings.getListOfNames();
+            int height = settings.getHeight(names.size());
 
-        System.out.println(names);
+            Players players = new Players(names);
+            Ladder ladder = new Ladder(players.numberOf(), height);
 
-        ladder.play();
-        List<List<Boolean>> ladders = ladder.getLadders();
-        for (List<Boolean> line : ladders) {
-            prints.accept(line);
+            LadderService service = new LadderService(players, ladder);
+            String result = service.resultOfPlay();
+            println.accept(result);
+
+            scanClose();
+        } catch (IllegalArgumentException | NullPointerException exception) {
+            println.accept(exception.getMessage());
+            run();
         }
-        // println.accept(resultOfPlay(ladders));
-
-        scanClose();
     }
 }

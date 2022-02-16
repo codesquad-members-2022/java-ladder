@@ -1,4 +1,4 @@
-package com.sh;
+package com.sh.domains;
 
 import static java.util.stream.Collectors.*;
 
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.sh.utils.Randomz;
@@ -22,7 +21,7 @@ public class Ladder {
 
 	public Ladder(Integer rangeOfx, Integer rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
-			throw new RuntimeException("NPE - constructor of Ladder");
+			throw new NullPointerException("NPE - constructor of Ladder");
 		}
 		this.rangeOfx = rangeOfx-1;
 		this.rangeOfy = rangeOfy;
@@ -35,12 +34,12 @@ public class Ladder {
 		List<Boolean> firstRows = firstLine();
 		this.graphs.add(firstRows);
 		for (int i = 1; i < rangeOfy; i++) {
-			List<Boolean> row = filledNestLines();
+			List<Boolean> row = filledNextLines();
 			this.graphs.add(row);
 		}
 	}
 
-	private List<Boolean> filledNestLines() {
+	private List<Boolean> filledNextLines() {
 		List<Boolean> row = getFilledFalseList();
 		nextPlace();
 		row.set(this.place, true);
@@ -50,15 +49,15 @@ public class Ladder {
 	private void nextPlace() {
 		boolean directions = random.getBoolean();
 		Integer nextPlace = nextDirection.apply(directions);
-		if (!isRange(nextPlace)) {
+		if (!isRangeOf(nextPlace)) {
 			nextPlace *= (-1);
 		}
 		this.place += nextPlace;
 	}
 
-	private boolean isRange(int point) {
+	private boolean isRangeOf(int point) {
 		int nextPlace = this.place + point;
-		if (nextPlace < MIN_RANGE || nextPlace > rangeOfx) {
+		if (nextPlace < MIN_RANGE || nextPlace >= rangeOfx) {
 			return false;
 		}
 		return true;
@@ -71,7 +70,7 @@ public class Ladder {
 	}
 
 	private List<Boolean> getFilledFalseList() {
-		List<Boolean> filledFalse = IntStream.rangeClosed(0, rangeOfx)
+		List<Boolean> filledFalse = IntStream.range(0, rangeOfx)
 			.mapToObj(num -> false)
 			.collect(toList());
 		return filledFalse;
