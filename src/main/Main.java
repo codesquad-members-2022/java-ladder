@@ -1,8 +1,6 @@
 package main;
 
 import main.controller.Executor;
-import main.view.InputView;
-import main.view.OutputView;
 
 public class Main {
 

@@ -1,9 +1,7 @@
 package main.controller;
 
-import java.util.Arrays;
-import java.util.List;
 import main.domain.Game;
-import main.view.InputValidator;
+import main.util.InputValidator;
 import main.view.InputView;
 import main.view.OutputView;
 
@@ -16,27 +14,17 @@ public class Executor {
         OutputView.printMaxHeightOfLadderQueryText();
         int maxHeightOfLadder = InputView.giveInt();
 
-        validateInput(names,maxHeightOfLadder);
+        validateInput(names, maxHeightOfLadder);
 
-        Game game = new Game(names,maxHeightOfLadder);
+        Game game = new Game(names, maxHeightOfLadder);
+
+        OutputView.printLadderBoard(names, game.getLadderBoard());
 
         InputView.close();
     }
 
     public void validateInput(String string, int num) {
-        validateNames(string);
-        validateMaxHeightOfLadder(num);
-    }
-
-    public void validateNames(String string) {
-        List<String> list = Arrays.asList(string.split(","));
-        InputValidator.checkNumOfName(list);
-        for (String name : list) {
-            InputValidator.checkName(name);
-        }
-    }
-
-    public void validateMaxHeightOfLadder(int num) {
+        InputValidator.validateNames(string);
         InputValidator.checkPositiveInt(num);
     }
 }
