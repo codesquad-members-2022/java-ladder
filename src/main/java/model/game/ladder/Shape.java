@@ -19,7 +19,7 @@ public class Shape<T> {
         this.width = width;
     }
 
-    public void addElement(int row, T element) {
+    public void addElement(int row, T element) throws IllegalArgumentException {
         if (row >= height) {
             throw new IllegalArgumentException(getRowIndexErrMsg(height));
         }
