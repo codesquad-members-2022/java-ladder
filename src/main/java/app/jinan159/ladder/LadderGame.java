@@ -4,18 +4,21 @@ import app.jinan159.ladder.io.InputReader;
 import app.jinan159.ladder.io.OutputWriter;
 import app.jinan159.ladder.meta.GameMap;
 import app.jinan159.ladder.meta.LadderElement;
+import app.jinan159.ladder.meta.Participant;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LadderGame {
 
     private final GameMap gameMap;
+    private final List<Participant> participants;
 
     public LadderGame() throws IOException {
         try (InputReader reader = new InputReader()) {
-            int participantCount = reader.readParticipantCount();
+            this.participants = reader.readParticipants();
             int height = reader.readHeight();
-            this.gameMap = new GameMap(participantCount, height);
+            this.gameMap = new GameMap(participants.size(), height);
         }
 
         prepareGameMap(this.gameMap);
