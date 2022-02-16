@@ -25,11 +25,14 @@ public class Ladder {
     private void createLine(int h) {
         int width = shape.getWidth();
         for (int w = 0; w < width; ++w) {
-            shape.addElement(h, allocElement());
+            shape.addElement(h, allocElement(h, w));
         }
     }
-    private Element allocElement() {
-        return random() * 10 < 5.5 ? shape.line : shape.none;
+    private Element allocElement(int h, int w) {
+        return random() * 10 < 5.5 && isValid(h, w) ? shape.line : shape.none;
+    }
+    private boolean isValid(int h, int w) {
+        return w == 0 || (shape.getElement(h, w - 1) != shape.line);
     }
 
     @Override
