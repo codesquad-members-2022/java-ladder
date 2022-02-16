@@ -1,15 +1,17 @@
 package ladder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OutputView {
-    private String row;
-    private String column;
-    private String empty;
+
+    private List<String> stringElements;
 
     public OutputView() {
-        this.row = "|";
-        this.column = "-";
-        this.empty = " ";
-
+        stringElements = new ArrayList<>();
+        stringElements.add(" ");
+        stringElements.add("-");
+        stringElements.add("|");
     }
 
     public void printGhostLeg(int[][] ghostLeg) {
@@ -26,17 +28,6 @@ public class OutputView {
     }
 
     private void printElements(int element) {
-        if (element == 0) {
-            System.out.print(empty);
-            return;
-        }
-        if (element == 1) {
-            System.out.print(column);
-            return;
-        }
-        if (element == 2) {
-            System.out.print(row);
-            return;
-        }
+        String stringElement = stringElements.get(element);
     }
 }
