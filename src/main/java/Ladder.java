@@ -3,8 +3,8 @@ import java.util.Random;
 public class Ladder {
 
     private static final String RAIL = "|";
-    private static final String STEP = "-";
-    private static final String EMPTY = " ";
+    private static final String STEP = "-----";
+    private static final String EMPTY = "     ";
     private static final Random random = new Random();
 
     private final String[][] ladder;
