@@ -17,6 +17,13 @@ public class OutputView {
         System.out.println(sadariNumberMessage);
     }
 
+    public static void printUserNames(String[] userNames){
+        for(String eachUserName: userNames){
+            System.out.printf("%5s ",eachUserName);
+        }
+        System.out.println();
+    }
+
     public static void printGraphicalSadari(boolean[][] sadari){
         StringBuilder graphicSadari = new StringBuilder();
         for(boolean[] line : sadari){
@@ -27,7 +34,7 @@ public class OutputView {
 
     private static StringBuilder lineToStringline(boolean[] line){
         StringBuilder sb = new StringBuilder();
-        sb.append(sero);
+        sb.append("  "+sero);
         for(boolean i : line) {
             sb.append( garoOrSpace(i) );
             sb.append(sero);

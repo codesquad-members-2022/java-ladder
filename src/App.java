@@ -7,6 +7,8 @@ public class App {
 
         Sadari s = new Sadari(userNames.length, sadariNumber);
 
+        OutputView.printUserNames(userNames);
+
         OutputView.printGraphicalSadari( s.getSadari() );
 
     }
