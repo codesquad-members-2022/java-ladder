@@ -18,7 +18,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         getNamesRow(names,sb);
         getLaddersRow(ladderBoard,sb);
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     public static void getNamesRow(String names, StringBuilder sb) {
