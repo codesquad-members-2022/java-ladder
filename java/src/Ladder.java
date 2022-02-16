@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Ladder {
 
-    private static final char[] widthLine = {'-', ' '};
-    private static final char pole = '|';
+    private static final List<String> widthLine = Arrays.asList("-----", "     ");
+    private static final String pole = "|";
 
-    private char[][] frame;
+    private List<List<String>> frame;
 
     public Ladder(int people, int ladderHight) {
         makeAStart(people, ladderHight);
@@ -13,30 +17,30 @@ public class Ladder {
         return (int) (Math.random() * 2);
     }
 
-    private char line(int people, int number) {
+    private String line(int people, int number) {
         if (number < people - 1) {
-            return widthLine[randomNumber()];
+            return widthLine.get(randomNumber());
         }
-        return ' ';
+        return "     ";
     }
 
-    private char[] makeOneHight(int people) {
-        char[] ladderLine = new char[people * 2];
+    private List<String> makeOneHight(int people) {
+        List<String> ladderLine = new ArrayList<>();
         for (int i = 0; i < people * 2; i = i + 2) {
-            ladderLine[i] = pole;
-            ladderLine[i + 1] = line(people, i / 2);
+            ladderLine.add(pole);
+            ladderLine.add(line(people, i / 2));
         }
         return ladderLine;
     }
 
     private void makeAStart(int people, int ladderHight) {
-        frame = new char[ladderHight][people * 2];
+        frame = new ArrayList<>();
         for (int i = 0; i < ladderHight; i++) {
-            frame[i] = makeOneHight(people);
+            frame.add(makeOneHight(people));
         }
     }
 
-    public char[][] getLadder() {
+    public List<List<String>> getLadder() {
         return frame;
     }
 

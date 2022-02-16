@@ -8,7 +8,7 @@ public class Main {
         int hight = input.getHight();
 
         Ladder ladder = new Ladder(people.size(), hight);
-        Output output = new Output();
+        Output output = new Output(people);
         output.printLadder(ladder);
     }
 
