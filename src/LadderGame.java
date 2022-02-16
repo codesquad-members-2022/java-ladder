@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class LadderGame {
 
-  private char[][] ladders;
 
   public Ladders gameInfo() {
     System.out.println("참여할 사람은 몇 명인가요?");
@@ -14,18 +13,19 @@ public class LadderGame {
     return new Ladders(numOfPeople, heightOfLadder);
   }
 
-  public char[][] makeLadder(Ladders ladder) {
-    initLadders(ladder);
-
-    for (int whatFloor = 0; whatFloor < ladders.length; whatFloor++) {
-      ladders[whatFloor] = makeOneFloorLadder(whatFloor, ladder.getNumOfcolumns());
+  public Ladders makeLadder(Ladders ladders) {
+    char[][] totalLadders = ladders.get();
+    for (int whatFloor = 0; whatFloor < ladders.get().length; whatFloor++) {
+      totalLadders[whatFloor] = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
     }
+    ladders.setTotalLadders(totalLadders);
     return ladders;
   }
 
-  public void printLadder() {
-    for (int i = 0; i < ladders.length; i++) {
-      printOneFloor(ladders[i]);
+  public void printLadder(Ladders ladders) {
+    char[][] totalLadder = ladders.get();
+    for (int i = 0; i < ladders.get().length; i++) {
+      printOneFloor(totalLadder[i]);
       System.out.println();
     }
   }
@@ -34,10 +34,6 @@ public class LadderGame {
     System.out.print(oneFloor);
   }
 
-
-  private void initLadders(Ladders ladder) {
-    ladders = new char[ladder.getHeight()][ladder.getNumOfcolumns()];
-  }
 
   private char[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
     return getOneFloorLadderShape(numOfColumns);
