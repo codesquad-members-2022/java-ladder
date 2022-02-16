@@ -20,4 +20,7 @@ public class View {
         return new LadderMap(ladderList, ladderHeight);
     }
 
+    public static void printMap(List<String> map) {
+        map.stream().forEach(System.out::println);
+    }
 }

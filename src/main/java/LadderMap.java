@@ -27,7 +27,6 @@ public class LadderMap {
             sb.append(String.format("%6s", ladderList.get(i).getName()));
         }
         sb.append(String.format("%4s", ladderList.get(size - 1).getName()));
-        sb.append("\n");
         map.add(sb.toString());
     }
 
@@ -39,7 +38,6 @@ public class LadderMap {
             sb.append(getBlankOrLadderString());
             sb.append("|");
         }
-        sb.append("\n");
         map.add(sb.toString());
     }
 
