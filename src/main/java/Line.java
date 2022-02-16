@@ -20,7 +20,25 @@ public class Line {
 
     public boolean isLadder(int ladderPos) {
         checkPos(ladderPos);
-        return points.get(ladderPos) && points.get(ladderPos + 1);
+        return points.get(ladderPos);
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    public void drawLadder(int ladderPos) {
+        checkPos(ladderPos);
+        if (isDrawLadder(ladderPos)) {
+            points.set(ladderPos, true);
+        }
+    }
+
+    private boolean isDrawLadder(int ladderPos) {
+        if (ladderPos == 0) {
+            return checkCur(ladderPos) && checkRight(ladderPos);
+        }
+        return checkLeft(ladderPos) && checkCur(ladderPos) && checkRight(ladderPos);
     }
 
     private void checkPos(int point) {
@@ -29,13 +47,17 @@ public class Line {
         }
     }
 
-    public void drawLadder(int ladderPos) {
-        checkPos(ladderPos);
-        points.set(ladderPos, true);
-        points.set(ladderPos + 1, true);
+    private boolean checkLeft(int ladderPos) {
+        return !points.get(ladderPos - 1);
     }
 
-    public int getMaxLength() {
-        return maxLength;
+    private boolean checkRight(int ladderPos) {
+        return !points.get(ladderPos + 1);
     }
+
+    private boolean checkCur(int ladderPos) {
+        return !points.get(ladderPos);
+    }
+
+
 }
