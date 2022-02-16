@@ -1,21 +1,21 @@
 public class Ladder {
 
-  private String ladderFrame;
-  private String ladderLine;
+  private char ladderFrame;
+  private char ladderLine;
 
-  public String getLadderFrame() {
+  public char getLadderFrame() {
     return ladderFrame;
   }
 
-  public void setLadderFrame(String ladderFrame) {
+  public void setLadderFrame(char ladderFrame) {
     this.ladderFrame = ladderFrame;
   }
 
-  public String getLadderLine() {
+  public char getLadderLine() {
     return ladderLine;
   }
 
-  public void setLadderLine(String ladderLine) {
+  public void setLadderLine(char ladderLine) {
     this.ladderLine = ladderLine;
   }
 }

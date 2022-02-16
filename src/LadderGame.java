@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class LadderGame {
 
-  private String[][] ladders;
+  private char[][] ladders;
 
   public Ladders gameInfo() {
     System.out.println("참여할 사람은 몇 명인가요?");
@@ -14,7 +14,7 @@ public class LadderGame {
     return new Ladders(numOfPeople, heightOfLadder);
   }
 
-  public String[][] makeLadder(Ladders ladder) {
+  public char[][] makeLadder(Ladders ladder) {
     initLadders(ladder);
 
     for (int whatFloor = 0; whatFloor < ladders.length; whatFloor++) {
@@ -25,23 +25,26 @@ public class LadderGame {
 
   public void printLadder() {
     for (int i = 0; i < ladders.length; i++) {
-      for (int j = 0; j < ladders[i].length; j++) {
-        System.out.print(ladders[i][j]);
-      }
+      printOneFloor(ladders[i]);
       System.out.println();
     }
   }
 
-  private void initLadders(Ladders ladder) {
-    ladders = new String[ladder.getHeight()][ladder.getNumOfcolumns()];
+  private void printOneFloor(char[] oneFloor) {
+    System.out.print(oneFloor);
   }
 
-  private String[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
+
+  private void initLadders(Ladders ladder) {
+    ladders = new char[ladder.getHeight()][ladder.getNumOfcolumns()];
+  }
+
+  private char[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
     return getOneFloorLadderShape(numOfColumns);
   }
 
-  private String[] getOneFloorLadderShape(int numOfColumns) {
-    String[] oneFloor = new String[numOfColumns];
+  private char[] getOneFloorLadderShape(int numOfColumns) {
+    char[] oneFloor = new char[numOfColumns];
 
     for (int column = 0; column < numOfColumns - 1; column += 2) {
       Ladder ladder = getLadderShape(column, numOfColumns);
@@ -68,7 +71,7 @@ public class LadderGame {
   }
 
 
-  private String getLadderLine() {
+  private char getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
     if (isLineExist) {
       return LadderShape.LADDER_LINE_EXIST;
