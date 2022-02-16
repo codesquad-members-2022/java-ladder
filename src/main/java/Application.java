@@ -1,9 +1,9 @@
-import controller.GameController;
+import controller.LadderGame;
 
 public class Application {
 
     public static void main(String[] args) {
-        GameController ladderGame = new GameController();
-        ladderGame.ladderGameStart();
+        LadderGame ladderGame = new LadderGame();
+        ladderGame.start();
     }
 }
