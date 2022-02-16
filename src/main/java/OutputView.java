@@ -36,13 +36,13 @@ public class OutputView {
         int playCount = line.getMaxLength();
         sb.append("     ");
         for (int i = 0; i < playCount - 1; i++) {
-            appendRadder(sb, line, i);
+            appendLadder(sb, line, i);
         }
         sb.append("|\n");
     }
 
-    private static void appendRadder(StringBuilder sb, Line line, int radderPos) {
-        if (line.isRadder(radderPos)) {
+    private static void appendLadder(StringBuilder sb, Line line, int ladderPos) {
+        if (line.isLadder(ladderPos)) {
             sb.append("|-----");
             return;
         }

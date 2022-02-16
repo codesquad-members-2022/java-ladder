@@ -19,6 +19,6 @@ public class StringUtilsTest {
         String overName = "hoooooooooooooooooooonux";
 
         assertThat(StringUtils.center(name, 10, ' ')).isEqualTo("  honux   ");
-        assertThat(StringUtils.center(overName, 10, ' ')).isEqualTo("hooooooooo");
+        assertThat(StringUtils.center(overName, 10, ' ')).isEqualTo("hooooooo..");
     }
 }

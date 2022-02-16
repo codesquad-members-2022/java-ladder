@@ -9,7 +9,7 @@ public class InputView {
         throw new IllegalStateException("Utility class");
     }
 
-    public static int getInputNumer(String message) {
+    public static int getInputNumber(String message) {
         OutputView.printMessage(message);
         return scanner.nextInt();
     }

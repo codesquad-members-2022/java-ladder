@@ -33,19 +33,19 @@ public class Ladder {
         }
     }
 
-    public void drawRadder(int linePos, int radderPos) {
-        lines.get(linePos).drawRadder(radderPos);
+    public void drawLadder(int linePos, int ladderPos) {
+        lines.get(linePos).drawLadder(ladderPos);
     }
 
     private void drawRandomLine(Line line) {
-        for (int radderPos = 0; radderPos < players.size() - 1; radderPos++) {
-            drawRandomRadder(line, radderPos);
+        for (int ladderPos = 0; ladderPos < players.size() - 1; ladderPos++) {
+            drawRandomLadder(line, ladderPos);
         }
     }
 
-    private void drawRandomRadder(Line line, int radderPos) {
+    private void drawRandomLadder(Line line, int ladderPos) {
         if (isRandomDraw())
-            line.drawRadder(radderPos);
+            line.drawLadder(ladderPos);
     }
 
     private boolean isRandomDraw() {

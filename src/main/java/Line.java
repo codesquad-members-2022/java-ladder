@@ -18,9 +18,9 @@ public class Line {
         return line;
     }
 
-    public boolean isRadder(int radderPos) {
-        checkPos(radderPos);
-        return points.get(radderPos) && points.get(radderPos + 1);
+    public boolean isLadder(int ladderPos) {
+        checkPos(ladderPos);
+        return points.get(ladderPos) && points.get(ladderPos + 1);
     }
 
     private void checkPos(int point) {
@@ -29,10 +29,10 @@ public class Line {
         }
     }
 
-    public void drawRadder(int radderPos) {
-        checkPos(radderPos);
-        points.set(radderPos, true);
-        points.set(radderPos + 1, true);
+    public void drawLadder(int ladderPos) {
+        checkPos(ladderPos);
+        points.set(ladderPos, true);
+        points.set(ladderPos + 1, true);
     }
 
     public int getMaxLength() {
