@@ -3,6 +3,8 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.LadderRow;
+
 public class PrintView {
 
     public static void printPeopleName() {
@@ -13,7 +15,7 @@ public class PrintView {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void showLadder(List<String> peoples, ArrayList<ArrayList<String>> ladderBoard) {
+    public static void showLadder(List<String> peoples, List<LadderRow> ladderBoard) {
         namePrinter(peoples);
         ladderPrinter(ladderBoard);
     }
@@ -46,10 +48,9 @@ public class PrintView {
         return s;
     }
 
-    private static void ladderPrinter(ArrayList<ArrayList<String>> ladderBoard) {
-        for (ArrayList<String> list : ladderBoard) {
-            list.forEach(System.out::print);
-            System.out.println();
-        }
+    private static void ladderPrinter(List<LadderRow> ladderBoard) {
+        ladderBoard.stream()
+            .map(LadderRow::getRow)
+            .forEach(System.out::print);
     }
 }

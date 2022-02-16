@@ -1,3 +1,5 @@
+import domain.LadderGameController;
+
 public class Client {
     public static void main(String[] args) {
         LadderGameController.gameStart();
