@@ -23,42 +23,6 @@ public class LadderGame {
     return ladders;
   }
 
-  private void initLadders(Ladders ladder) {
-    ladders = new String[ladder.getHeight()][ladder.getNumOfcolumns()];
-  }
-
-  private String[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
-    return getOneFloorLadderShape(numOfColumns);
-  }
-
-
-  private String[] getOneFloorLadderShape(int numOfColumns) {
-    String[] oneFloor = new String[numOfColumns];
-
-    for (int column = 0; column < numOfColumns - 1; column += 2) {
-      Ladder ladder = getLadderShape(column, numOfColumns);
-      oneFloor[column] = ladder.getLadderFrame();
-      oneFloor[column + 1] = ladder.getLadderline();
-    }
-    return oneFloor;
-  }
-
-  private Ladder getLadderShape(int column, int numOfColumns) {
-    Ladder ladder = new Ladder();
-    ladder.setLadderFrame(LadderShape.LADDER_FRAME);
-    if (column == numOfColumns - 2) {
-      ladder.setLadderline(LadderShape.LADDER_LINE_NOEXIST);
-      return ladder;
-    }
-
-    ladder.setLadderline(getLadderLine());
-    return ladder;
-  }
-
-  private int inputNumber() {
-    return new Scanner(System.in).nextInt();
-  }
-
   public void printLadder() {
     for (int i = 0; i < ladders.length; i++) {
       for (int j = 0; j < ladders[i].length; j++) {
@@ -67,6 +31,42 @@ public class LadderGame {
       System.out.println();
     }
   }
+
+  private void initLadders(Ladders ladder) {
+    ladders = new String[ladder.getHeight()][ladder.getNumOfcolumns()];
+  }
+
+  private String[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
+    return getOneFloorLadderShape(numOfColumns);
+  }
+
+  private String[] getOneFloorLadderShape(int numOfColumns) {
+    String[] oneFloor = new String[numOfColumns];
+
+    for (int column = 0; column < numOfColumns - 1; column += 2) {
+      Ladder ladder = getLadderShape(column, numOfColumns);
+      oneFloor[column] = ladder.getLadderFrame();
+      oneFloor[column + 1] = ladder.getLadderLine();
+    }
+    return oneFloor;
+  }
+
+  private Ladder getLadderShape(int column, int numOfColumns) {
+    Ladder ladder = new Ladder();
+    ladder.setLadderFrame(LadderShape.LADDER_FRAME);
+    if (column == numOfColumns - 2) {
+      ladder.setLadderLine(LadderShape.LADDER_LINE_NOEXIST);
+      return ladder;
+    }
+
+    ladder.setLadderLine(getLadderLine());
+    return ladder;
+  }
+
+  private int inputNumber() {
+    return new Scanner(System.in).nextInt();
+  }
+
 
   private String getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
