@@ -7,7 +7,7 @@ public class LadderGame {
 
 	private char[][] ladderFrame;
 	private boolean[][] ladderFoothold;
-	private List<String> users;
+	private List<User> users;
 	private Random random;
 	private int userNumber;
 	private int ladderHeight;
@@ -22,7 +22,7 @@ public class LadderGame {
 	public void start() {
 		init();
 		makeLadder();
-		PrintLadder.printLadder(ladderFrame, ladderFoothold);
+		PrintLadder.printLadder(ladderFrame, ladderFoothold, users);
 		Input.close();
 	}
 

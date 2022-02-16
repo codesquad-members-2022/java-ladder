@@ -1,10 +1,18 @@
+import java.util.List;
+
 public class PrintLadder {
 
 	private static final StringBuilder sb = new StringBuilder();
 
 	private PrintLadder() {}
 
-	public static void printLadder(char[][] ladderFrame, boolean[][] ladderFoothold) {
+	public static void printLadder(char[][] ladderFrame, boolean[][] ladderFoothold, List<User> users) {
+
+		for (User user : users) {
+			sb.append(user).append(" ");
+		}
+		sb.append("\n");
+
 		for (int i = 0; i < ladderFrame.length; i++) {
 			appendStringByLine(ladderFrame, ladderFoothold, i);
 		}
