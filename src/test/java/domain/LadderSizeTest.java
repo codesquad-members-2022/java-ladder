@@ -1,6 +1,7 @@
 package domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,5 +28,13 @@ public class LadderSizeTest {
 
         LadderSize ladderSize2 = LadderSize.create(1, 5);
         assertThat(ladderSize2.getCountOfLine(0.3)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("총 인원수의 배수 구하기")
+    void multipleNumberOfPerson(){
+        LadderSize ladderSize = LadderSize.create(3, 4);
+        assertThat(ladderSize.isMultipleOfPersonNum(8)).isTrue();
+        assertThat(ladderSize.isMultipleOfPersonNum(9)).isFalse();
     }
 }

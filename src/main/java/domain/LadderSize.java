@@ -35,4 +35,8 @@ public class LadderSize {
     public int getNumOfPerson() {
         return numOfPerson;
     }
+
+    public boolean isMultipleOfPersonNum(int num) {
+        return num % numOfPerson == 0;
+    }
 }
