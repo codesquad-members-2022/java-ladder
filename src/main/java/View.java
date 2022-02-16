@@ -2,19 +2,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class View {
     private static Scanner sc = new Scanner(System.in);
 
-    public static LadderMap createMap() {
-        String[] names = getNames();
-        int ladderHeight = getLadderHeight();
-
-        List<Ladder> ladderList = Arrays.stream(names)
-                .map(name -> new Ladder(name))
+    public static Ladder createLadder() {
+        String[] personNames = getNames();
+        List<Person> personList = Arrays.stream(personNames)
+                .map(name -> new Person(name))
                 .collect(Collectors.toList());
-        return new LadderMap(ladderList, ladderHeight);
+
+        int ladderHeight = getLadderHeight();
+        return new Ladder(personList, ladderHeight);
     }
 
     private static int getLadderHeight() {
