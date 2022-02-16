@@ -22,6 +22,14 @@ public class Position {
         return num >= 0;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
