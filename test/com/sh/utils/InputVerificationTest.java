@@ -40,6 +40,7 @@ class InputVerificationTest {
 	private static final int invalidHeightOfMin = 0;
 	private static final int invalidHeightOfMax = 21;
 
+/*
 	@ParameterizedTest
 	@ValueSource(ints = {Integer.MAX_VALUE, invalidRangeOfMin, invalidRangeOfMax, Integer.MAX_VALUE})
 	void invalid_number_of_people_input_value_test(int numberOfPeople) {
@@ -53,6 +54,7 @@ class InputVerificationTest {
 	void number_of_people_input_value_test(int numberOfPeople) {
 		isValidNumberOfPeople(numberOfPeople);
 	}
+*/
 
 	@ParameterizedTest
 	@MethodSource("provideHeights")
