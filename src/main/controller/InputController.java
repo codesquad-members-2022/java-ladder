@@ -16,14 +16,14 @@ public class InputController {
     public static int inputPositiveNumber(String msg) throws IOException {
         printMessage(msg);
         int posNumber = Integer.parseInt(br.readLine());
-        validator.isPosNumber(posNumber);
+        validator.validatePositiveNumber(posNumber);
         return posNumber;
     }
 
     public static String[] inputStringWithDelimiter(String msg, String delimiter, int max) throws IOException {
         printMessage(msg);
         String[] names = br.readLine().split(delimiter);
-        validator.isInRange(names, max);
+        validator.validateNameInRange(names, max);
         return names;
     }
 
