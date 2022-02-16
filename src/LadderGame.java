@@ -47,20 +47,15 @@ public class LadderGame {
 		for (int i = 0; i < randomRepeatNum; i++) {
 			int n = random.nextInt(ladderHeight);
 			int m = random.nextInt(userNumber - 1);
-			if (m != 0 && m != userNumber - 2) {
-				if (!ladderFoothold[n][m - 1] && !ladderFoothold[n][m + 1]) {
-					ladderFoothold[n][m] = true;
-				}
+			if (m != 0 && m != userNumber - 2 && !ladderFoothold[n][m - 1] && !ladderFoothold[n][m
+				+ 1]) {
+				ladderFoothold[n][m] = true;
 			}
-			if (m == 0) {
-				if (!ladderFoothold[n][m + 1]) {
-					ladderFoothold[n][m] = true;
-				}
+			if (m == 0 && !ladderFoothold[n][m + 1]) {
+				ladderFoothold[n][m] = true;
 			}
-			if (m == userNumber - 2) {
-				if (!ladderFoothold[n][m - 1]) {
-					ladderFoothold[n][m] = true;
-				}
+			if (m == userNumber - 2 && !ladderFoothold[n][m - 1]) {
+				ladderFoothold[n][m] = true;
 			}
 		}
 	}
