@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class NameEditor {
 	private boolean isValidate(String name){
 		if(name.length() > 5){
@@ -6,13 +9,34 @@ class NameEditor {
 		return true;
 	}
 
-	private String shortenName(String name){
+	private String shorten(String name){
 		String shortName = name.substring(0, 5);
 		return shortName;
 	}
 
-	private String extendName(String name){
+	private String extend(String name){
 		String extendedName = name + " ".repeat(5-name.length());
 		return extendedName;
+	}
+
+	private String edit(String name){
+		String newName;
+		if(isValidate(name)){
+			newName = extend(name);
+			return newName;
+		}
+		newName = shorten(name);
+		return newName;
+	}
+
+	protected List<String> makeList(String[] names){
+
+		List<String> nameList = new ArrayList<>();
+		for(String name : names){
+			String editedName = edit(name);
+			nameList.add(editedName);
+		}
+
+		return nameList;
 	}
 }
