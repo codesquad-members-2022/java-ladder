@@ -38,7 +38,7 @@ public enum LadderElement implements LadderOperation {
     BLANK("     ") {
         @Override
         public boolean check(int col, boolean prev, boolean rand) {
-            return col % 2 != 0 && !prev || !rand;
+            return col % 2 != 0 && (!prev || !rand);
         }
 
         @Override
