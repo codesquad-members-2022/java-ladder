@@ -1,7 +1,5 @@
 package main.domain;
 
-import java.util.List;
-
 public enum LadderElement implements LadderOperation {
     VERTICAL("|") {
         @Override

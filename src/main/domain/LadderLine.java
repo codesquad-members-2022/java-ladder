@@ -25,7 +25,8 @@ public class LadderLine {
         }
     }
 
-    private LadderElement add(int ind, boolean next, boolean rand) {
+    // public for test
+    public LadderElement add(int ind, boolean next, boolean rand) {
         LadderElement ladderElement = LadderOperation.create(ind, next, rand);
         elements.add(ladderElement);
 
