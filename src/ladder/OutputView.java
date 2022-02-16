@@ -14,10 +14,14 @@ public class OutputView {
 
     public void printGhostLeg(int[][] ghostLeg) {
         for (int row = 0; row < ghostLeg.length; row++) {
-            for (int column = 0; column < ghostLeg[row].length; column++) {
-                printElements(ghostLeg[row][column]);
-            }
+            printColumn(ghostLeg[row]);
             System.out.println();
+        }
+    }
+
+    private void printColumn(int[] ghostLeg) {
+        for (int column = 0; column < ghostLeg.length; column++) {
+            printElements(ghostLeg[column]);
         }
     }
 
