@@ -1,11 +1,14 @@
 package app.jinan159.ladder.io;
 
+import app.jinan159.ladder.LadderGame;
 import app.jinan159.ladder.meta.Participant;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputReader implements Closeable {
@@ -16,7 +19,6 @@ public class InputReader implements Closeable {
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
     private final static String ALERT_VALIDATION_FAILED = "(주의) 입력하신 항목을 다시한번 확인해 주세요.";
     private final static int READ_NUMBER_FAILED = -1;
-    private final static int MAX_NAME_LENGTH = 5;
 
     public final Scanner sc;
 
@@ -98,7 +100,7 @@ public class InputReader implements Closeable {
     }
 
     private void validateNamesLength(String input) {
-        if (input.length() > MAX_NAME_LENGTH) {
+        if (input.length() > LadderGame.MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
         }
     }
