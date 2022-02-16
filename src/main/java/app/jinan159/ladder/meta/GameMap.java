@@ -1,33 +1,43 @@
 package app.jinan159.ladder.meta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameMap {
 
-    private final LadderElement[][] gameMap;
+    private final List<List<LadderElement>> gameMap;
+    private final int width;
+    private final int height;
 
     public GameMap(int participantCount, int height) {
-        this.gameMap = new LadderElement[height][participantCount * 2 - 1];
+        this.width = participantCount * 2 - 1;
+        this.height = height;
+        gameMap = new ArrayList<>(height);
+        for (int i = 0; i < height; i++) {
+            gameMap.add(new ArrayList<>(width));
+        }
     }
 
     public LadderElement get(int x, int y) {
-        return gameMap[y][x];
+        return gameMap.get(y).get(x);
     }
 
     public void set(int x, int y, LadderElement value) {
-        gameMap[y][x] = value;
+        gameMap.get(y).add(x, value);
     }
 
     public int getWidth() {
-        return gameMap[0].length;
+        return this.width;
     }
 
     public int getHeight() {
-        return gameMap.length;
+        return this.height;
     }
 
     public String gameMapToString() {
         StringBuilder sb = new StringBuilder();
 
-        for (LadderElement[] row : this.gameMap) {
+        for (List<LadderElement> row : this.gameMap) {
             sb.append(rowToString(row));
             sb.append('\n');
         }
@@ -35,7 +45,7 @@ public class GameMap {
         return sb.toString();
     }
 
-    private String rowToString(LadderElement[] row) {
+    private String rowToString(List<LadderElement> row) {
         StringBuilder sb = new StringBuilder();
         for (LadderElement col : row) {
             sb.append(col.getMark());
