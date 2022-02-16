@@ -34,4 +34,8 @@ public class Line {
         points.set(radderPos, true);
         points.set(radderPos + 1, true);
     }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class OutputView {
     private OutputView() {
         throw new IllegalStateException("Utility class");
@@ -7,30 +9,30 @@ public class OutputView {
         System.out.println(str);
     }
 
-    public static void print(int[][] lines) {
+    public static void print(List<Line> lines) {
         StringBuilder sb = new StringBuilder();
-        for (int row_i = 0; row_i < lines.length; row_i++) {
-            appendLine(sb, lines, row_i);
+
+        for (Line line : lines) {
+            appendLine(sb, line);
         }
+
         System.out.println(sb);
     }
 
-    private static void appendLine(StringBuilder sb, int[][] lines, int row_i) {
-        for (int col_i = 0; col_i < lines[0].length - 1; col_i++) {
-            appendRadder(sb, lines, row_i, col_i);
+    private static void appendLine(StringBuilder sb, Line line) {
+        int playCount = line.getMaxLength();
+        sb.append("     ");
+        for (int i = 0; i < playCount - 1; i++) {
+            appendRadder(sb, line, i);
         }
         sb.append("|\n");
     }
 
-    private static void appendRadder(StringBuilder sb, int[][] lines, int row_i, int col_i) {
-        if (isRadder(col_i, lines[row_i])) {
-            sb.append("|-");
+    private static void appendRadder(StringBuilder sb, Line line, int radderPos) {
+        if (line.isRadder(radderPos)) {
+            sb.append("|-----");
             return;
         }
-        sb.append("| ");
-    }
-
-    private static boolean isRadder(int col_i, int[] lines) {
-        return lines[col_i] == 1 && lines[col_i + 1] == 1;
+        sb.append("|     ");
     }
 }
