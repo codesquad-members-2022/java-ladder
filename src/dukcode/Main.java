@@ -16,7 +16,7 @@ public class Main {
         PrintView printView = new PrintView(ladder);
         LadderController ladderController = new LadderController(printView, ladder);
 
-        ladderController.initLadder(scanView.getNumPlayer(), scanView.getHeight());
+        ladderController.initLadder(scanView.getPlayerName(), scanView.getHeight());
         ladderController.updatePrintView();
         sc.close();
     }
