@@ -1,7 +1,5 @@
 package main.util;
 
-import main.util.InputValidator;
-
 public class nameFormatter {
 
     public static final int MAX_LENGTH = InputValidator.MAXIMUM_NAME_LENGTH;
