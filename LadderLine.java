@@ -5,7 +5,7 @@ class LadderLine {
 	private static final char LADDER_LINE = '-';
 	private static final char BLANK = ' ';
 
-	char makeLadderLine(int column){
+	char make(int column){
 		Random random = new Random();
 
 		if(column % 2 == 0){

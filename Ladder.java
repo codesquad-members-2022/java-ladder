@@ -3,13 +3,13 @@ class Ladder {
 
 	LadderLine ladderLine = new LadderLine();
 
-	char[][] makeLadder(int peopleNumber, int ladderHeight){
+	char[][] make(int peopleNumber, int ladderHeight){
 		this.width = getWidth(peopleNumber);
 
 		char[][] ladder = new char [ladderHeight][width];
 
 		for(int row = 0; row < ladderHeight; row++){
-			getLadderLine(row, ladder);
+			getLine(row, ladder);
 		}
 
 		return ladder;
@@ -19,9 +19,9 @@ class Ladder {
 		return peopleNumber * 2 - 1;
 	}
 
-	private void getLadderLine(int row, char[][] ladder) {
+	private void getLine(int row, char[][] ladder) {
 		for (int column = 0; column < width; column++){
-			ladder[row][column] = ladderLine.makeLadderLine(column);
+			ladder[row][column] = ladderLine.make(column);
 		}
 	}
 }

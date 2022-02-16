@@ -7,7 +7,7 @@ public class Application {
 		int ladderHeight = inputView.getLadderHeight();
 
 		Ladder ladder = new Ladder();
-		char[][] ladderForGame = ladder.makeLadder(peopleNumber, ladderHeight);
+		char[][] ladderForGame = ladder.make(peopleNumber, ladderHeight);
 
 		OutView outView = new OutView();
 		outView.print(ladderForGame);
