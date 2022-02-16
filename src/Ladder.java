@@ -2,6 +2,7 @@ import java.util.Random;
 
 public class Ladder {
 
+    StringBuilder sb = new StringBuilder();
     Random ran = new Random();
     int playerCount;
     int heightLadder;
@@ -13,37 +14,34 @@ public class Ladder {
         this.ladder = new char[heightLadder][playerCount*2-1];
     }
 
+    public char[][] makeLadder(){
+        for (int row = 0; row < ladder.length; row++) {
+            ladder = makeLadderColumn(ladder, row);
+        }
+        return ladder;
+    }
 
+    public char[][] makeLadderColumn(char[][] ladder, int row){
+        for (int column = 0; column < ladder[row].length; column++) {
+            ladder = makeLine(ladder, row, column);
+            ladder = makeStick(ladder, row, column);
+        }
+        return ladder;
+    }
 
-    public char[][] makeLine(char[][] ladder){
+    public char[][] makeLine(char[][] ladder, int row, int column){
         if (ran.nextBoolean()){
-            ladder[heightLadder][playerCount] = ' ';
+            ladder[row][column] = ' ';
             return ladder;
         }
-        ladder[heightLadder][playerCount] = '-';
+        ladder[row][column] = '-';
         return ladder;
     }
 
-    public char[][] makeStick(){
-        if (playerCount % 2 == 0) {
-            ladder[heightLadder][playerCount] = '|';
+    public char[][] makeStick(char[][] ladder, int row, int column){
+        if (column % 2 == 0) {
+            ladder[row][column] = '|';
         }
         return ladder;
     }
-
-    public char[][] makeLadder(){
-        char[] RandomLine = {' ', '-'};
-
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                if (j % 2 == 0){
-                    ladder[i][j] = '|';
-                } else {
-                    ladder[i][j] = RandomLine[ran.nextInt(2)];
-                }
-            }
-        }
-        return ladder;
-    }
-
 }
