@@ -1,5 +1,7 @@
 package View;
 
+import Util.Validation;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -12,7 +14,14 @@ public class InputView {
     public static String askPlayers() {
         System.out.println(PLAYER_NAMES_COMMAND);
         System.out.println(PLAYER_NAMES_RESTRICTIONS);
-        return scanner.nextLine().replaceAll(" ","");
+        String players = scanner.nextLine().replaceAll(" ","");
+        try {
+            Validation.checkInputNames(players);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askPlayers();
+        }
+        return players;
     }
 
     public static int askLadderHeight() {
