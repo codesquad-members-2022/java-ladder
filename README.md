@@ -28,7 +28,7 @@
   │   │    ├── 📁controller
   │   │    │   ├── 📘LadderController.java
   │   │    ├── 📁message
-  │   │    │   ├── 📘InputViewMessage.java  
+  │   │    │   ├── 📘GameMessage.java  
   │   │    │   └── 📘ShapeMessage.java
   │   │    ├── 📁model.game
   │   │    │   ├── 📁ladder
@@ -120,6 +120,16 @@
       }
   }
   ```
+
+  - ### 예외처리 시나리오
+    ![SmartSelectImage_2022-02-17-01-15-43](https://user-images.githubusercontent.com/47964708/154310309-b4f5c29d-1fe9-4f49-b488-b098689664ee.png)  
+    ![SmartSelectImage_2022-02-17-01-17-09](https://user-images.githubusercontent.com/47964708/154310315-9d8b894c-932e-421a-a392-90d65f80bff1.png)  
+    ![SmartSelectImage_2022-02-17-01-17-33](https://user-images.githubusercontent.com/47964708/154310317-6949ef37-3d72-4536-bbff-9cbf93ec010c.png)  
+    ![SmartSelectImage_2022-02-17-01-14-25](https://user-images.githubusercontent.com/47964708/154310433-4ad052cb-acaa-49cd-972b-8e8498e4fe53.png)
+
+  - IllegalArgumentException 이 발생하면 해당 에러는 생성자가 생성되면서 발생하는 에러이기에 RuntimeException 으로 바꿔 던져주었습니다.
+  - 이에 사용자는 해당 예외를 받아 사용자에게 보여지기 위한 에러 메시지를 화면단에 출력하도록하고, 구체적인 에러 사항은 개발자에게 보여지도록 시나리오를 짰습니다.
+  
   - ### 결과화면
     ![SmartSelectImage_2022-02-16-19-04-57](https://user-images.githubusercontent.com/47964708/154247947-9c18d55d-a7a2-4389-aa24-886fb028a748.png)  
     ![SmartSelectImage_2022-02-16-19-37-39](https://user-images.githubusercontent.com/47964708/154247950-dd373f81-4d31-4948-b50f-b87991be170c.png)  
