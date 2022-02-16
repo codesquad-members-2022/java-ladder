@@ -125,9 +125,47 @@
   ```
 
   - ### 예외처리 시나리오
-    ![SmartSelectImage_2022-02-17-04-42-04](https://user-images.githubusercontent.com/47964708/154343249-3cd11168-ee65-40c7-8686-a64be8709626.png)  
-    ![SmartSelectImage_2022-02-17-01-17-09](https://user-images.githubusercontent.com/47964708/154310315-9d8b894c-932e-421a-a392-90d65f80bff1.png)  
-    ![SmartSelectImage_2022-02-17-01-17-33](https://user-images.githubusercontent.com/47964708/154310317-6949ef37-3d72-4536-bbff-9cbf93ec010c.png)  
+  ```java
+  // Shape Class Instance Method
+  public void addElement(int row, T element) {
+      if (row >= height) {
+          throw new IllegalArgumentException(getRowIndexErrMsg(height));
+      }
+      if (getSize(row) >= width) {
+          throw new IllegalArgumentException(getColIndexErrMsg(row, width));
+      }
+      shape.get(row).add(element);
+  }
+  ```
+  ```java
+  // Ladder Class Instance Method
+  private void createLine(int h) {
+      int width = shape.getWidth();
+      for (int w = 0; w < width; ++w) {
+          try {
+              shape.addElement(h, allocElement(h, w));
+          } catch (IllegalArgumentException e) {
+              throw new RuntimeException(e);
+          }
+      }
+  }
+  ```
+  ```java
+  // Application Class Instance Method
+  public void run() {
+      try {
+          List<Player> players = readPlayers();
+          int height = readLadderHeight();
+          Game game = ready(players, height);
+          ov.printGame(game);
+      } catch (RuntimeException e) {
+          ov.printErrMsg(RUNTIME_ERROR_MESSAGE);
+          e.printStackTrace();
+      } finally {
+          iv.close();
+      }
+  }
+  ```
     ![SmartSelectImage_2022-02-17-01-14-25](https://user-images.githubusercontent.com/47964708/154310433-4ad052cb-acaa-49cd-972b-8e8498e4fe53.png)
 
   - IllegalArgumentException 이 발생하면 해당 에러는 생성자가 생성되면서 발생하는 에러이기에 RuntimeException 으로 바꿔 던져주었습니다.
