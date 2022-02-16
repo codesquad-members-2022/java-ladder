@@ -1,44 +1,46 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class Ladder {
 
-    Scanner sc = new Scanner(System.in);
-    Random ran = new Random();
+    private Random ran = new Random();
+    private char[][] ladder;
+    private int playerCount;
+    private int heightLadder;
 
-    public int InputInfo(String Questions){
-        System.out.println(Questions);
-        return sc.nextInt();
+    public Ladder(int playerCount, int heightLadder) {
+        this.playerCount = playerCount;
+        this.heightLadder = heightLadder;
+        this.ladder = new char[heightLadder][playerCount*2-1];
     }
 
-    public String[][] LadderInfo(int Player, int LadderHeight){
-
-        String[][] ladder = new String[LadderHeight][Player*2-1];
-        MakeLadder(ladder);
-
+    public char[][] makeLadder(){
+        for (int row = 0; row < ladder.length; row++) {
+            ladder = makeLadderColumn(ladder, row);
+        }
         return ladder;
     }
 
-    private void MakeLadder(String[][] ladder){
-        String[] RandomLine = {" ", "-"};
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                if (j % 2 == 0){
-                    ladder[i][j] = "|";
-                } else {
-                    ladder[i][j] = RandomLine[ran.nextInt(2)];
-                }
-            }
+    private char[][] makeLadderColumn(char[][] ladder, int row){
+        for (int column = 0; column < ladder[row].length; column++) {
+            ladder = makeLine(ladder, row, column);
+            ladder = makeStick(ladder, row, column);
         }
+        return ladder;
     }
 
-    public void PrintLadder(String[][] ladder){
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                System.out.print(ladder[i][j]);
-            }
-            System.out.println();
+    private char[][] makeLine(char[][] ladder, int row, int column){
+        if (ran.nextBoolean()){
+            ladder[row][column] = ' ';
+            return ladder;
         }
+        ladder[row][column] = '-';
+        return ladder;
     }
 
+    private char[][] makeStick(char[][] ladder, int row, int column){
+        if (column % 2 == 0) {
+            ladder[row][column] = '|';
+        }
+        return ladder;
+    }
 }
