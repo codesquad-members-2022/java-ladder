@@ -16,14 +16,12 @@ public class GameMap {
         for (int i = 0; i < height; i++) {
             gameMap.add(new ArrayList<>(width));
         }
+
+        prepareGameMap(this);
     }
 
     public LadderElement get(int x, int y) {
         return gameMap.get(y).get(x);
-    }
-
-    public void set(int x, int y, LadderElement value) {
-        gameMap.get(y).add(x, value);
     }
 
     public int getWidth() {
@@ -45,6 +43,34 @@ public class GameMap {
         return sb.toString();
     }
 
+    private void prepareGameMap(GameMap gameMap) {
+        for (int y = 0; y < gameMap.getHeight(); y++) {
+            prepareRow(gameMap, y);
+        }
+    }
+
+    private void prepareRow(GameMap gameMap, int y) {
+        for (int x = 0; x < gameMap.getWidth(); x++) {
+            LadderElement element = getLadderElementOnPotision(x, y);
+            gameMap.set(x, y, element);
+        }
+    }
+
+    private LadderElement getLadderElementOnPotision(int x, int y) {
+        // 홀수 번째 column은 세로줄을 입력함
+        if (x % 2 == 0) return LadderElement.V_LINE;
+
+        // 가상의 알고리즘 상으로, empty
+        if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
+
+        return LadderElement.H_LINE;
+    }
+
+    // 빈 공간이 들어올 자리인지, 아닌지를 반환하는 가상의 알고리즘
+    private boolean isEmptyPosition(int x, int y) {
+        return ((x * y) + (x + y)) % 3 == 0;
+    }
+
     private String rowToString(List<LadderElement> row) {
         StringBuilder sb = new StringBuilder();
         for (LadderElement col : row) {
@@ -52,6 +78,10 @@ public class GameMap {
         }
 
         return sb.toString();
+    }
+
+    private void set(int x, int y, LadderElement value) {
+        gameMap.get(y).add(x, value);
     }
 
 }
