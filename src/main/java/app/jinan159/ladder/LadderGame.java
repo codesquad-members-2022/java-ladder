@@ -1,86 +1,87 @@
 package app.jinan159.ladder;
 
-import app.jinan159.ladder.meta.Elements;
+import app.jinan159.ladder.meta.LadderElement;
+import app.jinan159.ladder.meta.GameMap;
+import app.jinan159.ladder.stretegy.DefaultGameMapStretegy;
+import app.jinan159.ladder.stretegy.LadderGameMapStretegy;
 
 import java.util.Scanner;
 
 public class LadderGame {
 
-    private final Elements[][] gameMap;
+    private final GameMap gameMap;
+    private final LadderGameMapStretegy stretegy;
 
     public LadderGame() {
-        Scanner sc = new Scanner(System.in);
-        int participantCount = readParticipantCount(sc);
-        int height = readHeight(sc);
-        this.gameMap = setGameMapSize(participantCount * 2 - 1, height);
-
-        prepareGameMap();
+        this(new DefaultGameMapStretegy());
     }
 
-    private int readParticipantCount(Scanner sc) {
-        int count;
+    public LadderGame(LadderGameMapStretegy stretegy) {
+        try (Scanner sc = new Scanner(System.in)) {
+            int participantCount = readParticipantCount(sc);
+            int height = readHeight(sc);
+            this.gameMap = new GameMap(participantCount, height);
+        }
 
+        this.stretegy = stretegy;
+        prepareGameMap(this.gameMap);
+    }
+
+    // ------- initialize private method ---------
+    private int readParticipantCount(Scanner sc) {
         try {
-            System.out.println("참여할 사람은 몇 명 인가요?");
-            count = sc.nextInt();
+            System.out.println("참여할 사람은 몇 명 인가요?(1명 이상)");
+            int count = sc.nextInt();
+            validateParticipantCount(count);
+            return count;
         } catch (Exception e) {
             return readParticipantCount(sc);
         }
+    }
 
-        return count;
+    private void validateParticipantCount(int count) {
+        if (count <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private int readHeight(Scanner sc) {
-        int height;
-
         try {
-            System.out.println("최대 사다리 높이는 몇 개인가요?");
-            height = sc.nextInt();
+            System.out.println("최대 사다리 높이는 몇 개인가요?(1개 이상)");
+            int height = sc.nextInt();
+            validateHeight(height);
+            return height;
         } catch (Exception e) {
             return readHeight(sc);
         }
-
-        return height;
     }
 
-    private Elements[][] setGameMapSize(int width, int height) {
-        return new Elements[height][width];
-    }
-
-    private void prepareGameMap() {
-        for (int h = 0; h < gameMap.length; h++) {
-            for (int w = 0; w < gameMap[0].length; w++) {
-                if (w % 2 == 0) setValueOnGameMap(w, h, Elements.V_LINE);
-                if (w % 2 == 1) setHorizontalValueOnGameMap(w, h);
-            }
+    private void validateHeight(int height) {
+        if (height <= 0) {
+            throw new IllegalArgumentException();
         }
     }
 
-    private void setValueOnGameMap(int width, int height, Elements elements) {
-        gameMap[height][width] = elements;
-    }
-
-    private void setHorizontalValueOnGameMap(int width, int height) {
-        if (isEmptyPosition(width, height)) {
-            setValueOnGameMap(width, height, Elements.EMPTY);
-            return;
+    private void prepareGameMap(GameMap gameMap) {
+        for (int y = 0; y < gameMap.getHeight(); y++) {
+            prepareRow(gameMap, y);
         }
-
-        setValueOnGameMap(width, height, Elements.H_LINE);
     }
 
-    private boolean isEmptyPosition(int width, int height) {
-        return ((width * height) + (width + height)) % 3 == 0;
+    private void prepareRow(GameMap gameMap, int y) {
+        for (int x = 0; x < gameMap.getWidth(); x++) {
+            LadderElement element = stretegy.getLadderElementOnPotision(x, y);
+            gameMap.set(x, y, element);
+        }
     }
 
-    // public method
+    // ------- public method ---------
     public void startGame() {
-        for(Elements[] row : gameMap) {
-            for(Elements col : row) {
-                System.out.print(col.getMark());
-            }
-            System.out.println();
-        }
+        printGameMap();
     }
 
+    // ------- private method ---------
+    private void printGameMap() {
+        System.out.println(gameMap.gameMapToString());
+    }
 }
