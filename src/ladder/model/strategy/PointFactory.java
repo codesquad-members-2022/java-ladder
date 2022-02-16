@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.strategy;
+
+import ladder.model.ladder.Point;
 
 public class PointFactory {
 

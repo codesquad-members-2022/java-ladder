@@ -1,5 +1,9 @@
-package ladder.model;
+package ladder.model.strategy;
 
+import ladder.model.*;
+import ladder.model.ladder.Height;
+import ladder.model.ladder.LadderLine;
+import ladder.model.ladder.Point;
 import ladder.utils.RandomGenerator;
 
 import java.util.ArrayList;
@@ -12,7 +16,7 @@ public class LadderLineFactory {
     private static DrawingStrategy strategy;
 
     static {
-        strategy = (LadderLineFactory::getLadderLine);
+        strategy = LadderLineFactory::getLadderLine;
     }
 
     public static List<LadderLine> getLadderLines(int playerCount, Height height) {

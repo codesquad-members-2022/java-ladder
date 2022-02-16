@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.strategy;
+
+import ladder.model.Direction;
 
 public class DirectionFactory {
 

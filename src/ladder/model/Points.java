@@ -1,5 +1,7 @@
 package ladder.model;
 
+import ladder.model.ladder.Point;
+
 public class Points {
 
     public static Point of(){

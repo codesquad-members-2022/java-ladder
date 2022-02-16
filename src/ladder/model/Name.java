@@ -8,11 +8,11 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validateNameLength(name);
+        validateLength(name);
         this.name = name;
     }
 
-    private void validateNameLength(String name) {
+    private void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException();
         }

@@ -1,4 +1,7 @@
-package ladder.model;
+package ladder.model.ladder;
+
+import ladder.model.Direction;
+import ladder.model.Points;
 
 public class Point {
 

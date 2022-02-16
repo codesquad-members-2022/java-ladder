@@ -9,6 +9,10 @@ public class Counts {
     private static final List<Count> counts = new ArrayList<>();
 
     static {
+        initCounts();
+    }
+
+    static void initCounts() {
         for (int index = 1; index < LIMIT; index++) {
             counts.add(new Count(index));
         }

@@ -1,4 +1,6 @@
-package ladder.model;
+package ladder.model.ladder;
+
+import ladder.model.strategy.LadderLineFactory;
 
 import java.util.List;
 import java.util.Objects;

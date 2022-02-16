@@ -1,13 +1,17 @@
 package ladder.model;
 
+import ladder.system.Configuration;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.List;
+
 public class GameManager {
 
-    private LadderGame ladderGame;
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
+    private LadderGame ladderGame = Configuration.ladderGame;
+
     private static final GameManager instance = new GameManager();
 
     private GameManager() {}
@@ -20,6 +24,6 @@ public class GameManager {
     }
 
     public void startGame() {
-        System.out.println("게임 시작");
+        List<Integer> a = inputView.getWidthAndHeight();
     }
 }

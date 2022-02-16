@@ -11,8 +11,14 @@ public class InputView {
     private static Input input = new Input();
     private static final int ELEMENTS_SIZE = 2;
 
+    private InputView() {}
+    private static final InputView instance = new InputView();
+
     public static InputView getInstance() {
-        return null;
+        if (instance == null) {
+            return new InputView();
+        }
+        return instance;
     }
 
     public List<Integer> getWidthAndHeight() {
