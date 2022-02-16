@@ -96,46 +96,12 @@ public class Ladder {
     private String putPlayers() {
         StringBuilder sb = new StringBuilder();
         for (String player : players) {
-            sb.append(checkPlayer(player));
+            sb.append(Formatter.check(player, WIDTH));
             sb.append(" ");
         }
         sb.append("\n");
         return sb.toString();
     }
-
-    private String checkPlayer(String player) {
-        if (player.length() >= WIDTH) {
-            return player.substring(0, 5);
-        }
-        return addPadding(player);
-    }
-
-    private String addPadding(String player) {
-        StringBuilder sb = new StringBuilder();
-        if (player.length() <= CENTER_OF_LETTERS) {
-            sb.append(addLeftPadding(player));
-        }
-        sb.append(player);
-        sb.append(addRightPadding(sb.toString()));
-
-        return sb.toString();
-    }
-
-    private String addLeftPadding(String player) {
-        if (player.length() < CENTER_OF_LETTERS) {
-            return "  ";
-        }
-        return " ";
-    }
-
-    private String addRightPadding(String player) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < WIDTH - player.length(); i++) {
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
 
 }
 
