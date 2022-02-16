@@ -2,7 +2,7 @@ package app.jinan159.ladder.meta;
 
 public enum LadderElement {
 
-    L_PAD("    "),
+    L_PAD("  "),
     V_LINE("|"),
     H_LINE("-----"),
     EMPTY("     ");

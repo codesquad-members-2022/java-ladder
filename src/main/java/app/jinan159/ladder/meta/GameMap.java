@@ -10,7 +10,7 @@ public class GameMap {
     private final int height;
 
     public GameMap(int participantCount, int height) {
-        this.width = participantCount * 2 - 1;
+        this.width = participantCount * 2;
         this.height = height;
         gameMap = new ArrayList<>(height);
         for (int i = 0; i < height; i++) {
@@ -57,8 +57,11 @@ public class GameMap {
     }
 
     private LadderElement getLadderElementOnPotision(int x, int y) {
-        // 홀수 번째 column은 세로줄을 입력함
-        if (x % 2 == 0) return LadderElement.V_LINE;
+        // 첫 번째 column은 lpad를 입력함
+        if (x == 0) return LadderElement.L_PAD;
+
+        // 짝수 번째 column은 세로줄을 입력함
+        if (x % 2 == 1) return LadderElement.V_LINE;
 
         // 가상의 알고리즘 상으로, empty
         if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
