@@ -11,7 +11,7 @@ public class LadderGame {
 
         Ladder ladder = new Ladder(height, playerCount);
 
-        outputView.printLadder(ladder);
+        outputView.printLayout(players, ladder);
 
         inputView.close();
     }

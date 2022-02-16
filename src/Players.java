@@ -16,6 +16,13 @@ public class Players {
         return playerList.size();
     }
 
+    @Override
+    public String toString() {
+        return playerList.stream()
+                .map(s -> "*" + s + " ")
+                .collect(Collectors.joining());
+    }
+
     private List<String> buildPlayerList (String[] playerNames) {
         return Stream.of(playerNames)
                 .map(this::truncate)

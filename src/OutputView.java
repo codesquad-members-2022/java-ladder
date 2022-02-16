@@ -1,10 +1,15 @@
 public class OutputView {
-    public void printWithSpacing(String message) {
+    public void printLayout(Players players, Ladder ladder) {
         System.out.println();
-        System.out.println(message);
+        printPlayers(players);
+        printLadder(ladder);
     }
 
-    public void printLadder(Ladder ladder) {
-        printWithSpacing(ladder.render());
+    private void printPlayers(Players players) {
+        System.out.println(players);
+    }
+
+    private void printLadder(Ladder ladder) {
+        System.out.println(ladder.render());
     }
 }
