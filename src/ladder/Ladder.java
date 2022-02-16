@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Ladder {
 
-    private final String verticalBar = "|";
-    private final String horizontalBar = "-";
-    private final String blank = " ";
-    private final String newLine = "\n";
-    private final Random random = new Random();
+    private static final String RAIL = "|";
+    private static final String STEP = "-";
+    private static final String BLANK = " ";
+    private static final String NEW_LINE = "\n";
+    private static final Random RANDOM = new Random();
     private String[][] ladder;
 
     public Ladder(int peopleCount, int ladderHeight) {
@@ -30,14 +30,14 @@ public class Ladder {
 
     private void insertLadderBar(int currentHeight, int horizontalIndex) {
         if (horizontalIndex % 2 == 0) {
-            ladder[currentHeight][horizontalIndex] = verticalBar;
+            ladder[currentHeight][horizontalIndex] = RAIL;
             return;
         }
-        if (random.nextBoolean()) {
-            ladder[currentHeight][horizontalIndex] = horizontalBar;
+        if (RANDOM.nextBoolean()) {
+            ladder[currentHeight][horizontalIndex] = STEP;
             return;
         }
-        ladder[currentHeight][horizontalIndex] = blank;
+        ladder[currentHeight][horizontalIndex] = BLANK;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Ladder {
         for (int i = 0; i < ladder[currentHeight].length; i++) {
             stringBuilder.append(ladder[currentHeight][i]);
         }
-        stringBuilder.append(newLine);
+        stringBuilder.append(NEW_LINE);
     }
 
 
