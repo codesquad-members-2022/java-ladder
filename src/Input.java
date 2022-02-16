@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,20 +21,18 @@ public class Input {
 	}
 
 	public static List<User> getUserName() {
-		List<User> userList = new ArrayList<>();
 		System.out.println("참여할 사람 이름을 입력하세요.");
 		String[] userNames = sc.nextLine().split(",");
-		return stringArrToListUser(userList, userNames);
+		return stringArrToList(userNames);
 	}
 
-	private static List<User> stringArrToListUser(List<User> userList, String[] userNames) {
-		for (String user : userNames) {
-			try {
-				userList.add(new User(user));
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-				return getUserName();
-			}
+	private static List<User> stringArrToList(String[] userNames) {
+		List<User> userList = new ArrayList<>();
+		try {
+			Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getUserName();
 		}
 		return userList;
 	}
