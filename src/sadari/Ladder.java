@@ -10,11 +10,15 @@ public class Ladder {
         people = people * 2 - 1;
         this.ladder = new String[height][people];
         for (int row = 0; row < ladder.length; row++) {
-            for (int column = 0; column < ladder[row].length; column++) {
-                ladder[row][column] = drawLines(column);
-            }
+            checkLadderParts(row);
         }
         print(ladder);
+    }
+
+    public void checkLadderParts (int row) {
+        for (int column = 0; column < ladder[row].length; column++) {
+            ladder[row][column] = drawLines(column);
+        }
     }
 
     public String drawLines(int column){
