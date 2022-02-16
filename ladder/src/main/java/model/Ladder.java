@@ -1,6 +1,8 @@
-package ladder;
+package model;
 
 import java.util.Random;
+
+import io.Output;
 
 public class Ladder {
 

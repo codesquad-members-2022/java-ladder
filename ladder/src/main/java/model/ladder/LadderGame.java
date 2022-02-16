@@ -1,4 +1,9 @@
-package ladder;
+package model.ladder;
+
+import exception.WrongInputException;
+import io.Input;
+import io.Output;
+import model.Ladder;
 
 public class LadderGame {
 
@@ -18,7 +23,7 @@ public class LadderGame {
                 ladderMaxHigh = output.printLadderMaxHighBar(input);
                 createLadder(userCount, ladderMaxHigh);
                 break;
-            } catch (NumberFormatException e) {
+            } catch (WrongInputException e) {
                 System.out.println("잘못된 입력입니다.");
             }
         }

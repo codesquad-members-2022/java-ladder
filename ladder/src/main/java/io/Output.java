@@ -1,6 +1,8 @@
-package ladder;
+package io;
 
 import java.util.Arrays;
+
+import io.Input;
 
 public class Output {
 
