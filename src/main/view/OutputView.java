@@ -3,10 +3,10 @@ package main.view;
 import java.util.Arrays;
 
 public class OutputView {
-    public static final String NUM_OF_ATTENDANTS = "참여할 사람은 몇 명인가요?";
+    public static final String NUM_OF_ATTENDANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     public static final String MAXIMUM_HEIGHT_OF_LADDERS = "최대 사다리 높이는 몇 개 인가요?";
 
-    public static void printNumOfPeopleQueryText() {
+    public static void printParticipantsNameQueryText() {
         System.out.println(NUM_OF_ATTENDANTS);
     }
     public static void printMaxHeightOfLadderQueryText() {
