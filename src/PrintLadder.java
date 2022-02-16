@@ -6,35 +6,19 @@ public class PrintLadder {
 
 	private PrintLadder() {}
 
-	public static void printLadder(char[][] ladderFrame, boolean[][] ladderFoothold, List<User> users) {
+	public static void printLadder(List<LadderLine> ladders, List<User> users) {
 
 		for (User user : users) {
 			sb.append(user).append(" ");
 		}
 		sb.append("\n");
 
-		for (int i = 0; i < ladderFrame.length; i++) {
-			sb.append("  ");
-			appendStringByLine(ladderFrame, ladderFoothold, i);
+		for (LadderLine ladder : ladders) {
+			sb.append("  ").append(ladder).append("\n");
 		}
+
 		System.out.println(sb);
 		sb.setLength(0);
-	}
-
-	private static void appendStringByLine(char[][] ladderFrame, boolean[][] ladderFoothold, int i) {
-		for (int j = 0; j < ladderFrame[i].length; j++) {
-			appendString(ladderFrame, ladderFoothold, i, j);
-		}
-	}
-
-	private static void appendString(char[][] ladderFrame, boolean[][] ladderFoothold, int i, int j) {
-		
-		if (j == ladderFrame[i].length - 1) {
-			sb.append(ladderFrame[i][j]).append("\n");
-			return;
-		}
-		sb.append(ladderFrame[i][j]).append(ladderFoothold[i][j] ? "-----" : "     ");
-		
 	}
 
 }
