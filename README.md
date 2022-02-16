@@ -43,10 +43,10 @@
   │   │    │   │   └── 📘Player.java
   │   │    │   └── 📘Game.java
   │   │    ├── 📁util
-  │   │    │   ├── 📘GameUtil.java 
+  │   │    │   ├── 📘GameUtils.java 
   │   │    │   ├── 📘Parser.java 
-  │   │    │   ├── 📘RandomUtil.java 
-  │   │    │   └── 📘StringUtil.java
+  │   │    │   ├── 📘RandomUtils.java 
+  │   │    │   └── 📘StringUtils.java
   │   │    ├── 📁view
   │   │    │   ├── 📘InputView.java
   │   │    │   └── 📘OutputView.java
