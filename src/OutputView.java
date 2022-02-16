@@ -16,16 +16,12 @@ public class OutputView {
     }
 
     public static void printGraphicalSadari(boolean[][] sadari){
-        for(int i = 0; i < sadari.length; i++){
-            StringBuilder line = new StringBuilder();
-            line.append( sero );
-            for(int j = 0; j < sadari[0].length; j++){
-                line.append( sadari[i][j]==false ? empty : garo );
-                line.append( sero );
-            }
-            System.out.println( line );
+        StringBuilder graphicSadari = new StringBuilder();
+        for(int i = 0; i < sadari.length * sadari[0].length; i++) {
+            graphicSadari.append(sero);
+            graphicSadari.append( sadari[i/sadari[0].length][i% sadari[0].length] == true ? garo : empty );
+            graphicSadari.append( i % sadari[0].length == sadari[0].length-1 ? sero+"\n" : "" );
         }
+        System.out.println(graphicSadari);
     }
-
-
 }
