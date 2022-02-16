@@ -8,7 +8,17 @@ public class LadderGame {
         this.board = board;
     }
 
-    public String[][] getResult(){
-        return board.getBoard();
+    public String[][] getResult() {
+        return this.board.getBoard();
+    }
+    private LadderGame (){};
+
+    private static final LadderGame instance = new LadderGame();
+
+    public static final LadderGame getInstance() {
+        if(instance == null){
+            return new LadderGame();
+        }
+        return instance;
     }
 }
