@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.List;
 import java.util.Random;
 
 public class Line {
@@ -19,9 +20,14 @@ public class Line {
         return BLANK;
     }
 
-    public String generateRandomLine() {
-        return generateLine(random.nextBoolean());
+    public String generateRandomLine(List<String> list, int index) {
+        if(index == 1) {
+            return generateLine(random.nextBoolean());
+        }
+        if(list.get(index-2).equals(BLANK)) {
+            return generateLine(random.nextBoolean());
+        }
+        return BLANK;
     }
-
 }
 

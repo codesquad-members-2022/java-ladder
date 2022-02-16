@@ -17,13 +17,6 @@ public class Board {
     private final List<List<String>> frame;
     private final Line line;
 
-//    public Board(int players, int height) {
-//        Valid.checkPlayers(players);
-//        Valid.checkHegiht(height);
-//        frame = new String[height][(players*2)-1];
-//        line = new Line();
-//    }
-
     public Board(int players, int height) {
         this.players = Valid.checkPlayersReturn(players);
         this.height = Valid.checkHeightReturn(height);
@@ -55,16 +48,16 @@ public class Board {
     private List<String> draw(int row) {
         List<String> floor = new ArrayList<>();
         for (int col = 0; col < players*2-1 ; col++) {
-            floor.add(drawLine(col));
+            floor.add(drawLine(floor,col));
         }
         return floor;
     }
 
-    private String drawLine(int col) {
+    private String drawLine(List<String> floor, int col) {
         if(col % 2 == 0) {
             return VERTICAL;
         }
-        return line.generateRandomLine();
+        return line.generateRandomLine(floor,col);
     }
 }
 
