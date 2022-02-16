@@ -70,7 +70,7 @@ public class LadderGame {
     }
 
     private void putRandomLine(ArrayList<String> width) {
-        if (isPutLine() && forwardVoid) {
+        if (putLine() && forwardVoid) {
             forwardVoid = false;
             width.add(WIDTH);
             return;
@@ -79,7 +79,7 @@ public class LadderGame {
         width.add(VOID);
     }
     
-    private boolean isPutLine() {
+    private boolean putLine() {
         return makeRandomValue() > (MAX_RANDOM_NUMBER / 2);
     }
 

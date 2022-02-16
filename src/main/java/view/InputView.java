@@ -6,7 +6,7 @@ public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
     public static int inputLadderHeight() {
-        PrintView.requestLadderHeight();
+        PrintView.printLadderHeight();
         return inputIntValue();
     }
 
@@ -15,11 +15,11 @@ public class InputView {
     }
 
     public static String inputPeopleName() {
-        PrintView.requestPeopleName();
+        PrintView.printPeopleName();
         return sc.nextLine();
     }
 
-    public static void scannerClose() {
+    public static void close() {
         sc.close();
     }
 }
