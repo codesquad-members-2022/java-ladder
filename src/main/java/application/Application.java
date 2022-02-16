@@ -42,8 +42,7 @@ public class Application {
         return iv.ladderHeight();
     }
     private Game ready(List<Player> players, int height) {
-        Ladder ladder = ladderController.getLadder(height, players.size()
-                , GameUtil.getMaxPlayerName(players));
+        Ladder ladder = ladderController.getLadder(height, players.size(), GameUtil.getMaxPlayerName(players));
         return new Game(ladder, players);
     }
 }
