@@ -1,29 +1,28 @@
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class LadderMap {
     private char[][] map;
-    private int personCount;
-    private int ladderHeight;
 
     public LadderMap(int personCount, int ladderHeight) {
         if (personCount < 0 || ladderHeight < 0) {
             throw new IllegalArgumentException("매개변수는 0 이상이어야 합니다.");
         }
-        this.personCount = personCount;
-        this.ladderHeight = ladderHeight;
-        initMap();
+        initMap(personCount, ladderHeight);
     }
 
-    private void initMap() {
+    private void initMap(int personCount, int ladderHeight) {
         map = new char[ladderHeight][personCount * 2 - 1];
         for (char[] line : map) {
-            for (int i = 0; i < line.length; i++) {
-                line[i] = '|';
-                if (i % 2 == 1) {
-                    line[i] = randomCreateLadderOrBlank();
-                }
-            }
+            initLine(line);
         }
+    }
+
+    private void initLine(char[] line) {
+        Arrays.fill(line, '|');
+        IntStream.range(0, line.length)
+                .filter(i -> i % 2 == 1)
+                .forEach(i -> line[i] = randomCreateLadderOrBlank());
     }
 
     private char randomCreateLadderOrBlank() {
@@ -34,7 +33,11 @@ public class LadderMap {
         return ' ';
     }
 
-    public char[][] getMap() {
-        return map;
+    public char[][] getCloneMap() {
+        char[][] cloneMap = new char[map.length][map[0].length];
+        for (int i = 0; i < map.length; i++) {
+            System.arraycopy(map[i], 0, cloneMap[i], 0, map[i].length);
+        }
+        return cloneMap;
     }
 }

@@ -1,6 +1,8 @@
 public class Main {
+
     public static void main(String[] args) {
         LadderMap ladderMap = View.createMap();
-        View.printLadderMap(ladderMap);
+        char[][] cloneMap = ladderMap.getCloneMap();
+        View.printLadderMap(cloneMap);
     }
 }
