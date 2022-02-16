@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -9,10 +11,24 @@ public class InputView {
 
     public static int getInputNumer(String message) {
         OutputView.printMessage(message);
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextInt();
     }
 
     public static void close() {
         scanner.close();
+    }
+
+    public static List<Player> getInputPlayers(String message) {
+        OutputView.printMessage(message);
+
+        List<Player> players = new ArrayList<>();
+
+        String[] names = scanner.nextLine().split(",");
+
+        for (String name : names) {
+            players.add(Player.createPlayerWithName(name));
+        }
+
+        return players;
     }
 }

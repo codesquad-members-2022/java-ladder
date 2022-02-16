@@ -2,18 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private int playerCount;
-    private int ladderMaxHeight;
     private List<Line> lines;
+    private List<Player> players;
 
     private Ladder() {
     }
 
-    public static Ladder create(int playerCount, int ladderMaxHeight) {
+    public static Ladder create(List<Player> players, int ladderMaxHeight) {
         Ladder ladder = new Ladder();
-        ladder.playerCount = playerCount;
-        ladder.ladderMaxHeight = ladderMaxHeight;
-        ladder.lines = initLinesWithLadderMaxHeight(playerCount, ladderMaxHeight);
+        ladder.players = players;
+        ladder.lines = initLinesWithLadderMaxHeight(players.size(), ladderMaxHeight);
         return ladder;
     }
 
@@ -40,7 +38,7 @@ public class Ladder {
     }
 
     private void drawRandomLine(Line line) {
-        for (int radderPos = 0; radderPos < playerCount - 1; radderPos++) {
+        for (int radderPos = 0; radderPos < players.size() - 1; radderPos++) {
             drawRandomRadder(line, radderPos);
         }
     }
