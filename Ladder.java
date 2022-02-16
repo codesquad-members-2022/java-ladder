@@ -1,71 +1,73 @@
-import java.util.List;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Ladder {
     private final int memberCount;
     private final int height;
-    private String[][] ladder;
-
+    ArrayList<ArrayList<String>> ladder;
 
     Random random = new Random();
     StringBuilder sb = new StringBuilder();
 
     public Ladder(int memberCount, int height) {
-        ladder = new String[height][(memberCount * 2) - 1];
         this.height = height;
         this.memberCount = memberCount;
         this.ladder = createLadder();
     }
 
-    private String[][] createLadder() {
-        ladder = new String[height][(memberCount * 2) - 1];
+    private ArrayList<ArrayList<String>> createLadder() {
+        ArrayList<ArrayList<String>> ladder = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            ladderRowData(row);
+            ArrayList<String> ladderRow = new ArrayList<>();
+            addLadderRow(ladderRow);
+            ladder.add(ladderRow);
         }
         return ladder;
     }
 
-    private void ladderRowData(int row) {
-        for (int col = 0; col < ladder[row].length; col++) {
-            rowElements(row, col);
+    private void addLadderRow(ArrayList<String> ladderRow) {
+        for (int column = 0; column < memberCount * 2 - 1; column++) {
+            addRowElements(ladderRow, column);
         }
     }
 
-    private void rowElements(int row, int col) {
-        if (col % 2 == 0) {
-            ladder[row][col] = "|";
+    private void addRowElements(ArrayList<String> ladderRow, int column) {
+        if (column % 2 == 0) {
+            ladderRow.add("|");
         }
-        if (col % 2 == 1) {
-            ladder[row][col] = randomLine(random.nextBoolean());
-            duplicateCheck(row, col);
-        }
-    }
-
-    private void duplicateCheck(int row, int col) {
-        if (col >= 2 && ladder[row][col - 2].equals("----")) {
-            ladder[row][col] = "    ";
+        if (column % 2 == 1) {
+            ladderRow.add(addRandomLine(random.nextBoolean()));
+            lineDuplicateCheck(ladderRow, column);
         }
     }
 
+    private void lineDuplicateCheck(ArrayList<String> ladderRow, int column) {
+        if (column >= 2 && ladderRow.get(column - 2).equals("-----")) {
+            ladderRow.set(column, "     ");
+        }
 
-    private String randomLine(boolean trueCheck) {
+    }
+
+    private String addRandomLine(boolean trueCheck) {
         if (trueCheck) {
-            return "----";
+            return "-----";
         }
-        return "    ";
+        return "     ";
     }
+
 
     public String toString() {
-        for (int height = 0; height < this.height; height++) {
-            addRowData(sb, height);
+        for (int row = 0; row < height; row++) {
+            addRowData(sb, row);
             sb.append("\n");
         }
         return sb.toString();
     }
 
-    private void addRowData(StringBuilder sb, int height) {
-        for (int width = 0; width < ladder[height].length; width++) {
-            sb.append(ladder[height][width]);
+    private void addRowData(StringBuilder sb, int row) {
+        for (int column = 0; column < memberCount * 2 - 1; column++) {
+            sb.append(ladder.get(row).get(column));
         }
     }
 }
