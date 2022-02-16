@@ -1,14 +1,13 @@
 package app.jinan159.ladder;
 
-import app.jinan159.io.InputReader;
-import app.jinan159.io.OutputWriter;
+import app.jinan159.ladder.io.InputReader;
+import app.jinan159.ladder.io.OutputWriter;
 import app.jinan159.ladder.meta.LadderElement;
 import app.jinan159.ladder.meta.GameMap;
 import app.jinan159.ladder.stretegy.DefaultGameMapStretegy;
 import app.jinan159.ladder.stretegy.LadderGameMapStretegy;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class LadderGame {
 
