@@ -21,8 +21,8 @@ public class Shape<T extends Element> {
 
     public void addElement(int row, T element) {
         if (row >= height) {
-            throw new IllegalArgumentException(String.format(
-                    "인덱스 범위를 초과했습니다. (최대 row %d)", height - 1));
+            throw new IllegalArgumentException(
+                    String.format("인덱스 범위를 초과했습니다. (최대 row %d)", height - 1));
         }
         if (getSize(row) >= width) {
             throw new IllegalArgumentException(
