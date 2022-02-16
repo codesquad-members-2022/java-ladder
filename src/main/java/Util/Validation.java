@@ -1,12 +1,9 @@
 package Util;
 
-import javafx.css.Match;
-
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Valid {
+public class Validation {
 
     private static final int MIN_PLAYER = 2;
     private static final int MIN_HEIGHT = 1;

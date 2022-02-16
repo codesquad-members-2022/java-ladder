@@ -1,12 +1,9 @@
 package domain;
 
-import Util.Valid;
+import Util.Validation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static Util.Valid.checkPlayers;
 
 public class Board {
 
@@ -18,8 +15,8 @@ public class Board {
     private final Line line;
 
     public Board(int players, int height) {
-        this.players = Valid.checkPlayersReturn(players);
-        this.height = Valid.checkHeightReturn(height);
+        this.players = Validation.checkPlayersReturn(players);
+        this.height = Validation.checkHeightReturn(height);
         frame = new ArrayList<>();
         line = new Line();
     }
