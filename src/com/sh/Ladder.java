@@ -3,13 +3,13 @@ package com.sh;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import com.sh.utils.RandomNo;
+import com.sh.utils.RandomNumber;
 
 public class Ladder {
 	private final Integer rangeOfx;
 	private final Integer rangeOfy;
 	private boolean[][] graphs = null;
-	private RandomNo randomNo;
+	private RandomNumber randomNumber;
 
 	public Ladder(Integer rangeOfx, Integer rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
@@ -18,13 +18,13 @@ public class Ladder {
 		this.rangeOfx = rangeOfx-1;
 		this.rangeOfy = rangeOfy;
 		this.graphs = new boolean[rangeOfy][this.rangeOfx];
-		this.randomNo = RandomNo.getInstance();
+		this.randomNumber = RandomNumber.getInstance();
 	}
 
 	public void play() {
 		IntStream.range(0, rangeOfy)
 			.forEach(y -> {
-				int nextNo = randomNo.getInt(this.rangeOfx);
+				int nextNo = randomNumber.getInt(this.rangeOfx);
 				graphs[y][nextNo] = true;
 			});
 	}

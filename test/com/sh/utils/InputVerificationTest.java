@@ -16,6 +16,7 @@ class InputVerificationTest {
 
 	/*
 		입력 가능한 인원수는 GameMessage 를 따른다.
+		- 인터페이스의 전역변수(상수)가 @ValueSource()내에서 상수로 이용되지 않는 에러 발생
 	 */
 /*	private static final int invalidRangeOfMin = MIN_NUMBER_OF_PEOPLE - 1;
 	private static final int invalidRangeOfMax = MAX_NUMBER_OF_PEOPLE + 1;

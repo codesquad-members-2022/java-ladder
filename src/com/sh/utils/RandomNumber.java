@@ -2,11 +2,11 @@ package com.sh.utils;
 
 import java.util.Random;
 
-public class RandomNo {
-	private static final RandomNo randomNo = new RandomNo();
+public class RandomNumber {
+	private static final RandomNumber RANDOM_NUMBER = new RandomNumber();
 
-	public static RandomNo getInstance() {
-		return randomNo;
+	public static RandomNumber getInstance() {
+		return RANDOM_NUMBER;
 	}
 
 	public int getInt(int limit) {

@@ -12,16 +12,16 @@ public class Input {
 	private Input() {
 	}
 
-	public static Integer getNumberOfPeople() {
+	public static int getNumberOfPeople() {
 		Input input = new Input();
-		Integer numberOfPeople = input.nextInt();
+		int numberOfPeople = input.nextInt();
 		isValidNumberOfPeople(numberOfPeople);
 		return numberOfPeople;
 	}
 
-	public static Integer getHeightOfLadder(int minHeight) {
+	public static int getHeightOfLadder(int minHeight) {
 		Input input = new Input();
-		Integer maxHeightOfLadder = input.nextInt();
+		int maxHeightOfLadder = input.nextInt();
 		isValidHeightOfLadder(maxHeightOfLadder, minHeight);
 		return maxHeightOfLadder;
 	}
@@ -29,7 +29,7 @@ public class Input {
 	public static int getNumbers() {
 		try {
 			println.accept(OUTPUT_NUMBER_OF_PEOPLE);
-			Integer numberOfPeople = getNumberOfPeople();
+			int numberOfPeople = getNumberOfPeople();
 			return numberOfPeople;
 		} catch (Exception e) {
 			println.accept(e.getMessage());
@@ -41,7 +41,7 @@ public class Input {
 		try {
 			int minHeight = numberOfPeople - 1;
 			println.accept(OUTPUT_MAX_HEIGHT_OF_LADDER);
-			Integer height = getHeightOfLadder(minHeight);
+			int height = getHeightOfLadder(minHeight);
 			return height;
 		} catch (Exception e) {
 			println.accept(e.getMessage());
@@ -49,7 +49,7 @@ public class Input {
 		}
 	}
 
-	private Integer nextInt() {
+	private int nextInt() {
 		return scanner.nextInt();
 	}
 
