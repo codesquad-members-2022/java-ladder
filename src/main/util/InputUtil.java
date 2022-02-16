@@ -1,5 +1,6 @@
 package main.util;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class InputUtil {
@@ -17,6 +18,13 @@ public class InputUtil {
         if (name.length() > 5) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public static char[] fillNull(int length) {
+        char[] arr = new char[length];
+        Arrays.fill(arr, ' ');
+
+        return arr;
     }
 
 }

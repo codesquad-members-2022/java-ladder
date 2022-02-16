@@ -2,6 +2,7 @@ package main.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import main.util.InputUtil;
 
 public class LadderGame {
 
@@ -24,17 +25,25 @@ public class LadderGame {
         return 2 * names.size() - 1;
     }
 
-    private String wrapName(String name) {
+    public String wrapName(String name) {
         int gap = LadderElement.getGap();
-        int margin = gap / 2 - name.length() / 2;
 
-        char[] wrap = new char[gap];
-        Arrays.fill(wrap, ' ');
+        int margin = getMargin(name, gap);
+        char[] wrap = InputUtil.fillNull(gap);
 
         for (int ind = 0; ind < name.length(); ind++) {
             wrap[ind + margin] = name.charAt(ind);
         }
         return new String(wrap);
+    }
+
+    private int getMargin(String name, int gap) {
+        int margin = gap / 2 - name.length() / 2;
+
+        if (margin < 0) {
+            throw new IllegalArgumentException();
+        }
+        return margin;
     }
 
     @Override
