@@ -16,8 +16,8 @@ public class Board {
     private final Line line;
 
     public Board(int players, int height) {
-        this.players = Validation.checkPlayersReturn(players);
-        this.height = Validation.checkHeightReturn(height);
+        this.players = Validation.checkPlayers(players);
+        this.height = Validation.checkHeight(height);
         frame = new ArrayList<>();
         line = new Line();
     }
