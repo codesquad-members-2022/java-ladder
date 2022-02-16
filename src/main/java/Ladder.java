@@ -2,15 +2,12 @@ import java.util.Random;
 
 public class Ladder {
 
-    private static final String RAIL = "|";
-    private static final String STEP = "-----";
-    private static final String EMPTY = "     ";
     private static final Random random = new Random();
 
-    private final String[][] ladder;
+    private final Element[][] ladder;
 
     public Ladder(int width, int height) {
-        this.ladder = new String[height][width];
+        this.ladder = new Element[height][width];
         initLadder();
     }
 
@@ -19,21 +16,21 @@ public class Ladder {
     }
 
     private boolean isOverlap(int row, int col) {
-        return 2 < col && ladder[row][col - 2] != EMPTY;
+        return 2 < col && ladder[row][col - 2] != Element.EMPTY;
     }
 
-    private String createRandomStep() {
+    private Element createRandomStep() {
         int n = random.nextInt(2);
-        return (n == 0) ? EMPTY : STEP;
+        return (n == 0) ? Element.EMPTY : Element.STEP;
     }
 
     private void fillLadderElement(int row, int col) {
         if (isRail(col)) {
-            ladder[row][col] = RAIL;
+            ladder[row][col] = Element.RAIL;
             return;
         }
         if (isOverlap(row, col)) {
-            ladder[row][col] = EMPTY;
+            ladder[row][col] = Element.EMPTY;
             return;
         }
         ladder[row][col] = createRandomStep();
@@ -52,8 +49,8 @@ public class Ladder {
     }
 
     private StringBuilder appendLadderRow(StringBuilder sb, int row) {
-        for (String col : ladder[row]) {
-            sb.append(col);
+        for (Element col : ladder[row]) {
+            sb.append(col.getValue());
         }
         sb.append("\n");
         return sb;
