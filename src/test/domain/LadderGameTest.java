@@ -1,6 +1,7 @@
 package test.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import main.domain.LadderGame;
@@ -86,7 +87,7 @@ class LadderGameTest {
         LadderGame game = new LadderGame(List.of(), 0);
         String wrapper = game.wrapName(name);
 
-        assertEquals(wrapper.length(),WRAPPER_LENGTH);
+        assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
     }
 
@@ -100,4 +101,5 @@ class LadderGameTest {
 
         assertThrows(IllegalArgumentException.class, () -> game.wrapName(name));
     }
+
 }

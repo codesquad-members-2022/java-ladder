@@ -1,6 +1,6 @@
 package test.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import main.domain.LadderElement;
 import main.domain.LadderLine;
