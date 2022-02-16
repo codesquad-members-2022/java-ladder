@@ -58,7 +58,7 @@ public class InputReader implements Closeable {
         try {
             int input = sc.nextInt();
             validateIsPositive(input);
-            return sc.nextInt();
+            return input;
         } catch (NoSuchElementException e) {
             System.out.println(ALERT_NUMBER_REQUIRED);
             return READ_FAILED;
