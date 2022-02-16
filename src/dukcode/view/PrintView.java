@@ -36,18 +36,8 @@ public class PrintView {
     private String getNameWithPadding(String name) {
         int count = 0;
         while (name.length() < 5) {
-            name = getNamePaddedOnce(name, count);
+            name = count % 2 == 0 ? " " + name : name + " ";
             count++;
-        }
-
-        return name;
-    }
-
-    private String getNamePaddedOnce(String name, int count) {
-        if (count % 2 == 0) {
-            return " " + name;
-        } else if (count % 2 == 1) {
-            return name + " ";
         }
 
         return name;
