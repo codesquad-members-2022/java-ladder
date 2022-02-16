@@ -19,6 +19,14 @@ public class Shape<T extends Element> {
         this.width = width;
     }
 
+    public void addElement(int row, T element) {
+        shape.get(row).add(element);
+    }
+
+    public T getElement(int row, int col) {
+        return shape.get(row).get(col);
+    }
+
     public int getHeight() {
         return height;
     }
