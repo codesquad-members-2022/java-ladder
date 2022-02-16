@@ -9,10 +9,10 @@ public class Ladder {
     private final int height;
     private final int width;
 
-    public Ladder(int height, int width) {
+    public Ladder(int height, int width, int maxNameLength) {
         this.height = height;
         this.width = width;
-        this.shape = new Shape(height, width);
+        this.shape = new Shape(height, width, maxNameLength);
         createLine();
     }
 

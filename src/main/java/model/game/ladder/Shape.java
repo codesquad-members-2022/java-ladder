@@ -18,15 +18,15 @@ public class Shape<T extends Element> {
     private int height;
     private int width;
 
-    public Shape(int height, int width) {
+    public Shape(int height, int width, int elementSize) {
         this.shape = new ArrayList<>();
         for (int h = 0; h < height; ++h) {
             this.shape.add(new ArrayList<>());
         }
         this.height = height;
         this.width = width;
-        this.line = new Line(5);
-        this.none = new None(5);
+        this.line = new Line(elementSize);
+        this.none = new None(elementSize);
         this.pole = new Pole();
     }
 

@@ -24,7 +24,10 @@ public class Application {
     public void run() {
         List<Player> players = Parser.getPlayers(iv.playerNames());
         int height = iv.ladderHeight();
-        Ladder ladder = ladderController.getLadder(height, players.size());
+        int maxNameLength = players.stream().map(Player::toString)
+                .reduce((s1, s2) -> s1.getBytes().length >= s2.getBytes().length ? s1 : s2)
+                .get().length() + 1;
+        Ladder ladder = ladderController.getLadder(height, players.size(), maxNameLength);
         Game game = new Game(ladder, players);
         ov.printGame(game);
         iv.close();

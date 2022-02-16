@@ -14,7 +14,7 @@ public class LadderController {
         return controller;
     }
 
-    public Ladder getLadder(int height, int width) {
-        return new Ladder(height, width);
+    public Ladder getLadder(int height, int width, int maxNameLength) {
+        return new Ladder(height, width, maxNameLength);
     }
 }
