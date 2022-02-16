@@ -1,23 +1,26 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
 
-    private static final char LADDER_VERTICAL_LINE = '|';
-    private static final char LADDER_HORIZONTAL_LINE = '-';
-    private static final char LADDER_BLANK = ' ';
+    private static final String LADDER_VERTICAL_LINE_LEFT = "  |";
+    private static final String LADDER_VERTICAL_LINE = "|";
+    private static final String LADDER_HORIZONTAL_LINE = "-----";
+    private static final String LADDER_BLANK = "     ";
 
     private static Ladder ladderInstance;
     private static int playersCount;
     private static int maxLadderHeight;
-    private static char[][] ladder;
+    private static List<List<String>> ladder;
     private static Random random;
 
     private Ladder(int playersCount, int maxLadderHeight) {
         this.playersCount = playersCount;
         this.maxLadderHeight = maxLadderHeight;
-        this.ladder = new char[this.maxLadderHeight][getWidth()];
+        this.ladder = new ArrayList<>();
         this.random = new Random();
     }
 
@@ -33,11 +36,18 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < ladder.length * getWidth(); i++) {
-            int row = i / ladder[0].length;
-            int col = i % ladder[0].length;
-            sb.append(ladder[row][col]);
-            sb.append(newLine(ladder[0].length, col));
+        for (List<String> row : ladder) {
+            sb.append(rowString(row) + "\n");
+        }
+
+        return sb.toString();
+    }
+
+    private String rowString(List<String> row) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String value : row) {
+            sb.append(value);
         }
 
         return sb.toString();
@@ -55,6 +65,9 @@ public class Ladder {
     }
 
     public static void generateLadder() {
+        for (int i = 0; i < maxLadderHeight; i++) {
+            ladder.add(new ArrayList<>());
+        }
         initLadder();
     }
 
@@ -66,11 +79,14 @@ public class Ladder {
 
     private static void initLadderColumn(int i) {
         for (int j = 0; j < getWidth(); j++) {
-            ladder[i][j] = setElement(j);
+            ladder.get(i).add(setElement(j));
         }
     }
 
-    private static char setElement(int j) {
+    private static String setElement(int j) {
+        if (j % 2 == 0 && j == 0) {
+            return LADDER_VERTICAL_LINE_LEFT;
+        }
         if (j % 2 == 0) {
             return LADDER_VERTICAL_LINE;
         }

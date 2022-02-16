@@ -12,7 +12,7 @@ public class OutputView {
 
     public static void printPlayersName(List<String> playersNameList) {
         for (String playerName : playersNameList) {
-            System.out.printf(" %-5s ", playerName);
+            System.out.printf("%-5s ", playerName);
         }
         System.out.println();
     }
