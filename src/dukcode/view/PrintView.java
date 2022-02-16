@@ -4,8 +4,8 @@ import dukcode.model.Ladder;
 
 public class PrintView {
     private static final String SIDE_RAIL = "|";
-    private static final String STEP = "-";
-    private static final String BLANK = " ";
+    private static final String STEP = "-----";
+    private static final String BLANK = "     ";
 
     private final Ladder ladder;
 
