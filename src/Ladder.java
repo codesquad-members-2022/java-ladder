@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Ladder {
     private final int WIDTH = 5;
-    private final int CENTER_OF_LETTERS = (WIDTH / 2) + 1;
     private int numberOfPeople;
     private int heightOfLadder;
     private List<String> players;
