@@ -14,6 +14,7 @@ public class PrintLadder {
 		sb.append("\n");
 
 		for (int i = 0; i < ladderFrame.length; i++) {
+			sb.append("  ");
 			appendStringByLine(ladderFrame, ladderFoothold, i);
 		}
 		System.out.println(sb);
@@ -32,7 +33,7 @@ public class PrintLadder {
 			sb.append(ladderFrame[i][j]).append("\n");
 			return;
 		}
-		sb.append(ladderFrame[i][j]).append(ladderFoothold[i][j] ? '-' : ' ');
+		sb.append(ladderFrame[i][j]).append(ladderFoothold[i][j] ? "-----" : "     ");
 		
 	}
 

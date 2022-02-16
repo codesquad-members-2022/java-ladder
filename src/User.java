@@ -23,7 +23,7 @@ public class User {
 			case 3:
 				return " " + userName + " ";
 			case 4:
-				return " " + userName;
+				return userName + " ";
 			default:
 				return userName;
 		}
