@@ -19,13 +19,25 @@ public class Ladder {
         return col % 2 == 0;
     }
 
+    private boolean isOverlap(int row, int col) {
+        return 2 < col && ladder[row][col - 2] != EMPTY;
+    }
+
     private String createRandomStep() {
         int n = random.nextInt(2);
         return (n == 0) ? EMPTY : STEP;
     }
 
     private void fillLadderElement(int row, int col) {
-        ladder[row][col] = (isRail(col)) ? RAIL : createRandomStep();
+        if (isRail(col)) {
+            ladder[row][col] = RAIL;
+            return;
+        }
+        if (isOverlap(row, col)) {
+            ladder[row][col] = EMPTY;
+            return;
+        }
+        ladder[row][col] = createRandomStep();
     }
 
     private void initLadderRow(int row) {
