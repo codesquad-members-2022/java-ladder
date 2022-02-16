@@ -11,10 +11,12 @@ public class Ladder {
     private final int width;
     private final int height;
     private boolean prev;
+    private Random random;
 
     public Ladder(int width, int height) {
         this.width = width - 1;
         this.height = height;
+        this.random = new Random();
         init();
     }
 
@@ -23,7 +25,7 @@ public class Ladder {
         makeRandomLadder();
     }
 
-    public void makeRandomLadderCol(Random random, int i) {
+    public void makeRandomLadderCol() {
         List<String> temp = new ArrayList<>();
         for (int j = 0; j < width; j++) {
             temp.add(ladderSign(random.nextBoolean()));
@@ -32,15 +34,14 @@ public class Ladder {
         prev = false;
     }
 
-    public void makeRandomLadderRow(Random random) {
+    public void makeRandomLadderRow() {
         for (int i = 0; i < height; i++) {
-            makeRandomLadderCol(random, i);
+            makeRandomLadderCol();
         }
     }
 
     public void makeRandomLadder() {
-        Random random = new Random();
-        makeRandomLadderRow(random);
+        makeRandomLadderRow();
     }
 
     public List<List<String>> getBoard() {
