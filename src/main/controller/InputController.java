@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputController {
-
-
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static InputValidator validator = new InputValidator();
 
