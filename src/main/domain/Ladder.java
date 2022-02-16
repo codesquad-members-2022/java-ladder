@@ -3,7 +3,7 @@ package main.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import main.util.Util;
+import main.util.ListDeepCopy;
 
 public class Ladder {
 
@@ -44,7 +44,7 @@ public class Ladder {
     }
 
     public List<List<String>> getBoard() {
-        return Util.stringList2dDeepCopy(stringBoard);
+        return ListDeepCopy.string2dDeepCopy(stringBoard);
     }
 
     public String ladderSign(boolean b) {
