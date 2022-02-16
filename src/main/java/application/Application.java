@@ -1,17 +1,17 @@
 package application;
 
-import controller.LadderController;
-import model.game.Game;
-import model.game.ladder.Ladder;
-import model.game.player.Player;
-import util.Parser;
-import util.GameUtils;
-import view.InputView;
-import view.OutputView;
+import application.controller.LadderController;
+import application.game.Game;
+import application.domain.ladder.Ladder;
+import application.domain.player.Player;
+import application.util.Parser;
+import application.util.GameUtils;
+import application.view.InputView;
+import application.view.OutputView;
 
 import java.util.List;
 
-import static message.GameMessage.RUNTIME_ERROR_MESSAGE;
+import static application.message.GameMessage.RUNTIME_ERROR_MESSAGE;
 
 public class Application {
     private final InputView iv;
