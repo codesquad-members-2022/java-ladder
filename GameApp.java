@@ -1,34 +1,46 @@
-package step2;
+package step3;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameApp {
 
+    boolean flag = false; // 사다리 Line 겹치지 않도록 flag 설정
+    Random rd = new Random();
+
     public void run() {
         UserInterface ui = new UserInterface();
-        int playerCnt = ui.inputPlayerCnt(), ladderHeight = ui.inputLadderHeight();
+        ArrayList<String> players = ui.inputPlayerList();
+        if (players == null) return;
 
-        GameDisplay.showLadderInfo(getLadderInfo(playerCnt, ladderHeight));
+        GameDisplay.showLadderInfo(players, getLadderInfo(players.size(), ui.inputLadderCount()));
     }
 
-    public String[][] getLadderInfo(int playerCnt, int ladderHeight) {
-        String[][] ladderInfo = new String[ladderHeight][playerCnt * 2 - 1];
+    private ArrayList<ArrayList<String>> getLadderInfo(int playerCount, int ladderHeight) {
+        ArrayList<ArrayList<String>> arrayDoubleList = new ArrayList<>();
 
         for (int i = 0; i < ladderHeight; i++) {
-            ladderInfo[i] = getLadderRowData(playerCnt);
+            arrayDoubleList.add(getLadderRowData(playerCount));
         }
 
-        return ladderInfo;
+        return arrayDoubleList;
     }
 
-    public String[] getLadderRowData(int playerCnt) {
-        Random rd = new Random();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < playerCnt * 2 - 1; i++) {
-            sb.append(i % 2 == 0 ? "|" : (rd.nextInt(2) == 0 ? " " : "-"));
+    private ArrayList<String> getLadderRowData(int playerCount) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i = 0; i < playerCount * 2 - 1; i++) {
+            arrayList.add(i % 2 == 0 ? "|" : getLadderLine());
         }
+        flag = false;
 
-        return sb.toString().split("");
+        return arrayList;
     }
 
+    private String getLadderLine() {
+        int randomValue = rd.nextInt(2);
+        String line = randomValue == 1 && !flag ? "-----" : "     ";
+        flag = randomValue == 1 ? true : false;
+
+        return line;
+    }
 }
