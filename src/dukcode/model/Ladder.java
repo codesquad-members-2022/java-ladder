@@ -12,6 +12,14 @@ public class Ladder {
 
     public Ladder() {}
 
+    public String[] getNamePlayers() {
+        String[] copyNamePlayers = new String[numPlayer];
+        System.arraycopy(namePlayers, 0, copyNamePlayers, 0, numPlayer);
+        return copyNamePlayers;
+    }
+    public int getNumPlayer() {
+        return numPlayer;
+    }
     public int getHeight() {
         return height;
     }
