@@ -23,7 +23,7 @@ public class InputView {
 
         List<Player> players = new ArrayList<>();
 
-        String[] names = scanner.nextLine().split(",");
+        String[] names = scanner.nextLine().replaceAll(" ", "").split(",");
 
         for (String name : names) {
             players.add(Player.createPlayerWithName(name));
