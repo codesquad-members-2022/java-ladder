@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
     private int playerCount;
     private int ladderMaxHeight;
-    private int[][] lines;
+    private List<Line> lines;
+
     private static final Random rnd = new Random();
 
     private Ladder() {
@@ -13,35 +16,41 @@ public class Ladder {
         Ladder ladder = new Ladder();
         ladder.playerCount = playerCount;
         ladder.ladderMaxHeight = ladderMaxHeight;
-        ladder.lines = new int[ladderMaxHeight][playerCount];
+        ladder.lines = initLinesWithLadderMaxHeight(playerCount, ladderMaxHeight);
         return ladder;
     }
 
-    public int[][] getLines() {
+    private static List<Line> initLinesWithLadderMaxHeight(int playerCount, int ladderMaxHeight) {
+        List<Line> lines = new ArrayList();
+        for (int i = 0; i < ladderMaxHeight; i++) {
+            lines.add(Line.createLineWithPlayerCount(playerCount));
+        }
         return lines;
     }
 
+    public List<Line> getLines() {
+        return lines;
+    }
 
     public void drawRandomLines() {
-        for (int ladderPos = 0; ladderPos < ladderMaxHeight; ladderPos++) {
-            drawRandomLine(ladderPos);
+        for (Line line : lines) {
+            drawRandomLine(line);
         }
     }
 
-    public void drawRadder(int row, int col) {
-        lines[row][col] = 1;
-        lines[row][col + 1] = 1;
+    public void drawRadder(int linePos, int radderPos) {
+        lines.get(linePos).drawRadder(radderPos);
     }
 
-    private void drawRandomLine(int ladderPos) {
-        for (int playerPos = 0; playerPos < playerCount - 1; playerPos++) {
-            drawRandomRadder(ladderPos, playerPos);
+    private void drawRandomLine(Line line) {
+        for (int radderPos = 0; radderPos < playerCount - 1; radderPos++) {
+            drawRandomRadder(line, radderPos);
         }
     }
 
-    private void drawRandomRadder(int ladderPos, int playerPos) {
+    private void drawRandomRadder(Line line, int radderPos) {
         if (isRandomDraw())
-            drawRadder(ladderPos, playerPos);
+            line.drawRadder(radderPos);
     }
 
     private boolean isRandomDraw() {
