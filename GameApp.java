@@ -13,7 +13,7 @@ public class GameApp {
         ArrayList<String> players = ui.inputPlayerList();
         if (players == null) return;
 
-        GameDisplay.showLadderInfo(players, getLadderInfo(players.size(), ui.inputLadderCount()));
+        GameDisplay.showLadderInfo(players, getLadderInfo(players.size(), ui.inputLadderHeight()));
     }
 
     private ArrayList<ArrayList<String>> getLadderInfo(int playerCount, int ladderHeight) {
