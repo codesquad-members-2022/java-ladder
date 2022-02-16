@@ -1,7 +1,11 @@
 package domain.game;
 
 import domain.ladder.Ladder;
+import domain.ladder.LadderElement;
 import domain.ladder.LadderFactory;
+
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
@@ -28,9 +32,7 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     @Override
-    public Ladder getCopyOfResultLadder() {
-        Ladder original = ladderGame.getLadder();
-        return ladderFactory.copy(original);
+    public Ladder getLadder() {
+        return ladderGame.getLadder();
     }
-
 }

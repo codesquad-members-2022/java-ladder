@@ -32,8 +32,7 @@
 - 게임 초기화 : 필요 인자를 LadderGameService를 통해 전달함.
   - 인자를 입력받으면 LadderFactory 에게 전달하여 Ladder을 생성
   - 이를 기반으로 LadderGame 초기화
-- 결과 얻어오기 : LadderService에게 요청하여 얻어옴
-  - 사다리 받아오기 : 원본 가져오지 않고 LadderFactory에 의뢰하여 복사본을 생성하여 반환
+- 결과 얻어오기 : LadderService에게 특정 결과를 요청하여 얻어옴
 - 결과 출력 : OutputView에서 결과값을 전달받아 적절히 출력
 
 ---
@@ -161,30 +160,43 @@ public class LadderGame {
 ```
 - 사다리 게임을 정의한 LadderGame 클래스를 정의
 - 같은 패키지 안에서만 생성 가능
-- getter로 ladder을 반환함. (같은 패키지 안에서만 호출가능)
+- `getter`로 `ladder`을 반환함. (같은 패키지 안에서만 호출가능)
 
 ---
 ## Ladder
 ```java
 public class Ladder {
 
-  private final LadderElement[][] ladderElements;
+  private final List<List<LadderElement>> ladderElements;
 
-  Ladder(LadderElement[][] ladderElements) {
-    this.ladderElements = ladderElements;
+  Ladder(List<List<LadderElement>> ladderFrame) {
+    this.ladderElements = ladderFrame;
   }
 
-  public LadderElement[][] getLadderElements() {
-    return ladderElements;
+  public LadderElement getLadderElement(int column, int row) {
+    return ladderElements.get(row).get(column);
   }
+
+  void setLadderElement(int column, int row, LadderElement ladderElement) {
+    ladderElements.get(row).set(column, ladderElement);
+    return;
+  }
+
+  public int width() {
+    return ladderElements.get(0).size();
+  }
+
+  public int height() {
+    return ladderElements.size();
+  }
+
 }
 ```
 - 사다리를 정의한 클래스
-- `LadderElement`를 이차원배열로 함.
-- 여기서 많은 고민을 했다.
-  - 사다리 내용물을 출력하려면 ladderElements 정보가 필요함
-  - Output에 ladderElements 배열정보를 넘기기엔, 변경가능성이 커져버림.
-  - 그렇다고 ladderElements 측이 toString과 같은 메서드를 가지고 있기엔 이 역시도, ladder의 책임이 불필요하게 늘어난다.
+- 내부적으로 `List<List<LadderElement>>`를 가짐. 내부 이차원List는 `LadderElement`를 가지고 있다.
+- getLadderElement : 지정 행, 열의 LadderElement 반환
+- setLadderElement : 지정 행, 열의 LadderElement을 변경. 접근제어자가 default라서, 외부 패키지에서 변경할 수 없다.
+  - 변경 가능성 : LadderFactory에서만.
 
 ---
 
@@ -220,11 +232,9 @@ public enum LadderElement {
 public interface LadderFactory {
 
   Ladder create(int entry, int height);
-  Ladder copy(Ladder original);
 }
-
 ```
-- Ladder을 생성하고, 복사하는 역할
+- `Ladder`을 생성하는 역할
 - 구현체 : LadderFactoryImpl
 
 ---
@@ -234,12 +244,12 @@ public interface LadderFactory {
 public interface LadderGameService {
 
   void initLadderGame(int entry, int height);
-  Ladder getCopyOfResultLadder();
+  Ladder getLadder();
 }
 ```
 - LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
 - initLadderGame : 사다리 게임 초기화
-- getCopyOfResultLadder : 게임의 결과로부터, Ladder를 반아온 뒤, Ladder을 복사하여 반환.
+- getLadder : 게임의 결과로부터, `Ladder`를 받아옴.
 - 구현체 : LadderGameServiceImpl
 
 ---

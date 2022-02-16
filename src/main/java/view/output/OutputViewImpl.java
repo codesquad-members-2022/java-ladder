@@ -5,6 +5,7 @@ import domain.ladder.LadderElement;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class OutputViewImpl implements OutputView {
@@ -19,21 +20,21 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printLadder(Ladder ladder) {
-        LadderElement[][] ladderElements = ladder.getLadderElements();
-        String ladderString = makeLadderString(ladderElements);
+        String ladderString = makeLadderString(ladder);
         System.out.print(ladderString);
     }
 
-    private String makeLadderString(LadderElement[][] ladderElements) {
-        return Stream.of(ladderElements)
-                    .map(this::makeLadderRowString)
-                    .collect(Collectors.joining("\n"));
+    private String makeLadderString(Ladder ladder) {
+        return IntStream.range(0, ladder.height())
+                .mapToObj(row -> makeLadderRowString(ladder, row))
+                .collect(Collectors.joining("\n"));
     }
 
-    private String makeLadderRowString(LadderElement[] ladderRow) {
-        return Stream.of(ladderRow)
-                    .map(LadderElement::getSymbol)
-                    .map(String::valueOf)
-                    .collect(Collectors.joining());
+    private String makeLadderRowString(Ladder ladder, int row) {
+        return IntStream.range(0, ladder.width())
+                .mapToObj(column -> ladder.getLadderElement(column, row))
+                .map(LadderElement::getSymbol)
+                .collect(Collectors.joining());
     }
+
 }

@@ -23,7 +23,7 @@ public class GameApplication {
 
     public void run() {
         initLadderGame();
-        Ladder ladder = ladderGameService.getCopyOfResultLadder();
+        Ladder ladder = ladderGameService.getLadder();
         outputView.printLadder(ladder);
         ac.close();
     }
