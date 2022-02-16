@@ -20,14 +20,16 @@ public class Client {
 
         inputUser();
 
-        Output.printLadderCountNotification();
-        int m = sc.nextInt();
-
         LadderGame ladderGame = new LadderGame();
-        ladderGame.init(getUserList(), m);
+
+        ladderGame.init(getUserList(), getLadderHeight());
         sc.close();
     }
 
+    private int getLadderHeight() {
+        Output.printLadderCountNotification();
+        return sc.nextInt();
+    }
 
     private void inputUser() {
         Output.printUserCountNotification();
