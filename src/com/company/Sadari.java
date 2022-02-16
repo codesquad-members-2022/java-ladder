@@ -1,41 +1,46 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Sadari {
-    char[][] sadariArray;
-    String[] people;
+    ArrayList<String> sadariList = new ArrayList<String>();
+    ArrayList<String> people;
 
     public Sadari(int peopleCount, int height) {
-        this.sadariArray = makeSadariArray(peopleCount, height);
+        this.sadariList = buildSadariList(peopleCount, height);
     }
 
-    private char[][] makeSadariArray(int peopleCount, int height) {
-        char[][] sadariArray = new char[height][peopleCount + peopleCount - 1];
+    private ArrayList<ArrayList<String>> buildSadariList(int peopleCount, int height) {
+        ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
         for (int i = 0; i < height; i++) {
-            sadariArray[i] = makeRow(peopleCount);
+            sadariList.add(makeRow(peopleCount));
         }
-        return sadariArray;
+        return sadariList;
     }
 
-    private char[] makeRow(int peopleCount) {
-        char[] Row = new char[peopleCount + peopleCount - 1];
+    private ArrayList<String> makeRow(int peopleCount) {
+        ArrayList<String> Row = new ArrayList<>();
         for (int i = 0; i < peopleCount + peopleCount - 1; i++) {
-            Row[i] = getRowComponent(i);
+            Row.add(getRowComponent(peopleCount, i));
         }
         return Row;
     }
 
-    private char getRowComponent(int index) {
+    private String getRowComponent(int peopleCount, int index) {
+        if (index == 0) {
+            return "     ";
+        }
+        if (index == 2 * peopleCount) {
+            return "    ";
+        }
         if (index % 2 == 0)
-            return '|';
-        if (getRandomLine())
-            return '-';
-        return ' ';
+            return "-----";
+        return "|";
     }
 
-    public char[][] getSadariArray() {
-        return this.sadariArray;
+    public char[][] getSadariList() {
+        return this.sadariList;
     }
 
     private boolean getRandomLine() {
