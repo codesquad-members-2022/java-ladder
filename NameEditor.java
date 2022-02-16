@@ -15,7 +15,10 @@ class NameEditor {
 	}
 
 	private String extend(String name){
-		String extendedName = name + " ".repeat(5-name.length());
+		String frontBlank = " ".repeat((5-name.length()) / 2);
+		String endBlank = " ".repeat(5 - name.length() - frontBlank.length());
+		String extendedName = frontBlank + name + endBlank;
+
 		return extendedName;
 	}
 
