@@ -25,6 +25,7 @@ public class InputView {
         return userNamesInputLine;
     }
 
+    // 추후 .allmatch 로 바꿔서 하면 더 효율적일 것 같음 (BC 발표)
     private static boolean isNamesHaveValidLength(String[] userNames){
         return Arrays.stream(userNames).filter(i -> i.length()>ValidNameLength).count() > 0 ? false : true;
     }

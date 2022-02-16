@@ -1,14 +1,21 @@
+import java.util.ArrayList;
+
 public class Sadari {
-    private boolean[][] sadari;
+    private ArrayList<boolean[]> sadari;
 
     Sadari(int userNumber, int sadariNumber) {
-        sadari = new boolean[sadariNumber][userNumber - 1];
+        //sadari = new boolean[sadariNumber][userNumber - 1];
+        sadari = new ArrayList<boolean[]>();
+        for(int i=0;i<sadariNumber;i++){
+            sadari.add(new boolean[userNumber - 1]);
+        }
         generateRandomSadari();
     }
 
     private void generateRandomSadari() {
-        for (int i=0;i< sadari.length;i++){
-            sadari[i] = generateRandomLineOfSadari( sadari[i] );
+        for (int i = 0; i < sadari.size(); i++){
+            //sadari[i] = generateRandomLineOfSadari( sadari[i] );
+            sadari.set(i, generateRandomLineOfSadari( sadari.get(i) ));
         }
     }
 
@@ -33,7 +40,7 @@ public class Sadari {
         return Math.random() > 0.5 ? false : true;
     }
 
-    public boolean[][] getSadari () {
+    public ArrayList<boolean[]> getSadari () {
         return sadari;
     }
 
