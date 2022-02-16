@@ -31,9 +31,9 @@ public class OutputView {
         System.out.println(userNamesMessage);
     }
 
-    public static void printInvalidUserNamesMessage(){
+
+    public static void printInvalidUserNamesMessage() {
         System.out.println(invalidUserNamesMessage);
     }
-
 
 }
