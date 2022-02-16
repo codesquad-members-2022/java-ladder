@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.List;
 
 public class Ladder {
+    private final int WIDTH = 5;
     private int numberOfPeople;
     private int heightOfLadder;
     private List<List<Character>> charLadder;
@@ -53,12 +54,22 @@ public class Ladder {
 
     private String rowOfLadderInfo(int index) {
         StringBuilder sb = new StringBuilder();
+        String expandedRow;
         sb.append("|");
         for(int i=0; i<numberOfPeople-1; i++){
-            sb.append(charLadder.get(index).get(i));
+            expandedRow = expandRowWidth(charLadder.get(index).get(i));
+            sb.append(expandedRow);
             sb.append("|");
         }
         sb.append("\n");
+        return sb.toString();
+    }
+
+    private String expandRowWidth(char element){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < WIDTH; i++) {
+            sb.append(element);
+        }
         return sb.toString();
     }
 
