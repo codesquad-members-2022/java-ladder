@@ -5,55 +5,55 @@ import java.util.Random;
 public class LadderMaker {
     private final String VERTICAL = "|";
     private final String HORIZONTAL = "-----";
-    private final String BLANKSPACE = "     ";
-
+    private final String BLANK_SPACE = "     ";
     private final Random random = new Random();
-    private List<List<String>> ladder;
+    private final int WIDTH;
+    private final int HEIGHT;
+    private List<String> ladder;
     private List<String> tempList;
-    private final int width;
-    private final int height;
+
 
     public LadderMaker(int nameCount, int height) {
         ladder = new ArrayList<>();
-        this.width = nameCount * 2 - 1;
-        this.height = height;
+        this.WIDTH = nameCount * 2 - 1;
+        this.HEIGHT = height;
     }
 
-    public void makeLadder() {
-        for (int row = 0; row < height; row++) {
-            makeRow(row);
+    public void make() {
+        for (int row = 0; row < HEIGHT; row++) {
+            makeRow();
         }
     }
 
-    private void makeRow(int row) {
+    private void makeRow() {
         tempList = new ArrayList<>();
-        for (int column = 0; column < width; column++) {
-            tempList.add(drawLine(row, column));
+        for (int column = 0; column < WIDTH; column++) {
+            tempList.add(drawLine(column));
         }
-        ladder.add(tempList);
+        ladder.add(String.join("",tempList));
     }
 
-    private String drawLine(int row, int column) {
+    private String drawLine(int column) {
         if (column % 2 == 0) {
             return VERTICAL;
         }
         if (random.nextBoolean() && isBlank(column)) {
             return HORIZONTAL;
         }
-        return BLANKSPACE;
+        return BLANK_SPACE;
     }
 
     private boolean isBlank(int column) {
         if (column == 1) {
             return true;
         }
-        if (BLANKSPACE.equals(tempList.get(column - 2))) {
+        if (BLANK_SPACE.equals(tempList.get(column - 2))) {
             return true;
         }
         return false;
     }
 
-    protected List<List<String>> getLadderList() {
+    protected List<String> getLadderList() {
         return ladder;
     }
 }

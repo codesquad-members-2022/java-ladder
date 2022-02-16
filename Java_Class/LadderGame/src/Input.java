@@ -30,7 +30,7 @@ public class Input {
 
         System.out.print(PROMPT_NAMES);
         List<String> tempList;
-        while (!isValid(tempList = processToList(br.readLine()))) {
+        while (!isValid(tempList = processToList(br.readLine()))) { //pobi,honux,crong,jk
             System.out.print(PROMPT_LENGTHERROR);
         }
         return tempList;

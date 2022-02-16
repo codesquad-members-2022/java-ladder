@@ -9,11 +9,13 @@ public class Controller {
 
     protected void runApp() {
         input.processInput();
-        LadderMaker maker = new LadderMaker(input.getNameList().size(),input.getHeight());
-        maker.makeLadder();
+        LadderMaker ladderMaker = new LadderMaker(input.getNameList().size(), input.getHeight());
+        ladderMaker.make();
 
-        // List<List<String>> 을 받도록 수정 예정
-        // String[][] ladder = maker.getLadderList();
-        // output.printConsole(ladder);
+        output.printConsole(input.getNameList());   // [pobi,honux,crong,jk]
+        for (String row : ladderMaker.getLadderList()) {  // [ {row1},{row2}..]
+            output.printConsole(row);
+        }
     }
+
 }
