@@ -1,10 +1,12 @@
+import java.util.List;
+
 class Ladder {
 	private int width;
 
 	LadderLine ladderLine = new LadderLine();
 
-	char[][] make(int peopleNumber, int ladderHeight){
-		this.width = getWidth(peopleNumber);
+	char[][] make(List<String> playerNames, int ladderHeight){
+		this.width = getWidth(playerNames);
 
 		char[][] ladder = new char [ladderHeight][width];
 
@@ -15,8 +17,8 @@ class Ladder {
 		return ladder;
 	}
 
-	private int getWidth(int peopleNumber){
-		return peopleNumber * 2 - 1;
+	private int getWidth(List<String> playerNames){
+		return (playerNames.size() * 2 - 1) * 5;
 	}
 
 	private void getLine(int row, char[][] ladder) {
