@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
 public class Ladder {
     private int numberOfPeople;
     private int heightOfLadder;
-    private char[][] charLadder;
+    private List<List<Character>> charLadder;
 
     Ladder(int n, int m) {
         this.numberOfPeople = n;
@@ -15,18 +17,18 @@ public class Ladder {
         this.charLadder = make();
     }
 
-    private char[][] make() {
-        char[][] ladder = new char[heightOfLadder][numberOfPeople-1];
+    private List<List<Character>> make() {
+        List<List<Character>> ladder = new ArrayList<>();
         for (int i = 0; i < heightOfLadder; i++) {
-            ladder[i] = makeRow();
+            ladder.add(makeRow());
         }
         return ladder;
     }
 
-    private char[] makeRow() {
-        char[] rowOfLadder = new char[numberOfPeople-1];
-        for (int i = 0; i < rowOfLadder.length; i++) {
-            rowOfLadder[i] = setRandomValue();
+    private List<Character> makeRow() {
+        List<Character> rowOfLadder = new ArrayList<>();
+        for (int i = 0; i < numberOfPeople-1; i++) {
+            rowOfLadder.add(setRandomValue());
         }
         return rowOfLadder;
     }
@@ -53,7 +55,7 @@ public class Ladder {
         StringBuilder sb = new StringBuilder();
         sb.append("|");
         for(int i=0; i<numberOfPeople-1; i++){
-            sb.append(charLadder[index][i]);
+            sb.append(charLadder.get(index).get(i));
             sb.append("|");
         }
         sb.append("\n");
