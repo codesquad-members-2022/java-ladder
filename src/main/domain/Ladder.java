@@ -1,14 +1,16 @@
-package main.model;
+package main.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import main.Util;
+import main.util.Util;
 
 public class Ladder {
 
-    private Boolean[][] boolBoard;
-    private String[][] stringBoard;
+    private List<List<String>> stringBoard;
     private final int width;
     private final int height;
+    private boolean prev;
 
     public Ladder(int width, int height) {
         this.width = width - 1;
@@ -17,16 +19,17 @@ public class Ladder {
     }
 
     public void init() {
-        stringBoard = new String[height][width];
-        boolBoard = new Boolean[height][width];
+        stringBoard = new ArrayList<>();
         makeRandomLadder();
     }
 
     public void makeRandomLadderCol(Random random, int i) {
+        List<String> temp = new ArrayList<>();
         for (int j = 0; j < width; j++) {
-            boolBoard[i][j] = random.nextBoolean();
-            stringBoard[i][j] = ladderSign(boolBoard[i][j]);
+            temp.add(ladderSign(random.nextBoolean()));
         }
+        stringBoard.add(temp);
+        prev = false;
     }
 
     public void makeRandomLadderRow(Random random) {
@@ -40,14 +43,16 @@ public class Ladder {
         makeRandomLadderRow(random);
     }
 
-    public String[][] getBoard() {
-        return Util.string2dDeepCopy(stringBoard,height,width);
+    public List<List<String>> getBoard() {
+        return Util.stringList2dDeepCopy(stringBoard);
     }
 
     public String ladderSign(boolean b) {
-        if (b) {
-            return "-";
+        if (b && !prev) {
+            prev = true;
+            return "-----";
         }
-        return " ";
+        prev = false;
+        return "     ";
     }
 }
