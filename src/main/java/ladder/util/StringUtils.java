@@ -1,3 +1,5 @@
+package ladder.util;
+
 public class StringUtils {
     public static String center(String str, int length, char padChar) {
         int strSize = str.length();

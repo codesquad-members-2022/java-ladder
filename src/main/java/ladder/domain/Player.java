@@ -1,3 +1,5 @@
+package ladder.domain;
+
 public class Player {
     private String name;
 
