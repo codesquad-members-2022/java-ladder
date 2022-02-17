@@ -4,24 +4,20 @@ import ladder.domain.Line;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderLineTest {
     @DisplayName("사다리 선 출력 가능 여부 테스트")
     @Test
-    void getLadderLine() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void getLadderLine() {
         // given
-        Line line = new Line();
-        Method method = line.getClass().getDeclaredMethod("getLadderLine");
-        String expectValue = "-----";
+        int testPlayerCount = 4;
 
         // when
-        String actualValue = (String) method.invoke(line);
+        Line line = new Line(testPlayerCount);
 
         // then
-        assertThat(actualValue).isEqualTo(expectValue);
+        boolean result = line.getPoints().stream().anyMatch(v -> v == true);
+        assertThat(result).isTrue();
     }
 }

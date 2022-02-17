@@ -27,7 +27,6 @@ class PlayerNameTest {
         ArrayList<String> arrayList = (ArrayList<String>) method.invoke(ui);
 
         // then
-
         boolean result = arrayList.stream().allMatch(v -> v.length() <= 5);
         assertThat(result).isTrue();
     }
