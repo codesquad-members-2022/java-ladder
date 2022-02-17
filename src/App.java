@@ -1,3 +1,7 @@
+import domain.Sadari;
+import view.InputView;
+import view.OutputView;
+
 public class App {
     public static void main(String[] args){
 

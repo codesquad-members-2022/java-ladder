@@ -1,9 +1,11 @@
+package domain;
+
 import java.util.ArrayList;
 
 public class Sadari {
     private ArrayList<boolean[]> sadari;
 
-    Sadari(int userNumber, int sadariNumber) {
+    public Sadari(int userNumber, int sadariNumber) {
         //sadari = new boolean[sadariNumber][userNumber - 1];
         sadari = new ArrayList<boolean[]>();
         for(int i=0;i<sadariNumber;i++){
