@@ -58,8 +58,9 @@ public class LadderGame {
     }
 
     public List<Player> queryPlayers(String query) {
-        if (query.equals(QUERY_ALL))
+        if (query.equals(QUERY_ALL)) {
             return players;
+        }
 
         return players.stream()
             .filter(p -> p.getName().equals(query))

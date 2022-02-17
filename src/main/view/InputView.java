@@ -28,6 +28,7 @@ public class InputView {
         OutputView.printMessage(INPUT_OUTCOMES);
         return scanner.nextLine();
     }
+
     public static String query() {
         OutputView.printMessage(QUERY_PLAYER);
         return scanner.nextLine();
