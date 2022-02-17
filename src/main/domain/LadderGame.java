@@ -6,12 +6,14 @@ import main.util.InputUtil;
 public class LadderGame {
 
     private final List<String> names;
+    private final List<String> results;
     private final int numLadder;
     private final LadderPlane plane;
 
-    public LadderGame(List<String> names, int numLadder) {
+    public LadderGame(List<String> names, List<String> results, int numLadder) {
         this.names = names;
         this.numLadder = numLadder;
+        this.results = results;
 
         plane = new LadderPlane(getHeight(), getWidth());
     }
@@ -24,7 +26,7 @@ public class LadderGame {
         return 2 * names.size() - 1;
     }
 
-    public String wrapName(String name) {
+    public String wrapEntry(String name) {
         int gap = LadderElement.getGap();
 
         int margin = getMargin(name, gap);
@@ -50,10 +52,13 @@ public class LadderGame {
         StringBuilder sb = new StringBuilder();
 
         for (String name : names) {
-            sb.append(wrapName(name)).append(' ');
+            sb.append(wrapEntry(name)).append(' ');
         }
         sb.append("\n").append(plane);
 
+        for (String result : results) {
+            sb.append(wrapEntry(result)).append(' ');
+        }
         return sb.toString();
     }
 }
