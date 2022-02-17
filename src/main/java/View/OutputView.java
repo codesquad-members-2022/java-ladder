@@ -1,11 +1,11 @@
 package View;
 
-import domain.Board;
+import domain.Ladder;
 import domain.Names;
 
 public class OutputView {
 
-    public static void showBoard(Board board) {
+    public static void showBoard(Ladder board) {
         System.out.println(board.toString());
     }
 

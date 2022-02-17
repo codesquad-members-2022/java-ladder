@@ -4,18 +4,18 @@ import Util.Validation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public class Ladder {
 
     private static final String MARGIN = "    ";
 
     private final int width;
     private final int height;
-    private final List<Floor> frame;
+    private final List<Floor> board;
     private final Names names;
 
-    public Board(Names names, int height) {
+    public Ladder(Names names, int height) {
         this.names = names;
-        frame = generateFrame();
+        board = generateBoard();
         this.width = names.getPlayersCount()*2-1;
         this.height = Validation.checkHeight(height);
     }
@@ -24,7 +24,7 @@ public class Board {
         return height;
     }
 
-    public List<Floor> generateFrame() {
+    public List<Floor> generateBoard() {
         List<Floor> frame = new ArrayList<>();
         for (int row = 0; row < height; row++) {
             frame.add(new Floor(width));
@@ -36,7 +36,7 @@ public class Board {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(names.toString()).append('\n');
-        frame.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
+        board.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
         return stringBuilder.toString();
     }
 }
