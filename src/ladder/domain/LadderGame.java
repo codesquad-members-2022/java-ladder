@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import java.util.List;
-
 public class LadderGame {
+    private static final String BLANK = "     ";
+    private static final String STEP = "-----";
+    private static final String RAIL = "|";
     private static final String LEFT_MARGIN = "  ";
     private static final String DEFAULT_NAME = "men";
 
@@ -13,21 +14,44 @@ public class LadderGame {
     public LadderGame(int countOfPlayer, int height, String[] playerNames) {
         this.countOfPlayer = countOfPlayer;
         this.playerNames = playerNames;
-        int width = countOfPlayer * 2 - 1;
-        ladder = new Ladder(width, height);
+        ladder = new Ladder(countOfPlayer, height);
     }
 
     public void printLadderGame() {
         printUserNames();
-        for (List<String> strings : ladder.getLadderArr()) {
-            printSingleUnit(strings);
+        for (Line line : ladder.getLadderArr()) {
+            printSingleLine(line);
         }
     }
 
-    private void printSingleUnit(List<String> strings) {
-        System.out.print(LEFT_MARGIN);
-        strings.stream().forEach(System.out::print);
-        System.out.println("");
+    private void printRail() {
+        System.out.printf(RAIL);
+    }
+
+    private void printSingleLine(Line line) {
+        printLeftMargin();
+        for (Boolean point : line.getPoints()) {
+            draw(point);
+        }
+        printRail();
+        printNewLine();
+    }
+
+    private void printNewLine() {
+        System.out.printf("%n");
+    }
+
+    private void printLeftMargin() {
+        System.out.printf(LEFT_MARGIN);
+    }
+
+    private void draw(Boolean point) {
+        System.out.printf(RAIL);
+        if (Boolean.TRUE.equals(point)) {
+            System.out.printf(STEP);
+            return;
+        }
+        System.out.printf(BLANK);
     }
 
     private void printUserNames() {
