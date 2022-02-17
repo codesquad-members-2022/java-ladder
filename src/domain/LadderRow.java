@@ -1,18 +1,19 @@
-import java.util.Arrays;
+package domain;
+
 import java.util.Random;
 import java.util.stream.IntStream;
 
 public class LadderRow extends ShapeInitializer{
     public static final Random RANDOM = new Random();
 
-    private int numberOfLine;
+    private int section;
     private String row;
-    private boolean lastRandomShapeIsBridge;
+    private boolean previousSectionIsBridge;
 
     public LadderRow(int numberOfLine) {
-        this.numberOfLine = numberOfLine;
+        this.section = numberOfLine * 2 - 1;
         this.row = init();
-        this.lastRandomShapeIsBridge = false;
+        this.previousSectionIsBridge = false;
     }
 
     private boolean isEven(int number) {
@@ -23,7 +24,7 @@ public class LadderRow extends ShapeInitializer{
         StringBuilder sb = new StringBuilder();
 
         sb.append(builder());
-        IntStream.range(0, numberOfLine).forEach(lineIndex -> sb.append(determineLineShape(lineIndex)));
+        IntStream.range(0, section).forEach(sectionIndex -> sb.append(determineSectionShape(sectionIndex)));
         return sb.toString();
     }
 
@@ -35,29 +36,29 @@ public class LadderRow extends ShapeInitializer{
         return initEmpty(NameTag.NAME_TAG_SIZE / 2);
     }
 
-    private String determineLineShape(int line) {
-        if (isEven(line)) {
+    private String determineSectionShape(int sectionIndex) {
+        if (isEven(sectionIndex)) {
             return "|";
         }
         return initRandomShape();
     }
 
     private String initRandomShape() {
-        if (lastRandomShapeIsBridge) {
-            switchLastRandomShapeIsBridge();
+        if (previousSectionIsBridge) {
+            switchpreviousSectionIsBridge();
             return initEmpty(NameTag.NAME_TAG_SIZE - 1);
         }
 
-        // 랜덤 모양(line or padding) 생성 로직
+        // 랜덤 모양(empty or bridge) 생성 로직
         if (RANDOM.nextBoolean()) {
-            switchLastRandomShapeIsBridge();
+            switchpreviousSectionIsBridge();
             return initBridge(NameTag.NAME_TAG_SIZE - 1);
         }
         return initEmpty(NameTag.NAME_TAG_SIZE - 1);
     }
 
-    public void switchLastRandomShapeIsBridge() {
-        this.lastRandomShapeIsBridge = !lastRandomShapeIsBridge;
+    private void switchpreviousSectionIsBridge() {
+        this.previousSectionIsBridge = !previousSectionIsBridge;
     }
 
     public String getRow() {

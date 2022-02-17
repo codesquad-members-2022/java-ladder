@@ -1,4 +1,6 @@
-import java.util.Arrays;
+package domain;
+
+import view.InputManager;
 
 public class NameTag extends ShapeInitializer{
     public static final int LEFT_PADDING_SIZE = 1;

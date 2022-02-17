@@ -1,4 +1,6 @@
-import java.util.Arrays;
+package view;
+
+import domain.Ladder;
 
 public class OutputManager {
     public void println(String message) {

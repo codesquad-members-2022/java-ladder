@@ -1,5 +1,6 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import domain.Ladder;
+import view.InputManager;
+import view.OutputManager;
 
 public class Main {
     private static InputManager in = new InputManager();

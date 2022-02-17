@@ -1,6 +1,8 @@
+package domain;
+
 import java.util.stream.IntStream;
 
-public abstract class ShapeInitializer {
+abstract class ShapeInitializer {
 
     public String initEmpty(int numberOfPadding) {
         StringBuilder sb = new StringBuilder();

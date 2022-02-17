@@ -96,9 +96,7 @@ enum class Message를 삭제하고, 해당 문자열을 상수로 선언하여 �
 
 ### 기능 요구 사항
 
-- [ ] 배열 대신 ArrayList와 Generic을 활용해 구현한다.  
-  ㄴ Generic은 어디에 사용..?
-
+- [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 - [x] 사다리 게임에 참여하는 플레이어의 이름은 최대 5글자까지 가능하다.  
   ㄴ 이름을 입력받는 처리, 검증 처리 필요  
   ㄴ 입력받는 플레이어의 이름은 쉼표(,)를 기준으로 구분한다.
@@ -120,3 +118,17 @@ enum class Message를 삭제하고, 해당 문자열을 상수로 선언하여 �
   - 랜덤으로 모양을 생성하는 메서드 최상단에서 `lastRandomShapeIsLine`가 true인지 우선 체크하고, true라면 `" "` 모양을 넣고 값을 false로 변경해준 뒤 return한다.
   - `lastRandomShapeIsLine` 가 false라면, 기존의 랜덤 모양 생성 로직을 그대로 따르고, 생성 된 것이 `"-"` 모양일 경우, 값을 true로 변경해주고, `" "` 모양일 경우 값을 false로 변경해준다. 
   
+## STEP4
+
+### 기능 요구 사항
+
+- [ ] 로직을 구현하는 코드에 단위 테스트가 존재해야 한다. 단, UI 처리 로직(System.in, System.out)은 테스트에서 제외한다.
+- [x] 각각의 역할에 맞도록 패키지를 분리하고 접근 제어자를 적절히 사용하도록 리팩토링한다.
+
+## 구현
+
+- sb.append()가 반복되는 부분 개선
+- Ladder클래스 경량화.  
+  ㄴ Ladder클래스 안에 원시형태로 몰려있던 nameTag, ladder를 nameTag와 사다리의 가로열을 담당할 ladderRow 클래스로 분리  
+  ㄴ nameTag와 ladderRow 객체를 담아줄 `List<T>`를 ladder클래스에 선언하고 관리
+- domain패키지, view패키지로 나누어 클래스 분리

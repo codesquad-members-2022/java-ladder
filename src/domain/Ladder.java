@@ -1,7 +1,8 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Ladder extends ShapeInitializer{
@@ -18,7 +19,7 @@ public class Ladder extends ShapeInitializer{
                 .forEach(name -> nametags.add(new NameTag(name)));
 
         IntStream.range(0, ladderDepth)
-                .forEach(row -> ladderRows.add(new LadderRow(numberOfPlayer * 2 - 1)));
+                .forEach(row -> ladderRows.add(new LadderRow(numberOfPlayer)));
     }
 
     public ArrayList<NameTag> getNameTags() {
