@@ -39,4 +39,7 @@ public class Line {
         return Math.random() > 0.5 ? false : true;
     }
 
+    public ArrayList<Boolean> getPoints() {
+        return points;
+    }
 }

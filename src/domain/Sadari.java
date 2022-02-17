@@ -8,10 +8,11 @@ public class Sadari {
     public Sadari(int userNumber, int sadariNumber) {
         sadari = new ArrayList<Line>();
         for(int i=0;i<sadariNumber;i++){
-            Line temp= new Line(userNumber -1);
-            System.out.println( temp.toString() );
-            sadari.add( temp );
+            sadari.add( new Line(userNumber -1) );
         }
     }
 
+    public List<Line> getSadari() {
+        return sadari;
+    }
 }
