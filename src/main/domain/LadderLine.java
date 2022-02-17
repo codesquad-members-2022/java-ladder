@@ -34,6 +34,10 @@ public class LadderLine {
         return element;
     }
 
+    public void move(Player player) {
+        player.move(elements);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -47,4 +51,5 @@ public class LadderLine {
 
         return sb.toString();
     }
+
 }

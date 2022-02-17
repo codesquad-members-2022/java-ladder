@@ -14,7 +14,7 @@ public class InputUtil {
         return names;
     }
 
-    public static List<String> parseResults(String line, int size) throws IllegalArgumentException {
+    public static List<String> parseOutcomes(String line, int size) throws IllegalArgumentException {
         List<String> results = parseEntries(line);
 
         if (results.size() != size) {

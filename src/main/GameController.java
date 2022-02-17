@@ -11,10 +11,12 @@ public class GameController {
     public void run() {
         try {
             List<String> names = InputUtil.parseEntries(InputView.getNames());
-            List<String> results = InputUtil.parseResults(InputView.getResults(), names.size());
+            List<String> outcomes = InputUtil.parseOutcomes(InputView.getResults(), names.size());
 
-            LadderGame game = new LadderGame(names, results, InputView.getNumLadder());
+            LadderGame game = new LadderGame(names, outcomes, InputView.getNumLadder());
             OutputView.printGame(game);
+
+            game.moveAll();
 
         } catch (IllegalArgumentException e) {
             OutputView.printIllegalException();

@@ -6,14 +6,14 @@ import main.util.InputUtil;
 public class LadderGame {
 
     private final List<String> names;
-    private final List<String> results;
+    private final List<String> outcomes;
     private final int numLadder;
     private final LadderPlane plane;
 
-    public LadderGame(List<String> names, List<String> results, int numLadder) {
+    public LadderGame(List<String> names, List<String> outcomes, int numLadder) {
         this.names = names;
         this.numLadder = numLadder;
-        this.results = results;
+        this.outcomes = outcomes;
 
         plane = new LadderPlane(getHeight(), getWidth());
     }
@@ -56,9 +56,19 @@ public class LadderGame {
         }
         sb.append("\n").append(plane);
 
-        for (String result : results) {
-            sb.append(wrapEntry(result)).append(' ');
+        for (String outcome : outcomes) {
+            sb.append(wrapEntry(outcome)).append(' ');
         }
         return sb.toString();
+    }
+
+
+    public void moveAll() {
+        for (int ind = 0; ind < names.size(); ind++) {
+            Player player = new Player(names.get(ind), 0, ind * 2);
+            plane.move(player);
+
+            System.out.println(player);
+        }
     }
 }
