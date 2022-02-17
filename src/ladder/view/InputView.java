@@ -1,16 +1,14 @@
-package main.controller;
-
-import main.InputValidator;
+package ladder.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputController {
+public class InputView {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static InputValidator validator = new InputValidator();
 
-    private InputController() {
+    private InputView() {
     }
 
     public static int inputPositiveNumber(String msg) throws IOException {

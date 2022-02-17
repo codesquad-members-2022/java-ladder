@@ -1,6 +1,6 @@
-package main;
+package ladder;
 
-import main.laddergame.LadderGameManager;
+import ladder.domain.LadderGameManager;
 
 public class Application {
     public static void main(String[] args) {
