@@ -31,8 +31,4 @@ public class LadderGame {
         }
     }
 
-    private String getPad(int count) {
-        return " ".repeat(Math.max(0, count));
-    }
-
 }
