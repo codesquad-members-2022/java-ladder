@@ -3,6 +3,7 @@ package app.jinan159.ladder.view;
 import app.jinan159.ladder.LadderGame;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.domain.gamemap.GameMap;
+import app.jinan159.ladder.utils.StringUtils;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -37,27 +38,9 @@ public class OutputView implements Closeable {
     private String participantsToString(List<Participant> participants) {
         return participants.stream()
                 .map(Participant::getName)
-                .map(this::padName)
+                .map(name -> StringUtils.padLeftRight(name, LadderGame.MAX_NAME_LENGTH))
                 .reduce((nested, name) -> nested + " " + name)
                 .orElse("") + "\n";
-    }
-
-    private String padName(String name) {
-        if (name.length() == LadderGame.MAX_NAME_LENGTH) return name;
-
-        int paddingSize = LadderGame.MAX_NAME_LENGTH - name.length();
-        int padCount1 = paddingSize / 2;
-        int padCount2 = paddingSize - padCount1;
-
-        if (padCount1 > padCount2) {
-            return getPad(padCount1) + name + getPad(padCount2);
-        }
-
-        return getPad(padCount2) + name + getPad(padCount1);
-    }
-
-    private String getPad(int count) {
-        return " ".repeat(Math.max(0, count));
     }
 
     @Override
