@@ -7,19 +7,11 @@ public class OutputView {
 
     private List<String> stringElements;
 
-    public OutputView(int numberOfParticipants) {
+    public OutputView() {
         stringElements = new ArrayList<>();
-        stringElements.add(drawSymbol(" ",numberOfParticipants));
-        stringElements.add(drawSymbol("-",numberOfParticipants));
+        stringElements.add("     ");
+        stringElements.add("-----");
         stringElements.add("|");
-    }
-
-    private String drawSymbol(String symbol,int numberOfParticipants) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numberOfParticipants; i++) {
-            sb.append(symbol);
-        }
-        return sb.toString();
     }
 
     public void printGhostLeg(int[][] ghostLeg) {

@@ -12,7 +12,7 @@ public class LadderGame {
         this.participants = participants;
         int numberOfParticipants = participants.size();
         this.ghostLeg = creatGhostLeg(numberOfParticipants, LegLength);
-        this.ov = new OutputView(numberOfParticipants);
+        this.ov = new OutputView();
     }
 
     private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
