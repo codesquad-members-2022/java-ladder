@@ -25,7 +25,7 @@ public class Input {
 
 	public static List<User> getUserName() {
 		System.out.println("참여할 사람 이름을 입력하세요.");
-		String[] userNames = sc.nextLine().split(",");
+		String[] userNames = getStringArrBySplitComma();
 		return stringArrToList(userNames);
 	}
 
@@ -35,6 +35,15 @@ public class Input {
 		return userList;
 	}
 
+	public static List<String> getUserResult() {
+		System.out.println("실행 결과를 입력하세요.");
+		String[] userResult = getStringArrBySplitComma();
+		return List.of(userResult);
+	}
+
+	private static String[] getStringArrBySplitComma() {
+		return sc.nextLine().split(",");
+	}
 
 	public static void close() {
 		sc.close();
