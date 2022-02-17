@@ -51,4 +51,5 @@ public class Ladders {
   public void setPlayers(List<Player> players) {
     this.players = players;
   }
+
 }
