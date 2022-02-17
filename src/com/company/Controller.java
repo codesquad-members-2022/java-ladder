@@ -1,14 +1,15 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.company.Input.getNamesList;
+
 public class Controller {
-    int[] getSadariInfo() {
-        int peopleCount = Input.getPeopleCount();
-        int sadariHeight = Input.getSadariHeight();
-        return new int[]{peopleCount, sadariHeight};
-    }
 
     void init() {
-        int[] sadariInfo = getSadariInfo();
+        List<String> namesList = Input.getNamesList();
+        int height = Input.getSadariHeight();
         Sadari sadari = new Sadari(sadariInfo[0], sadariInfo[1]);
         Print.printSadari(sadari);
     }
