@@ -44,6 +44,7 @@ public class LadderGame {
     }
 
     public void start() {
+        ov.printParticipants(participants);
         ov.printGhostLeg(ghostLeg);
     }
 }

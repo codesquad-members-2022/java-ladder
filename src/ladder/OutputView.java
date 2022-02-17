@@ -24,6 +24,7 @@ public class OutputView {
 
     public void printGhostLeg(int[][] ghostLeg) {
         for (int row = 0; row < ghostLeg.length; row++) {
+            System.out.print("   ");
             printColumn(ghostLeg[row]);
             System.out.println();
         }
@@ -38,5 +39,13 @@ public class OutputView {
     private void printElements(int element) {
         String stringElement = stringElements.get(element);
         System.out.print(stringElement);
+    }
+
+    public void printParticipants(List<String> participants) {
+        for (String participant: participants) {
+            System.out.printf("%5s",participant);
+            System.out.print(' ');
+        }
+        System.out.println();
     }
 }
