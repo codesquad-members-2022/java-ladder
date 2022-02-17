@@ -28,10 +28,7 @@ public class Server {
 	void run() {
 		try {
 			ready();
-			players = new Players(names);
-			ladder = new Ladder(players.numberOf(), height);
-
-			ladderService = new LadderService(players, ladder);
+			toInstanceAndDi();
 			String result = ladderService.resultOfPlay();
 			println.accept(result);
 		} catch (IllegalArgumentException | NullPointerException exception) {
@@ -40,9 +37,15 @@ public class Server {
 		}
 	}
 
+	private void toInstanceAndDi() {
+		players = new Players(names);
+		ladder = new Ladder(players.numberOf(), height);
+		ladderService = new LadderService(players, ladder);
+	}
+
 	private void ready() {
 		var settings = configuration.getSettings();
 		names = settings.getListOfNames();
-		settings.getHeight(names.size());
+		height = settings.getHeight(names.size());
 	}
 }
