@@ -15,7 +15,6 @@ public class InputView {
             validPlayerNames(name);
         }
         players = Arrays.asList(names);
-//        players = Arrays.asList(scanner.next().split(","));
         //리턴을 리스트로 보낼까?.?
         return Arrays.asList(names);
     }
@@ -34,14 +33,14 @@ public class InputView {
         StringBuilder sb = new StringBuilder();
         sb.append("   ");
         for (String player : players) {
-            String modifiedPlayerName = something(player);
+            String modifiedPlayerName = giveSpace(player);
             sb.append(modifiedPlayerName);
             sb.append(" ");
         }
         System.out.println(sb);
     }
 
-    private String something(String str) {
+    private String giveSpace(String str) {
         if (str.length() == 5) {
             return str;
         }
