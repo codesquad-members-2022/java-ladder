@@ -54,22 +54,27 @@ public class LadderGame {
 	}
 	private void linkUserAndResult() {
 		for (int i = 0; i < userNumber; i++) {
-			gameResult.put(users.get(i), checkResult(users.get(i), i));
+			gameResult.put(users.get(i), checkResult(i));
 		}
 	}
-	private String checkResult(User user, int idx) {
+	private String checkResult(int idx) {
 		int line = idx * 6 + 1;
 		for (int i = 0; i < ladderHeight; i++) {
-			if (isExistLeftStep(line, i)) {
-				line -= 6;
-			} else if (isExistRigthStep(line, i)) {
-				line += 6;
-			}
+			line = userPath(line, i);
 		}
 		return userResultInput.get((line - 1) / 6);
 	}
 
-	private boolean isExistRigthStep(int line, int i) {
+	private int userPath(int line, int i) {
+		if (isExistLeftStep(line, i)) {
+			line -= 6;
+		} else if (isExistRightStep(line, i)) {
+			line += 6;
+		}
+		return line;
+	}
+
+	private boolean isExistRightStep(int line, int i) {
 		return getLadderLineWithPadding(i).substring(line + 1, line + 2).contains("-");
 	}
 
