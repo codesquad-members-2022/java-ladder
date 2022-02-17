@@ -1,14 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> list;
+    private final List<Boolean> list = new ArrayList<>();
     private final int count;
     private boolean forwardVoid = true;
 
-    public Line(List<Boolean> list, int count) {
-        this.list = list;
+    public Line(int count) {
         this.count = count - 1;
         makeLine();
     }

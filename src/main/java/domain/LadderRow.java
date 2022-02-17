@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LadderRow {
@@ -16,9 +15,9 @@ public class LadderRow {
     private final Line line;
 
     public LadderRow(List<String> row, int count) {
-        line = new Line(new ArrayList<>(), count);
         this.row = row;
         this.peopleCount = count;
+        line = new Line(count);
         init();
     }
 
