@@ -25,8 +25,8 @@ public class LadderLine {
 			ladder.append("|");
 		} else {
 			boolean isStep = isStep();
-			previousStep = isStep;
 			ladder.append(isStep ? "-----" : "     ");
+			previousStep = isStep;
 		}
 	}
 
