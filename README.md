@@ -209,5 +209,100 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 
 
 ## 사다리 게임 3단계 - 사다리 모양 개선
+### 기능 요구 사항
+* [x] 사다리 게임에 참여하는 플레이어의 이름을 최대 5글자까지 부여할 수 있다.
+* [x] 사다리 출력시 이름도 같이 출력한다.
+* [x] 사람 이름은 쉼표(,)를 기준으로 구분한다.
+* [x] 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다.
+* [x] 사다리 타기가 정상적으로 동작하려면 라인이 겹치지 않도록 해야 한다.
+  * [x] `|-----|-----|` 모양과 같이 가로 라인이 겹치는 경우 어느 방향으로 이동할지 결정할 수 없다.
+
+### 프로그래밍 요구사항
+* [x] 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+  * [x] method가 한 가지 일만 하도록 최대한 작게 만들어라.
+* [x] indent(들여쓰기) depth를 2단계에서 1단계로 줄여라.
+  * [x] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
+* [x] else를 사용하지 마라.
+* [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+
+### 구현 과정
+#### 1. 이름을 입력받도록 수정
+* `PrintView`에서 이름을 입력받고 길이가 5자가 넘으면 5자로 수정해서 넘기도록 변경함
+   ```java
+    public String[] getPlayerName() {
+        System.out.println("참여할 사람의 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
+        String[] namePlayers = sc.nextLine().split(",");
+        for (int i = 0; i < namePlayers.length; ++i) {
+            namePlayers[i] = getNameLengthBelow5(namePlayers[i].trim());
+        }
+        return namePlayers;
+        }
+
+    private String getNameLengthBelow5(String name) {
+        if (name.length() <= 5) {
+            return name;
+        }
+
+        return name.substring(0, 5);
+        }
+   ```
+
+* `Ladder` 클래스에 이름에 관한 멤버변수를 추가하고 `init()`시 이름도 초기화하도록 함.
+   ```java
+    public void init(String[] namePlayers, int height) {
+        this.namePlayers = namePlayers;
+        this.numPlayer = namePlayers.length;
+        this.numSteps = namePlayers.length - 1;
+        this.height = height;
+
+        ladder = new ArrayList<>();
+        for (int lineNum = 0; lineNum < height; ++lineNum) {
+            initLine(lineNum);
+        }
+    }
+   ```
+#### 2. 이름을 출력하도록 구현
+* `PrintView` 클래스에서 이름 앞 뒤로 패딩을 붙여 출력하도록 구현
+   ```java   
+    private String getNameWithPadding(String name) {
+        int count = 0;
+        while (name.length() < 5) {
+            name = count % 2 == 0 ? " " + name : name + " ";
+            count++;
+        }
+
+        return name;
+    }
+   ```
+#### 3. 라인이 겹치지 않도록 구현
+* 사다리 초기화 시에 왼쪽에 step(발판)이 있으면 step이 없고, 왼쪽에 step이 없으면 random한 값을 가지도록 구현
+   ```java
+    private void initLine(int lineNum) {
+        Random rd = new Random();
+        ArrayList<Boolean> line = new ArrayList<Boolean>();
+        for (int step = 0; step < numSteps; ++step) {
+            line.add(getStep(line, rd, step));
+        }
+        ladder.add(line);
+    }
+
+    private boolean getStep(ArrayList<Boolean> line, Random rd, int step) {
+        if (step == 0) {
+            return rd.nextBoolean();
+        }
+
+        // 왼쪽에 step 존재하면 false, 없으면 random
+        return !line.get(step - 1) && rd.nextBoolean();
+    }
+   ```
+#### 4. 배열 대신 `ArrayList`로 구현
+* `Ladder`클래스에서 사다리를 `List<List<Boolean>>`을 가지도록 구현
+   ```java
+    private List<List<Boolean>> ladder;
+   ```
+
+### 실행 결과
+![level_2_result](readme_image/level_2_result.png)
+
 ## 사다리 게임 4단계 - 리팩토링 2
 ## 사다리 게임 5단계 - 실행 결과 출력
