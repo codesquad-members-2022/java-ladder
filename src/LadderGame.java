@@ -4,8 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
-
-
+  
   public Ladders gameInfoStep1() {
     System.out.println("참여할 사람은 몇 명인가요?");
     int numOfPeople = inputNumber();
@@ -42,11 +41,8 @@ public class LadderGame {
   }
 
   public Ladders makeLadder(Ladders ladders) {
-//    List<List<Ladder>> totalLadders = ladders.get();
     List<List<Ladder>> totalLadders = new ArrayList<>();
     for (int whatFloor = 0; whatFloor < ladders.getHeight(); whatFloor++) {
-//      totalLadders[whatFloor] = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
-//      List<Ladder> floorLadder = totalLadders.get(whatFloor);
       List<Ladder> floorLadder = new ArrayList<>();
       floorLadder = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
       totalLadders.add(floorLadder);
@@ -56,7 +52,7 @@ public class LadderGame {
   }
 
   private List<Ladder> makeOneFloorLadder(int numOfFloor, int numOfColumns) {
-    List<Ladder> oneFloor = new ArrayList<Ladder>(numOfColumns);
+    List<Ladder> oneFloor = new ArrayList<>(numOfColumns);
 
     for (int column = 0; column < numOfColumns - 1; column += 2) {
       oneFloor.add(getLadderShape(column, numOfColumns));

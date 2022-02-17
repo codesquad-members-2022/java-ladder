@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Ladders {
 
-  //  private char[][] totalLadders;
   private List<List<Ladder>> totalLadders;
   private int numOfPeople;
   private int numOfcolumns;
@@ -14,7 +13,6 @@ public class Ladders {
     this.numOfPeople = numOfPeople;
     this.height = height;
     this.numOfcolumns = numOfPeople * 2;
-//    this.totalLadders = new char[height][this.numOfcolumns];
     this.totalLadders = new ArrayList<>(height); //이렇게 설정해 놓아도 더 많이 add 할 수 있다.
   }
 
@@ -22,7 +20,6 @@ public class Ladders {
     this.numOfPeople = numOfPeople;
     this.height = height;
     this.numOfcolumns = numOfPeople * 2;
-//    this.totalLadders = new char[height][this.numOfcolumns];
     this.totalLadders = new ArrayList<>(height);
     this.players = players;
   }
