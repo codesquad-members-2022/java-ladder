@@ -1,3 +1,5 @@
+package ladder.domain;
+
 public class User {
 
 	private final String userName;

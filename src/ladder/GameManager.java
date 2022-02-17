@@ -1,3 +1,7 @@
+package ladder;
+
+import ladder.domain.LadderGame;
+
 public class GameManager {
 
 	public static void main(String[] args) {
