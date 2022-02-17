@@ -1,11 +1,12 @@
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
     private final int memberCount;
     private final int height;
-    ArrayList<ArrayList<String>> ladder;
+    List<List<String>> ladder;
 
     Random random = new Random();
     StringBuilder sb = new StringBuilder();
@@ -16,23 +17,23 @@ public class Ladder {
         this.ladder = createLadder();
     }
 
-    private ArrayList<ArrayList<String>> createLadder() {
-        ArrayList<ArrayList<String>> ladder = new ArrayList<>();
+    private List<List<String>> createLadder() {
+        List<List<String>> ladder = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            ArrayList<String> ladderRow = new ArrayList<>();
+            List<String> ladderRow = new ArrayList<>();
             addLadderRow(ladderRow);
             ladder.add(ladderRow);
         }
         return ladder;
     }
 
-    private void addLadderRow(ArrayList<String> ladderRow) {
+    private void addLadderRow(List<String> ladderRow) {
         for (int column = 0; column < memberCount * 2 - 1; column++) {
             addRowElements(ladderRow, column);
         }
     }
 
-    private void addRowElements(ArrayList<String> ladderRow, int column) {
+    private void addRowElements(List<String> ladderRow, int column) {
         if (column % 2 == 0) {
             ladderRow.add("|");
         }
@@ -42,7 +43,7 @@ public class Ladder {
         }
     }
 
-    private void lineDuplicateCheck(ArrayList<String> ladderRow, int column) {
+    private void lineDuplicateCheck(List<String> ladderRow, int column) {
         if (column >= 2 && ladderRow.get(column - 2).equals("-----")) {
             ladderRow.set(column, "     ");
         }
