@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Sadari {
-    ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
-    ArrayList<String> people;
+    private ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
+    private ArrayList<String> people;
 
     public Sadari(int peopleCount, int height) {
         this.sadariList = makeSadariList(peopleCount, height);
