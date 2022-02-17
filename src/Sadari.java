@@ -1,28 +1,47 @@
+import java.util.ArrayList;
+
 public class Sadari {
-    private boolean[][] sadari;
+    private ArrayList<boolean[]> sadari;
 
     Sadari(int userNumber, int sadariNumber) {
-        sadari = new boolean[sadariNumber][userNumber - 1];
+        //sadari = new boolean[sadariNumber][userNumber - 1];
+        sadari = new ArrayList<boolean[]>();
+        for(int i=0;i<sadariNumber;i++){
+            sadari.add(new boolean[userNumber - 1]);
+        }
         generateRandomSadari();
     }
 
-    //https://coozplz.me/2011/11/09/2%EC%B0%A8%EC%9B%90-%EB%B0%B0%EC%97%B4for%EB%AC%B8-%ED%95%98%EB%82%98%EB%A1%9C-%EC%B6%9C%EB%A0%A5/
     private void generateRandomSadari() {
-        for(int i = 0; i < sadari.length * sadari[0].length; i++) {
-            sadari[i/sadari[0].length][i% sadari[0].length] = getRandomBoolean();
+        for (int i = 0; i < sadari.size(); i++){
+            //sadari[i] = generateRandomLineOfSadari( sadari[i] );
+            sadari.set(i, generateRandomLineOfSadari( sadari.get(i) ));
         }
     }
 
-        private boolean getRandomBoolean () {
-            return Math.random() > 0.5 ? false : true;
+    private boolean[] generateRandomLineOfSadari(boolean[] line){
+        for(int i=0;i<line.length;i++){
+            line[i] = getRandomBoolean();
+            i+=isContinuousGaro(line[i]);
         }
+        return line;
+    }
 
-
-        public boolean[][] getSadari () {
-            return sadari;
+    // 가로가 연속해서 존재하지 않게 i값을 조정하는 메소드.
+    private int isContinuousGaro(boolean i){
+        if(i==true){
+            return 1;
         }
-
-
+        return 0;
     }
 
 
+    private boolean getRandomBoolean () {
+        return Math.random() > 0.5 ? false : true;
+    }
+
+    public ArrayList<boolean[]> getSadari () {
+        return sadari;
+    }
+
+}
