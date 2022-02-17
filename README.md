@@ -77,8 +77,8 @@ public class GameApplication {
 
   public void run() {
     initLadderGame();
-    Ladder ladder = ladderGameService.getLadder();
-    outputView.printLadder(ladder);
+    String resultMap = ladderGameService.getResultMap();
+    outputView.printResultMap(resultMap);
     ac.close();
   }
 
@@ -244,12 +244,12 @@ public interface LadderFactory {
 public interface LadderGameService {
 
   void initLadderGame(int numberOfUsers, int height);
-  Ladder getLadder();
+  String getResultMap();
 }
 ```
 - LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
 - initLadderGame : 사다리 게임 초기화
-- getLadder : 게임의 결과로부터, `Ladder`를 받아옴.
+- getResultMap : 사다리 게임맵을 문자열로 반환
 - 구현체 : LadderGameServiceImpl
 
 ---
@@ -289,7 +289,7 @@ public interface InputView {
 ```java
 public interface OutputView {
 
-    void printLadder(Ladder ladder);
+  void printResultMap(String resultMap);
 
 }
 ```

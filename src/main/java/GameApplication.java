@@ -1,5 +1,4 @@
 import domain.game.LadderGameService;
-import domain.ladder.Ladder;
 import view.input.InputView;
 import view.output.OutputView;
 
@@ -23,8 +22,8 @@ public class GameApplication {
 
     public void run() {
         initLadderGame();
-        Ladder ladder = ladderGameService.getLadder();
-        outputView.printLadder(ladder);
+        String resultMap = ladderGameService.getResultMap();
+        outputView.printResultMap(resultMap);
         ac.close();
     }
 

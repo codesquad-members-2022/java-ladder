@@ -32,7 +32,21 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     @Override
-    public Ladder getLadder() {
-        return ladderGame.getLadder();
+    public String getResultMap() {
+        String ladderString = buildLadderString(ladderGame.getLadder());
+        return ladderString;
+    }
+
+    private String buildLadderString(Ladder ladder) {
+        return IntStream.range(0, ladder.height())
+                .mapToObj(row -> makeLadderRowString(ladder, row))
+                .collect(Collectors.joining("\n"));
+    }
+
+    private String makeLadderRowString(Ladder ladder, int row) {
+        return IntStream.range(0, ladder.width())
+                .mapToObj(column -> ladder.getLadderElement(column, row))
+                .map(LadderElement::getSymbol)
+                .collect(Collectors.joining());
     }
 }
