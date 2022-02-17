@@ -8,6 +8,7 @@ public class Direction {
 
     private final boolean left;
     private final boolean right;
+    private static final String UNDRAWABLE = "선을 그릴 수 없습니다.";
 
     public Direction(boolean left, boolean right) {
         validateDirection(left, right);
@@ -17,13 +18,19 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException(UNDRAWABLE);
+        }
+    }
+
+    void validateDirection(){
+        if(this.left && this.right){
+            throw new IllegalStateException(UNDRAWABLE);
         }
     }
 
     public Direction next() {
         if (hasRight()) {
-            return DirectionFactory.getLast(this);
+            return DirectionFactory.getLastDirection(this);
         }
         return DirectionFactory.getNextDirection(this);
     }

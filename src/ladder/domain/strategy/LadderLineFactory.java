@@ -11,7 +11,6 @@ import java.util.List;
 
 public class LadderLineFactory {
 
-    private static final int START = 0;
     private static DrawingStrategy strategy;
 
     static {
@@ -19,10 +18,8 @@ public class LadderLineFactory {
     }
 
     public static List<LadderLine> getLadderLines(Count playerCount, Height height) {
-        final int totalCount = height.getValue();
         List<LadderLine> ladderLines = new ArrayList<>();
-
-        for (int index = START; index < totalCount; index++) {
+        for (int index = 0; index < height.getValue(); index++) {
             LadderLine ladderLine = strategy.executeHolizontalStrategy(playerCount);
             ladderLines.add(ladderLine);
         }
@@ -30,33 +27,33 @@ public class LadderLineFactory {
     }
 
     private static LadderLine getLadderLine(Count count) {
-        List<Point> points = new ArrayList<>();
+        return getLineElements(count);
+    }
 
-        Point point = PointFactory.getFirstPoint();
-        points.add(point);
-        points.addAll(getOtherPoints(count, point));
+    private static LadderLine getLineElements(Count count) {
+        List<Point> points = getPoints(count);
         return new LadderLine(points);
     }
 
-    private static List<Point> getOtherPoints(Count count, Point point) {
-        int start = 1;
-        int end = count.getValue();
+    private static List<Point> getPoints(Count count) {
         List<Point> points = new ArrayList<>();
-
-        for (int index = start; index < end; index++) {
-            addPoint(index, end, point, points);
+        Point point = PointFactory.getFirstPoint();
+        points.add(point);
+        for (int index = 1; index < count.getValue(); index++) {
+            point = addPoint(index, count, point, points);
         }
         return points;
     }
 
-    private static void addPoint(int index, int end, Point point, List<Point> points) {
-        int beforeLast = end - 1;
+    private static Point addPoint(int index, Count count, Point point, List<Point> points) {
+        int beforeLast = count.getValue() - 1;
         if (index == beforeLast) {
             point = PointFactory.getLastPoint(point);
             points.add(point);
-            return;
+            return point;
         }
         point = point.next();
         points.add(point);
+        return point;
     }
 }

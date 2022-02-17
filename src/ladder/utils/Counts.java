@@ -2,10 +2,13 @@ package ladder.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Counts {
 
-    private static final int LIMIT = 50;
+    private static final int START = 1;
+    private static final int LIMIT = 15;
     private static final List<Count> counts = new ArrayList<>();
 
     static {
@@ -13,9 +16,10 @@ public class Counts {
     }
 
     static void initCounts() {
-        for (int index = 1; index < LIMIT; index++) {
-            counts.add(new Count(index));
-        }
+        List<Count> elements = new ArrayList<>(IntStream.rangeClosed(START, LIMIT)
+                .mapToObj(Count::new)
+                .collect(Collectors.toUnmodifiableList()));
+        counts.addAll(elements);
     }
 
     public static Count of(int number) {

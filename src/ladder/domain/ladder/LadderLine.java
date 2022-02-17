@@ -1,9 +1,10 @@
 package ladder.domain.ladder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static ladder.utils.CopyUtils.copy;
 
 public class LadderLine {
 
@@ -17,6 +18,14 @@ public class LadderLine {
 
     private void validateLadderLine(List<Point> points) {
         Objects.requireNonNull(points);
+        validateDrawable(points);
+    }
+
+    private void validateDrawable(List<Point> points) {
+        for(Point point : points){
+            Direction direction = point.getDirection();
+            direction.validateDirection();
+        }
     }
 
     public int move(int index) {
@@ -35,9 +44,5 @@ public class LadderLine {
             return Collections.emptyList();
         }
         return Collections.unmodifiableList(copy(this.points));
-    }
-
-    private List<Point> copy(List<Point> points) {
-        return new ArrayList<>(points);
     }
 }

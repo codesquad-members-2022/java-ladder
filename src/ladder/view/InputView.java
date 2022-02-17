@@ -1,14 +1,16 @@
 package ladder.view;
 
+import ladder.domain.ladder.Height;
 import ladder.domain.user.Name;
 import ladder.domain.user.Names;
-import ladder.domain.ladder.Height;
 import ladder.system.Configuration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.lang.System.out;
 import static java.util.stream.Collectors.toList;
@@ -20,7 +22,8 @@ public class InputView {
     private static final String COMMA = ",";
     static BufferedReader bufferReader = Configuration.bufferReader;
 
-    private InputView() {}
+    private InputView() {
+    }
 
     private static final InputView instance = new InputView();
 
@@ -43,10 +46,42 @@ public class InputView {
                     .map(String::trim)
                     .map(Name::new)
                     .collect(toList());
+            validateNames(names);
             return new Names(names);
         } catch (Exception e) {
             out.println("");
             return getPlayerNames();
+        }
+    }
+
+    private void validateNames(List<Name> names) {
+        validateParticipants(names);
+        validateDuplicate(names);
+        validateNameLength(names);
+    }
+
+    private void validateParticipants(List<Name> names) {
+        if (names.size() <= 1) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void validateDuplicate(List<Name> names) {
+        Set<Name> set = new HashSet<>(names);
+        if (names.size() != set.size()) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void validateNameLength(List<Name> names) {
+        for (Name name : names) {
+            validateLength(name);
+        }
+    }
+
+    private void validateLength(Name name) {
+        if (name.getName().length() < 1 || name.getName().length() > 5) {
+            throw new IllegalStateException();
         }
     }
 

@@ -6,8 +6,8 @@ public class Count {
 
     private final int value;
     private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 50;
-    private static final String INDEX_OUT_OF_RANGE = "최소 1이상, 최대 50 이하의 숫자만 입력하실 수 있습니다.";
+    private static final int MAX_VALUE = 15;
+    private static final String INDEX_OUT_OF_RANGE = "최소 1이상, 최대 15 이하의 숫자만 입력하실 수 있습니다.";
 
     public Count(int value) {
         validate(value);

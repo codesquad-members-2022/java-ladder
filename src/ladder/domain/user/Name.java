@@ -14,7 +14,7 @@ public class Name {
 
     private void validateLength(String name) {
         if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
     }
 

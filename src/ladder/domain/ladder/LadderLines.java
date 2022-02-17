@@ -1,11 +1,12 @@
 package ladder.domain.ladder;
 
-import ladder.utils.Count;
 import ladder.domain.strategy.LadderLineFactory;
+import ladder.utils.Count;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static ladder.utils.CopyUtils.copy;
 
 public class LadderLines {
 
@@ -17,9 +18,5 @@ public class LadderLines {
 
     public List<LadderLine> getLadderLines() {
         return Collections.unmodifiableList(copy(this.ladderLines));
-    }
-
-    private List<LadderLine> copy(List<LadderLine> ladderLines){
-        return new ArrayList<>(ladderLines);
     }
 }
