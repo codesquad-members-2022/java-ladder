@@ -1,11 +1,13 @@
 package application.domain.ladder;
 
+import application.domain.ladder.element.Element;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static application.message.ShapeMessage.*;
 
-public class Shape<T> {
+public class Shape<T extends Element> {
     private final List<List<T>> shape;
     private final int height;
     private final int width;

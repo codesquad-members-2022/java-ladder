@@ -62,7 +62,7 @@
   - Ladder 는 Shape (사다리 형태) 를 포함하고 있으며, 이를 사용하여 형태를 구성합니다.
   - Shape 는 이차원 ArrayList 를 조작하는 일급 객체입니다.
   ```java
-  public class Shape<T> {
+  public class Shape<T extends Element> {
       private List<List<T>> shape;
   }
   ```
