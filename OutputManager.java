@@ -6,10 +6,10 @@ public class OutputManager {
     }
 
     public void printLadderModel(Ladder ladder) {
-        Arrays.stream(ladder.getNameTags())
-                .forEach(System.out::print);
+        ladder.getNameTags().stream()
+                .forEach(nameTag -> System.out.print(nameTag.getNameTag()));
         println("");
-        ladder.getLadder().stream()
-                .forEach(System.out::println);
+        ladder.getLadderRows().stream()
+                .forEach(LadderRow -> System.out.println(LadderRow.getRow()));
     }
 }
