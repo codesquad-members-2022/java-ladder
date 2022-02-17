@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class GameMap {
 
-    private final static String ALERT_WORNG_POINT_ACCESS = "잘못된 좌표로 접근하셨습니다.";
+    private final static String ALERT_WRONG_POINT_ACCESS = "잘못된 좌표로 접근하셨습니다.";
 
     private final List<GameMapRow> gameMap;
     private final int width;
@@ -28,7 +28,7 @@ public class GameMap {
     public LadderElement get(int x, int y) {
         return gameMap.get(y)
                 .getColumn(x)
-                .orElseThrow(()->new IllegalStateException(ALERT_WORNG_POINT_ACCESS))
+                .orElseThrow(()->new IllegalStateException(ALERT_WRONG_POINT_ACCESS))
                 .getElement();
     }
 
