@@ -24,7 +24,10 @@ public class OutputView {
     private static void appendPlayers(StringBuilder sb, List<Player> players) {
         sb.append("   ");
         for (Player player : players) {
-            sb.append(String.format("%5s ", StringUtils.center(player.getName(), 5, ' ')));
+            String modPlayerName = StringUtils.center(player.getName(), 5, ' ');
+            modPlayerName = StringUtils.withLimitLength(modPlayerName, 5);
+
+            sb.append(String.format("%5s ", modPlayerName));
         }
         sb.append("\n");
     }

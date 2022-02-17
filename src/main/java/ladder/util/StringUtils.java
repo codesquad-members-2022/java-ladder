@@ -7,7 +7,7 @@ public class StringUtils {
     public static String center(String str, int length, char padChar) {
         int strSize = str.length();
         if (isStrSizeGreaterThanLength(length, strSize))
-            return str.substring(0, length - 2) + "..";
+            return str;
 
         return createCenterString(str, length, padChar, strSize);
     }
@@ -25,4 +25,10 @@ public class StringUtils {
     }
 
 
+    public static String withLimitLength(String str, int limit) {
+        if (str.length() <= limit) {
+            return str;
+        }
+        return str.substring(0, limit - 2) + "..";
+    }
 }
