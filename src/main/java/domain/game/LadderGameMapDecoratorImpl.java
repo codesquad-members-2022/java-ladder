@@ -42,6 +42,6 @@ public class LadderGameMapDecoratorImpl implements LadderGameMapDecorator {
         return IntStream.range(0, ladder.width())
                 .mapToObj(column -> ladder.getLadderElement(column, row))
                 .map(LadderElement::getSymbol)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining("","    ",""));
     }
 }

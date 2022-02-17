@@ -23,6 +23,11 @@
 
 ---
 
+## 실행결과
+![img/Result.png](img/Result.png)
+- 실행 결과 : 사다리 정상 출력
+---
+
 ## 의존 관계도
 ![Relationship.jpg](img/Relationship.jpg)
 - Main의 메인메서드에서 GameApplication을 생성, 호출
