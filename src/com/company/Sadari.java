@@ -5,10 +5,11 @@ import java.util.Random;
 
 public class Sadari {
     private ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
-    private ArrayList<String> people;
+    private ArrayList<String> namesList;
 
-    public Sadari(int peopleCount, int height) {
-        this.sadariList = makeSadariList(peopleCount, height);
+    public Sadari(ArrayList<String> namesList, int height) {
+        this.sadariList = makeSadariList(namesList.size(), height);
+        this.namesList = namesList;
     }
 
     public void setUsers() {
@@ -33,11 +34,11 @@ public class Sadari {
     }
 
     private String getRowComponent(int peopleCount, int index, boolean[] isLineUsed) {
-        if (index == 0 || index % 2 == 0 && isLineUsed[0]) {
-            return "     ";
+        if (index == 0 || index == 2 * peopleCount) {
+            return "  ";
         }
-        if (index == 2 * peopleCount) {
-            return "    ";
+        if (index % 2 == 0 && isLineUsed[0]) {
+            return "     ";
         }
         if (index % 2 == 0)
             return getRandomLine(isLineUsed);
@@ -46,6 +47,10 @@ public class Sadari {
 
     public ArrayList<ArrayList<String>> getSadariList() {
         return this.sadariList;
+    }
+
+    public ArrayList<String> getNamesList() {
+        return this.namesList;
     }
 
     private String getRandomLine(boolean[] isLineUsed) {

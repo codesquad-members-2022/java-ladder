@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -29,9 +30,9 @@ public class Input {
         System.out.println("> ");
 
         String names = sc.next();
+
         String[] namesArray = names.split(",");
-        ArrayList<String> participants = new ArrayList<>();
-        Collections.addAll(participants, namesArray);
+        ArrayList<String> participants = new ArrayList<>(List.of(namesArray));
 
         return participants;
     }

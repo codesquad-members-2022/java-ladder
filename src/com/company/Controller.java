@@ -8,9 +8,10 @@ import static com.company.Input.getNamesList;
 public class Controller {
 
     void init() {
-        List<String> namesList = Input.getNamesList();
+        ArrayList<String> namesList = Input.getNamesList();
+        System.out.println(namesList.toString());
         int height = Input.getSadariHeight();
-        Sadari sadari = new Sadari(sadariInfo[0], sadariInfo[1]);
+        Sadari sadari = new Sadari(namesList, height);
         Print.printSadari(sadari);
     }
 
