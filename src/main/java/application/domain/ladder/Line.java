@@ -14,7 +14,7 @@ public class Line {
         this.line = new ArrayList<>();
     }
 
-    void appendElement(LadderElement e) {
+    void addElement(LadderElement e) {
         line.add(e);
     }
 

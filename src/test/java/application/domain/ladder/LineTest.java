@@ -16,7 +16,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("2번 째 요소가 'EMPTY' 일 때 현재 라인의 3번 째 요소에 'RAIL' 을 append 한다.")
+    @DisplayName("현재 라인의 2번 째 요소가 'EMPTY' 일 때 3번 째 요소에 'RAIL' 을 append 한다.")
     void isValidTrue() {
         line.appendElement(STEP);
         line.appendElement(EMPTY);
@@ -24,7 +24,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("2번 째 요소가 'STEP' 일 때 현재 라인의 3번 째 요소에 'RAIL' 을 append 한다.")
+    @DisplayName("현재 라인의 2번 째 요소가 'STEP' 일 때 3번 째 요소에 'RAIL' 을 append 한다.")
     void isValidFalse() {
         line.appendElement(STEP);
         line.appendElement(STEP);

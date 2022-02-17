@@ -28,7 +28,7 @@ public class Ladder {
     private Line createLine() {
         Line line = new Line();
         for (int col = 0; col < width; ++col) {
-            line.appendElement(nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY);
+            line.addElement(nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY);
         }
         return line;
     }
