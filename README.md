@@ -305,4 +305,20 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 ![level_2_result](readme_image/level_2_result.png)
 
 ## 사다리 게임 4단계 - 리팩토링 2
+
+### 프로그래밍 요구사항
+* [ ] 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+  * [ ] method가 한 가지 일만 하도록 최대한 작게 만들어라.
+* [ ] indent(인덴트, 들여쓰기) depth를 2단계에서 1단계로 줄여라.
+  * [ ] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
+* [ ] else를 사용하지 마라.
+* [ ] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+* [ ] 로직을 구현하는 코드에 단위 테스트가 존재해야 한다. 단, UI 처리 로직(System.in, System.out)은 테스트에서 제외한다.
+* [ ] 각각의 역할에 맞도록 패키지를 분리하고 접근 제어자를 적절히 사용하도록 리팩토링한다.
+
+
+
+
+
+
 ## 사다리 게임 5단계 - 실행 결과 출력
