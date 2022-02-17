@@ -32,4 +32,9 @@ public class Element {
     public boolean getHasStep() {
         return this.hasStep;
     }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
 }

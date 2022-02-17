@@ -23,6 +23,6 @@ public class LadderGame {
         int maxLadderHeight = InputView.getMaxLadderHeight();
         InputView.close();
 
-        return Ladder.getLadder(playersCount, maxLadderHeight);
+        return new Ladder(playersCount, maxLadderHeight);
     }
 }
