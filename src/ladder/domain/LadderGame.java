@@ -24,10 +24,6 @@ public class LadderGame {
         }
     }
 
-    private void printRail() {
-        System.out.printf(RAIL);
-    }
-
     private void printSingleLine(Line line) {
         printLeftMargin();
         for (Boolean point : line.getPoints()) {
@@ -41,17 +37,25 @@ public class LadderGame {
         System.out.printf("%n");
     }
 
+    private void printRail() {
+        System.out.printf(RAIL);
+    }
+
     private void printLeftMargin() {
         System.out.printf(LEFT_MARGIN);
     }
 
+    private void printBlank() {
+        System.out.printf(BLANK);
+    }
+
     private void draw(Boolean point) {
-        System.out.printf(RAIL);
+        printRail();
         if (Boolean.TRUE.equals(point)) {
             System.out.printf(STEP);
             return;
         }
-        System.out.printf(BLANK);
+        printBlank();
     }
 
     private void printUserNames() {
@@ -67,10 +71,6 @@ public class LadderGame {
     }
 
     private void printUserName(String playerName) {
-        if (playerName.length() > LadderGameManager.MAX_NAME_LENGTH) {
-            System.out.printf("%3.3s.. ", playerName);
-            return;
-        }
         System.out.printf("%5.5s ", playerName);
     }
 }
