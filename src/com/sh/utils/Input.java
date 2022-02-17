@@ -8,11 +8,11 @@ public class Input {
 	public Input() {
 	}
 
-	public String nextLine() {
+	public static String nextLine() {
 		return scanner.nextLine();
 	}
 
-	public int nextInt() {
+	public static int nextInt() {
 		return scanner.nextInt();
 	}
 

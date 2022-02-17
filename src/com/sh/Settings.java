@@ -1,5 +1,6 @@
 package com.sh;
 
+import static com.sh.utils.Input.*;
 import static com.sh.utils.InputVerification.*;
 import static com.sh.utils.Output.*;
 
@@ -7,17 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.sh.utils.Input;
-import com.sh.utils.Output;
-
 public class Settings {
-	private final Input input;
-	private final Output output;
 
-	public Settings(Input input, Output output) {
-		this.input = input;
-		this.output = output;
-	}
+	public Settings() {}
 
 	public List<String> getListOfNames() {
 		try {
@@ -51,13 +44,13 @@ public class Settings {
 	}
 
 	private String[] getNames() {
-		String inputValue = input.nextLine();
+		String inputValue = nextLine();
 		isValidNames(inputValue);
 		return inputValue.split(SYMBOL_NAME_SEPARATOR);
 	}
 
 	private int getHeightOfLadder(int minHeight) {
-		int maxHeightOfLadder = input.nextInt();
+		int maxHeightOfLadder = nextInt();
 		isValidHeightOfLadder(maxHeightOfLadder, minHeight);
 		return maxHeightOfLadder;
 	}

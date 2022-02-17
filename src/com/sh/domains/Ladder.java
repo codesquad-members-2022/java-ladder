@@ -12,14 +12,14 @@ import com.sh.utils.Randomz;
 
 public class Ladder {
 	private static final int MIN_RANGE = 0;
-	private final Integer rangeOfx;
-	private final Integer rangeOfy;
+	private final int rangeOfx;
+	private final int rangeOfy;
 	private Randomz random;
 	private int place;
 	private List<List<Boolean>> graphs = new ArrayList<>();
 	private Function<Boolean, Integer> nextDirection = (dir) -> (dir ? -1 : 1);
 
-	public Ladder(Integer rangeOfx, Integer rangeOfy) {
+	public Ladder(int rangeOfx, int rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
 			throw new NullPointerException("NPE - constructor of Ladder");
 		}
@@ -48,7 +48,7 @@ public class Ladder {
 
 	private void nextPlace() {
 		boolean directions = random.getBoolean();
-		Integer nextPlace = nextDirection.apply(directions);
+		int nextPlace = nextDirection.apply(directions);
 		if (!isRangeOf(nextPlace)) {
 			nextPlace *= (-1);
 		}

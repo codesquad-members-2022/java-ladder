@@ -18,7 +18,6 @@ public class Server {
 		return SERVER;
 	}
 
-	private static Configuration configuration = Configuration.getInstance();
 	private List<String> names;
 	private int height;
 	private Players players;
@@ -44,7 +43,7 @@ public class Server {
 	}
 
 	private void ready() {
-		var settings = configuration.getSettings();
+		Settings settings = new Settings();
 		names = settings.getListOfNames();
 		height = settings.getHeight(names.size());
 	}
