@@ -9,13 +9,14 @@ public class Names {
     private List<String> names;
 
     public Names(String names) {
-        this.names = new ArrayList<>();
-        putNames(names);
+        this.names = splitNames(names);
     }
 
-    private void putNames(String names) {
+    private List<String> splitNames(String names) {
+        List<String> nameList = new ArrayList<>();
         String[] arr = names.split(",");
-        Collections.addAll(this.names, arr);
+        Collections.addAll(nameList, arr);
+        return nameList;
     }
 
     public int getPlayersCount() {
