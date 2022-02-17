@@ -42,15 +42,13 @@ public class Ladder {
         }
         sb.append(LadderMaterial.NEW_LINE);
     }
-
     private void toStringLadder(StringBuilder sb) {
         for (int i = 0; i < ladderRows.size(); i++) {
             appendSingleRow(ladderRows.get(i), sb);
         }
     }
-
     private void appendSingleRow(LadderRow ladderRow, StringBuilder sb) {
-        List<String> ladderRowComponents = ladderRow.getLadderMaterials();
+        List<String> ladderRowComponents = ladderRow.getLadderComponents();
         for (int i = 0; i < ladderRowComponents.size(); i++) {
             sb.append(ladderRowComponents.get(i));
         }
