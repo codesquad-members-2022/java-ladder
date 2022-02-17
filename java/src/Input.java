@@ -22,11 +22,38 @@ public class Input {
         scanner.close();
     }
 
+    private boolean checkEmpty(List<String> group) {
+        return group.get(0).isBlank();
+    }
+
+    private String checkNameLength(List<String> group, int number) {
+        String name = group.get(number);
+        if(name.length() > 5) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(name.substring(0, 3));
+            sb.append("..");
+            return sb.toString();
+        }
+        return name;
+    }
+
+    private List<String> validatePeople(List<String> group) {
+        List<String> validatedGroup = new ArrayList<>();
+        if (checkEmpty(group)) {
+            return validatedGroup;
+        }
+        for (int i = 0; i < group.size(); i++) {
+            validatedGroup.add(checkNameLength(group, i));
+        }
+        return validatedGroup;
+    }
+
     private void askPeople() {
         System.out.println(ASK_PEOPLE_NAME);
         String value = scanner.nextLine();
-        String[] group = value.split(",");
-        people = new ArrayList<>(Arrays.asList(group));
+        String[] splitValue = value.split(",");
+        List<String> group = new ArrayList<>(Arrays.asList(splitValue));
+        people = validatePeople(group);
     }
 
     private void askHight() {
