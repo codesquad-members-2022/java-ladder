@@ -1,7 +1,6 @@
 package main;
 
-import main.Controller.InputController;
-import main.Controller.OutputController;
+import main.laddergame.LadderGameManager;
 
 public class Application {
     public static void main(String[] args) {
