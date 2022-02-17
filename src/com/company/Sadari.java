@@ -8,14 +8,14 @@ public class Sadari {
     ArrayList<String> people;
 
     public Sadari(int peopleCount, int height) {
-        this.sadariList = buildSadariList(peopleCount, height);
+        this.sadariList = makeSadariList(peopleCount, height);
     }
 
     public void setUsers() {
         ArrayList<String> namesList = Input.getNamesList();
     }
 
-    private ArrayList<ArrayList<String>> buildSadariList(int peopleCount, int height) {
+    private ArrayList<ArrayList<String>> makeSadariList(int peopleCount, int height) {
         ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
         for (int i = 0; i < height; i++) {
             sadariList.add(makeRow(peopleCount));
