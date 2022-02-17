@@ -51,3 +51,32 @@
 - [x] else를 사용하지 마라.
 - [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 - [x] naming convention을 지키면서 프로그래밍한다.
+
+---
+
+## 사다리 구현 4 단계 - 리팩토링 2
+
+
+### 기능요구사항
+- [x] 3단계와 동일함
+
+### 프로그래밍 요구사항
+- [x] 메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
+- [x] method가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x] indent(인덴트, 들여쓰기) depth를 2단계에서 1단계로 줄여라.
+- [x] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
+- [x] else를 사용하지 마라.
+- [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+- [x] 로직을 구현하는 코드에 단위 테스트가 존재해야 한다. 단, UI 처리 로직(System.in, System.out)은 테스트에서 제외한다.
+- [x] 각각의 역할에 맞도록 패키지를 분리하고 접근 제어자를 적절히 사용하도록 리팩토링한다.
+
+### 이름 처리 (5글자 이상일 시 ".." 처리)
+![image](https://user-images.githubusercontent.com/67811880/154534161-11795981-23a9-460a-9960-7be603d8d0be.png)
+
+### Test 결과(domain)
+#### LineTest
+![image](https://user-images.githubusercontent.com/67811880/154534384-b4d581e2-a96c-4dd2-818a-ae172a197fdf.png)
+
+#### StringTest
+![image](https://user-images.githubusercontent.com/67811880/154534431-716848b2-a08c-4ba5-8e86-0039feff5ac8.png)
+
