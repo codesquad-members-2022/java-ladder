@@ -7,16 +7,13 @@ public class LadderGame {
     private static final String DEFAULT_NAME = "men";
 
     private final int playerNum;
-    private final int height;
-    private final int width;
     private final String[] playerNames;
     private final Ladder ladder;
 
     public LadderGame(int playerNum, int height, String[] playerNames) {
         this.playerNum = playerNum;
-        this.height = height;
         this.playerNames = playerNames;
-        width = playerNum * 2 - 1;
+        int width = playerNum * 2 - 1;
         ladder = new Ladder(width, height);
     }
 
