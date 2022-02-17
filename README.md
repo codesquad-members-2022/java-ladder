@@ -19,14 +19,14 @@
 
 - ### 프로젝트 구조
   ```bash
-  📘 class 📗 interface
+  📘class 📗interface
   
-  ├──📁 main
-  │  ├──📁 java
-  │  │  ├──📁 application
-  │  │  │  ├──📁 controller
-  │  │  │  │  └──📘 LadderController.java
-  │  │  │  ├──📁 domain
+  ├──📁main
+  │  ├──📁java
+  │  │  ├──📁application
+  │  │  │  ├──📁controller
+  │  │  │  │  └──📘LadderController.java
+  │  │  │  ├──📁domain
   │  │  │  │  ├──📁ladder
   │  │  │  │  │     ├──📁element
   │  │  │  │  │     │  ├──📗Element.java
@@ -37,23 +37,23 @@
   │  │  │  │  │     └──📘Shape.java
   │  │  │  │  └──📁player
   │  │  │  │     └──📘Player.java
-  │  │  │  ├──📁 game
+  │  │  │  ├──📁game
   │  │  │  │  └──📘Game.java
   │  │  │  ├──📁message
   │  │  │  │  ├──📘GameMessage.java  
   │  │  │  │  └──📘ShapeMessage.java
-  │  │  │  ├──📁 util
-  │  │  │  │  ├──📘 GameUtils.java 
-  │  │  │  │  ├──📘 Parser.java 
-  │  │  │  │  ├──📘 RandomUtils.java 
-  │  │  │  │  └──📘 StringUtils.java
+  │  │  │  ├──📁util
+  │  │  │  │  ├──📘GameUtils.java 
+  │  │  │  │  ├──📘Parser.java 
+  │  │  │  │  ├──📘RandomUtils.java 
+  │  │  │  │  └──📘StringUtils.java
   │  │  │  ├──📁validator
-  │  │  │  │  └──📘 InputValidator.java 
-  │  │  │  ├──📁 view
-  │  │  │  │  ├──📘 InputView.java
-  │  │  │  │  └──📘 OutputView.java
-  │  │  │  └──📘 Application.java
-  └──└──└──📘 Main.java
+  │  │  │  │  └──📘InputValidator.java 
+  │  │  │  ├──📁view
+  │  │  │  │  ├──📘InputView.java
+  │  │  │  │  └──📘OutputView.java
+  │  │  │  └──📘Application.java
+  └──└──└──📘Main.java
   ```
   
 - ### 프로젝트 설계 및 주요 코드 설명
@@ -80,6 +80,9 @@
   ```
   ```java
   public T getElement(int row, int col) {
+      if (!boundaryCheck(row, col)) {
+          throw new IllegalArgumentException(getBoundaryErrMsg(row, col));
+      }
       return shape.get(row).get(col);
   }
   ```
