@@ -7,7 +7,8 @@ public class Ladder {
 
     private static final String HORIZON = "-----";
     private static final String VERTICAL = "|";
-    private  static final String BLANK = "     ";
+    private static final String BLANK = "     ";
+    private static final String FIRSTBLANK = "  ";
     private final int memberCount;
     private final int height;
     List<List<String>> ladder;
@@ -38,9 +39,13 @@ public class Ladder {
     }
 
     private void addRowElements(List<String> ladderRow, int column) {
-        if (column % 2 == 0) {
+        if (column == 0) {
+            ladderRow.add(FIRSTBLANK+VERTICAL);
+        }
+        if (column % 2 == 0 && column > 0) {
             ladderRow.add(VERTICAL);
         }
+
         if (column % 2 == 1) {
             ladderRow.add(addRandomLine(random.nextBoolean()));
             lineDuplicateCheck(ladderRow, column);
