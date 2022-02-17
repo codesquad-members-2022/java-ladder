@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.utils.ValidationUtils;
+
 import java.util.*;
 
 public class Ladder {
@@ -8,9 +10,7 @@ public class Ladder {
     private List<Line> lineList = new ArrayList<>();
 
     public Ladder(List<Person> personList, int ladderHeight) {
-        if (ladderHeight < 0) {
-            throw new IllegalArgumentException("사다리 높이는 0 이상 이어야 합니다.");
-        }
+        ValidationUtils.validLadderHeight(ladderHeight);
         this.personList = personList;
         initMap(ladderHeight);
     }

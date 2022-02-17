@@ -17,11 +17,10 @@ class LadderTest {
 //        List<Person> personList = Arrays.stream(names).map(name -> new Person(name)).collect(Collectors.toList());
 //
 //        Ladder ladder = new Ladder(personList, names.length);
-//        List<Line> map = ladder.getMap();
-//        String firstMapLine = map.get(0);
+//        List<Line> map = ladder.getLineList();
 //
 //        for (String name : names) {
-//            assertTrue(firstMapLine.contains(name));
+//            assertTrue();
 //        }
 //
 //        for (int i = 1; i < map.size(); i++) {
