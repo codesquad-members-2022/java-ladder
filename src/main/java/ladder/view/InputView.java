@@ -14,7 +14,7 @@ public class InputView {
     }
 
     public static int getInputNumber(String message) {
-        OutputView.printMessage(message);
+        System.out.println(message);
         return scanner.nextInt();
     }
 
@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static List<Player> getInputPlayers(String message) {
-        OutputView.printMessage(message);
+        System.out.println(message);
 
         List<Player> players = new ArrayList<>();
 
