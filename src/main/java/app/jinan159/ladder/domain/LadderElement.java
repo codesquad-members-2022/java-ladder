@@ -1,4 +1,4 @@
-package app.jinan159.ladder.meta;
+package app.jinan159.ladder.domain;
 
 import app.jinan159.ladder.LadderGame;
 

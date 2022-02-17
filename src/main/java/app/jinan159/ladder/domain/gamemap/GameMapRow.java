@@ -1,4 +1,4 @@
-package app.jinan159.ladder.meta.gamemap;
+package app.jinan159.ladder.domain.gamemap;
 
 import java.util.ArrayList;
 import java.util.Iterator;

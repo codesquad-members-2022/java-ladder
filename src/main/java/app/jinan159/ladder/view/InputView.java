@@ -1,7 +1,7 @@
 package app.jinan159.ladder.view;
 
 import app.jinan159.ladder.LadderGame;
-import app.jinan159.ladder.meta.Participant;
+import app.jinan159.ladder.domain.Participant;
 
 import java.io.Closeable;
 import java.io.InputStream;
