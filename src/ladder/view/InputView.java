@@ -19,12 +19,12 @@ public class InputView {
         return getInt(INPUT_LADDER_HEIGHT);
     }
 
-    public int getInt(String message) {
+    private int getInt(String message) {
         System.out.println(message);
         return Integer.parseInt(sc.nextLine());
     }
 
-    public String getLine(String message) {
+    private String getLine(String message) {
         System.out.println(message);
         return sc.nextLine();
     }

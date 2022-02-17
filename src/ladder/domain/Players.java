@@ -10,11 +10,11 @@ public class Players {
     private static final String NAME_FORMAT = String.format("%%-%1$d.%1$ds", NAME_LENGTH_LIMIT);
     private final List<String> playerList;
 
-    public Players(String[] playerNames) {
+    protected Players(String[] playerNames) {
         this.playerList = buildPlayerList(playerNames);
     }
 
-    public int count() {
+    protected int count() {
         return playerList.size();
     }
 
