@@ -1,6 +1,6 @@
 public class GameManager {
 
-    public void StartGame() {
+    public void start() {
         InputItem inputItem = new InputItem();
         int userNum = inputItem.inputUserNumber();
         int ladderNum = inputItem.inputLadderNumber();
