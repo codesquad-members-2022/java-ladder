@@ -1,17 +1,17 @@
 package ladder.model;
 
+import ladder.model.ladder.Height;
+import ladder.model.ladder.Ladder;
+import ladder.model.ladder.LadderLines;
+import ladder.system.Configuration;
+
 public class LadderGame {
 
-    private Board board;
+    private Ladder ladder;
 
-    public LadderGame(Board board) {
-        this.board = board;
+    private LadderGame (){
+        this.ladder = Configuration.ladder;
     }
-
-    public String[][] getResult() {
-        return this.board.getBoard();
-    }
-    private LadderGame (){};
 
     private static final LadderGame instance = new LadderGame();
 
@@ -20,5 +20,9 @@ public class LadderGame {
             return new LadderGame();
         }
         return instance;
+    }
+
+    public LadderLines drawLadder(Names names, Height height) {
+        return ladder.getLadderLines(names, height);
     }
 }

@@ -2,18 +2,21 @@ package ladder.model;
 
 import java.util.Objects;
 
-public class Width {
+public class Count {
 
     private final int value;
-    private static final int ONE = 1;
-    private static final int DOUBLE = 2;
+    private final int minValue = 1;
+    private final int maxValue = 50;
 
-    public Width(int value) {
-        this.value = calculateWidth(value);
+    public Count(int value) {
+        validate(value);
+        this.value = value;
     }
 
-    private int calculateWidth(int value) {
-        return value * DOUBLE - ONE;
+    private void validate(int value) {
+        if (value < minValue || value > maxValue) {
+            throw new IllegalStateException();
+        }
     }
 
     public int getValue() {
@@ -24,8 +27,8 @@ public class Width {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Width that = (Width) o;
-        return value == that.value;
+        Count count1 = (Count) o;
+        return value == count1.value;
     }
 
     @Override

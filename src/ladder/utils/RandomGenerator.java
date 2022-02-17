@@ -5,8 +5,11 @@ import java.util.Random;
 public class RandomGenerator {
 
     private static final Random random = new Random();
+    private static final int RANGE = 10;
+    private static final int DIVISION = 2;
 
-    private RandomGenerator (){};
+    private RandomGenerator() {};
+
     private static final RandomGenerator instance = new RandomGenerator();
 
     public static RandomGenerator getInstance() {
@@ -16,7 +19,11 @@ public class RandomGenerator {
         return instance;
     }
 
-    public static int getValue(){
-        return (random.nextInt()+10)%2;
+    public static int getValue() {
+        return (random.nextInt() + RANGE) % DIVISION;
+    }
+
+    public boolean getBoolean(){
+        return random.nextBoolean();
     }
 }
