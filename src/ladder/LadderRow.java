@@ -4,6 +4,7 @@ import static src.ladder.LadderMaterial.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LadderRow {
@@ -15,22 +16,41 @@ public class LadderRow {
     }
 
     private void generateRow(int playerCount) {
-        sidePartRail();
-        middlePart(playerCount);
-        sidePartRail();
-    }
-
-    private void middlePart(int playerCount) {
-        for (int i = 0; i < playerCount; i++) {
-            addLadderMaterial();
+        int partsLength = playerCount * 2 - 1;
+        for (int i = 0; i < partsLength; i++) {
+            addLadderMaterial(i);
         }
     }
 
-    private void addLadderMaterial() {
+    private void addLadderMaterial(int index) {
+        if (index % 2 == 0) {
+            ladderMaterials.add(RAIL);
+            return;
+        }
+        if (hasStepPrevious(index)) {
+            ladderMaterials.add(BLANK);
+            return;
+        }
+        if (RANDOM.nextBoolean()) {
+            ladderMaterials.add(STEP);
+            return;
+        }
+        ladderMaterials.add(BLANK);
     }
 
-    private void sidePartRail() {
-        ladderMaterials.add(RAIL);
+    private boolean hasStepPrevious(int index) {
+        if (isLeftMostStep(index)) {
+            return false;
+        }
+        return Objects.equals(ladderMaterials.get(index - 2), STEP);
+    }
+
+    private boolean isLeftMostStep(int index) {
+        return index == 1;
+    }
+
+    public List<String> getLadderMaterials() {
+        return ladderMaterials;
     }
 
 }
