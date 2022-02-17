@@ -15,8 +15,8 @@ public class LadderLine {
 	}
 
 	private void makeLadder(int ladderRow) {
-		for (int i = 1; i <= ladderRow; i++) {
-			makeLadderLine(i);
+		for (int rowIdx = 1; rowIdx <= ladderRow; rowIdx++) {
+			makeLadderLine(rowIdx);
 		}
 	}
 
