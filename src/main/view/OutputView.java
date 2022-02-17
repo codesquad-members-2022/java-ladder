@@ -1,6 +1,7 @@
 package main.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import main.domain.LadderGame;
 import main.domain.Player;
 
@@ -32,24 +33,16 @@ public class OutputView {
         printMessage(GAME_END);
     }
 
-    public static void printPlayers(String line, List<Player> players) {
+    public static void printPlayers(List<Player> players) {
         StringBuilder sb = new StringBuilder();
 
-        if (line.equals("all")) {
-            appendPlayers(sb, players);
-        } else {
-            appendPlayer(sb, players.get(0));
+        for (Player player : players) {
+            appendPlayer(sb, player);
         }
         printMessage(sb.toString());
     }
 
-    public static void appendPlayers(StringBuilder sb, List<Player> players) {
-        for (Player player : players) {
-            appendPlayer(sb, player);
-        }
-    }
-
-    public static void appendPlayer(StringBuilder sb, Player player) {
+    private static void appendPlayer(StringBuilder sb, Player player) {
         sb.append(player.getName())
             .append(" : ")
             .append(player.getOutcome())

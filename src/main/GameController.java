@@ -11,7 +11,7 @@ import main.view.OutputView;
 
 public class GameController {
 
-    public void run() {
+    public void execute() {
         try {
             runGame();
         } catch (NumberFormatException e) {
@@ -40,7 +40,7 @@ public class GameController {
         String line;
 
         while (!(line = InputView.query()).equals(END_SIGNAL)) {
-            OutputView.printPlayers(line, game.queryPlayers(line));
+            OutputView.printPlayers(game.queryPlayers(line));
         }
         OutputView.printEnd();
     }
