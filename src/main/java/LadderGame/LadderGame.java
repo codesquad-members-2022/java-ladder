@@ -10,8 +10,9 @@ public class LadderGame {
     private int user;
     private int height;
     private static final String LADDERUNIT = "|";
-    private static final String LINEUNIT = "-";
-    private static final String BLANK = " ";
+    private static final String LINEUNIT = "-----";
+    private static final String BLANK = "     ";
+    private static boolean isCreated = true;
 
     LadderGame() {
 
@@ -27,6 +28,7 @@ public class LadderGame {
         arr = new ArrayList<>();
 
         for (int row = 0; row < height; row++) {
+            isCreated = true;
             List<String> line = new ArrayList<>();
 
             addLadderUnit(line);
@@ -53,10 +55,13 @@ public class LadderGame {
 
     private void createRandomLine(List<String> line) {
         Random rand = new Random();
-        if (rand.nextBoolean()) {
+
+        if (rand.nextBoolean() && isCreated) {
             line.add(LINEUNIT);
+            isCreated = false;
             return ;
         }
         line.add(BLANK);
+        isCreated = true;
     }
 }
