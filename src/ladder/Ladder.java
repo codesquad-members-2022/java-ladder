@@ -2,11 +2,10 @@ package src.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
 
-    private List<LadderRow> ladderRows;
+    private List<LadderRow> ladderRows = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
 
     public Ladder(List<String> playerNames, int ladderHeight) {
@@ -19,7 +18,7 @@ public class Ladder {
     }
 
     private void setPlayers(List<String> playerNames) {
-        for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < playerNames.size(); i++) {
             players.add(new Player(playerNames.get(i), i));
         }
     }
@@ -30,40 +29,33 @@ public class Ladder {
         }
     }
 
-//    private void insertSingleLine(int currentHeight) {
-//        for (int i = 0; i < ladder[currentHeight].length; i++) {
-//            insertLadderBar(currentHeight, i);
-//        }
-//    }
-//
-//    private void insertLadderBar(int currentHeight, int horizontalIndex) {
-//        if (horizontalIndex % 2 == 0) {
-//            ladder[currentHeight][horizontalIndex] = RAIL;
-//            return;
-//        }
-//        if (RANDOM.nextBoolean()) {
-//            ladder[currentHeight][horizontalIndex] = STEP;
-//            return;
-//        }
-//        ladder[currentHeight][horizontalIndex] = BLANK;
-//    }
-
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < ladder.length; i++) {
-            appendSingleLine(i, stringBuilder);
+        StringBuilder sb = new StringBuilder();
+        toStringPlayerNames(sb);
+        toStringLadder(sb);
+        return sb.toString();
+    }
+    private void toStringPlayerNames(StringBuilder sb) {
+        for (int i = 0; i < players.size(); i++) {
+            sb.append(String.format("%-6s", players.get(i).getName()));
         }
-        return stringBuilder.toString();
+        sb.append(LadderMaterial.NEW_LINE);
     }
 
-    private void appendSingleLine(int currentHeight, StringBuilder stringBuilder) {
-        for (int i = 0; i < ladder[currentHeight].length; i++) {
-            stringBuilder.append(ladder[currentHeight][i]);
+    private void toStringLadder(StringBuilder sb) {
+        for (int i = 0; i < ladderRows.size(); i++) {
+            appendSingleRow(ladderRows.get(i), sb);
         }
-        stringBuilder.append(NEW_LINE);
     }
 
+    private void appendSingleRow(LadderRow ladderRow, StringBuilder sb) {
+        List<String> ladderRowComponents = ladderRow.getLadderMaterials();
+        for (int i = 0; i < ladderRowComponents.size(); i++) {
+            sb.append(ladderRowComponents.get(i));
+        }
+        sb.append(LadderMaterial.NEW_LINE);
+    }
 
 }
 
