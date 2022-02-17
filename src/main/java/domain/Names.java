@@ -26,7 +26,7 @@ public class Names {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (String name : names) {
-            stringBuilder.append(String.format("%6s",name));
+            stringBuilder.append(String.format("%6s", name));
         }
         return stringBuilder.toString();
     }

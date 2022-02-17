@@ -14,7 +14,7 @@ public class InputView {
     public static String askPlayers() {
         System.out.println(PLAYER_NAMES_COMMAND);
         System.out.println(PLAYER_NAMES_RESTRICTIONS);
-        String players = scanner.nextLine().replaceAll(" ","");
+        String players = scanner.nextLine().replaceAll(" ", "");
         try {
             Validation.checkInputNames(players);
         } catch (IllegalArgumentException e) {

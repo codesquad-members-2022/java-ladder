@@ -14,17 +14,17 @@ public class Line {
     }
 
     public String generateLine(boolean b) {
-        if(b) {
+        if (b) {
             return LINE;
         }
         return BLANK;
     }
 
     public String generateRandomLine(List<String> list, int index) {
-        if(index == 1) {
+        if (index == 1) {
             return generateLine(random.nextBoolean());
         }
-        if(list.get(index-2).equals(BLANK)) {
+        if (list.get(index - 2).equals(BLANK)) {
             return generateLine(random.nextBoolean());
         }
         return BLANK;

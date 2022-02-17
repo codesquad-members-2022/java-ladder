@@ -1,7 +1,6 @@
 package domain;
 
 import Util.Validation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class Board {
     }
 
     public void generateFrame() {
-        for (int row = 0; row < height ; row++) {
+        for (int row = 0; row < height; row++) {
             frame.add(draw(row));
         }
     }
@@ -39,26 +38,26 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        frame.forEach(floor -> floorToString(stringBuilder,floor));
+        frame.forEach(floor -> floorToString(stringBuilder, floor));
         return stringBuilder.toString();
     }
 
     private List<String> draw(int row) {
         List<String> floor = new ArrayList<>();
-        for (int col = 0; col < players*2-1 ; col++) {
-            floor.add(drawLine(floor,col));
+        for (int col = 0; col < players * 2 - 1; col++) {
+            floor.add(drawLine(floor, col));
         }
         return floor;
     }
 
     private String drawLine(List<String> floor, int col) {
-        if(col % 2 == 0) {
+        if (col % 2 == 0) {
             return VERTICAL;
         }
-        return line.generateRandomLine(floor,col);
+        return line.generateRandomLine(floor, col);
     }
 
-    private void floorToString(StringBuilder stringBuilder,List<String> floor) {
+    private void floorToString(StringBuilder stringBuilder, List<String> floor) {
         stringBuilder.append(EMPTY_PART);
         for (String s : floor) {
             stringBuilder.append(formatFrame(s));
@@ -67,10 +66,10 @@ public class Board {
     }
 
     private String formatFrame(String part) {
-        if(part.equals(VERTICAL)) {
+        if (part.equals(VERTICAL)) {
             return part;
         }
-        return String.format("%5s",part);
+        return String.format("%5s", part);
     }
 
 
