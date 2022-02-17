@@ -1,20 +1,13 @@
+import java.util.Arrays;
+
 public class GameController {
 
     public void run() {
-        int userCount = getUserCount();
-        int lineHeight = getLineHeight();
+        String usernames = InputUtil.getUserNameInput();;
+        int lineHeight = InputUtil.getLadderSizeInput();
 
-        Ladder ladder = new Ladder(userCount, lineHeight);
+        Ladder ladder = new Ladder(Arrays.asList(usernames.split(",")), lineHeight);
         OutputUtil.printLadder(ladder.toString());
     }
 
-    private int getUserCount() {
-        OutputUtil.printUserCountQuestion();
-        return InputUtil.getInput();
-    }
-
-    private int getLineHeight() {
-        OutputUtil.printLineHeightQuestion();
-        return InputUtil.getInput();
-    }
 }
