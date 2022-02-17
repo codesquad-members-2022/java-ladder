@@ -23,7 +23,7 @@ public class LadderLineFactory {
         List<LadderLine> ladderLines = new ArrayList<>();
 
         for (int index = START; index < totalCount; index++) {
-            LadderLine ladderLine = strategy.drawHorizontalLines(playerCount);
+            LadderLine ladderLine = strategy.horizontalStrategy(playerCount);
             ladderLines.add(ladderLine);
         }
         return ladderLines;

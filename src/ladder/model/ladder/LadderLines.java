@@ -1,6 +1,5 @@
 package ladder.model.ladder;
 
-import ladder.model.Names;
 import ladder.model.strategy.LadderLineFactory;
 
 import java.util.ArrayList;

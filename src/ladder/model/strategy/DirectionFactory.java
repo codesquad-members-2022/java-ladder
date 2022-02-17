@@ -13,6 +13,9 @@ public class DirectionFactory {
     }
 
     public static Direction getNextDirection(Direction direction) {
+        if(direction.isRight()){
+            return new Direction(direction.getRight(), NULL);
+        }
         boolean next = Configuration.randomGenerator.getBoolean();
         return new Direction(direction.getRight(), next);
     }
@@ -23,6 +26,7 @@ public class DirectionFactory {
     }
 
     public static Direction getLast(Direction direction) {
-        return new Direction(direction.getRight(), NULL);
+        boolean previous = direction.getRight();
+        return new Direction(previous, NULL);
     }
 }
