@@ -2,7 +2,7 @@ package application.domain.element;
 
 public enum LadderElement {
     STEP("-----")
-    , EMPTY("    ")
+    , EMPTY("     ")
     , RAIL("|");
 
     private String str;
