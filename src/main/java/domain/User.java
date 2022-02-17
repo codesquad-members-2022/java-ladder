@@ -5,37 +5,23 @@ import java.util.*;
 public class User {
     private static final int USERNAME_MAXLENGTH = 5;
     private static final int USERNAME_MINLENGTH = 1;
-    private List<String> users;
+    private static final String PADDING = " ";
+    private String name;
 
-    public User(String[] users) {
-        if(!validateUserName(users)){
+
+    private User(String user) {
+        if (!validateUserName(user)) {
             throw new InputMismatchException("이름의 길이를 1자 이상, 5자 이하로 작성해주세요.");
         }
-        this.users = getUserByList(users);
+        this.name = addPadding(user);
     }
 
-    public List<String> getUsers() {
-        return Collections.unmodifiableList(users);
+    public static User createUser(String user) {
+        return new User(user);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        users.forEach(user -> sb.append(user));
-        return sb.toString();
-    }
-
-    public int getSize() {
-        return users.size();
-    }
-
-    private List<String> getUserByList(String[] users) {
-        List<String> list = new ArrayList<>();
-
-        Arrays.stream(users).forEach(user->{
-            list.add(addPadding(user));
-        });
-        return list;
+    public String getName() {
+        return name;
     }
 
     private String addPadding(String user) {
@@ -47,24 +33,15 @@ public class User {
         int backSpace = whiteSpace / 2;
         int frontSpace = whiteSpace - backSpace;
 
-        addWhite(frontSpace, sb);
+        sb.append(PADDING.repeat(frontSpace));
         sb.append(user);
-        addWhite(backSpace, sb);
+        sb.append(PADDING.repeat(backSpace));
 
         return sb.toString();
     }
 
-    private StringBuilder addWhite(int count, StringBuilder sb) {
-        for (int i = 0; i < count; i++) {
-            sb.append(" ");
-        }
-        return sb;
+
+    private boolean validateUserName(String name) {
+        return name.length() >= USERNAME_MINLENGTH && name.length() <= USERNAME_MAXLENGTH;
     }
-
-
-    private boolean validateUserName(String[] users) {
-        return Arrays.stream(users).allMatch((s) -> (s.length() >= USERNAME_MINLENGTH) && (s.length() <= USERNAME_MAXLENGTH));
-    }
-
-
 }
