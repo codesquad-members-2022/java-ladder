@@ -1,6 +1,6 @@
-package controller;
+package application.controller;
 
-import model.Ladder;
+import application.domain.ladder.Ladder;
 
 public class LadderController {
     private static LadderController controller;
@@ -14,7 +14,7 @@ public class LadderController {
         return controller;
     }
 
-    public Ladder getLadder(int height, int width) {
-        return new Ladder(height, width);
+    public Ladder getLadder(int height, int width, int maxNameLength) {
+        return new Ladder(height, width, maxNameLength);
     }
 }

@@ -1,9 +1,17 @@
 package application;
 
-import controller.LadderController;
-import model.Ladder;
-import view.InputView;
-import view.OutputView;
+import application.controller.LadderController;
+import application.game.Game;
+import application.domain.ladder.Ladder;
+import application.domain.player.Player;
+import application.util.Parser;
+import application.view.InputView;
+import application.view.OutputView;
+
+import java.util.List;
+
+import static application.message.GameMessage.RUNTIME_ERROR_MESSAGE;
+import static application.util.GameUtils.*;
 
 public class Application {
     private final InputView iv;
@@ -17,10 +25,32 @@ public class Application {
     }
 
     public void run() {
-        int width = iv.numOfPlayers();
-        int height = iv.ladderHeight();
-        Ladder ladder = ladderController.getLadder(height, width);
-        ov.printLadder(ladder);
-        iv.close();
+        try {
+            List<Player> players = readPlayers();
+            int height = readLadderHeight();
+            Game game = ready(players, height);
+            ov.printGame(game);
+        } catch (RuntimeException e) {
+            ov.printErrMsg(RUNTIME_ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            iv.close();
+        }
+    }
+    private List<Player> readPlayers() {
+        while (true) {
+            try {
+                return Parser.getPlayers(iv.playerNames());
+            } catch (IllegalArgumentException e) {
+                ov.printErrMsg(e.getMessage());
+            }
+        }
+    }
+    private int readLadderHeight() {
+        return iv.ladderHeight();
+    }
+    private Game ready(List<Player> players, int height) {
+        Ladder ladder = ladderController.getLadder(height, players.size(), getLongestNameLength(players));
+        return new Game(ladder, players);
     }
 }

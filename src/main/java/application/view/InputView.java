@@ -1,6 +1,8 @@
-package view;
+package application.view;
 
 import java.util.Scanner;
+
+import static application.message.GameMessage.*;
 
 public class InputView {
     private static InputView iv;
@@ -17,18 +19,22 @@ public class InputView {
         return iv;
     }
 
-    public int numOfPlayers() {
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return getValue();
+    public String playerNames() {
+        System.out.println(REQUEST_PLAYER_NAMES);
+        return getLine();
     }
 
     public int ladderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println(REQUEST_LADDER_HEIGHT);
         return getValue();
     }
 
     private int getValue() {
         return sc.nextInt();
+    }
+
+    private String getLine() {
+        return sc.next();
     }
 
     public void close() {

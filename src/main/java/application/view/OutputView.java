@@ -1,6 +1,6 @@
-package view;
+package application.view;
 
-import model.Ladder;
+import application.game.Game;
 
 public class OutputView {
     private static OutputView ov;
@@ -14,7 +14,11 @@ public class OutputView {
         return ov;
     }
 
-    public void printLadder(Ladder ladder) {
-        System.out.println(ladder);
+    public void printGame(Game game) {
+        System.out.println(game);
+    }
+
+    public void printErrMsg(String msg) {
+        System.out.println(msg);
     }
 }
