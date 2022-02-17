@@ -1,3 +1,5 @@
+package view;
+
 public class Output {
 
     public static void messageAboutPlayer(){

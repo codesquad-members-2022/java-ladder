@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Ladder {
     private List<String> players;
     private List<List<Character>> charLadder;
 
-    Ladder(List<String> players, int m) {
+    public Ladder(List<String> players, int m) {
         this.players = players;
         this.numberOfPeople = players.size();
         this.heightOfLadder = m;
