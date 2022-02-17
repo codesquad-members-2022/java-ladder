@@ -6,7 +6,9 @@ import java.util.Random;
 
 public class GameMap {
 
-    private final List<List<LadderElement>> gameMap;
+    private final static String ALERT_WORNG_POINT_ACCESS = "잘못된 좌표로 접근하셨습니다.";
+
+    private final List<GameMapRow> gameMap;
     private final int width;
     private final int height;
 
@@ -15,14 +17,17 @@ public class GameMap {
         this.height = height;
         gameMap = new ArrayList<>(height);
         for (int i = 0; i < height; i++) {
-            gameMap.add(new ArrayList<>(width));
+            gameMap.add(new GameMapRow(width));
         }
 
         prepareGameMap(this);
     }
 
     public LadderElement get(int x, int y) {
-        return gameMap.get(y).get(x);
+        return gameMap.get(y)
+                .getColumn(x)
+                .orElseThrow(()->new IllegalStateException(ALERT_WORNG_POINT_ACCESS))
+                .getElement();
     }
 
     public int getWidth() {
@@ -36,7 +41,7 @@ public class GameMap {
     public String gameMapToString() {
         StringBuilder sb = new StringBuilder();
 
-        for (List<LadderElement> row : this.gameMap) {
+        for (GameMapRow row : this.gameMap) {
             sb.append(rowToString(row));
             sb.append('\n');
         }
@@ -44,10 +49,10 @@ public class GameMap {
         return sb.toString();
     }
 
-    private String rowToString(List<LadderElement> row) {
+    private String rowToString(GameMapRow row) {
         StringBuilder sb = new StringBuilder();
-        for (LadderElement col : row) {
-            sb.append(col.getMark());
+        for (GameMapColumn col : row) {
+            sb.append(col.getColumnValue());
         }
 
         return sb.toString();
@@ -99,7 +104,7 @@ public class GameMap {
     }
 
     private void set(int x, int y, LadderElement value) {
-        gameMap.get(y).add(x, value);
+        gameMap.get(y).addColumn(x, new GameMapColumn(value));
     }
 
 }
