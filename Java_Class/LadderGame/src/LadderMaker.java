@@ -1,35 +1,59 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderMaker {
+    private final String VERTICAL = "|";
+    private final String HORIZONTAL = "-----";
+    private final String BLANK_SPACE = "     ";
     private final Random random = new Random();
-    private String[][] ladder;
+    private final int WIDTH;
+    private final int HEIGHT;
+    private List<String> ladder;
+    private List<String> tempList;
 
-    protected void makeLadder(int[] inputArray) {
-        ladder = new String[inputArray[1]][inputArray[0] * 2 - 1];
-        for (int row = 0; row < ladder.length; row++) {
-            makeRow(row);
+
+    public LadderMaker(int nameCount, int height) {
+        ladder = new ArrayList<>();
+        this.WIDTH = nameCount * 2 - 1;
+        this.HEIGHT = height;
+    }
+
+    public void make() {
+        for (int row = 0; row < HEIGHT; row++) {
+            makeRow();
         }
     }
 
-    private void makeRow(int row) {
-        for (int column = 0; column < ladder[0].length; column++) {
-            drawLine(row, column);
+    private void makeRow() {
+        tempList = new ArrayList<>();
+        for (int column = 0; column < WIDTH; column++) {
+            tempList.add(drawLine(column));
         }
+        ladder.add(String.join("",tempList));
     }
 
-    private void drawLine(int row, int column) {
+    private String drawLine(int column) {
         if (column % 2 == 0) {
-            ladder[row][column] = "|";
-            return;
+            return VERTICAL;
         }
-        if (random.nextBoolean()) {
-            ladder[row][column] = "-";
-            return;
+        if (random.nextBoolean() && isBlank(column)) {
+            return HORIZONTAL;
         }
-        ladder[row][column] = " ";
+        return BLANK_SPACE;
     }
 
-    protected String[][] getLadderArray() {
+    private boolean isBlank(int column) {
+        if (column == 1) {
+            return true;
+        }
+        if (BLANK_SPACE.equals(tempList.get(column - 2))) {
+            return true;
+        }
+        return false;
+    }
+
+    protected List<String> getLadderList() {
         return ladder;
     }
 }

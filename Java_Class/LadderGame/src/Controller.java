@@ -1,21 +1,21 @@
 public class Controller {
     private final Input input;
-    private final LadderMaker maker;
     private final Output output;
 
-    public Controller(Input input, LadderMaker maker, Output output) {
+    public Controller(Input input, Output output) {
         this.input = input;
-        this.maker = maker;
         this.output = output;
     }
 
     protected void runApp() {
         input.processInput();
-        int[] inputArray = input.getInputAsArray();
+        LadderMaker ladderMaker = new LadderMaker(input.getNameList().size(), input.getHeight());
+        ladderMaker.make();
 
-        maker.makeLadder(inputArray);
-        String[][] ladder = maker.getLadderArray();
-
-        output.printConsole(ladder);
+        output.printConsole(input.getNameList());   // [pobi,honux,crong,jk]
+        for (String row : ladderMaker.getLadderList()) {  // [ {row1},{row2}..]
+            output.printConsole(row);
+        }
     }
+
 }
