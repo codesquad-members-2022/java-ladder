@@ -6,11 +6,11 @@ public class Number {
         this.value = validate(value);
     }
 
-    private int validate(int number) {
-        if (number < 0) {
+    private int validate(int value) {
+        if (value < 0) {
             return 0;
         }
-        return number;
+        return value;
     }
 
     public int get() {
