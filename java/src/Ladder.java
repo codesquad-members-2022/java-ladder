@@ -40,7 +40,7 @@ public class Ladder {
         }
     }
 
-    public List<List<String>> getLadder() {
+    public List<List<String>> getFrame() {
         return frame;
     }
 

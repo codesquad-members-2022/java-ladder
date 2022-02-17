@@ -7,9 +7,9 @@ public class Main {
         List<String> people = input.getPeople();
         int hight = input.getHight();
 
-        Ladder ladder = new Ladder(people.size(), hight);
+        Ladder instance = new Ladder(people.size(), hight);
         Output output = new Output(people);
-        output.printLadder(ladder);
+        output.printLadder(instance);
     }
 
 }
