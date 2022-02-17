@@ -45,14 +45,12 @@ public class Player {
     }
 
     public boolean checkLeft(List<LadderElement> elements) {
-        LadderElement left = getLeft(elements);
-        return isLeftIn() && isHorizontal(left);
+        return isLeftIn() && isHorizontal(getLeft(elements));
     }
 
     public boolean checkRight(List<LadderElement> elements) {
         int width = elements.size();
-        LadderElement right = getRight(elements);
-        return isRightIn(width) && isHorizontal(right);
+        return isRightIn(width) && isHorizontal(getRight(elements));
     }
 
     public boolean isLeftIn() {
