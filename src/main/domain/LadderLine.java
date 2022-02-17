@@ -35,7 +35,7 @@ public class LadderLine {
     }
 
     public void move(Player player) {
-        player.move(elements);
+        player.moveAlong(elements);
     }
 
     @Override

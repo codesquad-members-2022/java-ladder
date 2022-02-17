@@ -10,17 +10,25 @@ public class Player {
     private int row;
     private int col;
 
-    public Player(String name, int row, int col) {
+    public Player(String name, int ind) {
         this.name = name;
-        this.row = row;
-        this.col = col;
+        this.row = 0;
+        this.col = ind * 2;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getOutcome() {
+        return outcome;
     }
 
     public int row() {
         return row;
     }
 
-    public void move(List<LadderElement> elements) {
+    public void moveAlong(List<LadderElement> elements) {
         moveDown();
 
         if (checkLeft(elements)) {
@@ -32,12 +40,19 @@ public class Player {
         }
     }
 
+    public void receive(List<String> outcomes) {
+        outcome = outcomes.get(col / 2);
+    }
+
     public boolean checkLeft(List<LadderElement> elements) {
-        return isLeftIn() && isHorizontal(getLeft(elements));
+        LadderElement left = getLeft(elements);
+        return isLeftIn() && isHorizontal(left);
     }
 
     public boolean checkRight(List<LadderElement> elements) {
-        return isRightIn(elements.size()) && isHorizontal(getRight(elements));
+        int width = elements.size();
+        LadderElement right = getRight(elements);
+        return isRightIn(width) && isHorizontal(right);
     }
 
     public boolean isLeftIn() {
@@ -70,16 +85,6 @@ public class Player {
 
     public void moveDown() {
         row += 1;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-            "name='" + name + '\'' +
-            ", outcome='" + outcome + '\'' +
-            ", row=" + row +
-            ", col=" + col +
-            '}';
     }
 
 }

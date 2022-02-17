@@ -1,7 +1,10 @@
 package main;
 
+import static main.view.InputView.END_SIGNAL;
+
 import java.util.List;
 import main.domain.LadderGame;
+import main.domain.Player;
 import main.util.InputUtil;
 import main.view.InputView;
 import main.view.OutputView;
@@ -10,18 +13,35 @@ public class GameController {
 
     public void run() {
         try {
-            List<String> names = InputUtil.parseEntries(InputView.getNames());
-            List<String> outcomes = InputUtil.parseOutcomes(InputView.getResults(), names.size());
-
-            LadderGame game = new LadderGame(names, outcomes, InputView.getNumLadder());
-            OutputView.printGame(game);
-
-            game.moveAll();
-
+            runGame();
+        } catch (NumberFormatException e) {
+            OutputView.printNumberException();
         } catch (IllegalArgumentException e) {
             OutputView.printIllegalException();
         }
-
         InputView.close();
+    }
+
+    private LadderGame createGame() {
+        List<Player> players = InputUtil.parsePlayers(InputView.getNames());
+        List<String> outcomes = InputUtil.parseOutcomes(InputView.getOutcomes(), players.size());
+        return new LadderGame(players, outcomes, InputView.getNumLadder());
+    }
+
+    private void runGame() {
+        LadderGame game = createGame();
+        game.movePlayers();
+
+        OutputView.printGame(game);
+        query(game);
+    }
+
+    private void query(LadderGame game) {
+        String line;
+
+        while (!(line = InputView.query()).equals(END_SIGNAL)) {
+            OutputView.printPlayers(line, game.queryPlayers(line));
+        }
+        OutputView.printEnd();
     }
 }
