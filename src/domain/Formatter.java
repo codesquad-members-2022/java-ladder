@@ -1,7 +1,7 @@
 package domain;
 
 public class Formatter {
-    public static String check(String player, int width) {
+    public static String checkAndPadding(String player, int width) {
         if (player.length() >= width) {
             return player.substring(0, 5);
         }

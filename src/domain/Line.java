@@ -20,6 +20,10 @@ public class Line {
         return points.get(index);
     }
 
+    public int size() {
+        return points.size();
+    }
+
     private boolean setRandomValue(int index) {
         Random rand = new Random();
         int temp = rand.nextInt(2); // 0, 1 중 하나의 값
