@@ -1,5 +1,7 @@
 package LadderGame;
 
+import java.util.List;
+
 public class Output {
 
     private static StringBuilder sb = new StringBuilder();
@@ -12,16 +14,16 @@ public class Output {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
-    public static void printLadderGame(String[][] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            appendString(arr[i]);
+    public static void printLadderGame(List<List<String>> arr) {
+        for (int row = 0; row < arr.size(); row++) {
+            appendString(arr.get(row));
         }
         System.out.println(sb);
     }
 
-    private static void appendString(String[] arr) {
-        for (int j = 0; j < arr.length; j++) {
-            sb.append(arr[j]);
+    private static void appendString(List<String> arr) {
+        for (int col = 0; col < arr.size(); col++) {
+            sb.append(arr.get(col));
         }
         sb.append("\n");
     }

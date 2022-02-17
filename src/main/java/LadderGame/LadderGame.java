@@ -1,10 +1,12 @@
 package LadderGame;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class LadderGame {
 
-    private String[][] arr;
+    private List<List<String>> arr;
     private int user;
     private int height;
     private static final String LADDERUNIT = "|";
@@ -22,35 +24,42 @@ public class LadderGame {
     }
 
     public void build() {
-        int width = user * 2 - 1;
-        arr = new String[height][width];
-      
-        for (int i = 0; i < arr.length; i++) {
-            addLadderUnit(i);
+        arr = new ArrayList<>();
+
+        for (int row = 0; row < height; row++) {
+            List<String> line = new ArrayList<>();
+
+            addLadderUnit(line);
+
+            arr.add(line);
         }
         Output.printLadderGame(arr);
     }
 
-    private void addLadderUnit(int col) {
-        for (int row = 0; row < arr[col].length; row++) {
-            createUnit(col, row);
+    private void addLadderUnit(List<String> line) {
+        for (int col = 0; col < getWidth(); col++) {
+            createUnit(col, line);
         }
     }
 
-    private void createUnit(int col, int row) {
-        if (row % 2 == 1) {
-            createRandomLine(col, row);
+    private void createUnit(int col, List<String> line) {
+        if (col % 2 == 1) {
+            createRandomLine(line);
             return ;
         }
-        arr[col][row] = LADDERUNIT;
+        line.add(LADDERUNIT);
     }
 
-    private void createRandomLine(int col, int row) {
+    private void createRandomLine(List<String> line) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            arr[col][row] = LINEUNIT;
+            line.add(LINEUNIT);
             return ;
         }
-        arr[col][row] = BLANK;
+        line.add(BLANK);
+    }
+
+    private int getWidth() {
+        return user * 2 - 1;
     }
 }
