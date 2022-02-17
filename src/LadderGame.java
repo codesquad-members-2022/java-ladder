@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,17 +15,31 @@ public class LadderGame {
     return new Ladders(numOfPeople, heightOfLadder);
   }
 
-  public void gameInfoStep2() {
+  public Ladders gameInfoStep2() {
     System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
     Scanner scanner = new Scanner(System.in);
-    String players = scanner.nextLine();
+    List<Player> players = getPlayers(scanner.nextLine());
 
     System.out.println("최대 사다리 높이는 몇 개인가요?");
     int height = scanner.nextInt();
-
     scanner.close();
+
+    return new Ladders(players.size(), height, players);
   }
 
+  private List<Player> getPlayers(String value) {
+    List<Player> players = new ArrayList<>();
+
+    String[] playersArr = splitValue(value);
+    for (int i = 0; i < playersArr.length; i++) {
+      players.add(new Player(playersArr[i]));
+    }
+    return players;
+  }
+
+  private String[] splitValue(String value) {
+    return value.substring(1, value.length() - 1).split(",");
+  }
 
   public Ladders makeLadder(Ladders ladders) {
     char[][] totalLadders = ladders.get();
