@@ -98,7 +98,6 @@ public class GameApplication {
 
 ## AppConfig 클래스
 ```java
-
 public class AppConfig {
 
   private static AppConfig instance = new AppConfig();
@@ -110,11 +109,15 @@ public class AppConfig {
   }
 
   public LadderGameService ladderGameService() {
-    return LadderGameServiceImpl.getInstance(ladderFactory());
+    return LadderGameServiceImpl.getInstance(ladderFactory(), ladderGameMapDecorator());
   }
 
   public LadderFactory ladderFactory() {
     return LadderFactoryImpl.getInstance();
+  }
+
+  public LadderGameMapDecorator ladderGameMapDecorator() {
+    return LadderGameMapDecoratorImpl.getInstance();
   }
 
   public Validator validator() {

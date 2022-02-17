@@ -1,28 +1,28 @@
 package domain.game;
 
 import domain.ladder.Ladder;
-import domain.ladder.LadderElement;
 import domain.ladder.LadderFactory;
 import domain.user.User;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LadderGameServiceImpl implements LadderGameService {
 
     private static LadderGameServiceImpl instance;
 
     private final LadderFactory ladderFactory;
+    private final LadderGameMapDecorator ladderGameMapDecorator;
+
     private LadderGame ladderGame;
 
-    private LadderGameServiceImpl(LadderFactory ladderFactory) {
+    private LadderGameServiceImpl(LadderFactory ladderFactory, LadderGameMapDecorator ladderGameMapDecorator) {
         this.ladderFactory = ladderFactory;
+        this.ladderGameMapDecorator = ladderGameMapDecorator;
     }
 
-    public static LadderGameServiceImpl getInstance(LadderFactory ladderFactory) {
+    public static LadderGameServiceImpl getInstance(LadderFactory ladderFactory, LadderGameMapDecorator ladderGameMapDecorator) {
         if (instance == null) {
-            instance = new LadderGameServiceImpl(ladderFactory);
+            instance = new LadderGameServiceImpl(ladderFactory, ladderGameMapDecorator);
         }
         return instance;
     }
@@ -36,20 +36,9 @@ public class LadderGameServiceImpl implements LadderGameService {
 
     @Override
     public String getResultMap() {
-        String ladderString = buildLadderString(ladderGame.getLadder());
-        return ladderString;
+        List<String> userNames = ladderGame.getUserNames();
+        Ladder ladder = ladderGame.getLadder();
+        return ladderGameMapDecorator.drawLadderGameMap(userNames, ladder);
     }
 
-    private String buildLadderString(Ladder ladder) {
-        return IntStream.range(0, ladder.height())
-                .mapToObj(row -> makeLadderRowString(ladder, row))
-                .collect(Collectors.joining("\n"));
-    }
-
-    private String makeLadderRowString(Ladder ladder, int row) {
-        return IntStream.range(0, ladder.width())
-                .mapToObj(column -> ladder.getLadderElement(column, row))
-                .map(LadderElement::getSymbol)
-                .collect(Collectors.joining());
-    }
 }
