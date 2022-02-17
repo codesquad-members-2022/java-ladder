@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class View {
+public class InputView {
     private static Scanner sc = new Scanner(System.in);
 
     public static Ladder createLadder() {
@@ -32,10 +32,5 @@ public class View {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String[] names = sc.next().split(",");
         return names;
-    }
-
-    public static void printMap(List<Line> map) {
-        System.out.println("\n실행 결과\n");
-        map.stream().forEach(System.out::println);
     }
 }

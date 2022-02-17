@@ -13,22 +13,11 @@ public class Ladder {
     }
 
     private void initMap(int ladderHeight) {
-//        addMapFirstLine();
         for (int i = 0; i < ladderHeight; i++) {
 //            addMapLine();
             map.add(new Line(random.nextInt(getPersonCount())));
         }
     }
-
-//    private void addMapFirstLine() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("  ");
-//        for (int i = 0; i < getPersonCount(); i++) {
-//            String name = personList.get(i).getName();
-//            sb.append(String.format("%5s", name) + " ");
-//        }
-//        map.add(sb.toString());
-//    }
 //
 //    private void addMapLine() {
 //        StringBuilder sb = new StringBuilder();
@@ -58,6 +47,10 @@ public class Ladder {
 
     public List<Line> getMap() {
         return Collections.unmodifiableList(map);
+    }
+
+    public List<Person> getPersonList() {
+        return Collections.unmodifiableList(personList);
     }
 
     public int getPersonCount() {
