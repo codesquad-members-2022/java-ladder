@@ -10,4 +10,7 @@ public class Line {
         this.coordinate = coordinate;
     }
 
+    public boolean isLadder(int coordinate) {
+        return this.coordinate == coordinate;
+    }
 }
