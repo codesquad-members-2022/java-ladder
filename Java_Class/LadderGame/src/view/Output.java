@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 
+import domain.Line;
+
 public class Output {
     private static String tempSt;
     private static float mid;
@@ -15,13 +17,6 @@ public class Output {
         System.out.println();
     }
 
-    private String reduceLeftPadding(String firstName) {
-        if(firstName.charAt(0) == ' '){
-            return firstName.substring(1);
-        }
-        return firstName;
-    }
-
     private String addPadding(String st, int length) {
         tempSt = String.format("%" + length + "s%s%" + length + "s", "", st, "");
         mid = (tempSt.length() / 2);
@@ -30,9 +25,10 @@ public class Output {
         return tempSt.substring((int)start, (int)end);
     }
 
-    public void printLadder(List<String> ladder) {
-        for (String row : ladder) {
-            System.out.printf("%s%s%n", "   ", row);
+    public void printLadder(List<Line> ladder) {
+        for (Line line : ladder) {
+            String temp = String.join("",line.getOneLine());
+            System.out.printf("%s%s%n", "   ", temp);
         }
     }
 
