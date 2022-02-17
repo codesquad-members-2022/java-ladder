@@ -27,6 +27,10 @@ public class Ladder {
         initLadder();
     }
 
+    public Ladder(int ladderHeight) {
+
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
