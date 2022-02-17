@@ -1,11 +1,14 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Print {
 
     public static void printSadari(Sadari sadari) {
-        char[][] sadariArray = sadari.getSadariList();
-        for (char[] chars : sadariArray) {
-            System.out.println(String.valueOf(chars));
+        ArrayList<ArrayList<String>> sadariArray = sadari.getSadariList();
+        for (ArrayList<String> row : sadariArray) {
+            System.out.println(row.toString());
         }
     }
 }

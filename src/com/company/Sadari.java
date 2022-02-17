@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Sadari {
-    ArrayList<String> sadariList = new ArrayList<String>();
+    ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
     ArrayList<String> people;
 
     public Sadari(int peopleCount, int height) {
@@ -25,7 +25,7 @@ public class Sadari {
 
     private ArrayList<String> makeRow(int peopleCount) {
         ArrayList<String> Row = new ArrayList<>();
-        for (int i = 0; i < peopleCount + peopleCount - 1; i++) {
+        for (int i = 0; i < peopleCount + peopleCount + 1; i++) {
             Row.add(getRowComponent(peopleCount, i));
         }
         return Row;
@@ -43,7 +43,7 @@ public class Sadari {
         return "|";
     }
 
-    public char[][] getSadariList() {
+    public ArrayList<ArrayList<String>> getSadariList() {
         return this.sadariList;
     }
 
