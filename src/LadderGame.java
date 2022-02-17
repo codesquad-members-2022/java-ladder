@@ -56,9 +56,29 @@ public class LadderGame {
     List<Ladder> oneFloor = new ArrayList<>(numOfColumns);
 
     for (int column = 0; column < numOfColumns - 1; column += 2) {
-      oneFloor.add(getLadderShape(column, numOfColumns));
+      Ladder ladder = getLadderShape(column, numOfColumns);
+      compareLadderLineExist(oneFloor, ladder);
+      oneFloor.add(ladder);
     }
     return oneFloor;
+  }
+
+  private void compareLadderLineExist(List<Ladder> oneFloor, Ladder ladder) {
+    if (isEmptyList(oneFloor)) {
+      return;
+    }
+
+    int isBothLine = ladder.compareTo(oneFloor.get(oneFloor.size() - 1));
+    if (isBothLine == 0) {
+      ladder.setLadderLine(LadderShape.LADDER_LINE_NOEXIST);
+    }
+  }
+
+  private boolean isEmptyList(List<Ladder> ladders) {
+    if (ladders.size() == 0) {
+      return true;
+    }
+    return false;
   }
 
   private Ladder getLadderShape(int column, int numOfColumns) {

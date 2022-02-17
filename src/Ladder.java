@@ -21,7 +21,8 @@ public class Ladder implements Comparable<Ladder> {
 
   @Override
   public int compareTo(Ladder o) {
-    if (this.ladderLine.equals(o.getLadderLine())) {
+    if (this.ladderLine.equals(LadderShape.LADDER_LINE_EXIST) && o.ladderLine.equals(
+        LadderShape.LADDER_LINE_EXIST)) {
       return 0;
     }
     return 1;
