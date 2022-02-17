@@ -295,6 +295,17 @@ public interface LadderGameService {
 
 ---
 
+## LadderGameMapDecorator (interface)
+```java
+public interface LadderGameMapDecorator {
+
+    String drawLadderGameMap(List<String> userNames, Ladder ladder);
+
+}
+```
+- 사다리를 그려서 문자열로 반환하는 역할
+---
+
 ## Validator (interface)
 ```java
 public interface Validator {
