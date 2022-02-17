@@ -26,31 +26,9 @@ public class LadderGame {
     // ------- public method ---------
     public void startGame() throws IOException {
         try (OutputView writer = new OutputView()) {
-            writer.write(participantsToString(this.participants));
-            writer.write(gameMap.gameMapToString());
+            writer.writeParticipants(this.participants);
+            writer.writeGameMap(gameMap);
         }
-    }
-
-    private String participantsToString(List<Participant> participants) {
-        return participants.stream()
-                .map(Participant::getName)
-                .map(this::padName)
-                .reduce((nested, name) -> nested + " " + name)
-                .orElse("") + "\n";
-    }
-
-    private String padName(String name) {
-        if (name.length() == MAX_NAME_LENGTH) return name;
-
-        int diff = MAX_NAME_LENGTH - name.length();
-        int padCount1 = diff / 2;
-        int padCount2 = diff - padCount1;
-
-        if (padCount1 > padCount2) {
-            return getPad(padCount1) + name + getPad(padCount2);
-        }
-
-        return getPad(padCount2) + name + getPad(padCount1);
     }
 
     private String getPad(int count) {
