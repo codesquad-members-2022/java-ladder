@@ -1,5 +1,7 @@
 package ladder.view;
 
+import ladder.domain.Line;
+
 import java.util.ArrayList;
 
 public class GameDisplay {
@@ -18,17 +20,22 @@ public class GameDisplay {
         System.out.println("최대 사다리 높이는 몇개 인가요?");
     }
 
-    public static void showLadderGameInfo(ArrayList<String> players, ArrayList<ArrayList<String>> ladderInfo) {
+    public static void showLadderGameInfo(ArrayList<String> players, ArrayList<Line> ladderInfo) {
         System.out.printf("%n  ");
         for (String player : players) {
             System.out.printf(getPaddingString(player) + " ");
         }
         System.out.println();
-        for (ArrayList<String> item : ladderInfo) {
+        for (Line line : ladderInfo) {
             System.out.print("    ");
-            item.forEach(System.out::print);
+            showLadderRow(line);
             System.out.println();
         }
+    }
+
+    public static void showLadderRow(Line line) {
+        System.out.print("|");
+        line.getPoints().forEach(e -> System.out.print(e == true ? "-----" + "|" : "     " + "|"));
     }
 
     // Middle Padding
