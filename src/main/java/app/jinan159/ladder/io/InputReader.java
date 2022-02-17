@@ -32,7 +32,9 @@ public class InputReader implements Closeable {
     public List<Participant> readParticipants() {
         System.out.println(Q_NAMES_OF_PARTICIPANTS);
         String[] names = readNames();
-        return namesToParticipantList(names);
+        return Arrays.stream(names)
+                .map(Participant::new)
+                .collect(Collectors.toList());
     }
 
     public int readHeight() {
@@ -49,12 +51,6 @@ public class InputReader implements Closeable {
             System.out.println(e.getMessage());
             return readNames();
         }
-    }
-
-    private List<Participant> namesToParticipantList(String[] names) {
-        return Arrays.stream(names)
-                .map(Participant::new)
-                .collect(Collectors.toList());
     }
 
     private int readPositiveNumber() {
