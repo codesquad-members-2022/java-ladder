@@ -1,5 +1,7 @@
 package src.ladder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
@@ -10,10 +12,31 @@ public class Ladder {
     private static final String NEW_LINE = "\n";
     private static final Random RANDOM = new Random();
     private String[][] ladder;
+    private List<Player> players = new ArrayList<>();
 
-    public Ladder(int peopleCount, int ladderHeight) {
-        this.ladder = new String[ladderHeight][peopleCount * 2 - 1];
-        createLadder(peopleCount, ladderHeight);
+    public Ladder(List<String> playerNames, int ladderHeight) {
+        init(playerNames, ladderHeight);
+        this.ladder = new String[ladderHeight][players.size() * 2 - 1];
+        createLadder(players.size(), ladderHeight);
+    }
+
+    private void init(List<String> playerNames, int ladderHeight) {
+        setPlayers(playerNames);
+    }
+
+    private void setPlayers(List<String> playerNames) {
+        for (int i = 0; i < players.size(); i++) {
+            addPlayer(playerNames.get(i), i);
+        }
+    }
+
+    private void addPlayer(String name, int i) {
+        if (name.length() > 5) {
+            players.add(new Player(name.substring(0, 3) + "..", i));
+            return;
+        }
+        players.add(new Player(name, i));
+
     }
 
     private void createLadder(int peopleCount, int ladderHeight) {

@@ -10,6 +10,10 @@ public class Player {
         this.playerNumber = playerNumber;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPlayerNumber() {
         return playerNumber;
     }
