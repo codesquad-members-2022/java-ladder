@@ -1,66 +1,59 @@
 package main.domain;
 
 import java.util.List;
-import main.util.LadderUtil;
+import main.util.InputUtil;
 
 public class LadderGame {
 
     private final List<String> names;
     private final int numLadder;
-
-    private int height;
-    private int width;
-    private List<List<LadderElement>> map;
+    private final LadderPlane plane;
 
     public LadderGame(List<String> names, int numLadder) {
         this.names = names;
         this.numLadder = numLadder;
-    }
 
-    public void createMap() {
-        height = getHeight();
-        width = getWidth();
-        map = LadderUtil.create2DList(height, width);
-
-        changePlane();
-    }
-
-    public List<String> getNames() {
-        return names;
-    }
-
-    public List<List<LadderElement>> getMap() {
-        return map;
-    }
-
-    private int getWidth() {
-        return 2 * names.size() - 1;
+        plane = new LadderPlane(getHeight(), getWidth());
     }
 
     private int getHeight() {
         return numLadder;
     }
 
-    private void changePlane() {
-        for (int row = 0; row < height; row++) {
-            changeLine(row);
+    private int getWidth() {
+        return 2 * names.size() - 1;
+    }
+
+    public String wrapName(String name) {
+        int gap = LadderElement.getGap();
+
+        int margin = getMargin(name, gap);
+        char[] wrap = InputUtil.fillNull(gap);
+
+        for (int ind = 0; ind < name.length(); ind++) {
+            wrap[ind + margin] = name.charAt(ind);
         }
+        return new String(wrap);
     }
 
-    private void changeLine(int row) {
-        boolean next = true;
+    private int getMargin(String name, int gap) {
+        int margin = gap / 2 - name.length() / 2;
 
-        for (int col = 0; col < width; col++) {
-            next = changeElement(row, col, next);
+        if (margin < 0) {
+            throw new IllegalArgumentException();
         }
+        return margin;
     }
 
-    private boolean changeElement(int row, int col, boolean prev) {
-        boolean rand = LadderUtil.nextBoolean();
-        LadderElement ladderElement = LadderOperation.create(col, prev, rand);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
 
-        ladderElement.change(map, row, col);
-        return ladderElement.next(prev);
+        for (String name : names) {
+            sb.append(wrapName(name)).append(' ');
+        }
+        sb.append("\n").append(plane);
+
+        return sb.toString();
     }
-
 }

@@ -1,20 +1,17 @@
 package main.domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public interface LadderOperation {
 
-    static LadderElement create(int col, boolean prev, boolean rand) {
+    static LadderElement create(int col, boolean next, boolean rand) {
         return Arrays.stream(LadderElement.values())
-            .filter(e -> e.check(col, prev, rand))
+            .filter(e -> e.check(col, next, rand))
             .findAny()
             .orElseThrow(IllegalStateException::new);
     }
 
-    boolean check(int col, boolean prev, boolean rand);
+    boolean check(int ind, boolean next, boolean rand);
 
-    void change(List<List<LadderElement>> map, int row, int col);
-
-    boolean next(boolean prev);
+    boolean getNext(boolean prev);
 }
