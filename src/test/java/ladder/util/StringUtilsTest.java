@@ -1,9 +1,10 @@
-import ladder.util.StringUtils;
+package ladder.util;
+
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StringUtilsTest {
+class StringUtilsTest {
 
     @Test
     void String_format메서드() {
