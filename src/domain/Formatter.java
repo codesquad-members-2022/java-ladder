@@ -3,9 +3,16 @@ package domain;
 public class Formatter {
     public static String checkAndPadding(String player, int width) {
         if (player.length() >= width) {
-            return player.substring(0, 3)+"..";
+            return skipPadding(player, width);
         }
         return addPadding(player, width);
+    }
+
+    private static String skipPadding(String player, int width) {
+        if(player.length()==width){
+            return player;
+        }
+        return player.substring(0, 3)+"..";
     }
 
     private static String addPadding(String player, int width) {
