@@ -16,7 +16,7 @@ public class Ladder {
 	private final int rangeOfy;
 	private Randomz random;
 	private int place;
-	private List<List<Boolean>> graphs = new ArrayList<>();
+	private List<Line> graphs = new ArrayList<>();
 	private Function<Boolean, Integer> nextDirection = (dir) -> (dir ? -1 : 1);
 
 	public Ladder(int rangeOfx, int rangeOfy) {
@@ -31,19 +31,19 @@ public class Ladder {
 	}
 
 	public void play() {
-		List<Boolean> firstRows = firstLine();
+		Line firstRows = firstLine();
 		this.graphs.add(firstRows);
 		for (int i = 1; i < rangeOfy; i++) {
-			List<Boolean> row = filledNextLines();
+			Line row = filledNextLines();
 			this.graphs.add(row);
 		}
 	}
 
-	private List<Boolean> filledNextLines() {
+	private Line filledNextLines() {
 		List<Boolean> row = getFilledFalseList();
 		nextPlace();
 		row.set(this.place, true);
-		return row;
+		return new Line(row);
 	}
 
 	private void nextPlace() {
@@ -52,6 +52,10 @@ public class Ladder {
 		if (!isRangeOf(nextPlace)) {
 			nextPlace *= (-1);
 		}
+		toNext(nextPlace);
+	}
+
+	private void toNext(int nextPlace) {
 		this.place += nextPlace;
 	}
 
@@ -63,10 +67,10 @@ public class Ladder {
 		return true;
 	}
 
-	private List<Boolean> firstLine() {
+	private Line firstLine() {
 		List<Boolean> row = getFilledFalseList();
 		row.set(this.place, true);
-		return row;
+		return new Line(row);
 	}
 
 	private List<Boolean> getFilledFalseList() {
@@ -77,6 +81,9 @@ public class Ladder {
 	}
 
 	public List<List<Boolean>> getLadders() {
-		return graphs;
+		return graphs.stream()
+			.parallel()
+			.map(Line::getPoints)
+			.collect(toList());
 	}
 }
