@@ -20,9 +20,7 @@ public class InputView {
 
     public static String[] inputStringWithDelimiter(String msg, String delimiter, int max) throws IOException {
         printMessage(msg);
-        String[] names = br.readLine().split(delimiter);
-        validator.validateNameInRange(names, max);
-        return names;
+        return br.readLine().split(delimiter);
     }
 
     private static void printMessage(String msg) {

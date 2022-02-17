@@ -63,10 +63,14 @@ public class LadderGame {
             String playerName = DEFAULT_NAME + i;
             printUserName(playerName);
         }
-        System.out.println("");
+        printNewLine();
     }
 
     private void printUserName(String playerName) {
-        System.out.printf("%5s ", playerName);
+        if (playerName.length() > LadderGameManager.MAX_NAME_LENGTH) {
+            System.out.printf("%3.3s.. ", playerName);
+            return;
+        }
+        System.out.printf("%5.5s ", playerName);
     }
 }
