@@ -38,10 +38,6 @@ class InputVerificationTest {
 	private static final int invalidHeightOfMin = 0;
 	private static final int invalidHeightOfMax = 21;
 
-	@Test
-	void es() {
-		System.out.println(String.format("%-6s","bibi"));
-	}
 
 /*
 	@ParameterizedTest
