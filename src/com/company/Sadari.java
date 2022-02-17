@@ -25,21 +25,22 @@ public class Sadari {
 
     private ArrayList<String> makeRow(int peopleCount) {
         ArrayList<String> Row = new ArrayList<>();
+        boolean[] isLineUsed = { false };
         for (int i = 0; i < peopleCount + peopleCount + 1; i++) {
-            Row.add(getRowComponent(peopleCount, i));
+            Row.add(getRowComponent(peopleCount, i, isLineUsed));
         }
         return Row;
     }
 
-    private String getRowComponent(int peopleCount, int index) {
-        if (index == 0) {
+    private String getRowComponent(int peopleCount, int index, boolean[] isLineUsed) {
+        if (index == 0 || index % 2 == 0 && isLineUsed[0]) {
             return "     ";
         }
         if (index == 2 * peopleCount) {
             return "    ";
         }
         if (index % 2 == 0)
-            return "-----";
+            return getRandomLine(isLineUsed);
         return "|";
     }
 
@@ -47,8 +48,15 @@ public class Sadari {
         return this.sadariList;
     }
 
-    private boolean getRandomLine() {
+    private String getRandomLine(boolean[] isLineUsed) {
         Random random = new Random();
-        return random.nextBoolean();
+        boolean isLine = false;
+        if (!isLineUsed[0]) {
+            isLine = random.nextBoolean();
+            isLineUsed[0] = isLine;
+        }
+        if (isLine)
+            return "-----";
+        return "     ";
     }
 }
