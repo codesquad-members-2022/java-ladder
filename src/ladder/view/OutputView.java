@@ -1,3 +1,8 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.Players;
+
 public class OutputView {
     public void printLayout(Players players, Ladder ladder) {
         System.out.println();

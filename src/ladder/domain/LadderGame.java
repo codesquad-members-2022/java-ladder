@@ -1,3 +1,7 @@
+package ladder.domain;
+
+import ladder.view.*;
+
 public class LadderGame {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
