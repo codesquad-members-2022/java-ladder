@@ -10,11 +10,7 @@ public class Element {
     private String value;
     private boolean hasStep;
 
-    private Element() {
-
-    }
-
-    public void setElement(int index, boolean hasPrevStep, boolean rand) {
+    public Element(int index, boolean hasPrevStep, boolean rand) {
         this.index = index;
         this.value = setValue(index, hasPrevStep, rand);
         this.hasStep = false;
@@ -24,7 +20,6 @@ public class Element {
     }
 
     private String setValue(int index, boolean hasPrevStep, boolean rand) {
-
         if (index % 2 == 0) {
             return LADDER_VERTICAL_LINE;
         }
@@ -32,5 +27,9 @@ public class Element {
             return LADDER_HORIZONTAL_LINE;
         }
         return LADDER_BLANK;
+    }
+
+    public boolean getHasStep() {
+        return this.hasStep;
     }
 }
