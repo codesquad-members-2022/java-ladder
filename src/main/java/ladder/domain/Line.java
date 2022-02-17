@@ -5,7 +5,7 @@ public class Line {
 
     public Line(int coordinate) {
         if (coordinate < 0) {
-            throw new IllegalArgumentException("좌표의 값은 0보다 작을 수 없습니다.");
+            throw new IllegalArgumentException("좌표의 값은 0 이상 이어야 합니다.");
         }
         this.coordinate = coordinate;
     }
