@@ -24,16 +24,11 @@ public class LadderRow {
     public void init() {
         row.add(voidBuilder());
         row.add(HEIGHT);
-        lineInit();
         makeRow();
     }
 
     private String voidBuilder() {
         return VOID.repeat(DEFAULT_VOID_SIZE);
-    }
-
-    private void lineInit() {
-
     }
 
     private void makeRow() {
