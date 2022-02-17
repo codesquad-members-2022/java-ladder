@@ -24,11 +24,6 @@ public class StringTest {
     @DisplayName("문자열을 문자 단위로 출력")
     void string_to_charArray() {
         String name = "루시드";
-
-        //String의 각 문자를 배열로 가져올 수 있는 API 활용
-        for (char c : name.toCharArray()) {
-            System.out.print(c);
-        }
     }
 
     @Test

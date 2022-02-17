@@ -20,12 +20,12 @@ public class Line {
     }
 
     private void makeRandomLine() {
-        if (forwardVoid && RandomUtil.nextBoolean()) {
-            list.add(true);
+        boolean result = RandomUtil.putLine(forwardVoid);
+        list.add(result);
+        if (result) {
             forwardVoid = false;
             return;
         }
-        list.add(false);
         forwardVoid = true;
     }
 
