@@ -25,7 +25,7 @@ public class OutputView {
 
     public static void printUserNames(String[] userNames){
         for(String eachUserName: userNames){
-            System.out.printf("%5s ",eachUserName);
+            System.out.printf("%5s ",eachUserName.substring(0, Math.min( eachUserName.length(), 5) ));
         }
         System.out.println();
     }
