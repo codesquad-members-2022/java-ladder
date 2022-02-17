@@ -46,7 +46,7 @@ public class Line {
     }
 
     public void show() {
-        System.out.print("  ");
+        System.out.print(" ");
         for(int i = 0; i < columns.length-1; i++){
             System.out.print("|");
             if(columns[i] == 1 && columns[i+1] == 2){
