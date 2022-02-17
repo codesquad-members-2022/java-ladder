@@ -38,10 +38,10 @@ public class Ladder {
             return step ="|";
         }
         if (random == 0) {
-            return step = " ";
+            return step = "     ";
         }
 
-        return step = "-";
+        return step = "-----";
     }
 
     public void print(List<List<String>> ladderList) {
