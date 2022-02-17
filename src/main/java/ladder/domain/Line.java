@@ -13,4 +13,8 @@ public class Line {
     public boolean isLadder(int coordinate) {
         return this.coordinate == coordinate;
     }
+
+    public int getCoordinate() {
+        return coordinate;
+    }
 }
