@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.List;
 
+import domain.Ladder;
+import view.*;
+
 public class Application {
 	private static void run() throws IOException {
 		InputView inputView = new InputView();
@@ -12,9 +15,9 @@ public class Application {
 		ladder.setWidth(playerNames);
 		List<List<String>> ladderForGame = ladder.make(ladderHeight);
 
-		OutView outView = new OutView();
-		outView.printPlayerName(playerNames);
-		outView.print(ladderForGame);
+		OutputView outputView = new OutputView();
+		outputView.printPlayerName(playerNames);
+		outputView.print(ladderForGame);
 	}
 
 	public static void main(String[] args) throws IOException {

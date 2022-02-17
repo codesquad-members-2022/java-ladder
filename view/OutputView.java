@@ -1,21 +1,23 @@
+package view;
+
 import java.util.List;
 
-class OutView {
+public class OutputView {
 	private static final String BLANK = " ";
-	void print(List<List<String>> ladder){
+	public void print(List<List<String>> ladder){
 		for(List<String> row : ladder){
 			printRow(row);
 		}
 	}
 
-	void printRow(List<String> row){
+	private void printRow(List<String> row){
 		for(String element : row){
 			System.out.print(element);
 		}
 		System.out.println();
 	}
 
-	void printPlayerName(List<String> nameList){
+	public void printPlayerName(List<String> nameList){
 		for(String name : nameList){
 			System.out.print(name);
 			System.out.print(BLANK);

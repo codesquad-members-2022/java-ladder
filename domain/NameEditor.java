@@ -1,7 +1,9 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class NameEditor {
+public class NameEditor {
 	private boolean isValidate(String name){
 		if(name.length() > 5){
 			return false;
@@ -32,7 +34,7 @@ class NameEditor {
 		return newName;
 	}
 
-	protected List<String> makeList(String[] names){
+	public List<String> makeList(String[] names){
 
 		List<String> nameList = new ArrayList<>();
 		for(String name : names){

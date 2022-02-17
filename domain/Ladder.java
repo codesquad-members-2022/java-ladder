@@ -1,8 +1,10 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-class Ladder {
+public class Ladder {
 	private static final List<List<String>> ladder = new ArrayList<>();
 	private int width;
 
@@ -10,7 +12,7 @@ class Ladder {
 		return (playerNames.size() * 2) - 1;
 	}
 
-	void setWidth(List<String> playerNames) {
+	public void setWidth(List<String> playerNames) {
 		this.width = getWidth(playerNames);
 	}
 
@@ -20,7 +22,7 @@ class Ladder {
 		return row;
 	}
 
-	protected List<List<String>> make(int height){
+	public List<List<String>> make(int height){
 		for(int rowNumber = 0; rowNumber < height; rowNumber++){
 			List<String> row = getLadderRow(this.width);
 			ladder.add(row);
