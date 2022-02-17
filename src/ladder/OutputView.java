@@ -1,17 +1,13 @@
 package ladder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {
 
-    private List<String> stringElements;
+    private String[] elements;
 
     public OutputView() {
-        stringElements = new ArrayList<>();
-        stringElements.add("     ");
-        stringElements.add("-----");
-        stringElements.add("|");
+        this.elements = new String[]{"     ", "-----", "|"};
     }
 
     public void printGhostLeg(List<List<Integer>> ghostLeg) {
@@ -28,14 +24,14 @@ public class OutputView {
         }
     }
 
-    private void printElements(int element) {
-        String stringElement = stringElements.get(element);
+    private void printElements(int elementNumber) {
+        String stringElement = elements[elementNumber];
         System.out.print(stringElement);
     }
 
     public void printParticipants(List<String> participants) {
-        for (String participant: participants) {
-            System.out.printf("%5s",participant);
+        for (String participant : participants) {
+            System.out.printf("%5s", participant);
             System.out.print(' ');
         }
         System.out.println();
