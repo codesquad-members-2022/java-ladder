@@ -1,27 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
 class Ladder {
+	private static final List<List<String>> ladder = new ArrayList<>();
 	private int width;
 
-	LadderLine ladderLine = new LadderLine();
+	private int getWidth(List<String> playerNames){
+		return (playerNames.size() * 2) - 1;
+	}
 
-	char[][] makeLadder(int peopleNumber, int ladderHeight){
-		this.width = getWidth(peopleNumber);
+	void setWidth(List<String> playerNames) {
+		this.width = getWidth(playerNames);
+	}
 
-		char[][] ladder = new char [ladderHeight][width];
+	List<String> getLadderRow(int width){
+		LadderRow ladderRow = new LadderRow();
+		List<String> row = ladderRow.make(width);
+		return row;
+	}
 
-		for(int row = 0; row < ladderHeight; row++){
-			getLadderLine(row, ladder);
+	protected List<List<String>> make(int height){
+		for(int rowNumber = 0; rowNumber < height; rowNumber++){
+			List<String> row = getLadderRow(this.width);
+			ladder.add(row);
 		}
 
 		return ladder;
-	}
-
-	private int getWidth(int peopleNumber){
-		return peopleNumber * 2 - 1;
-	}
-
-	private void getLadderLine(int row, char[][] ladder) {
-		for (int column = 0; column < width; column++){
-			ladder[row][column] = ladderLine.makeLadderLine(column);
-		}
 	}
 }
