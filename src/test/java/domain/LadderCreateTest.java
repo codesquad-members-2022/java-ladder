@@ -11,25 +11,25 @@ public class LadderCreateTest {
 
     @Test
     void createLineTest(){
-        Ladder ladder = new Ladder(LadderSize.create(4, 5));
+        Ladder ladder = new Ladder(4, 5);
         assertThat(ladder.getHeight()).isEqualTo(4);
 
-        Ladder ladder2 = new Ladder(LadderSize.create(3, 5));
+        Ladder ladder2 = new Ladder(3, 5);
         assertThat(ladder2.getHeight()).isEqualTo(3);
     }
 
     @Test
     void invalidInputTest(){
-        assertThatThrownBy(() -> new Ladder(LadderSize.create(1, 0))).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Ladder(LadderSize.create(1, -1))).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Ladder(LadderSize.create(0, 1))).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Ladder(LadderSize.create(-1, 1))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(1, 0)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(1, -1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(0, 1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Ladder(-1, 1)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("포지션들 출력하기")
     void generatePositionsTest(){
-        Ladder ladder = new Ladder(LadderSize.create(3, 5));
+        Ladder ladder = new Ladder(3, 5);
         int[] positions = ladder.makeStartPositions();
         for (int position : positions) {
             System.out.println(position);
