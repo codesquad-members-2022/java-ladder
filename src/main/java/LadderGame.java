@@ -12,7 +12,7 @@ public class LadderGame {
         String playerNames = InputView.askPlayers();
         int height = InputView.askLadderHeight();
         names = new Names(playerNames);
-        board = new Board(names.getPlayersCount(), height);
+        board = new Board(names, height);
     }
 
     public void run() {

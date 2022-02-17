@@ -8,18 +8,16 @@ public class Board {
 
     private static final String EMPTY_PART = "    ";
 
-    private final int players;
+    private final int width;
     private final int height;
     private final List<Floor> frame;
+    private final Names names;
 
-    public Board(int players, int height) {
-        this.players = Validation.checkPlayers(players);
-        this.height = Validation.checkHeight(height);
+    public Board(Names names, int height) {
+        this.names = names;
         frame = generateFrame();
-    }
-
-    public int countPlayers() {
-        return players;
+        this.width = names.getPlayersCount()*2-1;
+        this.height = Validation.checkHeight(height);
     }
 
     public int getLadderHeight() {
@@ -29,7 +27,7 @@ public class Board {
     public List<Floor> generateFrame() {
         List<Floor> frame = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            frame.add(new Floor(players*2-1));
+            frame.add(new Floor(width));
         }
         return frame;
     }
