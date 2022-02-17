@@ -2,6 +2,7 @@ package app.jinan159.ladder.view;
 
 import app.jinan159.ladder.LadderGame;
 import app.jinan159.ladder.domain.Participant;
+import app.jinan159.ladder.validation.InputValidator;
 
 import java.io.Closeable;
 import java.io.InputStream;
@@ -17,7 +18,6 @@ public class InputView implements Closeable {
     private final static String Q_NAMES_OF_PARTICIPANTS = "참여할 사람을 입력해주세요.(5자 이하, 이름은 쉼표 '" + SPLITER + "' 로 구분해주세요.)";
     private final static String Q_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?(1개 이상)";
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
-    private final static String ALERT_VALIDATION_FAILED = "(주의) 입력하신 항목을 다시한번 확인해 주세요.";
 
     public final Scanner sc;
 
@@ -45,9 +45,9 @@ public class InputView implements Closeable {
     private String[] readNames() {
         try {
             String[] names = sc.nextLine().split(SPLITER);
-            validateNames(names);
+            InputValidator.validateNames(names);
             return names;
-        } catch (NoSuchElementException e) {
+        } catch (IllegalArgumentException | NoSuchElementException e) {
             System.out.println(e.getMessage());
             return readNames();
         }
@@ -56,29 +56,11 @@ public class InputView implements Closeable {
     private int readPositiveNumber() {
         try {
             int input = sc.nextInt();
-            validateIsPositive(input);
+            InputValidator.validateIsPositive(input);
             return input;
-        } catch (NoSuchElementException e) {
+        } catch (IllegalArgumentException | NoSuchElementException e) {
             System.out.println(ALERT_NUMBER_REQUIRED);
             return readPositiveNumber();
-        }
-    }
-
-    private void validateIsPositive(int input) {
-        if (input <= 0) {
-            throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
-        }
-    }
-
-    private void validateNames(String[] names) {
-        for (String name : names) {
-            validateNamesLength(name);
-        }
-    }
-
-    private void validateNamesLength(String input) {
-        if (input.length() > LadderGame.MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
         }
     }
 
