@@ -7,8 +7,18 @@ public class Print {
 
     public static void printSadari(Sadari sadari) {
         ArrayList<ArrayList<String>> sadariArray = sadari.getSadariList();
+
         for (ArrayList<String> row : sadariArray) {
-            System.out.println(row.toString());
+            String rowString = interpretRow(row);
+            System.out.println(rowString);
         }
+    }
+
+    public static String interpretRow(ArrayList<String> row) {
+        StringBuilder sb = new StringBuilder();
+        for (String component : row) {
+            sb.append(component);
+        }
+        return sb.toString();
     }
 }
