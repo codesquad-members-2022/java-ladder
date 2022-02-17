@@ -2,6 +2,7 @@ package app.jinan159.ladder.meta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameMap {
 
@@ -43,6 +44,15 @@ public class GameMap {
         return sb.toString();
     }
 
+    private String rowToString(List<LadderElement> row) {
+        StringBuilder sb = new StringBuilder();
+        for (LadderElement col : row) {
+            sb.append(col.getMark());
+        }
+
+        return sb.toString();
+    }
+
     private void prepareGameMap(GameMap gameMap) {
         for (int y = 0; y < gameMap.getHeight(); y++) {
             prepareRow(gameMap, y);
@@ -63,24 +73,29 @@ public class GameMap {
         // 짝수 번째 column은 세로줄을 입력함
         if (x % 2 == 1) return LadderElement.V_LINE;
 
-        // 가상의 알고리즘 상으로, empty
+        return getRandomLadderElement(x, y);
+    }
+
+    // 랜덤으로 사다리 요소를 반환
+    private LadderElement getRandomLadderElement(int x, int y) {
         if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
 
-        return LadderElement.H_LINE;
-    }
+        Random isHorizontalLine = new Random();
 
-    // 빈 공간이 들어올 자리인지, 아닌지를 반환하는 가상의 알고리즘
-    private boolean isEmptyPosition(int x, int y) {
-        return ((x * y) + (x + y)) % 3 == 0;
-    }
-
-    private String rowToString(List<LadderElement> row) {
-        StringBuilder sb = new StringBuilder();
-        for (LadderElement col : row) {
-            sb.append(col.getMark());
+        if (isHorizontalLine.nextBoolean()) {
+            return LadderElement.H_LINE;
         }
 
-        return sb.toString();
+        return LadderElement.EMPTY;
+    }
+
+    // 현재 포지션의 왼쪽에 가로선이 있어서 빈 공간이 들어가야 하는지 여부
+    private boolean isEmptyPosition(int x, int y) {
+        return x > 3 && isLeftHorizontalLine(x, y);
+    }
+
+    private boolean isLeftHorizontalLine(int x, int y) {
+        return get(x - 2, y).equals(LadderElement.H_LINE);
     }
 
     private void set(int x, int y, LadderElement value) {
