@@ -17,8 +17,7 @@ public class LadderController {
                 inputNames = InputView.requestPerson();
                 int inputHeight = InputView.requestHeight();
 
-                LadderSize ladderSize = LadderSize.create(inputHeight, inputNames.length);
-                List<Line> lines = new Ladder(ladderSize).getLines();
+                List<Line> lines = new Ladder(inputHeight, inputNames.length).getLines();
 
                 OutputView.showLadder(lines, inputNames);
                 return;
