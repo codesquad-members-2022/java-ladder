@@ -1,6 +1,9 @@
 import domain.game.LadderGameService;
+import domain.user.User;
 import view.input.InputView;
 import view.output.OutputView;
+
+import java.util.List;
 
 public class GameApplication {
 
@@ -28,8 +31,8 @@ public class GameApplication {
     }
 
     private void initLadderGame() {
-        int numberOfUsers = inputView.inputUsers().size();
+        List<User> users = inputView.inputUsers();
         int height = inputView.inputHeight();
-        ladderGameService.initLadderGame(numberOfUsers,height);
+        ladderGameService.initLadderGame(users, height);
     }
 }

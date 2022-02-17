@@ -3,7 +3,9 @@ package domain.game;
 import domain.ladder.Ladder;
 import domain.ladder.LadderElement;
 import domain.ladder.LadderFactory;
+import domain.user.User;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,9 +28,10 @@ public class LadderGameServiceImpl implements LadderGameService {
     }
 
     @Override
-    public void initLadderGame(int numberOfUsers, int height) {
+    public void initLadderGame(List<User> users, int height) {
+        int numberOfUsers = users.size();
         Ladder ladder = ladderFactory.create(numberOfUsers, height);
-        this.ladderGame = new LadderGame(ladder);
+        this.ladderGame = new LadderGame(users, ladder);
     }
 
     @Override

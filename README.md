@@ -83,9 +83,9 @@ public class GameApplication {
   }
 
   private void initLadderGame() {
-    int numberOfUsers = inputView.inputUsers().size();
+    List<User> users = inputView.inputUsers();
     int height = inputView.inputHeight();
-    ladderGameService.initLadderGame(numberOfUsers,height);
+    ladderGameService.initLadderGame(users, height);
   }
 }
 ```
@@ -147,9 +147,11 @@ public class AppConfig {
 ```java
 public class LadderGame {
 
+  private final List<User> users;
   private final Ladder ladder;
 
-  LadderGame(Ladder ladder) {
+  LadderGame(List<User> users, Ladder ladder) {
+    this.users = users;
     this.ladder = ladder;
   }
 
@@ -275,7 +277,7 @@ public interface LadderFactory {
 ```java
 public interface LadderGameService {
 
-  void initLadderGame(int numberOfUsers, int height);
+  void initLadderGame(List<User> users, int height);
   String getResultMap();
 }
 ```
