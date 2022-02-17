@@ -5,7 +5,7 @@
 - [x] 미션 1 구현
 - [x] 미션 2 구현
 - [x] 미션 3 구현
-- [ ] 미션 4 구현
+- [x] 미션 4 구현
 - [ ] 미션 5 구현
 
 ### mission 1
@@ -29,6 +29,8 @@
 `PrintLadder` 클래스는 2차원 배열인 사다리를 출력하다보니 2중 포문과 로직 상 if로 boolean 값을 체크해야 하는 부분이 강제되는데 이를 depth 1을 맞추기 위해 의미없이 메서드 추출을 한 것 같다.
 오히려 코드의 가독성이 안좋아진 것 같아서 올바르게 리팩토링을 진행한건지 의문이다.
 
+<br>
+
 ## mission 3
 
 3번째 미션 PR 시에 리드미 작성을 까먹었다 😅
@@ -39,4 +41,62 @@
 
 이렇게 클래스를 분리해서 구현을 하니 사다리를 만드는 로직이 배열보다 간단해지고 가독성도 올라가서 좋은 것 같다.
 
+<br>
+
+## mission 4
+
+**간단한 리팩토링 및 코드 수정**
+
+먼저 3단계에서 미흡한 부분을 리팩토링을 진행했습니다. 사용자 이름을 switch 문으로 padding을 붙이던 로직을 변경했고 몇가지 변수 명을 수정했습니다.
+
+또 이름이 5글자 이상일 때 예외를 던지던 로직을 그냥 쿠킴처럼 `jeremy` 입력 시 `jer..`처럼 되도록 변경했습니다.
+
+<br>
+
+**패키지 분리**
+
+지금까지는 패키지 분리를 해본 적이 없어서 어떻게 분리해야 할 지 막막했습니다. 결국 힌트대로 ladder, ladder.view, ladder.domain 으로 분리했습니다.
+
+패키지 구조는 아래와 같습니다.
+
+```
+src
+└── ladder
+    │
+    ├── domain
+    │   ├── LadderGame.java
+    │   ├── LadderLine.java
+    │   └── User.java
+    │
+    ├── view
+    │   ├── Input.java
+    │   └── PrintLadder.java
+    │
+    └── GameManager.java
+ 
+test
+└── ladder
+    └── domain
+        ├── LadderLineTest.java
+        └── UserTest.java
+
+```
+
+<br>
+
+**단위 테스트**
+
+테스트는 다른 사람의 코드를 어깨너머로 배운게 전부라 junit5만 이용해서 테스트를 진행했습니다.
+
+제일 핵심 로직이라고 판단되는 User class와 LadderLine class에 테스트 코드를 작성했고 결과는 아래와 같습니다.
+
+<br>
+
+테스트 진행한 사항
+
+<img width="470" alt="스크린샷 2022-02-17 19 27 06" src="https://user-images.githubusercontent.com/81368630/154457417-8a7341a1-30cd-4549-836e-90d44db19f9e.png">
+
+코드 커버리지
+
+<img width="810" alt="스크린샷 2022-02-17 19 24 12" src="https://user-images.githubusercontent.com/81368630/154457430-5b858cbc-481c-4e9a-bd91-7a0b8d02d18f.png">
 
