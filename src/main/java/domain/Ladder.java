@@ -15,9 +15,9 @@ public class Ladder {
 
     public Ladder(Names names, int height) {
         this.names = names;
-        board = generateBoard();
         this.width = names.getPlayersCount()*2-1;
         this.height = Validation.checkHeight(height);
+        board = generateBoard();
     }
 
     public int getLadderHeight() {
