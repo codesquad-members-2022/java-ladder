@@ -83,7 +83,7 @@ public class GameApplication {
   }
 
   private void initLadderGame() {
-    int numberOfUsers = inputView.inputNumberOfUsers();
+    int numberOfUsers = inputView.inputUsers().size();
     int height = inputView.inputHeight();
     ladderGameService.initLadderGame(numberOfUsers,height);
   }
@@ -290,12 +290,18 @@ public interface LadderGameService {
 ```java
 public interface Validator {
 
-  void validateNumberOfUsers(int numberOfUsers);
+  void validateUserName(User user);
+  void validateNumberOfUsers(List<User> users);
+  void validateDuplicateUsers(List<User> users);
   void heightValidate(int height);
 
 }
 ```
 - 입력값에 대한 유효성 검사, 유효하지 않으면 예외를 throw
+  - validateUserName : 이름의 유효성
+  - validateNumberOfUser : 참가자 수의 유효성
+  - validateDuplicateUsers : 참가자의 중복여부 검증
+  - heightValidate : 높이의 유효성 검증
 - 구현체 : ValidatorImpl
 
 ---
@@ -304,13 +310,13 @@ public interface Validator {
 ```java
 public interface InputView {
 
-  int inputNumberOfUsers();
+  List<User> inputUsers();
   int inputHeight();
   void close();
 }
 ```
 - InputView : 사용자로부터 입력을 받는 역할을 정의한 인터페이스
-  - inputNumberOfUsers : 참가자 수
+  - inputUsers : 참가자 명단을 입력받음.
   - inputHeight : 사다리 높이
   - close : 입력에 사용했던 자원 반환
 - InputViewImpl : 구현체

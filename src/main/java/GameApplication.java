@@ -28,7 +28,7 @@ public class GameApplication {
     }
 
     private void initLadderGame() {
-        int numberOfUsers = inputView.inputNumberOfUsers();
+        int numberOfUsers = inputView.inputUsers().size();
         int height = inputView.inputHeight();
         ladderGameService.initLadderGame(numberOfUsers,height);
     }
