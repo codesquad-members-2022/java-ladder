@@ -8,6 +8,7 @@ public class Ladder {
     private static final String pole = "|";
 
     private List<List<String>> frame;
+    private boolean randomLineKey = true;
 
     public Ladder(int people, int ladderHight) {
         makeAStart(people, ladderHight);
@@ -17,9 +18,26 @@ public class Ladder {
         return (int) (Math.random() * 2);
     }
 
-    private String line(int people, int number) {
+    private String makeRandomWidthLine() {
+        String randomLine = widthLine.get(randomNumber());
+        if(randomLine.equals("-----")) {
+            randomLineKey = false;
+            return randomLine;
+        }
+        return randomLine;
+    }
+
+    private String selectWidthLine() {
+        if (randomLineKey) {
+            return makeRandomWidthLine();
+        }
+        randomLineKey = true;
+        return "     ";
+    }
+
+    private String makeWidthLine(int people, int number) {
         if (number < people - 1) {
-            return widthLine.get(randomNumber());
+            return selectWidthLine();
         }
         return "     ";
     }
@@ -28,7 +46,7 @@ public class Ladder {
         List<String> ladderLine = new ArrayList<>();
         for (int i = 0; i < people * 2; i = i + 2) {
             ladderLine.add(pole);
-            ladderLine.add(line(people, i / 2));
+            ladderLine.add(makeWidthLine(people, i / 2));
         }
         return ladderLine;
     }
