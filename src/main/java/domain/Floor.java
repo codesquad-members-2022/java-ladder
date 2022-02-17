@@ -8,7 +8,7 @@ public class Floor {
 
     private static final String VERTICAL = "|";
     private static final String LINE = "-----";
-    private static final String BLANK = " ";
+    private static final String BLANK = "     ";
     private static final Random random = new Random();
 
     private final List<String> floor;
@@ -49,5 +49,10 @@ public class Floor {
         return generateRandomLine(list,index);
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        floor.forEach(stringBuilder::append);
+        return stringBuilder.append('\n').toString();
+    }
 }

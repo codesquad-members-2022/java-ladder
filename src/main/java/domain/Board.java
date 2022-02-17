@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Board {
 
-    private static final String EMPTY_PART = "    ";
+    private static final String MARGIN = "    ";
 
     private final int width;
     private final int height;
@@ -35,7 +35,8 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        frame.forEach(floor -> stringBuilder.append(floor.toString()));
+        stringBuilder.append(names.toString()).append('\n');
+        frame.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
         return stringBuilder.toString();
     }
 }
