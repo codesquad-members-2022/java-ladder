@@ -163,6 +163,25 @@ public class LadderGame {
 - `getter`로 `ladder`을 반환함. (같은 패키지 안에서만 호출가능)
 
 ---
+## User
+```java
+public class User {
+
+  private final String name;
+
+  public User(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+}
+```
+- 사용자를 정의한 클래스
+- name : 사용자명
+---
 ## Ladder
 ```java
 public class Ladder {
