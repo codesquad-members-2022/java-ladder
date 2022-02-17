@@ -20,7 +20,7 @@ public class Game {
         ladder = new Ladder(numOfPeople, maxHeightOfLadder);
     }
 
-    public List<List<String>> getLadderBoard() {
+    public List<HorizontalLine> getLadderBoard() {
         return ladder.getBoard();
     }
 
