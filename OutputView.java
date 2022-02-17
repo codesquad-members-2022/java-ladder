@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class OutputView {
     private static OutputView ov;
 
@@ -13,6 +15,10 @@ public class OutputView {
     public void printLadder(Ladder ladder){
         System.out.println(ladder);
     }
-
-
+    public void printPeoples(List<String> peoples){
+        for(String people: peoples ) {
+            System.out.printf("%-6s", people);
+        }
+        System.out.println();
+    }
 }
