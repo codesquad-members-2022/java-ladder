@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
+
+    private static final String HORIZON = "-----";
+    private static final String VERTICAL = "|";
+    private  static final String BLANK = "     ";
     private final int memberCount;
     private final int height;
     List<List<String>> ladder;
@@ -35,7 +39,7 @@ public class Ladder {
 
     private void addRowElements(List<String> ladderRow, int column) {
         if (column % 2 == 0) {
-            ladderRow.add("|");
+            ladderRow.add(VERTICAL);
         }
         if (column % 2 == 1) {
             ladderRow.add(addRandomLine(random.nextBoolean()));
@@ -44,17 +48,17 @@ public class Ladder {
     }
 
     private void lineDuplicateCheck(List<String> ladderRow, int column) {
-        if (column >= 2 && ladderRow.get(column - 2).equals("-----")) {
-            ladderRow.set(column, "     ");
+        if (column >= 2 && ladderRow.get(column - 2).equals(HORIZON)) {
+            ladderRow.set(column, BLANK);
         }
 
     }
 
     private String addRandomLine(boolean trueCheck) {
         if (trueCheck) {
-            return "-----";
+            return HORIZON;
         }
-        return "     ";
+        return BLANK;
     }
 
 
