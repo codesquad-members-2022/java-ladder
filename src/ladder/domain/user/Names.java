@@ -14,10 +14,6 @@ public class Names {
 
     public Names(List<Name> names) {
         validateNames(names);
-        if (names.isEmpty()) {
-            this.names = Collections.emptyList();
-            return;
-        }
         this.names = names;
     }
 
