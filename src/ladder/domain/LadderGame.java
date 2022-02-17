@@ -1,39 +1,47 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import ladder.view.Input;
 import ladder.view.PrintLadder;
 
 public class LadderGame {
 
+	private static final String BLANK = " ";
+
 	private List<LadderLine> ladder;
 	private List<User> users;
-	private List<String> userResult;
+	private List<String> userResultInput;
+	private Map<User, String> gameResult;
 	private int userNumber;
 	private int ladderHeight;
 
 	public void start() {
 		init();
-		PrintLadder.printLadder(ladder, users);
+		PrintLadder.printLadder(users, ladder, userResultInput);
+		//todo 결과를 보고 싶은 사람 & 실행 결과 (gameResult 매개변수)
+		// while(ture) 로 계속 돌려야할듯
 		Input.close();
 	}
 	private void init() {
 		ladder = new ArrayList<>();
+		gameResult = new HashMap<>();
 		getUserName();
 		getUserResult();
 		getLadderHeight();
 		makeLadder();
-		//todo 사람과 결과 이어주어야 함
+		linkUserAndResult();
 	}
 	private void getUserName() {
 		users = Input.getUserName();
 		userNumber = users.size();
 	}
 	private void getUserResult() {
-		userResult = Input.getUserResult();
-		while (userResult.size() != userNumber) {
-			userResult = Input.getUserResult();
+		userResultInput = Input.getUserResult();
+		while (userResultInput.size() != userNumber) {
+			userResultInput = Input.getUserResult();
 		}
 	}
 	private void getLadderHeight() {
@@ -43,6 +51,34 @@ public class LadderGame {
 		for (int i = 0; i < ladderHeight; i++) {
 			ladder.add(new LadderLine(userNumber));
 		}
+	}
+	private void linkUserAndResult() {
+		for (int i = 0; i < userNumber; i++) {
+			gameResult.put(users.get(i), checkResult(users.get(i), i));
+		}
+	}
+	private String checkResult(User user, int idx) {
+		int line = idx * 6 + 1;
+		for (int i = 0; i < ladderHeight; i++) {
+			if (isExistLeftStep(line, i)) {
+				line -= 6;
+			} else if (isExistRigthStep(line, i)) {
+				line += 6;
+			}
+		}
+		return userResultInput.get((line - 1) / 6);
+	}
+
+	private boolean isExistRigthStep(int line, int i) {
+		return getLadderLineWithPadding(i).substring(line + 1, line + 2).contains("-");
+	}
+
+	private boolean isExistLeftStep(int line, int i) {
+		return getLadderLineWithPadding(i).substring(line - 1, line).contains("-");
+	}
+
+	private String getLadderLineWithPadding(int i) {
+		return BLANK + ladder.get(i).toString() + BLANK;
 	}
 
 }
