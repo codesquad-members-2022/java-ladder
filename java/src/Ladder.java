@@ -4,8 +4,10 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final List<String> widthLine = Arrays.asList("-----", "     ");
-    private static final String pole = "|";
+    private static final String STEP = "-----";
+    private static final String BLANK = "     ";
+    private static final String POLE = "|";
+    private static final List<String> widthLine = List.of(STEP, BLANK);
 
     private List<List<String>> frame;
     private boolean randomLineKey = true;
@@ -20,7 +22,7 @@ public class Ladder {
 
     private String makeRandomWidthLine() {
         String randomLine = widthLine.get(randomNumber());
-        if(randomLine.equals("-----")) {
+        if(randomLine.equals(STEP)) {
             randomLineKey = false;
             return randomLine;
         }
@@ -32,20 +34,20 @@ public class Ladder {
             return makeRandomWidthLine();
         }
         randomLineKey = true;
-        return "     ";
+        return BLANK;
     }
 
     private String makeWidthLine(int people, int number) {
         if (number < people - 1) {
             return selectWidthLine();
         }
-        return "     ";
+        return BLANK;
     }
 
     private List<String> makeOneHight(int people) {
         List<String> ladderLine = new ArrayList<>();
         for (int i = 0; i < people * 2; i = i + 2) {
-            ladderLine.add(pole);
+            ladderLine.add(POLE);
             ladderLine.add(makeWidthLine(people, i / 2));
         }
         return ladderLine;
