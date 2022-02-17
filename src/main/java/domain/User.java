@@ -25,6 +25,10 @@ public class User {
         return sb.toString();
     }
 
+    public int getSize() {
+        return users.size();
+    }
+
     private List<String> getUserByList(String[] users) {
         List<String> list = new ArrayList<>();
 
