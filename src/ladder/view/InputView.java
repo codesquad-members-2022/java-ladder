@@ -11,21 +11,13 @@ public class InputView {
     private final Scanner sc = new Scanner(System.in);
 
     public String[] getPlayerNames() {
-        return getLine(INPUT_PLAYER_NAMES).split(STRING_DELIMITER);
+        System.out.println(INPUT_PLAYER_NAMES);
+        return sc.nextLine().split(STRING_DELIMITER);
     }
 
     public int getLadderHeight() {
-        return getInt(INPUT_LADDER_HEIGHT);
-    }
-
-    private int getInt(String message) {
-        System.out.println(message);
+        System.out.println(INPUT_LADDER_HEIGHT);
         return Integer.parseInt(sc.nextLine());
-    }
-
-    private String getLine(String message) {
-        System.out.println(message);
-        return sc.nextLine();
     }
 
     public void close() {
