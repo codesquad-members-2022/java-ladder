@@ -37,7 +37,6 @@ public class LadderGame {
     return players;
   }
 
-
   private String[] splitValue(String value) {
     return value.split(",");
   }
@@ -91,8 +90,9 @@ public class LadderGame {
     System.out.println();
   }
 
-  private String padRight(String s) {
-    return String.format("%-" + 6 + "s", s);
+  private String padRight(String value) {
+    // TODO 퍼옴. 의미를 잘 모르겠음. 이건 나중에.
+    return String.format("%-" + 6 + "s", value);
   }
 
   private void printOneFloor(List<Ladder> oneFloor) {
