@@ -1,6 +1,5 @@
 package com.sh.utils;
 
-import static com.sh.utils.GameMessage.*;
 import static com.sh.utils.InputVerification.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class InputVerificationTest {
 
@@ -40,6 +38,12 @@ class InputVerificationTest {
 	private static final int invalidHeightOfMin = 0;
 	private static final int invalidHeightOfMax = 21;
 
+	@Test
+	void es() {
+		System.out.println(String.format("%-6s","bibi"));
+	}
+
+/*
 	@ParameterizedTest
 	@ValueSource(ints = {Integer.MAX_VALUE, invalidRangeOfMin, invalidRangeOfMax, Integer.MAX_VALUE})
 	void invalid_number_of_people_input_value_test(int numberOfPeople) {
@@ -53,6 +57,7 @@ class InputVerificationTest {
 	void number_of_people_input_value_test(int numberOfPeople) {
 		isValidNumberOfPeople(numberOfPeople);
 	}
+*/
 
 	@ParameterizedTest
 	@MethodSource("provideHeights")
