@@ -18,7 +18,6 @@ public class InputReader implements Closeable {
     private final static String Q_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?(1개 이상)";
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
     private final static String ALERT_VALIDATION_FAILED = "(주의) 입력하신 항목을 다시한번 확인해 주세요.";
-    private final static int READ_NUMBER_FAILED = -1;
 
     public final Scanner sc;
 
@@ -31,26 +30,14 @@ public class InputReader implements Closeable {
     }
 
     public List<Participant> readParticipants() {
-        try {
-            System.out.println(Q_NAMES_OF_PARTICIPANTS);
-            String[] names = readNames();
-            return namesToParticipantList(names);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return readParticipants();
-        }
+        System.out.println(Q_NAMES_OF_PARTICIPANTS);
+        String[] names = readNames();
+        return namesToParticipantList(names);
     }
 
     public int readHeight() {
-        try {
-            System.out.println(Q_MAX_LADDER_HEIGHT);
-            int height = readPositiveNumber();
-            validateIsReadFaild(height);
-            return height;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return readHeight();
-        }
+        System.out.println(Q_MAX_LADDER_HEIGHT);
+        return readPositiveNumber();
     }
 
     private String[] readNames() {
@@ -77,13 +64,7 @@ public class InputReader implements Closeable {
             return input;
         } catch (NoSuchElementException e) {
             System.out.println(ALERT_NUMBER_REQUIRED);
-            return READ_NUMBER_FAILED;
-        }
-    }
-
-    private void validateIsReadFaild(int input) {
-        if (input == READ_NUMBER_FAILED) {
-            throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
+            return readPositiveNumber();
         }
     }
 
