@@ -6,7 +6,11 @@ public class Input {
          return sc.nextInt();
     }
 
-    public static void scannerClose() {
+    public static void Close() {
         sc.close();
+    }
+
+    public static String getPlayer() {
+        return sc.nextLine();
     }
 }
