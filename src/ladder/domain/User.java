@@ -2,6 +2,8 @@ package ladder.domain;
 
 public class User {
 
+	private static final int MAX_USER_NAME_LENGTH = 5;
+	private static final String BLANK = " ";
 	private final String userName;
 
 	public User(String userName) {
@@ -10,25 +12,25 @@ public class User {
 
 	private String validateUserName(String userName) {
 		userName = userName.trim();
-		if (userName.length() > 5) {
-			throw new IllegalArgumentException("5글자 이상의 이름을 입력했습니다!");
+		return setNameLengthToFive(userName);
+	}
+
+	private String setNameLengthToFive(String userName) {
+		if (userName.length() <= MAX_USER_NAME_LENGTH) {
+			return padding(userName);
 		}
-		return padding(userName);
+		return reduceName(userName);
 	}
 
 	private String padding(String userName) {
-		switch (userName.length()) {
-			case 1:
-				return "  " + userName + "  ";
-			case 2:
-				return " " + userName + "  ";
-			case 3:
-				return " " + userName + " ";
-			case 4:
-				return userName + " ";
-			default:
-				return userName;
-		}
+		int totalPadding = MAX_USER_NAME_LENGTH - userName.length();
+		int leftPadding = totalPadding / 2;
+		int rightPadding = totalPadding - leftPadding;
+		return BLANK.repeat(leftPadding) + userName + BLANK.repeat(rightPadding);
+	}
+
+	private String reduceName(String userName) {
+		return userName.substring(0, 3) + "..";
 	}
 
 	@Override

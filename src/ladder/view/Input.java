@@ -31,12 +31,7 @@ public class Input {
 
 	private static List<User> stringArrToList(String[] userNames) {
 		List<User> userList = new ArrayList<>();
-		try {
-			Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getUserName();
-		}
+		Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
 		return userList;
 	}
 
