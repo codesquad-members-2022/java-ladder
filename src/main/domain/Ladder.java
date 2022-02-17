@@ -30,13 +30,4 @@ public class Ladder {
     public List<HorizontalLine> getBoard() {
         return ListDeepCopy.boardDeepCopy(board);
     }
-
-//    public String ladderSign(boolean b) {
-//        if (b && !prev) {
-//            prev = true;
-//            return "-----";
-//        }
-//        prev = false;
-//        return "     ";
-//    }
 }
