@@ -9,5 +9,6 @@ public class Main {
         LadderGame ladderGame = new LadderGame();
         ladderGame.init();
         ladderGame.run();
+        ladderGame.showResult();
     }
 }

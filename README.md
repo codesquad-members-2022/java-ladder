@@ -67,5 +67,22 @@ public static int checkPlayersReturn(int count) {
         frame = new String[this.height][(this.players*2)-1];
         line = new Line();
     }
-```
 
+## 3단계
+
+- [x] 플레이어의 이름은 최대 5글자
+- 임의로 이름을 알파벳과 숫자로만 가능하도록 했고, 인원수를 2명에서 10명으로 제한하였음
+
+- [x] 사다리 출력시 이름도 같이 출력
+- Names 클래스를 생성해서 toString()으로 구현
+
+- [x] 사람 이름은 쉼표(,)를 기준으로 구분
+- 정규식을 적용해서 검증하고, split메서드를 통해서 가지고 있도록 하였음
+
+- [x] 사다리폭 확장
+- String.format을 활용해서 구현
+
+- [x] 사다리 라인 겹치지 않도록 구현
+- 랜덤 생성전 옆 칸을 확인하도록해서 겹치지 않도록 구현
+
+- [x] 2차원 배열 대신 ArrayList사용
