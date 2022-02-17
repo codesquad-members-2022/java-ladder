@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +21,7 @@ public class LadderMaker {
         this.HEIGHT = height;
     }
 
-    public void make() {
+    void make() {
         for (int row = 0; row < HEIGHT; row++) {
             makeRow();
         }
