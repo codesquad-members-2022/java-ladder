@@ -50,3 +50,4 @@
 - [x] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
 - [x] else를 사용하지 마라.
 - [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+- [x] naming convention을 지키면서 프로그래밍한다.

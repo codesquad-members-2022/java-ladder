@@ -20,6 +20,7 @@ public class Ladder {
         this.charLadder = make();
     }
 
+
     private List<List<Character>> make() {
         List<List<Character>> ladder = new ArrayList<>();
         for (int i = 0; i < heightOfLadder; i++) {
@@ -27,6 +28,7 @@ public class Ladder {
         }
         return ladder;
     }
+
 
     private List<Character> makeRow() {
         List<Character> rowOfLadder = new ArrayList<>();
