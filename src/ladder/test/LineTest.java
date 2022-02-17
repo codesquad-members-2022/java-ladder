@@ -11,12 +11,12 @@ public class LineTest {
     void 선을_그리는_로직_테스트() {
         //given
         int countOfPlayer = 15;
-        //when
         Line line = new Line(countOfPlayer);
         ArrayList<Boolean> points = line.getPoints();
-        //then
+        //when
         for (int i = 1; i < points.size(); i++) {
             if (Boolean.TRUE.equals(points.get(i - 1))) {
+                //then
                 Assertions.assertEquals(false, points.get(i));
             }
         }
