@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +22,7 @@ public class Input {
         return sc.nextInt();
     }
 
-    public static ArrayList<String> getNamesList() {
+    public static ArrayList<String> getPlayerList() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("참여할 사람의 이름을 적어주세요. 각 이름은 최대 5글자이고, 콤마로 구분합니다.");
@@ -32,8 +31,7 @@ public class Input {
         String names = sc.next();
 
         String[] namesArray = names.split(",");
-        ArrayList<String> participants = new ArrayList<>(List.of(namesArray));
 
-        return participants;
+        return new ArrayList<>(List.of(namesArray));
     }
 }

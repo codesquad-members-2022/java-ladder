@@ -5,36 +5,32 @@ import java.util.Random;
 
 public class Sadari {
     private ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
-    private ArrayList<String> namesList;
+    private ArrayList<String> playerList;
 
-    public Sadari(ArrayList<String> namesList, int height) {
-        this.sadariList = makeSadariList(namesList.size(), height);
-        this.namesList = namesList;
+    public Sadari(ArrayList<String> playerList, int height) {
+        this.sadariList = makeSadariList(playerList.size(), height);
+        this.playerList = playerList;
     }
 
-    public void setUsers() {
-        ArrayList<String> namesList = Input.getNamesList();
-    }
-
-    private ArrayList<ArrayList<String>> makeSadariList(int peopleCount, int height) {
+    private ArrayList<ArrayList<String>> makeSadariList(int playerCount, int height) {
         ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
         for (int i = 0; i < height; i++) {
-            sadariList.add(makeRow(peopleCount));
+            sadariList.add(makeRow(playerCount));
         }
         return sadariList;
     }
 
-    private ArrayList<String> makeRow(int peopleCount) {
+    private ArrayList<String> makeRow(int playerCount) {
         ArrayList<String> Row = new ArrayList<>();
         boolean[] isLineUsed = { false };
-        for (int i = 0; i < peopleCount + peopleCount + 1; i++) {
-            Row.add(getRowComponent(peopleCount, i, isLineUsed));
+        for (int i = 0; i < playerCount + playerCount + 1; i++) {
+            Row.add(getRowComponent(playerCount, i, isLineUsed));
         }
         return Row;
     }
 
-    private String getRowComponent(int peopleCount, int index, boolean[] isLineUsed) {
-        if (index == 0 || index == 2 * peopleCount) {
+    private String getRowComponent(int playerCount, int index, boolean[] isLineUsed) {
+        if (index == 0 || index == 2 * playerCount) {
             return "  ";
         }
         if (index % 2 == 0 && isLineUsed[0]) {
@@ -49,8 +45,8 @@ public class Sadari {
         return this.sadariList;
     }
 
-    public ArrayList<String> getNamesList() {
-        return this.namesList;
+    public ArrayList<String> getPlayerList() {
+        return this.playerList;
     }
 
     private String getRandomLine(boolean[] isLineUsed) {

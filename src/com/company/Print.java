@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Print {
 
     public static void printGame(Sadari sadari) {
-        ArrayList<String> namesList = sadari.getNamesList();
+        ArrayList<String> namesList = sadari.getPlayerList();
         printPlayerList(namesList);
 
         ArrayList<ArrayList<String>> sadariArray = sadari.getSadariList();
