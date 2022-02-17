@@ -1,3 +1,9 @@
+package controller;
+
+import domain.Ladder;
+import view.InputUtil;
+import view.OutputUtil;
+
 import java.util.Arrays;
 
 public class GameController {
