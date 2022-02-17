@@ -5,6 +5,7 @@ import static src.ladder.LadderMaterial.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import src.ladder.utils.RandomUtil;
 
 
 public class LadderRow {
@@ -31,7 +32,7 @@ public class LadderRow {
             ladderMaterials.add(BLANK);
             return;
         }
-        if (RANDOM.nextBoolean()) {
+        if (RandomUtil.nextBooleanWithPercentOf(30)) {
             ladderMaterials.add(STEP);
             return;
         }
