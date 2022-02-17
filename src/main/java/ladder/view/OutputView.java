@@ -34,12 +34,12 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append(getBlankString());
         for (int i = 0; i < personCount - 1; i++) {
-            appendString(line, sb, i);
+            appendString(sb, line, i);
         }
         System.out.println(sb);
     }
 
-    private static void appendString(Line line, StringBuilder sb, int coordinate) {
+    private static void appendString(StringBuilder sb, Line line, int coordinate) {
         if (line.isLadder(coordinate)) {
             sb.append(getLadderString());
         } else {
