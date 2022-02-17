@@ -67,6 +67,7 @@ public static int checkPlayersReturn(int count) {
         frame = new String[this.height][(this.players*2)-1];
         line = new Line();
     }
+```
 
 ## 3단계
 
@@ -86,3 +87,13 @@ public static int checkPlayersReturn(int count) {
 - 랜덤 생성전 옆 칸을 확인하도록해서 겹치지 않도록 구현
 
 - [x] 2차원 배열 대신 ArrayList사용
+
+## 4단계
+
+###리팩토링 생각해보기
+
+* 힌트와 같이 frame을 List<List<String>>으로 가지고 있는게 아니라, floor라는 객체?일급컬렉션?으로 만드는 것으로 수정해보기
+* Board는 Line이라는 객체를 가지고서 사다라에 라인을 랜덤으로 생성하는 역할을 한다. 하지만 이 역할이 단순히 Board 객체가 가지고 있어도 되는 것 같다.
+  * floor객체를 만들면서 Line의 역할까지 floor에서 하는 것으로 리팩토링 해봐야겠다.
+* 사다리는 출력예시와 같이 출력만 하면 된다. 굳이 출력전에 String으로 값을 가지고 있을 이유도 없다. 그래서 힌트와 같이 Boolean 타입으로 가지고 있는 방법도 고려해야겠다.
+* 3차 PR에서 질문했던 InputView에서 입력을 받아서 검증하고 도메인 객체로 반환하는 방식으로 리팩토링 시도해보기
