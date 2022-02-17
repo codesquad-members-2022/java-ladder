@@ -88,10 +88,7 @@ public class GameMap {
         if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
 
         Random isHorizontalLine = new Random();
-
-        if (isHorizontalLine.nextBoolean()) {
-            return LadderElement.H_LINE;
-        }
+        if (isHorizontalLine.nextBoolean()) return LadderElement.H_LINE;
 
         return LadderElement.EMPTY;
     }
