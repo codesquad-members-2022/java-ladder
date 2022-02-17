@@ -1,15 +1,14 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class LadderProcessor {
 
-    boolean flag = false; // 사다리 Line 겹치지 않도록 flag 설정
-    Random rd;
+    Line line;
 
     public LadderProcessor() {
-        rd = new Random();
+
+        line = new Line();
     }
 
     public ArrayList<ArrayList<String>> getLadderInfo(int playerCount, int ladderHeight) {
@@ -25,19 +24,11 @@ public class LadderProcessor {
     private ArrayList<String> getLadderRowData(int playerCount) {
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < playerCount * 2 - 1; i++) {
-            arrayList.add(i % 2 == 0 ? "|" : getLadderLine());
+            arrayList.add(i % 2 == 0 ? "|" : line.getLadderLine());
         }
-        flag = false;
+        line.flag = false;
 
         return arrayList;
-    }
-
-    private String getLadderLine() {
-        int randomValue = rd.nextInt(2);
-        String line = randomValue == 1 && !flag ? "-----" : "     ";
-        flag = randomValue == 1 ? true : false;
-
-        return line;
     }
 
 }
