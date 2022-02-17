@@ -24,6 +24,7 @@ public class Ladder {
             lines.add(createLine());
         }
     }
+
     private Line createLine() {
         Line line = new Line();
         for (int col = 0; col < width; ++col) {

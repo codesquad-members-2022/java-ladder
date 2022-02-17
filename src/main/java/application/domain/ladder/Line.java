@@ -10,15 +10,15 @@ import static application.domain.element.LadderElement.*;
 public class Line {
     private List<LadderElement> line;
 
-    public Line() {
+    Line() {
         this.line = new ArrayList<>();
     }
 
-    public void appendElement(LadderElement e) {
+    void appendElement(LadderElement e) {
         line.add(e);
     }
 
-    public boolean isValid(int col) {
+    boolean isValid(int col) {
         return col == 0 || line.get(col - 1) != STEP;
     }
 
