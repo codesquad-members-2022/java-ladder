@@ -2,7 +2,7 @@ package app.jinan159.ladder;
 
 import app.jinan159.ladder.io.InputReader;
 import app.jinan159.ladder.io.OutputWriter;
-import app.jinan159.ladder.meta.GameMap;
+import app.jinan159.ladder.meta.gamemap.GameMap;
 import app.jinan159.ladder.meta.Participant;
 
 import java.io.IOException;
