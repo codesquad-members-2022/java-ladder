@@ -1,3 +1,9 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Person;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +34,7 @@ public class View {
         return names;
     }
 
-    public static void printMap(List<String> map) {
+    public static void printMap(List<Line> map) {
         System.out.println("\n실행 결과\n");
         map.stream().forEach(System.out::println);
     }

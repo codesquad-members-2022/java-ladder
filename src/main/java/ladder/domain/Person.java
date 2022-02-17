@@ -1,3 +1,5 @@
+package ladder.domain;
+
 public class Person {
     private String name;
 

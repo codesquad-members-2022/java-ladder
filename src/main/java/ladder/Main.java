@@ -1,10 +1,16 @@
+package ladder;
+
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.view.View;
+
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         Ladder ladder = View.createLadder();
-        List<String> map = ladder.getMap();
+        List<Line> map = ladder.getMap();
         View.printMap(map);
     }
 }
