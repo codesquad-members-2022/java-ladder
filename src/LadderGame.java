@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
-  
+
+
   public Ladders gameInfoStep1() {
     System.out.println("참여할 사람은 몇 명인가요?");
     int numOfPeople = inputNumber();
@@ -36,8 +37,9 @@ public class LadderGame {
     return players;
   }
 
+
   private String[] splitValue(String value) {
-    return value.substring(1, value.length() - 1).split(",");
+    return value.split(",");
   }
 
   public Ladders makeLadder(Ladders ladders) {
@@ -72,13 +74,25 @@ public class LadderGame {
     return ladder;
   }
 
-
   public void printLadder(Ladders ladders) {
+    printPlayers(ladders);
+
     List<List<Ladder>> totalLadder = ladders.get();
     for (int i = 0; i < totalLadder.size(); i++) {
       printOneFloor(totalLadder.get(i));
       System.out.println();
     }
+  }
+
+  private void printPlayers(Ladders ladders) {
+    for (Player player : ladders.getPlayers()) {
+      System.out.print(padRight(player.getName()));
+    }
+    System.out.println();
+  }
+
+  private String padRight(String s) {
+    return String.format("%-" + 6 + "s", s);
   }
 
   private void printOneFloor(List<Ladder> oneFloor) {
