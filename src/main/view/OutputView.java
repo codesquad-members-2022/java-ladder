@@ -1,7 +1,7 @@
 package main.view;
 
 import java.util.List;
-import main.util.nameFormatter;
+import main.util.NameFormatter;
 
 public class OutputView {
     public static final String NUM_OF_ATTENDANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -24,7 +24,7 @@ public class OutputView {
     public static void getNamesRow(String names, StringBuilder sb) {
         String[] nameList = names.split(",");
         for (String name: nameList) {
-            sb.append(" ").append(nameFormatter.blankPadding(name));
+            sb.append(" ").append(NameFormatter.blankPadding(name));
         }
         sb.append("\n");
     }
