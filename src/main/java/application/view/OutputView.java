@@ -1,6 +1,6 @@
 package application.view;
 
-import application.game.Game;
+import application.domain.LadderGame;
 
 public class OutputView {
     private static OutputView ov;
@@ -14,11 +14,7 @@ public class OutputView {
         return ov;
     }
 
-    public void printGame(Game game) {
+    public void printGame(LadderGame game) {
         System.out.println(game);
-    }
-
-    public void printErrMsg(String msg) {
-        System.out.println(msg);
     }
 }

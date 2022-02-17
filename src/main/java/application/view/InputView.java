@@ -2,7 +2,7 @@ package application.view;
 
 import java.util.Scanner;
 
-import static application.message.GameMessage.*;
+import static application.domain.message.GameMessage.*;
 
 public class InputView {
     private static InputView iv;
@@ -21,20 +21,12 @@ public class InputView {
 
     public String playerNames() {
         System.out.println(REQUEST_PLAYER_NAMES);
-        return getLine();
+        return sc.next();
     }
 
     public int ladderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        return getValue();
-    }
-
-    private int getValue() {
         return sc.nextInt();
-    }
-
-    private String getLine() {
-        return sc.next();
     }
 
     public void close() {
