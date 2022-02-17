@@ -25,6 +25,12 @@ public class Output {
         }
     }
 
+    private void printBlankLine() {
+        if (people.size() != 0) {
+            System.out.println();
+        }
+    }
+
     private void printPeopleName() {
         int previousNameLength = 0;
         for (int i = 0; i < people.size(); i++) {
@@ -33,7 +39,7 @@ public class Output {
             System.out.print(user);
             previousNameLength = user.length();
         }
-        System.out.println();
+        printBlankLine();
     }
 
     private void printOneHight(List<String> ladderOneHight) {
