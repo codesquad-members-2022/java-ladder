@@ -1,4 +1,4 @@
-import controller.LadderGame;
+import Ladder.controller.LadderGame;
 
 public class Application {
 

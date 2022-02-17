@@ -1,6 +1,6 @@
-package domain;
+package Ladder.domain;
 
-import util.RandomUtils;
+import Ladder.util.RandomUtils;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package domain;
+package Ladder.domain;
 
 public class Element {
 
