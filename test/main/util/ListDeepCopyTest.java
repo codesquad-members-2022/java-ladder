@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import main.domain.HorizontalLine;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ListDeepCopyTest {
     @Test
-    void 이차원_배열_깊은복사_테스트_1() {
+    @DisplayName("복사한 값이 기존의 값과 동일한지 테스트")
+    void 사다리_배열_깊은복사_테스트_1() {
         //given
         List<HorizontalLine> orig = new ArrayList<>();
         orig.add(new HorizontalLine(3));
@@ -24,7 +26,8 @@ class ListDeepCopyTest {
     }
 
     @Test
-    void 이차원_배열_깊은복사_테스트_2() {
+    @DisplayName("복사한 값을 변경할때, 기존의 값이 변경되지 않는지 테스트")
+    void 사다리_배열_깊은복사_테스트_2() {
         //given
         List<HorizontalLine> orig = new ArrayList<>();
         orig.add(new HorizontalLine(3));
