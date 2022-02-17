@@ -13,11 +13,10 @@ public class Validation {
     private static final String INPUT_REGEX = "^([\\w]{1,5},{1}){1,9}([\\w]{1,5}){1}";
     private static final String INPUT_ERROR_MESSAGE = "입력을 확인해주세요.";
 
-    public static int checkPlayers(int count) {
+    public static void checkPlayers(int count) {
         if(count < MIN_PLAYER || count > MAX_PLAYER) {
             throw new IllegalArgumentException(PLAYER_ERROR_MESSAGE);
         }
-        return count;
     }
 
     public static int checkHeight(int height) {

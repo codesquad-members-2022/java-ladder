@@ -1,15 +1,18 @@
 package domain;
 
+import Util.Validation;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Names {
 
-    private List<String> names;
+    private final List<String> names;
 
     public Names(String names) {
         this.names = splitNames(names);
+        Validation.checkPlayers(this.names.size());
     }
 
     private List<String> splitNames(String names) {
