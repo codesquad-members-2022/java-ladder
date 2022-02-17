@@ -27,9 +27,9 @@ public class Ladder {
         }
     }
 
-//    public List<HorizontalLine> getBoard() {
-//        return ListDeepCopy.string2dDeepCopy(board);
-//    }
+    public List<HorizontalLine> getBoard() {
+        return ListDeepCopy.boardDeepCopy(board);
+    }
 
 //    public String ladderSign(boolean b) {
 //        if (b && !prev) {
