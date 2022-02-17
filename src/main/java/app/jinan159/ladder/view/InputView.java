@@ -1,4 +1,4 @@
-package app.jinan159.ladder.io;
+package app.jinan159.ladder.view;
 
 import app.jinan159.ladder.LadderGame;
 import app.jinan159.ladder.meta.Participant;
@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InputReader implements Closeable {
+public class InputView implements Closeable {
 
     private final static String SPLITER = ",";
     private final static String Q_NAMES_OF_PARTICIPANTS = "참여할 사람을 입력해주세요.(5자 이하, 이름은 쉼표 '" + SPLITER + "' 로 구분해주세요.)";
@@ -21,11 +21,11 @@ public class InputReader implements Closeable {
 
     public final Scanner sc;
 
-    public InputReader() {
+    public InputView() {
         this.sc = new Scanner(System.in);
     }
 
-    public InputReader(InputStream inputStream) {
+    public InputView(InputStream inputStream) {
         this.sc = new Scanner(inputStream);
     }
 

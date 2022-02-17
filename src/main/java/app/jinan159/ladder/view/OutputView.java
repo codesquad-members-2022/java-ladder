@@ -1,19 +1,19 @@
-package app.jinan159.ladder.io;
+package app.jinan159.ladder.view;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-public class OutputWriter implements Closeable {
+public class OutputView implements Closeable {
 
     private final OutputStreamWriter writer;
 
-    public OutputWriter() {
+    public OutputView() {
         this.writer = new OutputStreamWriter(System.out);
     }
 
-    public OutputWriter(OutputStream outputStream) {
+    public OutputView(OutputStream outputStream) {
         this.writer = new OutputStreamWriter(outputStream);
     }
 

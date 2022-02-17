@@ -1,7 +1,7 @@
 package app.jinan159.ladder;
 
-import app.jinan159.ladder.io.InputReader;
-import app.jinan159.ladder.io.OutputWriter;
+import app.jinan159.ladder.view.InputView;
+import app.jinan159.ladder.view.OutputView;
 import app.jinan159.ladder.meta.gamemap.GameMap;
 import app.jinan159.ladder.meta.Participant;
 
@@ -16,7 +16,7 @@ public class LadderGame {
     private final List<Participant> participants;
 
     public LadderGame() throws IOException {
-        try (InputReader reader = new InputReader()) {
+        try (InputView reader = new InputView()) {
             this.participants = reader.readParticipants();
             int height = reader.readHeight();
             this.gameMap = new GameMap(participants.size(), height);
@@ -25,7 +25,7 @@ public class LadderGame {
 
     // ------- public method ---------
     public void startGame() throws IOException {
-        try (OutputWriter writer = new OutputWriter()) {
+        try (OutputView writer = new OutputView()) {
             writer.write(participantsToString(this.participants));
             writer.write(gameMap.gameMapToString());
         }
