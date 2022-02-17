@@ -42,38 +42,24 @@ public class LadderGame {
   }
 
   public Ladders makeLadder(Ladders ladders) {
-    char[][] totalLadders = ladders.get();
-    for (int whatFloor = 0; whatFloor < ladders.get().length; whatFloor++) {
-      totalLadders[whatFloor] = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
+//    List<List<Ladder>> totalLadders = ladders.get();
+    List<List<Ladder>> totalLadders = new ArrayList<>();
+    for (int whatFloor = 0; whatFloor < ladders.getHeight(); whatFloor++) {
+//      totalLadders[whatFloor] = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
+//      List<Ladder> floorLadder = totalLadders.get(whatFloor);
+      List<Ladder> floorLadder = new ArrayList<>();
+      floorLadder = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
+      totalLadders.add(floorLadder);
     }
     ladders.setTotalLadders(totalLadders);
     return ladders;
   }
 
-  public void printLadder(Ladders ladders) {
-    char[][] totalLadder = ladders.get();
-    for (int i = 0; i < ladders.get().length; i++) {
-      printOneFloor(totalLadder[i]);
-      System.out.println();
-    }
-  }
-
-  private void printOneFloor(char[] oneFloor) {
-    System.out.print(oneFloor);
-  }
-
-
-  private char[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
-    return getOneFloorLadderShape(numOfColumns);
-  }
-
-  private char[] getOneFloorLadderShape(int numOfColumns) {
-    char[] oneFloor = new char[numOfColumns];
+  private List<Ladder> makeOneFloorLadder(int numOfFloor, int numOfColumns) {
+    List<Ladder> oneFloor = new ArrayList<Ladder>(numOfColumns);
 
     for (int column = 0; column < numOfColumns - 1; column += 2) {
-      Ladder ladder = getLadderShape(column, numOfColumns);
-      oneFloor[column] = ladder.getLadderFrame();
-      oneFloor[column + 1] = ladder.getLadderLine();
+      oneFloor.add(getLadderShape(column, numOfColumns));
     }
     return oneFloor;
   }
@@ -90,10 +76,25 @@ public class LadderGame {
     return ladder;
   }
 
+
+  public void printLadder(Ladders ladders) {
+    List<List<Ladder>> totalLadder = ladders.get();
+    for (int i = 0; i < totalLadder.size(); i++) {
+      printOneFloor(totalLadder.get(i));
+      System.out.println();
+    }
+  }
+
+  private void printOneFloor(List<Ladder> oneFloor) {
+    for (Ladder ladder : oneFloor) {
+      System.out.print(ladder.getLadderFrame());
+      System.out.print(ladder.getLadderLine());
+    }
+  }
+
   private int inputNumber() {
     return new Scanner(System.in).nextInt();
   }
-
 
   private char getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
