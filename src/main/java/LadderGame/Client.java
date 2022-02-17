@@ -22,7 +22,7 @@ public class Client {
         sc.close();
     }
 
-    public List<String> getUserList() {
+    public static List<String> getUserList() {
         return userList;
     }
 
@@ -33,7 +33,7 @@ public class Client {
 
     private void inputUser() {
         printUserCountNotification();
-        userList = new ArrayList<>(Arrays.asList(sc.nextLine().trim().split(",")));
+        userList = new ArrayList<>(Arrays.asList(sc.nextLine().split("\\s*,\\s*")));
     }
 
     private int getUserCount() {

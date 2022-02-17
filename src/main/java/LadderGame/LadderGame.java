@@ -12,6 +12,7 @@ public class LadderGame {
     private static final String LADDERUNIT = "|";
     private static final String LINEUNIT = "-----";
     private static final String BLANK = "     ";
+    private static final String LADDERPADDING = "    ";
     private static boolean isCreated = true;
 
     LadderGame() {
@@ -31,18 +32,18 @@ public class LadderGame {
             isCreated = true;
             List<String> line = new ArrayList<>();
 
-            addLadderUnit(line);
-
-            arr.add(line);
+            arr.add(getLadderLine(line));
         }
         Output.printLadderGame(arr);
     }
 
-    private void addLadderUnit(List<String> line) {
+    private List<String> getLadderLine(List<String> line) {
         int width = user * 2 - 1;
+        line.add(LADDERPADDING);
         for (int col = 0; col < width; col++) {
             createUnit(col, line);
         }
+        return line;
     }
 
     private void createUnit(int col, List<String> line) {
