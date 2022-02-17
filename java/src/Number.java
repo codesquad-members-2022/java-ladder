@@ -1,19 +1,20 @@
 public class Number {
-    private final int number;
 
-    public Number(int number) {
-        this.number = validateNumber(number);
+    private final int value;
+
+    public Number(int value) {
+        this.value = validate(value);
     }
 
-    private int validateNumber(int number) {
+    private int validate(int number) {
         if (number < 0) {
             return 0;
         }
         return number;
     }
 
-    public int getNumber() {
-        return number;
+    public int get() {
+        return value;
     }
 
 }

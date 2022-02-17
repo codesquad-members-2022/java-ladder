@@ -1,27 +1,27 @@
 public class Ladder {
 
-    private String[][] ladder;
+    private static final char[] widthLine = {'-', ' '};
+    private static final char pole = '|';
+
+    private char[][] frame;
 
     public Ladder(int people, int ladderHight) {
-        ladder = new String[ladderHight][people * 2];
-        makeLadder(people, ladderHight);
+        makeAStart(people, ladderHight);
     }
 
     private int randomNumber() {
         return (int) (Math.random() * 2);
     }
 
-    private String line(int people, int number) {
-        String[] line = {"-", " "};
+    private char line(int people, int number) {
         if (number < people - 1) {
-            return line[randomNumber()];
+            return widthLine[randomNumber()];
         }
-        return " ";
+        return ' ';
     }
 
-    private String[] makeOneHight(int people) {
-        String[] ladderLine = new String[people * 2];
-        String pole = "|";
+    private char[] makeOneHight(int people) {
+        char[] ladderLine = new char[people * 2];
         for (int i = 0; i < people * 2; i = i + 2) {
             ladderLine[i] = pole;
             ladderLine[i + 1] = line(people, i / 2);
@@ -29,14 +29,15 @@ public class Ladder {
         return ladderLine;
     }
 
-    private void makeLadder(int people, int ladderHight) {
+    private void makeAStart(int people, int ladderHight) {
+        frame = new char[ladderHight][people * 2];
         for (int i = 0; i < ladderHight; i++) {
-            ladder[i] = makeOneHight(people);
+            frame[i] = makeOneHight(people);
         }
     }
 
-    public String[][] getLadder() {
-        return ladder;
+    public char[][] getLadder() {
+        return frame;
     }
 
 }
