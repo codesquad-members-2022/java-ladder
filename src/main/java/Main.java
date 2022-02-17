@@ -1,8 +1,10 @@
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-        LadderMap ladderMap = View.createMap();
-        char[][] cloneMap = ladderMap.getCloneMap();
-        View.printLadderMap(cloneMap);
+        Ladder ladder = View.createLadder();
+        List<String> map = ladder.getMap();
+        View.printMap(map);
     }
 }
