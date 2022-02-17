@@ -11,11 +11,20 @@ import java.util.List;
 public class LadderController {
 
     public void run(){
-        String[] inputNames = InputView.requestPerson();
-        int inputHeight = InputView.requestHeight();
+        while(true) {
+            String[] inputNames;
+            try {
+                inputNames = InputView.requestPerson();
+                int inputHeight = InputView.requestHeight();
 
-        LadderSize ladderSize = LadderSize.create(inputHeight, inputNames.length);
-        List<Line> lines = new Ladder(ladderSize).getLines();
-        OutputView.showLadder(lines, inputNames);
+                LadderSize ladderSize = LadderSize.create(inputHeight, inputNames.length);
+                List<Line> lines = new Ladder(ladderSize).getLines();
+
+                OutputView.showLadder(lines, inputNames);
+                return;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
