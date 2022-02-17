@@ -9,8 +9,8 @@ public class LadderRow {
     private static final String VOID = " ";
     private static final int DEFAULT_VOID_SIZE = 2;
     private static final int DEFAULT_WIDTH = 5;
-    private final int peopleCount;
 
+    private final int peopleCount;
     private final List<String> row;
     private final Line line;
 
@@ -24,11 +24,16 @@ public class LadderRow {
     public void init() {
         row.add(voidBuilder());
         row.add(HEIGHT);
+        lineInit();
         makeRow();
     }
 
     private String voidBuilder() {
         return VOID.repeat(DEFAULT_VOID_SIZE);
+    }
+
+    private void lineInit() {
+
     }
 
     private void makeRow() {
