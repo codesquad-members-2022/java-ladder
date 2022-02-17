@@ -37,7 +37,8 @@ public class LadderGame {
     }
 
     private void addLadderUnit(List<String> line) {
-        for (int col = 0; col < getWidth(); col++) {
+        int width = user * 2 - 1;
+        for (int col = 0; col < width; col++) {
             createUnit(col, line);
         }
     }
@@ -57,9 +58,5 @@ public class LadderGame {
             return ;
         }
         line.add(BLANK);
-    }
-
-    private int getWidth() {
-        return user * 2 - 1;
     }
 }
