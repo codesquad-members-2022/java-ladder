@@ -1,4 +1,4 @@
-package step3;
+package ladder.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class UserInterface {
 
     Scanner sc;
 
-    UserInterface() {
+    public UserInterface() {
         sc = new Scanner(System.in);
     }
 

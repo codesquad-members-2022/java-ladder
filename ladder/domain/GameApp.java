@@ -1,4 +1,7 @@
-package step3;
+package ladder.domain;
+
+import ladder.view.GameDisplay;
+import ladder.view.UserInterface;
 
 import java.util.ArrayList;
 import java.util.Random;
