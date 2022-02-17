@@ -177,10 +177,23 @@ public class User {
     return name;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return name.equals(user.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
 }
 ```
 - 사용자를 정의한 클래스
 - name : 사용자명
+- 동등성 : name이 같으면 동등한 객체로 간주(equals, hashCode)
 ---
 ## Ladder
 ```java
