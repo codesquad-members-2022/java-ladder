@@ -1,11 +1,12 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LadderGame {
 
     private List<String> participants;
-    private int[][] ghostLeg;
+    private List<List<Integer>> ghostLeg;
     private OutputView ov;
 
     public LadderGame(List<String> participants, int LegLength) {
@@ -15,28 +16,23 @@ public class LadderGame {
         this.ov = new OutputView();
     }
 
-    private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
-        int rowLength = LegLength;
+    private List<List<Integer>> creatGhostLeg(int numberOfParticipants, int rowLength) {
         int columnLength = (numberOfParticipants * 2) - 1;
-        int[][] ghostLeg = createArr(rowLength, columnLength);
+        List<List<Integer>> ghostLeg = new ArrayList<>(rowLength);
+        for (int row = 0; row < rowLength; row++) {
+            ghostLeg.add(new ArrayList<>());
+            insertElementAtColumn(ghostLeg.get(row), columnLength);
+        }
         return ghostLeg;
     }
 
-    private int[][] createArr(int rowLength, int columnLength) {
-        int[][] arr = new int[rowLength][columnLength];
-        for (int row = 0; row < rowLength; row++) {
-            insertElementAtColumn(arr[row], columnLength);
-        }
-        return arr;
-    }
-
-    private void insertElementAtColumn(int[] arr, int columnLength) {
+    private void insertElementAtColumn(List<Integer> rowIndexList, int columnLength) {
         for (int column = 0; column < columnLength; column++) {
-            arr[column] = insertElement(column);
+            rowIndexList.add(insertElement(column));
         }
     }
 
-    private int insertElement(int column) {
+    private Integer insertElement(int column) {
         if (column % 2 == 0) {
             return 2;
         }

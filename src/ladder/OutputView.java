@@ -14,17 +14,17 @@ public class OutputView {
         stringElements.add("|");
     }
 
-    public void printGhostLeg(int[][] ghostLeg) {
-        for (int row = 0; row < ghostLeg.length; row++) {
+    public void printGhostLeg(List<List<Integer>> ghostLeg) {
+        for (int row = 0; row < ghostLeg.size(); row++) {
             System.out.print("   ");
-            printColumn(ghostLeg[row]);
+            printColumn(ghostLeg.get(row));
             System.out.println();
         }
     }
 
-    private void printColumn(int[] ghostLeg) {
-        for (int column = 0; column < ghostLeg.length; column++) {
-            printElements(ghostLeg[column]);
+    private void printColumn(List<Integer> rowIndexList) {
+        for (int column = 0; column < rowIndexList.size(); column++) {
+            printElements(rowIndexList.get(column));
         }
     }
 
