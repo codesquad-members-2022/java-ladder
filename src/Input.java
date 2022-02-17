@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -6,11 +9,8 @@ public class Input {
 
 	private Input() {}
 
-	public static int[] getUserInput() {
-		int[] userInput = new int[2];
-		userInput[0] = getIntInput("참여할 사람은 몇 명인가요?");
-		userInput[1] = getIntInput("최대 사다리 높이는 몇 개인가요?");
-		return userInput;
+	public static int getLadderHeight(String message) {
+		return getIntInput(message);
 	}
 
 	private static int getIntInput(String message) {
@@ -19,6 +19,24 @@ public class Input {
 		sc.nextLine();
 		return intInput;
 	}
+
+	public static List<User> getUserName() {
+		System.out.println("참여할 사람 이름을 입력하세요.");
+		String[] userNames = sc.nextLine().split(",");
+		return stringArrToList(userNames);
+	}
+
+	private static List<User> stringArrToList(String[] userNames) {
+		List<User> userList = new ArrayList<>();
+		try {
+			Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return getUserName();
+		}
+		return userList;
+	}
+
 
 	public static void close() {
 		sc.close();
