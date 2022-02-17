@@ -1,4 +1,4 @@
-package ladder.model;
+package ladder.utils;
 
 import java.util.ArrayList;
 import java.util.List;

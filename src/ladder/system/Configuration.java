@@ -1,8 +1,8 @@
 package ladder.system;
 
-import ladder.model.GameManager;
-import ladder.model.LadderGame;
-import ladder.model.ladder.Ladder;
+import ladder.domain.GameManager;
+import ladder.domain.LadderGame;
+import ladder.domain.ladder.Ladder;
 import ladder.utils.RandomGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;

@@ -1,6 +1,6 @@
-package ladder.model;
+package ladder.domain.ladder;
 
-import ladder.model.strategy.DirectionFactory;
+import ladder.domain.strategy.DirectionFactory;
 
 import java.util.Objects;
 
@@ -22,13 +22,13 @@ public class Direction {
     }
 
     public Direction next() {
-        if (this.right) {
+        if (hasRight()) {
             return DirectionFactory.getLast(this);
         }
         return DirectionFactory.getNextDirection(this);
     }
 
-    public boolean isRight() {
+    public boolean hasRight() {
         return this.right;
     }
 

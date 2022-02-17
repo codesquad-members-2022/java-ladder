@@ -1,8 +1,8 @@
 package ladder.view;
 
-import ladder.model.Name;
-import ladder.model.Names;
-import ladder.model.ladder.Height;
+import ladder.domain.user.Name;
+import ladder.domain.user.Names;
+import ladder.domain.ladder.Height;
 import ladder.system.Configuration;
 
 import java.io.BufferedReader;
@@ -34,7 +34,6 @@ public class InputView {
     public Names getPlayerNames() throws IOException {
         out.println(INPUT_PLAYER_NAMES);
         String input = bufferReader.readLine();
-        bufferReader.close();
         return getNames(input);
     }
 

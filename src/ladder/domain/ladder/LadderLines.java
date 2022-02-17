@@ -1,7 +1,7 @@
-package ladder.model.ladder;
+package ladder.domain.ladder;
 
-import ladder.model.Count;
-import ladder.model.strategy.LadderLineFactory;
+import ladder.utils.Count;
+import ladder.domain.strategy.LadderLineFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;

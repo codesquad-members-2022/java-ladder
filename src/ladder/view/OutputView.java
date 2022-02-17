@@ -1,10 +1,10 @@
 package ladder.view;
 
-import ladder.model.Name;
-import ladder.model.Names;
-import ladder.model.ladder.LadderLine;
-import ladder.model.ladder.LadderLines;
-import ladder.model.ladder.Point;
+import ladder.domain.user.Name;
+import ladder.domain.user.Names;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.ladder.LadderLines;
+import ladder.domain.ladder.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,10 +49,10 @@ public class OutputView {
     private void addLine(StringBuilder stringBuilder, LadderLine line) {
         for (Point point : line.getPoints()) {
             stringBuilder.append(COLUMN);
-            if (point.getDirection().isRight()) {
+            if (point.getDirection().hasRight()) {
                 stringBuilder.append(LADDER);
             }
-            if(!point.getDirection().isRight()){
+            if(!point.getDirection().hasRight()){
                 stringBuilder.append(EMPTY_LINE);
             }
         }

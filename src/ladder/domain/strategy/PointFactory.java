@@ -1,6 +1,6 @@
-package ladder.model.strategy;
+package ladder.domain.strategy;
 
-import ladder.model.ladder.Point;
+import ladder.domain.ladder.Point;
 import ladder.system.Configuration;
 
 public class PointFactory {

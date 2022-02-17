@@ -1,7 +1,6 @@
-package ladder.model.ladder;
+package ladder.domain.ladder;
 
-import ladder.model.Direction;
-import ladder.model.strategy.PointFactory;
+import ladder.domain.strategy.PointFactory;
 
 public class Point {
 
@@ -20,7 +19,7 @@ public class Point {
     }
 
     public int move() {
-        if (this.direction.isRight()) {
+        if (this.direction.hasRight()) {
             return this.index + NEXT;
         }
         return this.index;

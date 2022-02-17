@@ -1,7 +1,7 @@
-package ladder.model.ladder;
+package ladder.domain.ladder;
 
-import ladder.model.Counts;
-import ladder.model.Names;
+import ladder.utils.Counts;
+import ladder.domain.user.Names;
 
 public class Ladder {
 

@@ -1,7 +1,7 @@
-package ladder.model.strategy;
+package ladder.domain.strategy;
 
-import ladder.model.Direction;
-import ladder.model.ladder.Point;
+import ladder.domain.ladder.Direction;
+import ladder.domain.ladder.Point;
 import ladder.system.Configuration;
 
 public class DirectionFactory {
@@ -13,7 +13,7 @@ public class DirectionFactory {
     }
 
     public static Direction getNextDirection(Direction direction) {
-        if(direction.isRight()){
+        if(direction.hasRight()){
             return new Direction(direction.getRight(), NULL);
         }
         boolean next = Configuration.randomGenerator.getBoolean();

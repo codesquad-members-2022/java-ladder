@@ -1,6 +1,7 @@
-package ladder.model;
+package ladder.domain;
 
-import ladder.model.ladder.LadderLine;
+import ladder.domain.ladder.LadderLine;
+import ladder.utils.Count;
 
 @FunctionalInterface
 public interface DrawingStrategy {
