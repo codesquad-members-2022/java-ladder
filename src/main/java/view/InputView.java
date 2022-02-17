@@ -10,6 +10,7 @@ public class InputView {
     private static final String MAX_LADDER_HEIGHT_MESSAGE = "최대 사다리 높이는 몇 개 인가요?";
     private static final String PLAYERS_NAME_MESSAGES = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하고 이름은 최대 5글자까지 가능합니다)";
     private static final String PLAYER_NAME_DELIMITER = ",";
+    private static final int MAX_NAME_LENGTH = 5;
     private static Scanner sc;
 
     public static List<String> getPlayersName() {
@@ -27,7 +28,7 @@ public class InputView {
         String[] splitName = playerNames.split(PLAYER_NAME_DELIMITER);
 
         int satisfiedNameCount = (int)Arrays.stream(splitName)
-                .filter(name -> name.length() <= 5)
+                .filter(name -> name.length() <= MAX_NAME_LENGTH)
                 .count();
         int allNameCount = splitName.length;
 
