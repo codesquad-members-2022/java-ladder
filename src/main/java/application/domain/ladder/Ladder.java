@@ -13,12 +13,7 @@ public class Ladder {
     private final None none;
     private final Pole pole;
 
-    private final int height;
-    private final int width;
-
     public Ladder(int height, int width, int maxNameLength) {
-        this.height = height;
-        this.width = width;
         this.shape = new Shape<>(height, width);
         this.line = new Line(maxNameLength);
         this.none = new None(maxNameLength);
@@ -52,6 +47,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        int height = shape.getHeight();
         for (int h = 0; h < height; ++h) {
             appendRow(sb, h);
         }
@@ -59,6 +55,7 @@ public class Ladder {
     }
 
     private void appendRow(StringBuilder sb, int h) {
+        int width = shape.getWidth();
         for (int w = 0; w < width; ++w) {
             sb.append(pole).append(getOutput(shape, h, w));
         }
@@ -66,6 +63,6 @@ public class Ladder {
     }
 
     private String getOutput(Shape<Element> shape, int h, int w) {
-        return w < width - 1 ? shape.getElement(h, w).toString() : "";
+        return w < shape.getWidth() - 1 ? shape.getElement(h, w).toString() : "";
     }
 }
