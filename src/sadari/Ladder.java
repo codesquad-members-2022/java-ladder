@@ -17,7 +17,7 @@ public class Ladder {
     }
 
     public void makeLadder(int height) {
-        for (int row = 0; row < height; row++){
+        for (int row = 0; row < height; row++) {
             ladderList.add(checkLadderParts());
         }
         print(ladderList);
@@ -25,17 +25,17 @@ public class Ladder {
 
     public ArrayList<String> checkLadderParts() {
         ArrayList<String> innerList = new ArrayList<>();
-        for (int column = 0; column < width; column++){
+        for (int column = 0; column < width; column++) {
             innerList.add(drawLines(column));
         }
         return innerList;
     }
 
-    public String drawLines(int column){
+    public String drawLines(int column) {
         Random rd = new Random();
         int random = rd.nextInt(100) % 2;
         if (column % 2 == 0) {
-            return step ="|";
+            return step = "|";
         }
         if (random == 0) {
             return step = "     ";
@@ -44,11 +44,15 @@ public class Ladder {
         return step = "-----";
     }
 
+    //TODO: 문자열 자체를 반환하게 해서.. or toString으로 출력할 문자열을 만들어서
     public void print(List<List<String>> ladderList) {
-        for (List<String> strings : ladderList){
-            strings.stream().forEach(System.out::print);
-            System.out.println();
+        StringBuilder sb = new StringBuilder();
+        for (List<String> strings : ladderList) {
+            sb.append("     ");
+            strings.forEach(string -> sb.append(string));
+            sb.append("\n");
         }
+        System.out.print(sb);
     }
 }
 
