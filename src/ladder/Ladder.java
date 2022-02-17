@@ -26,17 +26,8 @@ public class Ladder {
 
     private void setPlayers(List<String> playerNames) {
         for (int i = 0; i < players.size(); i++) {
-            addPlayer(playerNames.get(i), i);
+            players.add(new Player(playerNames.get(i), i));
         }
-    }
-
-    private void addPlayer(String name, int i) {
-        if (name.length() > 5) {
-            players.add(new Player(name.substring(0, 3) + "..", i));
-            return;
-        }
-        players.add(new Player(name, i));
-
     }
 
     private void createLadder(int peopleCount, int ladderHeight) {
