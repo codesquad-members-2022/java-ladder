@@ -77,15 +77,15 @@ public class GameApplication {
 
   public void run() {
     initLadderGame();
-    Ladder ladder = ladderGameService.getCopyOfResultLadder();
+    Ladder ladder = ladderGameService.getLadder();
     outputView.printLadder(ladder);
     ac.close();
   }
 
   private void initLadderGame() {
-    int entry = inputView.inputEntry();
+    int numberOfUsers = inputView.inputNumberOfUsers();
     int height = inputView.inputHeight();
-    ladderGameService.initLadderGame(entry,height);
+    ladderGameService.initLadderGame(numberOfUsers,height);
   }
 }
 ```
@@ -231,7 +231,7 @@ public enum LadderElement {
 ```java
 public interface LadderFactory {
 
-  Ladder create(int entry, int height);
+  Ladder create(int numberOfUsers, int height);
 }
 ```
 - `Ladder`을 생성하는 역할
@@ -243,7 +243,7 @@ public interface LadderFactory {
 ```java
 public interface LadderGameService {
 
-  void initLadderGame(int entry, int height);
+  void initLadderGame(int numberOfUsers, int height);
   Ladder getLadder();
 }
 ```
@@ -258,7 +258,7 @@ public interface LadderGameService {
 ```java
 public interface Validator {
 
-  void entryValidate(int entry);
+  void validateNumberOfUsers(int numberOfUsers);
   void heightValidate(int height);
 
 }
@@ -272,13 +272,13 @@ public interface Validator {
 ```java
 public interface InputView {
 
-    int inputEntry();
-    int inputHeight();
-    void close();
+  int inputNumberOfUsers();
+  int inputHeight();
+  void close();
 }
 ```
 - InputView : 사용자로부터 입력을 받는 역할을 정의한 인터페이스
-  - inputEntry : 참가자 수
+  - inputNumberOfUsers : 참가자 수
   - inputHeight : 사다리 높이
   - close : 입력에 사용했던 자원 반환
 - InputViewImpl : 구현체

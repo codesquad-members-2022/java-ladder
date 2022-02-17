@@ -6,7 +6,7 @@ public class InputViewImpl implements InputView {
 
     private static InputViewImpl instance;
 
-    private static final String ENTRY_PROMPT = "entry > ";
+    private static final String NUMBER_OF_USERS_PROMPT = "Number Of Users > ";
     private static final String HEIGHT_PROMPT = "height > ";
 
     private Validator validator;
@@ -24,18 +24,18 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public int inputEntry() {
+    public int inputNumberOfUsers() {
         requestInputEntry();
         try {
-            int intEntry = inputInt();
-            validator.entryValidate(intEntry);
-            return intEntry;
+            int numberOfUsers = inputInt();
+            validator.validateNumberOfUsers(numberOfUsers);
+            return numberOfUsers;
         } catch (IllegalArgumentException ile) {
             System.out.println(ile.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return inputEntry();
+        return inputNumberOfUsers();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class InputViewImpl implements InputView {
 
     private void requestInputEntry() {
         System.out.println("참여할 사람은 몇 명인가요?");
-        System.out.print(ENTRY_PROMPT);
+        System.out.print(NUMBER_OF_USERS_PROMPT);
     }
 
     private void requestInputHeight() {

@@ -4,6 +4,6 @@ import domain.ladder.Ladder;
 
 public interface LadderGameService {
 
-    void initLadderGame(int entry, int height);
+    void initLadderGame(int numberOfUsers, int height);
     Ladder getLadder();
 }

@@ -2,7 +2,7 @@ package view.input;
 
 public interface InputView {
 
-    int inputEntry();
+    int inputNumberOfUsers();
     int inputHeight();
     void close();
 }

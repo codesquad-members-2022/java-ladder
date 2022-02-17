@@ -2,7 +2,7 @@ package view.input;
 
 public interface Validator {
 
-    void entryValidate(int entry);
+    void validateNumberOfUsers(int numberOfUsers);
     void heightValidate(int height);
 
 }

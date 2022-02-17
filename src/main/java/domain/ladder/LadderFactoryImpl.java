@@ -17,15 +17,15 @@ public class LadderFactoryImpl implements LadderFactory {
     }
 
     @Override
-    public Ladder create(int entry, int height) {
-        Ladder ladder = new Ladder(makeLadderFrame(entry, height));
+    public Ladder create(int numberOfUsers, int height) {
+        Ladder ladder = new Ladder(makeLadderFrame(numberOfUsers, height));
         setAllVerticalLine(ladder);
         setAllHorizontalLine(ladder);
         return ladder;
     }
 
-    private List<List<LadderElement>> makeLadderFrame(int entry, int height) {
-        int width = 2*entry - 1;
+    private List<List<LadderElement>> makeLadderFrame(int numberOfUsers, int height) {
+        int width = 2*numberOfUsers - 1;
 
         List<List<LadderElement>> ladderFrame = new ArrayList<>();
         IntStream.range(0, height)
@@ -54,7 +54,7 @@ public class LadderFactoryImpl implements LadderFactory {
 
     private void setRowVerticalLine(Ladder ladder, int row) {
         IntStream.range(0, ladder.width())
-                .filter(this::isEntryColumn)
+                .filter(this::isUserColumn)
                 .forEach(column -> setVerticalLine(ladder, row, column));
     }
 
@@ -77,7 +77,7 @@ public class LadderFactoryImpl implements LadderFactory {
     }
 
     private boolean canDrawHorizontalLine(Ladder ladder, int row, int column) {
-        if (isEntryColumn(column)) {
+        if (isUserColumn(column)) {
             return false;
         }
         if (column == 1) {
@@ -97,11 +97,11 @@ public class LadderFactoryImpl implements LadderFactory {
         return randomBool;
     }
 
-    private boolean isEntryColumn(int column) {
+    private boolean isUserColumn(int column) {
         return (column%2 == 0);
     }
 
     private boolean isHorizontalLineColumn(int column) {
-        return !isEntryColumn(column);
+        return !isUserColumn(column);
     }
 }
