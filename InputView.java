@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class InputView {
@@ -14,35 +16,40 @@ public class InputView {
             return Integer.parseInt(st.nextToken());
         }
 
-        public String next() throws Exception {
-            if (!st.hasMoreElements()) st = new StringTokenizer(br.readLine());
-            return st.nextToken();
+        public List<String> stringList() throws Exception {
+            st = new StringTokenizer(br.readLine(),",");
+            List<String> arrayList = new ArrayList<>();
+            while (st.hasMoreElements()) {
+                arrayList.add(st.nextToken());
+            }
+            return arrayList;
         }
 
-        public char[] nToCharArray() throws Exception {
-            if (!st.hasMoreElements()) st = new StringTokenizer(br.readLine());
-            return st.nextToken().toCharArray();
-        }
     }
+
     public int inputIntValue() {
         int value;
         while (true) {
             try {
-                value = Integer.parseInt(input.br.readLine().toLowerCase());
-//                validateStageNumber(value);
+                value = input.integer();
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("값을 제대로 입력해주세요.");
             } catch (Exception e) {
-
+                System.out.println("값을 제대로 입력해주세요.");
             }
         }
         return value;
     }
 
-    private void validateStageNumber(int stageNumber) {
-        if (stageNumber <= 0 || stageNumber > 4) {
-//            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_VALUE.toString());
+    //사람이름을 입력받기위한 메서드
+
+    public List<String> inputPeoples() {
+        List<String> peoples = new ArrayList<>();
+        try {
+            peoples = input.stringList();
+        } catch (Exception e) {
+            System.out.println("값을 제대로 입력해주세요.");
         }
+        return peoples;
     }
+
 }
