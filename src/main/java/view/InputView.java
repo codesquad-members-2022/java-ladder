@@ -5,13 +5,8 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
 
-    public static int inputPeopleNumber() {
-        PrintView.requestPeopleNumber();
-        return inputIntValue();
-    }
-
     public static int inputLadderHeight() {
-        PrintView.requestLadderHeight();
+        PrintView.printLadderHeight();
         return inputIntValue();
     }
 
@@ -19,8 +14,12 @@ public class InputView {
         return sc.nextInt();
     }
 
-    public static void scannerClose() {
-        sc.close();
+    public static String inputPeopleName() {
+        PrintView.printPeopleName();
+        return sc.nextLine();
     }
 
+    public static void close() {
+        sc.close();
+    }
 }
