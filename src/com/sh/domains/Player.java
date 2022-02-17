@@ -1,6 +1,6 @@
 package com.sh.domains;
 
-import static com.sh.utils.InputVerification.*;
+import static com.sh.views.InputVerification.*;
 
 public class Player {
 	private final String name;

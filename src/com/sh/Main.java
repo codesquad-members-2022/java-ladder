@@ -1,7 +1,8 @@
 package com.sh;
 
-import static com.sh.utils.Input.*;
+import static com.sh.views.Input.*;
 
+import com.sh.configs.Server;
 
 public class Main {
     public static void main(String[] args) {

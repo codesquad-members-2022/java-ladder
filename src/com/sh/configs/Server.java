@@ -1,6 +1,6 @@
-package com.sh;
+package com.sh.configs;
 
-import static com.sh.utils.Output.*;
+import static com.sh.views.Output.*;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Server {
 	private Ladder ladder;
 	private LadderService ladderService;
 
-	void run() {
+	public void run() {
 		try {
 			ready();
 			toInstanceAndDi();

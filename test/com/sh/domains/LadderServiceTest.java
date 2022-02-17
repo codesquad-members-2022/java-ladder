@@ -1,6 +1,6 @@
 package com.sh.domains;
 
-import static com.sh.utils.InputVerification.*;
+import static com.sh.views.InputVerification.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;

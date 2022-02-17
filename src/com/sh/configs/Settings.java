@@ -1,8 +1,8 @@
-package com.sh;
+package com.sh.configs;
 
-import static com.sh.utils.Input.*;
-import static com.sh.utils.InputVerification.*;
-import static com.sh.utils.Output.*;
+import static com.sh.views.Input.*;
+import static com.sh.views.InputVerification.*;
+import static com.sh.views.Output.*;
 
 import java.util.Arrays;
 import java.util.List;
