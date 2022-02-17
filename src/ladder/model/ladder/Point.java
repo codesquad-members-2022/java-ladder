@@ -1,7 +1,6 @@
 package ladder.model.ladder;
 
 import ladder.model.Direction;
-import ladder.model.strategy.DirectionFactory;
 import ladder.model.strategy.PointFactory;
 
 public class Point {
@@ -22,7 +21,7 @@ public class Point {
 
     public int move() {
         if (this.direction.isRight()) {
-            return index + NEXT;
+            return this.index + NEXT;
         }
         return this.index;
     }
@@ -36,7 +35,7 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(this.index+ NEXT, DirectionFactory.getLast(this));
+        return PointFactory.getLastPoint(this);
     }
 
     public Direction getDirection() {

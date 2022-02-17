@@ -28,10 +28,6 @@ public class Direction {
         return DirectionFactory.getNextDirection(this);
     }
 
-    public boolean isLeft() {
-        return this.left;
-    }
-
     public boolean isRight() {
         return this.right;
     }

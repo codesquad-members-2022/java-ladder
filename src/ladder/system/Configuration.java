@@ -13,8 +13,8 @@ import java.io.InputStreamReader;
 public class Configuration {
 
     private Configuration() {}
-    private static Configuration instace = new Configuration();
-    public static BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final Configuration instace = new Configuration();
+    public static final BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
     public static final RandomGenerator randomGenerator = RandomGenerator.getInstance();
     public static final InputView inputView = InputView.getInstance();
     public static final OutputView outputView = OutputView.getInstance();

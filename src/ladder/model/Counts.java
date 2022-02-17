@@ -18,7 +18,7 @@ public class Counts {
         }
     }
 
-    private static Count of(int number) {
+    public static Count of(int number) {
         return counts.stream()
                 .filter(count -> equalTo(count, number))
                 .findAny()

@@ -1,5 +1,6 @@
 package ladder.model.ladder;
 
+import ladder.model.Counts;
 import ladder.model.Names;
 
 public class Ladder {
@@ -15,6 +16,7 @@ public class Ladder {
     }
 
     public LadderLines getLadderLines(Names names, Height height) {
-        return new LadderLines(names.size(), height);
+        int number = names.size();
+        return new LadderLines(Counts.of(number), height);
     }
 }

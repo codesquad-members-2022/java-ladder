@@ -30,8 +30,9 @@ public class GameManager {
     public void startGame() throws Exception {
         Names names = inputView.getPlayerNames();
         Height height = inputView.getHeight();
+        Count count = Counts.of(names.size());
 
-        LadderLines ladderLines = new LadderLines(names.size(), height);
+        LadderLines ladderLines = new LadderLines(count, height);
         outputView.print(ladderLines, names);
     }
 }

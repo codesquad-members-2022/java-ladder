@@ -18,7 +18,7 @@ public class PointFactory {
     }
 
     public static Point getLastPoint(Point point) {
-        return new Point(point.getIndex() + 1, DirectionFactory.getLast(point));
+        return new Point(point.getIndex() + NEXT, DirectionFactory.getLast(point));
     }
 
 }

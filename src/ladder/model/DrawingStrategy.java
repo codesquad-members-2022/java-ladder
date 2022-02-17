@@ -4,5 +4,5 @@ import ladder.model.ladder.LadderLine;
 
 @FunctionalInterface
 public interface DrawingStrategy {
-    LadderLine horizontalStrategy(int count);
+    LadderLine executeHolizontalStrategy(Count count);
 }
