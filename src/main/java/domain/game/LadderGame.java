@@ -4,6 +4,7 @@ import domain.ladder.Ladder;
 import domain.user.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -17,5 +18,11 @@ public class LadderGame {
 
     Ladder getLadder() {
         return this.ladder;
+    }
+
+    List<String> getUserNames() {
+        return users.stream()
+                    .map(User::getName)
+                    .collect(Collectors.toList());
     }
 }

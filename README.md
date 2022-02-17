@@ -158,11 +158,18 @@ public class LadderGame {
   Ladder getLadder() {
     return this.ladder;
   }
+
+  List<String> getUserNames() {
+    return users.stream()
+            .map(User::getName)
+            .collect(Collectors.toList());
+  }
 }
 ```
 - 사다리 게임을 정의한 LadderGame 클래스를 정의
 - 같은 패키지 안에서만 생성 가능
-- `getter`로 `ladder`을 반환함. (같은 패키지 안에서만 호출가능)
+- `getLadder` : ladder를 반환함. (같은 패키지 안에서만 호출 가능)
+- `getUserNames` : 사용자의 이름들을 List로 반환 (같은 패키지 안에서만 호출 가능)
 
 ---
 ## User
