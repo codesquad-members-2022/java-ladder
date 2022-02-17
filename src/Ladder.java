@@ -1,7 +1,7 @@
 public class Ladder {
 
   private char ladderFrame;
-  private char ladderLine;
+  private String ladderLine;
 
   public char getLadderFrame() {
     return ladderFrame;
@@ -11,11 +11,11 @@ public class Ladder {
     this.ladderFrame = ladderFrame;
   }
 
-  public char getLadderLine() {
+  public String getLadderLine() {
     return ladderLine;
   }
 
-  public void setLadderLine(char ladderLine) {
+  public void setLadderLine(String ladderLine) {
     this.ladderLine = ladderLine;
   }
 }

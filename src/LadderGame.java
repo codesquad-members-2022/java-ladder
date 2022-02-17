@@ -96,7 +96,7 @@ public class LadderGame {
     return new Scanner(System.in).nextInt();
   }
 
-  private char getLadderLine() {
+  private String getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
     if (isLineExist) {
       return LadderShape.LADDER_LINE_EXIST;
