@@ -12,6 +12,7 @@ public class Validation {
     private static final String HEIGHT_ERROR_MESSGAE = "사다리의 높이는 1이상이어야 합니다.";
     private static final String INPUT_REGEX = "^([\\w]{1,20},{1}){1,9}([\\w]{1,20}){1}";
     private static final String INPUT_ERROR_MESSAGE = "입력을 확인해주세요.";
+    private static final String COUNT_ERROR_MESSAGE = "플레이어 수와 결과값의 수를 맞춰주세요.";
 
     public static void checkPlayers(int count) {
         if (count < MIN_PLAYER || count > MAX_PLAYER) {
@@ -32,6 +33,12 @@ public class Validation {
         Matcher matcher = pattern.matcher(input);
         if (!matcher.matches()) {
             throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    public static void comparePlayersWithResults(int countOfPlayers, int countOfResults) {
+        if(countOfPlayers != countOfResults) {
+            throw new IllegalArgumentException(COUNT_ERROR_MESSAGE);
         }
     }
 }

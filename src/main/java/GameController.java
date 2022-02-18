@@ -5,7 +5,7 @@ import domain.LadderGame;
 public class GameController {
 
     private static final String QUIT_COMMAND = "춘식이";
-    private static final String ALL_COMMNAD = "all";
+    private static final String ALL_COMMAND = "all";
 
     public void init() {
         LadderGame ladderGame = InputView.askSettingLadder();
@@ -23,7 +23,7 @@ public class GameController {
     }
 
     private void showResult(LadderGame ladderGame, String command) {
-        if (command.equals(ALL_COMMNAD)) {
+        if (command.equals(ALL_COMMAND)) {
             OutputView.showAllResult(ladderGame);
             return;
         }

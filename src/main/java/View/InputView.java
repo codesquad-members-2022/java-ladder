@@ -18,7 +18,10 @@ public class InputView {
 
 
     public static LadderGame askSettingLadder() {
-        return new LadderGame(askPlayers(), askResultValues(), askLadderHeight());
+        Players players = askPlayers();
+        String[] results = askResultValues();
+        Validation.comparePlayersWithResults(players.countOfPlayers(),results.length);
+        return new LadderGame(players, results, askLadderHeight());
     }
 
     public static String askPlayerForResult() {
