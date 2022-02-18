@@ -47,10 +47,10 @@ public class LadderGame {
 			return false;
 		}
 		if (command.equals("all")) {
-			OutputView.printGameReult(ladder.getGameResult());
+			OutputView.printGameResult(ladder.getGameResult());
 			return showResult();
 		}
-		OutputView.printGameReult(ladder.getGameResult().get(new User(command)));
+		OutputView.printGameResult(ladder.getGameResult().get(new User(command)));
 		return showResult();
 	}
 

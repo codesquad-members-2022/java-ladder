@@ -39,7 +39,7 @@ public class OutputView {
 			sb.append(String.format("%6s", result));
 		}
 	}
-	public static void printGameReult(Object result) {
+	public static void printGameResult(Object result) {
 		System.out.println(result);
 	}
 
