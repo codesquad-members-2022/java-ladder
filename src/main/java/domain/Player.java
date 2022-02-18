@@ -12,16 +12,16 @@ public class Player {
 
     public void ride(Ladder ladder) {
         for (int i = 0; i < ladder.getLadderHeight(); i++) {
-            movePosition(ladder,i);
+            movePosition(ladder, i);
         }
     }
 
     private void movePosition(Ladder ladder, int row) {
         int currentPosition = position;
-        if(ladder.isStep(row,currentPosition)) {
+        if (ladder.isStep(row, currentPosition)) {
             moveLeft();
         }
-        if(ladder.isStep(row,currentPosition+1)) {
+        if (ladder.isStep(row, currentPosition + 1)) {
             moveRight();
         }
     }
@@ -43,7 +43,7 @@ public class Player {
     }
 
     public String findNameWithPosition(int position) {
-        if(isCorrectPosition(position)) {
+        if (isCorrectPosition(position)) {
             return this.name;
         }
         throw new IllegalArgumentException();
@@ -54,7 +54,7 @@ public class Player {
     }
 
     private String editNameLength() {
-        if(name.length() > 5) {
+        if (name.length() > 5) {
             return name.substring(0, 3) + "..";
         }
         return name;

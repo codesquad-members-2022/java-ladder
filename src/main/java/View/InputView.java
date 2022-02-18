@@ -18,7 +18,7 @@ public class InputView {
 
 
     public static LadderGame askSettingLadder() {
-        return new LadderGame(askPlayers(),askResultValues(),askLadderHeight());
+        return new LadderGame(askPlayers(), askResultValues(), askLadderHeight());
     }
 
     public static String askPlayerForResult() {
@@ -50,7 +50,7 @@ public class InputView {
 
     private static String[] askResultValues() {
         System.out.println(RESULT_VALUES_COMMAND);
-        return scanner.nextLine().replaceAll(" ","").split(",");
+        return scanner.nextLine().replaceAll(" ", "").split(",");
     }
 
 

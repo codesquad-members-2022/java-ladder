@@ -25,15 +25,15 @@ public class LadderGame {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(players.playersName2Text()).append(System.lineSeparator());
         stringBuilder.append(ladder.toString());
-        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s",result)));
+        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s", result)));
         return stringBuilder.append(System.lineSeparator()).toString();
     }
 
     public String findResult(String name) {
-       if(players.containsPlayer(name)) {
-           return name+" : "+resultMap.get(name);
-       }
-       throw new IllegalArgumentException();
+        if (players.containsPlayer(name)) {
+            return name + " : " + resultMap.get(name);
+        }
+        throw new IllegalArgumentException();
     }
 
     public String getAllResult() {
@@ -49,12 +49,10 @@ public class LadderGame {
     }
 
     private void saveResultMap() {
-        for (int i = 0; i < results.length ; i++) {
-            resultMap.put(players.findName(i),results[i]);
+        for (int i = 0; i < results.length; i++) {
+            resultMap.put(players.findName(i), results[i]);
         }
     }
-
-
 
 
 }

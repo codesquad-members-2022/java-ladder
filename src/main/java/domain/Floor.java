@@ -19,10 +19,10 @@ public class Floor {
     }
 
     public boolean isSTEP(int index) {
-        if(index > floor.size()-1) {
+        if (index > floor.size() - 1) {
             return false;
         }
-        if(floor.get(index) == null) {
+        if (floor.get(index) == null) {
             return false;
         }
         return floor.get(index);
@@ -31,19 +31,19 @@ public class Floor {
     private List<Boolean> generateFloor(int size) {
         List<Boolean> parts = new ArrayList<>();
         parts.add(null);
-        for (int i = 1; i <= size ; i++) {
-            parts.add(drawPart(parts,i));
+        for (int i = 1; i <= size; i++) {
+            parts.add(drawPart(parts, i));
         }
         parts.add(null);
         return parts;
     }
 
     private boolean drawPart(List<Boolean> floor, int index) {
-        if(floor.get(index-1) == null) {
+        if (floor.get(index - 1) == null) {
             return false;
         }
-        if(floor.get(index-1)) {
-          return false;
+        if (floor.get(index - 1)) {
+            return false;
         }
         return drawRandom();
     }
@@ -53,7 +53,7 @@ public class Floor {
     }
 
     private String toText(boolean b) {
-        if(b) {
+        if (b) {
             return STEP;
         }
         return BLANK;

@@ -18,8 +18,8 @@ public class Players {
     private List<Player> splitNames(String names) {
         List<Player> players = new ArrayList<>();
         String[] nameList = names.split(",");
-        for (int i = 0; i < nameList.length ; i++) {
-            players.add(new Player(nameList[i],i));
+        for (int i = 0; i < nameList.length; i++) {
+            players.add(new Player(nameList[i], i));
         }
         return players;
     }

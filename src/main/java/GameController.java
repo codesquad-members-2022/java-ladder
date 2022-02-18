@@ -17,17 +17,17 @@ public class GameController {
     private void run(LadderGame ladderGame) {
         String target;
         while (!(target = InputView.askPlayerForResult()).equals(QUIT_COMMAND)) {
-            showResult(ladderGame,target);
+            showResult(ladderGame, target);
         }
     }
 
     private void showResult(LadderGame ladderGame, String command) {
-        if(command.equals(ALL_COMMNAD)) {
+        if (command.equals(ALL_COMMNAD)) {
             OutputView.showAllResult(ladderGame);
             return;
         }
         try {
-            OutputView.showTargetResult(ladderGame,command);
+            OutputView.showTargetResult(ladderGame, command);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             run(ladderGame);

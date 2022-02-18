@@ -1,6 +1,7 @@
 package domain;
 
 import Util.Validation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Ladder {
     private final List<Floor> board;
 
     public Ladder(int count, int height) {
-        this.width = count-1;
+        this.width = count - 1;
         this.height = Validation.checkHeight(height);
         board = generateBoard();
     }
@@ -31,6 +32,7 @@ public class Ladder {
     public boolean isStep(int row, int col) {
         return board.get(row).isSTEP(col);
     }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
