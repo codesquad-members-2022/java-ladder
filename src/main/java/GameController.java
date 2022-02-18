@@ -30,7 +30,7 @@ public class GameController {
         try {
             OutputView.showTargetResult(ladderGame, command);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.showNameError();
             run(ladderGame);
         }
     }

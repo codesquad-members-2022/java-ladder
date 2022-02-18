@@ -1,12 +1,12 @@
 package View;
 
-import domain.Ladder;
 import domain.LadderGame;
 
 public class OutputView {
 
     private static final String RESULT_MESSAGE = "실행 결과";
     private static final String END_MESSAGE = "게임을 종료합니다.";
+    private static final String NAME_ERROR_MESSAGE = "찾으시는 플레이어가 없습니다.";
 
     public static void showLadder(LadderGame ladderGame) {
         System.out.println(ladderGame.game2Text());
@@ -28,6 +28,10 @@ public class OutputView {
 
     public static void closeGame() {
         System.out.println(END_MESSAGE);
+    }
+
+    public static void showNameError() {
+        System.out.println(NAME_ERROR_MESSAGE);
     }
 }
 
