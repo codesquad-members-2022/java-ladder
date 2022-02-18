@@ -1,11 +1,10 @@
 package domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderGameTest {
+public class UserDefineLadderTest {
     @Test
     public void 라인_없을경우_테스트() {
         // given
