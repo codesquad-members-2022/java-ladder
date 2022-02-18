@@ -23,6 +23,12 @@ public class Ladder {
         build();
     }
 
+    public int getRewardIndex(int playerIndex) {
+        Climber climber = new Climber(playerIndex);
+        climber.climbDown();
+        return climber.endPosition;
+    }
+
     public String render() {
         return ladderRowList.stream()
                 .map(this::renderRow)
@@ -43,5 +49,52 @@ public class Ladder {
         for (int i = 0; i < height; i++) {
             ladderRowList.add(new LadderRow(width));
         }
+    }
+
+    class Climber {
+        int xPosition;
+        int yPosition = 0;
+        int endPosition = -1;
+
+        Climber(int xPosition) {
+            this.xPosition = xPosition;
+        }
+
+        void climbDown() {
+            while (yPosition < height) {
+                moveLeftOrRightIfPossible();
+                yPosition++;
+            }
+
+            endPosition = xPosition;
+        }
+
+        void moveLeftOrRightIfPossible() {
+            if (canMoveLeft()) {
+                xPosition--;
+                return;
+            }
+
+            if (canMoveRight()) {
+                xPosition++;
+            }
+        }
+
+        boolean canMoveLeft() {
+            if (xPosition == 0) {
+                return false;
+            }
+
+            return ladderRowList.get(yPosition).hasStepAt(xPosition - 1);
+        }
+
+        boolean canMoveRight() {
+            if (xPosition == width) {
+                return false;
+            }
+
+            return ladderRowList.get(yPosition).hasStepAt(xPosition);
+        }
+
     }
 }
