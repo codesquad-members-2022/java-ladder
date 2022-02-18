@@ -7,25 +7,44 @@ public class Line {
 
     private final int lineLength;
     private final Random random = new Random(System.currentTimeMillis());
-    private final List<String> ladderUnits = List.of(LadderUnit.SPACE.getLadderUnit(), LadderUnit.STEP.getLadderUnit(), LadderUnit.STEP.getLadderUnit());
+    private final List<LadderUnit> ladderUnits = List.of(LadderUnit.SPACE, LadderUnit.STEP, LadderUnit.STEP);
+    private final StringBuilder lineResult = new StringBuilder();
+    private int index;
 
     public Line(int userCount) {
         this.lineLength = userCount + (userCount - 1);
     }
 
-    public String createLine() {
-        StringBuilder sb = new StringBuilder();
+    public void createLine() {
         for (int lineNumber = 0; lineNumber < this.lineLength; lineNumber++) {
-            if (isEven(lineNumber)) {
-                sb.append(LadderUnit.RAIL.getLadderUnit());
-                continue;
-            }
-            sb.append(LadderUnit.STEP.getLadderUnit());
+            String value = extractedLineValue(lineNumber);
+            lineResult.append(value);
         }
-        return sb.toString();
+    }
+
+    private String extractedLineValue(int lineNumber) {
+        if (isEven(lineNumber)) {
+            return LadderUnit.RAIL.getLadderUnit();
+        }
+        return spaceCheck();
+    }
+
+    private String spaceCheck() {
+        if (index != 0) {
+            index = 0;
+            return ladderUnits.get(index).getLadderUnit();
+        }
+        int ladderUnitIndex = random.nextInt(ladderUnits.size());
+        index = ladderUnitIndex;
+        return ladderUnits.get(ladderUnitIndex).getLadderUnit();
     }
 
     private boolean isEven(int lineNumber) {
         return lineNumber % 2 == 0;
+    }
+
+    @Override
+    public String toString() {
+        return lineResult.toString();
     }
 }
