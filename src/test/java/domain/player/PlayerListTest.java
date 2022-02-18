@@ -21,4 +21,11 @@ class PlayerListTest {
         assertThatThrownBy(() -> PlayerList.of("pobi", "hohonux", "crong", "jk", " "))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("말줄임표와 함께 최대 5글자를 리턴하는지 테스트")
+    void toStringTest() {
+        String[] players = PlayerList.of("pobi", "hohonux", "crong", "jk").toString().split("\t");
+        assertThat(players).allMatch(p -> p.length() == 5);
+    }
 }
