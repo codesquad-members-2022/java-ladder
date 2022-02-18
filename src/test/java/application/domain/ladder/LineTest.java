@@ -18,16 +18,16 @@ class LineTest {
     @Test
     @DisplayName("현재 라인의 2번 째 요소가 'EMPTY' 일 때 3번 째 요소에 'RAIL' 을 append 한다.")
     void isValidTrue() {
-        line.appendElement(STEP);
-        line.appendElement(EMPTY);
+        line.addElement(STEP);
+        line.addElement(EMPTY);
         assertThat(line.isValid(2)).isTrue();
     }
 
     @Test
     @DisplayName("현재 라인의 2번 째 요소가 'STEP' 일 때 3번 째 요소에 'RAIL' 을 append 한다.")
     void isValidFalse() {
-        line.appendElement(STEP);
-        line.appendElement(STEP);
+        line.addElement(STEP);
+        line.addElement(STEP);
         assertThat(line.isValid(2)).isFalse();
     }
 }

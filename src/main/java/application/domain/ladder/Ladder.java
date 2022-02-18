@@ -2,6 +2,7 @@ package application.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static application.domain.element.LadderElement.*;
 import static application.util.RandomUtils.*;
@@ -35,6 +36,6 @@ public class Ladder {
 
     @Override
     public String toString() {
-        return lines.stream().map(Line::toString).reduce("", (line1, line2) -> line1 + line2);
+        return lines.stream().map(Line::toString).collect(Collectors.joining());
     }
 }
