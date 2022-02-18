@@ -32,21 +32,17 @@ public class GameMapRow implements Iterable<GameMapColumn> {
 
     private class GameMapRowIterator implements Iterator<GameMapColumn> {
 
-        private int nextIndex = 0;
+        private int cursor = 0;
 
         @Override
         public boolean hasNext() {
-            try {
-                return columns.size() > nextIndex;
-            } catch (IndexOutOfBoundsException e) {
-                return false;
-            }
+            return cursor < columns.size();
         }
 
         @Override
         public GameMapColumn next() {
-            GameMapColumn column = columns.get(nextIndex);
-            nextIndex++;
+            GameMapColumn column = columns.get(cursor);
+            cursor++;
 
             return column;
         }
