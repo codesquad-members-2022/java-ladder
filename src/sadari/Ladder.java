@@ -1,42 +1,57 @@
 package sadari;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private String[][] ladder;
+    private List<List<String>> ladderList;
     private String step;
+    private final int width;
+    private final int height;
+    private List<String> innerList;
 
-    public void makeLadder(int people, int height) {
-        people = people * 2 - 1;
-        this.ladder = new String[height][people];
-        for (int row = 0; row < ladder.length; row++) {
-            for (int column = 0; column < ladder[row].length; column++) {
-                ladder[row][column] = drawLines(column);
-            }
-        }
-        print(ladder);
+    public Ladder(int width, int height) {
+        this.width = width * 2 - 1;
+        this.height = height;
+        makeLadder(height);
     }
 
-    public String drawLines(int column){
+    public List<List<String>> makeLadder(int height) {
+        ladderList = new ArrayList<>();
+        for (int row = 0; row < height; row++) {
+            ladderList.add(checkLadderParts());
+        }
+        return ladderList;
+    }
+
+    public List<String> checkLadderParts() {
+        innerList = new ArrayList<>();
+        for (int column = 0; column < width; column++) {
+            innerList.add(drawLines(column));
+        }
+        return innerList;
+    }
+
+    public String drawLines(int column) {
         Random rd = new Random();
-        int random = rd.nextInt(100) % 2;
         if (column % 2 == 0) {
-            return step ="|";
+            return step = "|";
         }
-        if (random == 0) {
-            return step = " ";
+        if (rd.nextBoolean() && checkBlank(column)) {
+            return step = "-----";
         }
 
-        return step = "-";
+        return step = "     ";
     }
 
-    public void print(String[][] ladder) {
-        for (int i = 0; i < ladder.length; i++) {
-            for (int j = 0; j < ladder[i].length; j++) {
-                System.out.print(ladder[i][j]);
-            }
-            System.out.println();
+    public boolean checkBlank (int column) {
+        if (column == 1) {
+            return true;
         }
+        if ("     ".equals(innerList.get(column - 2))){
+            return true;
+        }
+        return false;
     }
 }
-

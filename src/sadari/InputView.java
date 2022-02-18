@@ -1,23 +1,75 @@
 package sadari;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private Scanner scn = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private List<String> players;
 
-    public int inputPeople(){
-        System.out.println("참여할 사람은 몇 명인가요?");
-        return scn.nextInt();
+    public List<String> inputPlayers() {
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String[] names = scanner.next().split(",");
+        for (String name : names) {
+            validPlayerNames(name);
+        }
+        players = Arrays.asList(names);
+        //리턴을 리스트로 보낼까?.?
+        return Arrays.asList(names);
     }
 
-    public int inputHeight(){
+    public int inputHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return scn.nextInt();
+        return scanner.nextInt();
     }
 
-    public void close(){
-        if (scn != null) {
-            scn.close();
+    public int numberOfPlayers() {
+        return players.size();
+    }
+
+    public void printNames() {
+        System.out.println("실행결과");
+        StringBuilder sb = new StringBuilder();
+        sb.append("   ");
+        for (String player : players) {
+            String modifiedPlayerName = giveSpace(player);
+            sb.append(modifiedPlayerName);
+            sb.append(" ");
+        }
+        System.out.println(sb);
+    }
+
+    private String giveSpace(String str) {
+        if (str.length() == 5) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat((5 - str.length()) / 2));
+        sb.append(str);
+        sb.append(" ".repeat(5 - sb.length()));
+        return sb.toString();
+    }
+
+    public void printLadder(List<List<String>> ladderList) {
+        StringBuilder sb = new StringBuilder();
+        for (List<String> strings : ladderList) {
+            sb.append("     ");
+            strings.forEach(string -> sb.append(string));
+            sb.append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    public void close() {
+        if (scanner != null) {
+            scanner.close();
+        }
+    }
+
+    public void validPlayerNames(String name) {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("이름이 너무 깁니다. 5글자 이내로 입력해주세요.");
         }
     }
 
