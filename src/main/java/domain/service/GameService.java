@@ -1,40 +1,51 @@
 package domain.service;
 
 import domain.Ladder;
+import domain.Result;
 import domain.User;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameService {
-    private List<User> users;
+    private Map<String,User> users;
+    private Map<Integer, Result> results;
     private Ladder ladder;
 
-    public GameService(int ladderHeight, String[] user) {
+    public GameService( int lineHeight, String[] users,String[] results) {
 
-        this.users = getUserList(user);
-        this.ladder = new Ladder(ladderHeight, calculateLadderWidth());
+        this.users = getUserMap(users);
+        this.results = getResultMap(results);
+        this.ladder = new Ladder(lineHeight, calculateLadderWidth());
     }
 
-    public String getGameResult() {
-        StringBuilder sb = new StringBuilder();
-
-        users.forEach(user -> {
-            sb.append(user.getName() + " ");
-        });
-        sb.append("\n");
-        sb.append(ladder.toString());
-
-        return sb.toString();
+    public Result getSingleResult(String username) {
+        int userPoint = users.get(username).getPoint();
+        //게임 로직
+        return results.get(userPoint);
     }
 
-    private List<User> getUserList(String[] users) {
-        List<User> list = new ArrayList<>();
+    private Map<String,User> getUserMap(String[] users) {
+        int i = 0;
+        Map<String, User> map = new HashMap<>();
         for (String user : users) {
-            list.add(User.createUser(user));
+            map.put(user, User.createUser(user, i));
+            i += 2;
         }
-        return list;
+        return map;
     }
+
+    private Map<Integer, Result> getResultMap(String[] results) {
+        int i = 0;
+        Map<Integer, Result> map = new HashMap<>();
+        for (String result : results) {
+            map.put(i,Result.createResult(result));
+            i += 2;
+        }
+        return map;
+    }
+
+
 
     private int calculateLadderWidth() {
         return users.size() * 2 - 1;
