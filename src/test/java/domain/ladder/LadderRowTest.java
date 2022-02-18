@@ -3,6 +3,7 @@ package domain.ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static domain.ladder.LadderElement.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LadderRowTest {
@@ -57,5 +58,60 @@ class LadderRowTest {
         assertThat(actualResult)
                 .as("홀수 Column에는 세로선을 그릴 수 없으므로 False가 반환되어야 함.")
                 .isFalse();
+    }
+
+    @Test
+    @DisplayName("짝수 Column -> 가로선을 그릴 수 없음이 보장되는 지 테스트")
+    void is_HorizontalLine_DrawableColumn_Test_X_When_EvenColumn() {
+        //given
+        int numberOfUsers = 2;
+        int evenNumberColumn = 2;
+
+        //when
+        LadderRow ladderRow = new LadderRow(numberOfUsers);
+
+        //then
+        boolean actualResult = ladderRow.isHorizontalLineDrawableColumn(evenNumberColumn);
+        assertThat(actualResult)
+                .as("짝수 Column에는 가로선을 그릴 수 없으므로 False가 반환되어야 함.")
+                .isFalse();
+    }
+
+    @Test
+    @DisplayName("첫번째 홀수 Column -> 가로선을 그릴 수 있음이 보장되는 지 테스트")
+    void is_HorizontalLine_DrawableColumn_Test_O_When_First_OddColumn() {
+        //given
+        int numberOfUsers = 2;
+        int firstOddNumberColumn = 1;
+
+        //when
+        LadderRow ladderRow = new LadderRow(numberOfUsers);
+
+        //then
+        boolean actualResult = ladderRow.isHorizontalLineDrawableColumn(firstOddNumberColumn);
+        assertThat(actualResult)
+                .as("첫번째 홀수 Column에는 가로선을 그릴 수 있으므로 True가 반환되어야 함.")
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("이전의 홀수Column에 EmptyLine이 있을 때만 -> 다음 홀수 Column에 가로선을 둘 수 있음")
+    void is_HorizontalLine_DrawableColumn_Test_O_When_BEFORE_OddColumn_Is_Empty_Line() {
+        //given
+        int numberOfUsers = 2;
+        int beforeOddNumberColumn = 1;
+        int afterOddNumberColumn = beforeOddNumberColumn + 2;
+
+        //when
+        LadderRow ladderRow = new LadderRow(numberOfUsers);
+        LadderElement beforeElement = ladderRow.getLadderElement(beforeOddNumberColumn);
+
+        //then
+        boolean actualResult = ladderRow.isHorizontalLineDrawableColumn(afterOddNumberColumn);
+        boolean expectedResult = (beforeElement == EMPTY_LINE);
+
+        assertThat(actualResult)
+                .as("이전의 홀수Column에 EmptyLine이 있을 때만 -> 다음 홀수 Column에 가로선을 둘 수 있음")
+                .isEqualTo(expectedResult);
     }
 }
