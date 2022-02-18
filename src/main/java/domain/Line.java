@@ -49,14 +49,12 @@ public class Line {
         if(!isMarkedPosition(startLine)){ // 그대로 이동
             return startLine;
         }
-
-        if(startLine -1 >= 0) { // 좌측 처리하기
-            if (isMarkedPosition(startLine - 1)) {
-                return startLine - 1;
-            }
-        }
         // 우측 처리하기
-        return startLine + 1;
+        if(columns[startLine] == 1){
+            return startLine+1;
+        }
+        // 좌측 이동하기
+        return startLine - 1;
     }
 
     public void show() {

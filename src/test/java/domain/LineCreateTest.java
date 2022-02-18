@@ -67,6 +67,18 @@ public class LineCreateTest {
         assertThat(result).isEqualTo(1);
     }
 
+    @Test
+    public void 오른쪽으로_이동_테스트() {
+        // given : 0 0 1 1
+        assertThat(line.makeLadderAt(2)).isTrue();
+
+        // when
+        int result = line.switchLadderLine(3);
+
+        // then
+        assertThat(result).isEqualTo(2);
+    }
+
     @AfterEach
     void tearDown() {
         line = null;
