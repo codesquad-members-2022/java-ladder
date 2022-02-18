@@ -28,6 +28,9 @@ public class Ladder {
         return frame;
     }
 
+    public boolean isStep(int row, int col) {
+        return board.get(row).isSTEP(col);
+    }
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

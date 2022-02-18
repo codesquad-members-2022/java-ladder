@@ -19,6 +19,9 @@ public class Floor {
     }
 
     public boolean isSTEP(int index) {
+        if(index > floor.size()-1) {
+            return false;
+        }
         return floor.get(index);
     }
 

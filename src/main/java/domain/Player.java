@@ -10,11 +10,27 @@ public class Player {
         this.position = position;
     }
 
-    public void moveLeft() {
+    public void ride(Ladder ladder) {
+        for (int i = 0; i < ladder.getLadderHeight(); i++) {
+            movePosition(ladder,i);
+        }
+    }
+
+    private void movePosition(Ladder ladder, int row) {
+        int currentPosition = position;
+        if(ladder.isStep(row,currentPosition)) {
+            moveLeft();
+        }
+        if(ladder.isStep(row,currentPosition+1)) {
+            moveRight();
+        }
+    }
+
+    private void moveLeft() {
         position--;
     }
 
-    public void moveRight() {
+    private void moveRight() {
         position++;
     }
 

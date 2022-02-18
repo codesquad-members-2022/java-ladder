@@ -15,6 +15,7 @@ public class LadderGame {
         this.players = players;
         this.ladder = new Ladder(players.countOfPlayers(), height);
         this.results = results;
+        rideLadder();
         saveResultMap();
     }
 
@@ -26,10 +27,13 @@ public class LadderGame {
         return stringBuilder.append(System.lineSeparator()).toString();
     }
 
+    public void rideLadder() {
+        players.rideLadder(ladder);
+    }
+
     private void saveResultMap() {
         for (int i = 0; i < results.length ; i++) {
-            String name = players.findName(i);
-            resultMap.put(name,results[i]);
+            resultMap.put(players.findName(i),results[i]);
         }
     }
 

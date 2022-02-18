@@ -48,4 +48,8 @@ public class Players {
         throw new IllegalArgumentException();
     }
 
+    public void rideLadder(Ladder ladder) {
+        players.forEach(player -> player.ride(ladder));
+    }
+
 }
