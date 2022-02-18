@@ -17,7 +17,7 @@ class GroupTest {
     );
 
     @Test
-    @DisplayName("3가지 입력 시나리오에 대한 플레이어 수 카운트")
+    @DisplayName("3가지 입력 시나리오에 대한 머릿수 카운트")
     void count() {
         assertAll(() -> assertEquals(new Group(DUMMY_INPUT.get(0)).count(), 4),
                 () -> assertEquals(new Group(DUMMY_INPUT.get(1)).count(), 5),
