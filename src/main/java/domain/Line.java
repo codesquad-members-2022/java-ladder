@@ -17,7 +17,7 @@ public class Line {
         forwardVoid = true;
     }
 
-    public boolean putLine(int idx) {
+    public boolean canPutLine(int idx) {
         return list.get(idx);
     }
 }

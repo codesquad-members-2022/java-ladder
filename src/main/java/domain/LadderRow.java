@@ -46,7 +46,7 @@ public class LadderRow {
     }
 
     private void putRandomLine(int idx) {
-        boolean putValue = line.putLine(idx);
+        boolean putValue = line.canPutLine(idx);
         if(putValue) {
             row.add(WIDTH.repeat(DEFAULT_WIDTH));
             return;

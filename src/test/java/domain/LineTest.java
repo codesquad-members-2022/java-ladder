@@ -2,11 +2,10 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LineTest {
 
@@ -18,19 +17,21 @@ class LineTest {
     }
 
     @ParameterizedTest
-    @DisplayName("사람 수 - 1 크기의 boolean 리스트를 가지게 된다.")
-    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8})
-    void make_line_o(int idx) {
-        assertThat(line.putLine(idx)).isInstanceOf(Boolean.class);
+    @DisplayName("이전에 발판이 없고(:true), 랜덤 값도 true일 경우에 발판이 생성된다.")
+    @CsvSource("{true, true}, {false, false}")
+    void before_line_is_empty(boolean randomValue, boolean result) {
+        line.addLine(randomValue);
+        boolean target = line.canPutLine(0);
+        assertThat(target).isEqualTo(result);
     }
 
     @ParameterizedTest
-    @DisplayName("범위를 넘어선 인덱스를 요청하면 예외가 발생한다.")
-    @ValueSource(ints = {9, 10, 11, 12, 100})
-    void make_line_x(int idx) {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            line.putLine(idx);
-        });
+    @DisplayName("이전에 발판이 있는 경우(:false)에는 랜덤 값에 상관 없이 발판이 생성되지 않는다")
+    @CsvSource("{true, false}, {false, false}")
+    void before_line_is_filled(boolean randomValue, boolean result) {
+        line.addLine(true);
+        line.addLine(randomValue);
+        boolean target = line.canPutLine(1);
+        assertThat(target).isEqualTo(result);
     }
-
 }
