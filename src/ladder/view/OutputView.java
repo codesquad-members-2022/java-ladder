@@ -1,15 +1,14 @@
 package ladder.view;
 
 import java.util.List;
-import java.util.Map;
 import ladder.domain.LadderLine;
 import ladder.domain.User;
 
-public class PrintLadder {
+public class OutputView {
 
 	private static final StringBuilder sb = new StringBuilder();
 
-	private PrintLadder() {}
+	private OutputView() {}
 
 	public static void printLadder(List<User> users, List<LadderLine> ladders, List<String> userResultInput) {
 
@@ -40,6 +39,8 @@ public class PrintLadder {
 			sb.append(String.format("%6s", result));
 		}
 	}
-
+	public static void printGameReult(Object result) {
+		System.out.println(result);
+	}
 
 }

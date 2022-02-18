@@ -9,8 +9,7 @@ public class Ladder {
 
 	private static final String BLANK = " ";
 
-
-	private final List<LadderLine> ladder;
+	private final List<LadderLine> ladderInfoList;
 	private final Map<User, String> gameResult;
 	private final List<String> userResultInput;
 	private final List<User> users;
@@ -19,7 +18,7 @@ public class Ladder {
 
 	public Ladder(int userNumber, int ladderHeight, List<User> users,
 		List<String> userResultInput) {
-		this.ladder = new ArrayList<>();
+		this.ladderInfoList = new ArrayList<>();
 		this.gameResult = new HashMap<>();
 		this.users = users;
 		this.userResultInput = userResultInput;
@@ -29,7 +28,7 @@ public class Ladder {
 
 	public void makeLadderAndCheckResult() {
 		for (int i = 0; i < ladderHeight; i++) {
-			ladder.add(new LadderLine(userNumber));
+			ladderInfoList.add(new LadderLine(userNumber));
 		}
 		linkUserAndResult();
 	}
@@ -64,10 +63,15 @@ public class Ladder {
 	}
 
 	private String getLadderLineWithPadding(int i) {
-		return BLANK + ladder.get(i).toString() + BLANK;
+		return BLANK + ladderInfoList.get(i).toString() + BLANK;
 	}
 
-	public List<LadderLine> getLadder() {
-		return ladder;
+	public List<LadderLine> getLadderInfoList() {
+		return ladderInfoList;
 	}
+
+	public Map<User, String> getGameResult() {
+		return gameResult;
+	}
+
 }

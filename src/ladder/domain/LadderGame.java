@@ -1,8 +1,8 @@
 package ladder.domain;
 
 import java.util.List;
-import ladder.view.Input;
-import ladder.view.PrintLadder;
+import ladder.view.InputView;
+import ladder.view.OutputView;
 
 public class LadderGame {
 
@@ -13,29 +13,48 @@ public class LadderGame {
 
 	public void start() {
 		init();
-		PrintLadder.printLadder(users, ladder.getLadder(), userResultInput);
-		//todo 결과를 보고 싶은 사람 & 실행 결과 (gameResult 매개변수)
-		// while(ture) 로 계속 돌려야할듯
-		Input.close();
+
+		while (true) {
+			if (!showResult()) {
+				break;
+			}
+		}
+
+		InputView.close();
 	}
 	private void init() {
 		getUserName();
 		getUserResult();
 		this.ladder = new Ladder(userNumber, getLadderHeight(), users, userResultInput);
 		ladder.makeLadderAndCheckResult();
+		OutputView.printLadder(users, ladder.getLadderInfoList(), userResultInput);
 	}
 	private void getUserName() {
-		users = Input.getUserName();
+		users = InputView.getUserName();
 		userNumber = users.size();
 	}
 	private void getUserResult() {
-		userResultInput = Input.getUserResult();
+		userResultInput = InputView.getUserResult();
 		while (userResultInput.size() != userNumber) {
-			userResultInput = Input.getUserResult();
+			userResultInput = InputView.getUserResult();
 		}
 	}
 	private int getLadderHeight() {
-		return Input.getLadderHeight("최대 사다리 높이는 몇 개인가요?");
+		return InputView.getLadderHeight("최대 사다리 높이는 몇 개인가요?");
 	}
+
+	private boolean showResult() {
+		String command = InputView.getUserCommand();
+		if (command.equals("춘식이")) {
+			return false;
+		}
+		if (command.equals("all")) {
+			OutputView.printGameReult(ladder.getGameResult());
+			return true;
+		}
+		OutputView.printGameReult(ladder.getGameResult().get(new User(command)));
+		return true;
+	}
+
 
 }

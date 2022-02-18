@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 import ladder.domain.User;
 
-public class Input {
+public class InputView {
 
 	private static final Scanner sc = new Scanner(System.in);
 
-	private Input() {}
+	private InputView() {}
 
 	public static int getLadderHeight(String message) {
 		return getIntInput(message);
@@ -43,6 +43,11 @@ public class Input {
 
 	private static String[] getStringArrBySplitComma() {
 		return sc.nextLine().split(",");
+	}
+
+	public static String getUserCommand() {
+		System.out.println("결과를 보고 싶은 사람은?");
+		return sc.nextLine();
 	}
 
 	public static void close() {
