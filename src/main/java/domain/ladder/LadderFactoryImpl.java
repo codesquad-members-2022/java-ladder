@@ -1,7 +1,5 @@
 package domain.ladder;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderFactoryImpl implements LadderFactory {
@@ -18,18 +16,10 @@ public class LadderFactoryImpl implements LadderFactory {
 
     @Override
     public Ladder create(int numberOfUsers, int height) {
-        Ladder ladder = new Ladder(makeLadderFrame(numberOfUsers, height));
+        Ladder ladder = new Ladder(2 * numberOfUsers - 1, height);
         drawAllVerticalLine(ladder);
         drawAllHorizontalLine(ladder);
         return ladder;
-    }
-
-    private List<LadderRow> makeLadderFrame(int numberOfUsers, int height) {
-        int width = 2*numberOfUsers - 1;
-
-        return IntStream.range(0, height)
-                .mapToObj(row -> makeLadderRow(width))
-                .collect(Collectors.toList());
     }
 
     private void drawAllVerticalLine(Ladder ladder) {
@@ -40,17 +30,6 @@ public class LadderFactoryImpl implements LadderFactory {
     private void drawAllHorizontalLine(Ladder ladder) {
         IntStream.range(0, ladder.height())
                 .forEach(row -> setRowHorizontalLine(ladder, row));
-    }
-
-    private LadderRow makeLadderRow(int width) {
-        List<LadderElement> ladderRowFrame = makeLadderRowFrame(width);
-        return new LadderRow(ladderRowFrame);
-    }
-
-    private List<LadderElement> makeLadderRowFrame(int width) {
-        return IntStream.range(0, width)
-                        .mapToObj(column -> LadderElement.EMPTY_LINE)
-                        .collect(Collectors.toList());
     }
 
     private void setRowVerticalLine(Ladder ladder, int row) {

@@ -218,8 +218,14 @@ public class Ladder {
 
   private final List<LadderRow> ladderRows;
 
-  Ladder(List<LadderRow> ladderFrame) {
-    this.ladderRows = ladderFrame;
+  Ladder(int width, int height) {
+    this.ladderRows = initLadder(width, height);
+  }
+
+  private List<LadderRow> initLadder (int width, int height) {
+    return IntStream.range(0, height)
+            .mapToObj(row -> new LadderRow(width))
+            .collect(Collectors.toList());
   }
 
   public LadderElement getLadderElement(int column, int row) {
