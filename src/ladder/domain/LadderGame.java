@@ -7,14 +7,12 @@ public class LadderGame {
     private static final String LEFT_MARGIN = "  ";
     private static final String DEFAULT_NAME = "men";
 
-    private final int countOfPlayer;
-    private final String[] playerNames;
+    private final LadderGameInfo ladderGameInfo;
     private final Ladder ladder;
 
-    public LadderGame(int countOfPlayer, int height, String[] playerNames) {
-        this.countOfPlayer = countOfPlayer;
-        this.playerNames = playerNames;
-        ladder = new Ladder(countOfPlayer, height);
+    public LadderGame(LadderGameInfo ladderGameInfo) {
+        this.ladderGameInfo = ladderGameInfo;
+        ladder = new Ladder(ladderGameInfo.getCountOfPlayer(), ladderGameInfo.getHeight());
     }
 
     public void printLadderGame() {
@@ -59,11 +57,11 @@ public class LadderGame {
     }
 
     private void printUserNames() {
-        for (int i = 0; i < playerNames.length; i++) {
-            printUserName(playerNames[i]);
+        for (int i = 0; i < ladderGameInfo.getPlayerNames().length; i++) {
+            printUserName(ladderGameInfo.getPlayerNames()[i]);
         }
 
-        for (int i = playerNames.length; i < countOfPlayer; i++) {
+        for (int i = ladderGameInfo.getPlayerNames().length; i < ladderGameInfo.getCountOfPlayer(); i++) {
             String playerName = DEFAULT_NAME + i;
             printUserName(playerName);
         }
