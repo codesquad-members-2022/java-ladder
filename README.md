@@ -66,3 +66,36 @@
 
 ### 실행 결과
 ![img.png](images/result.png)
+
+## Step 5: 실행결과 출력
+
+### 목표
+- 사다리 게임 실행 결과를 출력한다.
+  - 사다리 게임 실행 결과를 입력받아야 한다.
+  - 사다리 게임 진행 로직을 추가해야 한다.
+- 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+  - 사다리 게임 수행 이후 개인별로 결과를 저장해야 한다.
+- 이름에 "춘식이"를 입력하면 프로그램을 종료한다.
+  - "춘식이"를 입력할 때까지 메인 스레드가 종료되어서는 안된다.
+- `Setter` 메소드 사용을 지양한다.
+
+### 동작 방식
+0. Application에서 `LadderGameManager.init()`을 통해 실행합니다.
+1. `init()` 내부의 `InputView`를 통해 참여 인원, 사다리 높이, 닉네임, 실행결과를 입력받아 `LadderGameInfo` 인스턴스를 만듭니다.
+2. 입력받은 값이 잘 입력되었는지 검증합니다. 특히, 닉네임은 5글자를 초과하면 3글자부터 자르고 `..`로 생략합니다.
+3. `LadderGameInfo` 인스턴스를 담아 `Ladder` 인스턴스를 만들고 `Ladder` 클래스의 생성자에서 사다리의 각 행에 해당하는 `Line` 인스턴스를 생성합니다.
+4. `Line` 인스턴스를 만들 때, 각 사다리 사이가 공백인지, 이어져있는지를 판단하여 올바른 사다리 모양을 만드는 로직을 거칩니다.
+5. `Ladder` 클래스 내부에서 ArrayList<Line>의 형태로 보관합니다.
+6. `LadderGameManager.showLadder()`를 통해 사다리 정보와 유저 정보를 출력합니다.
+7. `LadderGameManager.showResult()`를 통해 결과를 확인할 닉네임을 입력받습니다.
+8. `InputView`를 통해 입력받은 이름을 `LadderGame`의 `printResultMapByName`에 전달합니다.
+9. 종료 키워드를 입력하면 게임이 종료됩니다.
+
+### 패키지 구조
+![img.png](images/packageTree_step5.png)
+
+### 테스트 결과
+![img.png](images/testResult.png)
+
+### 실행 결과
+![img.png](images/result_step5.png)
