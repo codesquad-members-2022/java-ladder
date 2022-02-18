@@ -3,6 +3,8 @@ package app.jinan159.ladder.view;
 import app.jinan159.ladder.config.LadderGameConfig;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.domain.gamemap.GameMap;
+import app.jinan159.ladder.domain.gamemap.GameMapColumn;
+import app.jinan159.ladder.domain.gamemap.GameMapRow;
 import app.jinan159.ladder.utils.StringUtils;
 
 import java.io.Closeable;
@@ -32,7 +34,7 @@ public class OutputView implements Closeable {
     }
 
     public void writeGameMap(GameMap gameMap) throws IOException {
-        write(gameMap.gameMapToString());
+        write(gameMapToString(gameMap));
     }
 
     private String participantsToString(List<Participant> participants) {
@@ -41,6 +43,26 @@ public class OutputView implements Closeable {
                 .map(name -> StringUtils.padLeftRight(name, LadderGameConfig.NAME_LENGTH))
                 .reduce((nested, name) -> nested + " " + name)
                 .orElse("") + "\n";
+    }
+
+    private String gameMapToString(GameMap gameMap) {
+        StringBuilder sb = new StringBuilder();
+
+        for (GameMapRow row : gameMap) {
+            sb.append(rowToString(row));
+            sb.append('\n');
+        }
+
+        return sb.toString();
+    }
+
+    private String rowToString(GameMapRow row) {
+        StringBuilder sb = new StringBuilder();
+        for (GameMapColumn col : row) {
+            sb.append(col.getColumnValue());
+        }
+
+        return sb.toString();
     }
 
     @Override
