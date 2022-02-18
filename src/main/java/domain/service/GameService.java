@@ -20,7 +20,7 @@ public class GameService {
         StringBuilder sb = new StringBuilder();
 
         users.forEach(user -> {
-            sb.append(user.getName());
+            sb.append(user.getName() + " ");
         });
         sb.append("\n");
         sb.append(ladder.toString());

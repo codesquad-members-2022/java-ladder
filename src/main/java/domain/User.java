@@ -30,8 +30,8 @@ public class User {
         }
         StringBuilder sb = new StringBuilder();
         int whiteSpace = USERNAME_MAXLENGTH - user.length();
-        int backSpace = whiteSpace / 2;
-        int frontSpace = whiteSpace - backSpace;
+        int frontSpace = whiteSpace / 2;
+        int backSpace = whiteSpace - frontSpace;
 
         sb.append(PADDING.repeat(frontSpace));
         sb.append(user);
