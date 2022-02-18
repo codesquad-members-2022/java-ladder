@@ -17,7 +17,7 @@ public class Output {
         System.out.println();
     }
 
-    private String addPadding(String st, int length) {
+    String addPadding(String st, int length) {
         tempSt = String.format("%" + length + "s%s%" + length + "s", "", st, "");
         mid = (tempSt.length() / 2);
         start = mid - (length / 2);

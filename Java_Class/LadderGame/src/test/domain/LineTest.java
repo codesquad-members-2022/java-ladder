@@ -8,7 +8,7 @@ class LineTest {
 
     @Test
     @DisplayName("연속되는 사다리가 없는지 확인")
-    void checkAdjacentHorizontalLines() {
+    void checkForAdjacentHorizontalLines() {
         //given
         int width = 500;
         String notAllowed = Line.HORIZONTAL + Line.VERTICAL + Line.HORIZONTAL;
@@ -17,20 +17,21 @@ class LineTest {
         Line line = new Line(width);
 
         //then
-        assertThat(line.getLine().contains(notAllowed)).isFalse();
+        assertThat(line.getLine()).isNotEmpty();
+        assertThat(line.getLine()).doesNotContain(notAllowed);
     }
 
     @Test
-    @DisplayName("사다리 테스트가 잘 되고 있는건지 확인")
-    void checkForBrokenLadders() {
+    @DisplayName("LineTest가 잘 되고 있는건지 확인")
+    void control() {
         //given
         int width = 500;
-        String notAllowed = Line.HORIZONTAL + Line.HORIZONTAL;
+        String notPossible = Line.HORIZONTAL + Line.HORIZONTAL;
 
         //when
         Line line = new Line(width);
 
         //then
-        assertThat(line.getLine().contains(notAllowed)).isFalse();
+        assertThat(line.getLine()).doesNotContain(notPossible);
     }
 }
