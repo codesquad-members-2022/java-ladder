@@ -15,6 +15,7 @@ public class Ladder {
     private final int height;
     private final int width;
     private final List<LadderRow> ladderRowList;
+    private final Climber climber = new Climber();
 
     protected Ladder(int height, int playerCount) {
         this.height = height;
@@ -24,7 +25,7 @@ public class Ladder {
     }
 
     public int getRewardIndex(int playerIndex) {
-        Climber climber = new Climber(playerIndex);
+        climber.initialize(playerIndex);
         climber.climbDown();
         return climber.endPosition;
     }
@@ -56,8 +57,10 @@ public class Ladder {
         int yPosition = 0;
         int endPosition = -1;
 
-        Climber(int xPosition) {
+        void initialize(int xPosition) {
             this.xPosition = xPosition;
+            yPosition = 0;
+            endPosition = -1;
         }
 
         void climbDown() {
@@ -66,7 +69,7 @@ public class Ladder {
                 yPosition++;
             }
 
-            endPosition = xPosition;
+            endPosition = this.xPosition;
         }
 
         void moveLeftOrRightIfPossible() {
