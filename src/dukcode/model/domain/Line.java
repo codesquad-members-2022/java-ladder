@@ -6,28 +6,28 @@ import java.util.Random;
 
 public class Line {
 
-    private final List<Boolean> line;
+    private final List<Boolean> steps;
     private final int numSteps;
 
     public Line(int numSteps) {
         this.numSteps = numSteps;
-        this.line = new ArrayList<>(numSteps);
+        this.steps = new ArrayList<>(numSteps);
 
         Random rd = new Random();
         for (int stepIdx = 0; stepIdx < numSteps; ++stepIdx) {
-            line.add(getRandomStep(rd, line, stepIdx));
+            steps.add(getRandomStep(rd, stepIdx));
         }
     }
 
-    private Boolean getRandomStep(Random rd, List<Boolean> line, int index) {
+    private Boolean getRandomStep(Random rd, int index) {
         if (index == 0) {
             return rd.nextBoolean();
         }
 
-        return line.get(index - 1) ? false : rd.nextBoolean();
+        return steps.get(index - 1) ? false : rd.nextBoolean();
     }
 
     public Boolean[] getStepArray() {
-        return line.toArray(new Boolean[numSteps]);
+        return steps.toArray(new Boolean[numSteps]);
     }
 }
