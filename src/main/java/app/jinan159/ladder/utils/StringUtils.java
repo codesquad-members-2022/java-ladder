@@ -4,14 +4,13 @@ import java.util.stream.IntStream;
 
 public class StringUtils {
 
+    private final static String ALERT_SMALL_TOTAL_SIZE = "문자열의 길이보다 작은 크기로 패딩 문자열을 생성할 수 없습니다.";
+
     public static String padLeftRight(String source, int totalSize) {
+        if (source == null ||  totalSize < source.length()) throw new IllegalArgumentException(ALERT_SMALL_TOTAL_SIZE);
         if (source.length() == totalSize) return source;
 
-        int paddingSize = totalSize - source.length();
-        int padSizeA = paddingSize / 2;
-        int padSizeB = paddingSize - padSizeA;
-
-        return getLeftRightPaddedSource(source, padSizeA, padSizeB);
+        return getLeftRightPaddedSource(source, totalSize);
     }
 
     public static String repeatCharacter(char chr, int count) {
@@ -22,7 +21,11 @@ public class StringUtils {
         return sb.toString();
     }
 
-    private static String getLeftRightPaddedSource(String source, int padSizeA, int padSizeB) {
+    private static String getLeftRightPaddedSource(String source, int totalSize) {
+        int paddingSize = totalSize - source.length();
+        int padSizeA = paddingSize / 2;
+        int padSizeB = paddingSize - padSizeA;
+
         if (padSizeA > padSizeB) {
             return getPadding(padSizeA) + source + getPadding(padSizeB);
         }
