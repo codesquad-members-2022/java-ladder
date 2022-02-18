@@ -50,9 +50,10 @@ public class Ladder {
 
 	private int userPath(int line, int i) {
 		if (isExistLeftStep(line, i)) {
-			line -= EACH_WIDTH_OF_LADDER_SIZE;
-		} else if (isExistRightStep(line, i)) {
-			line += EACH_WIDTH_OF_LADDER_SIZE;
+			return line - EACH_WIDTH_OF_LADDER_SIZE;
+		}
+		if (isExistRightStep(line, i)) {
+			return line + EACH_WIDTH_OF_LADDER_SIZE;
 		}
 		return line;
 	}
