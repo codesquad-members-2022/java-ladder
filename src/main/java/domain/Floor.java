@@ -8,7 +8,7 @@ import java.util.Random;
 public class Floor {
 
     private static final String START_VERTICAL = "    |";
-    private static final String LINE = "-----|";
+    private static final String STEP = "-----|";
     private static final String BLANK = "     |";
     private static final Random random = new Random();
 
@@ -16,6 +16,10 @@ public class Floor {
 
     public Floor(int size) {
         this.floor = generateFloor(size);
+    }
+
+    public boolean isSTEP(int index) {
+        return floor.get(index);
     }
 
     private List<Boolean> generateFloor(int size) {
@@ -41,7 +45,7 @@ public class Floor {
 
     private String toText(boolean b) {
         if(b) {
-            return LINE;
+            return STEP;
         }
         return BLANK;
     }
