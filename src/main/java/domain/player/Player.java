@@ -6,7 +6,7 @@ class Player {
 
     private String name;
 
-    public Player(String name) throws IllegalStateException {
+    Player(String name) throws IllegalStateException {
         validateName(name);
         this.name = name;
     }
