@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class Ladder {
 
-	private static final String BLANK = " ";
+	private static final String PADDING = " ";
+	private static final int EACH_WIDTH_OF_LADDER_SIZE = 6;
 
 	private final List<LadderLine> ladderInfoList;
 	private final Map<User, String> gameResult;
@@ -32,24 +33,26 @@ public class Ladder {
 		}
 		linkUserAndResult();
 	}
+
 	public void linkUserAndResult() {
 		for (int i = 0; i < userNumber; i++) {
 			gameResult.put(users.get(i), checkResult(i));
 		}
 	}
+
 	private String checkResult(int idx) {
-		int line = idx * 6 + 1;
+		int line = idx * EACH_WIDTH_OF_LADDER_SIZE + 1;
 		for (int i = 0; i < ladderHeight; i++) {
 			line = userPath(line, i);
 		}
-		return userResultInput.get((line - 1) / 6);
+		return userResultInput.get((line - 1) / EACH_WIDTH_OF_LADDER_SIZE);
 	}
 
 	private int userPath(int line, int i) {
 		if (isExistLeftStep(line, i)) {
-			line -= 6;
+			line -= EACH_WIDTH_OF_LADDER_SIZE;
 		} else if (isExistRightStep(line, i)) {
-			line += 6;
+			line += EACH_WIDTH_OF_LADDER_SIZE;
 		}
 		return line;
 	}
@@ -63,7 +66,7 @@ public class Ladder {
 	}
 
 	private String getLadderLineWithPadding(int i) {
-		return BLANK + ladderInfoList.get(i).toString() + BLANK;
+		return PADDING + ladderInfoList.get(i).toString() + PADDING;
 	}
 
 	public List<LadderLine> getLadderInfoList() {
