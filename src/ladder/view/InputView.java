@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
 import ladder.domain.LadderGameManager;
 
 import java.io.BufferedReader;
@@ -54,5 +53,10 @@ public class InputView {
 
     public static void close() throws IOException {
         br.close();
+    }
+
+    public static String inputRequestNameForResult(String msg) throws IOException {
+        System.out.println(msg);
+        return br.readLine();
     }
 }
