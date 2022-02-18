@@ -6,7 +6,7 @@
 - [x] 미션 2 구현
 - [x] 미션 3 구현
 - [x] 미션 4 구현
-- [ ] 미션 5 구현
+- [x] 미션 5 구현
 
 ### mission 1
 
@@ -100,3 +100,22 @@ test
 
 <img width="810" alt="스크린샷 2022-02-17 19 24 12" src="https://user-images.githubusercontent.com/81368630/154457430-5b858cbc-481c-4e9a-bd91-7a0b8d02d18f.png">
 
+<br>
+
+## mission 5
+
+실행 결과를 입력받고 사다리에서 유저와 결과를 매칭해주는 메소드를 만들어서 Map을 통해 관리를 하도록 했습니다.
+
+동일한 유저가 들어오거나 유저의 결과 입력에 대한 검증은 따로 하지 않고 문제의 요구조건정도만 생각하며 구현했습니다.
+
+LadderGame class에서 `List<LadderLine> ladder`로 ladder를 관리하고 있었는데 유저와 결과를 매칭해주는 메소드의 크기가 커서 Ladder Class로 분리했습니다.
+
+### 고민사항
+
+변수명이 마음에 들지 않는 것이 너무 많습니다.
+
+Q) getter나 setter가 아닌 메소드명이 get이나 set이 포함되어 있어도 되는걸까요??
+
+ex) InputView Class에서 유저의 이름을 입력받는 메소드 명 `getUserName()`, LadderGame Class에서 입력받은 유저이름을 클래스변수에 저장하는 메소드 명 `setUserName()`
+
+위와 같이 메소드명을 지정했는데 마음에 들지 않고 그렇다고 다른 적절한 메소드명이 생각나지 않네요
