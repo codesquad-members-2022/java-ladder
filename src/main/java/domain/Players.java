@@ -23,7 +23,7 @@ public class Players {
         return players;
     }
 
-    public int getPlayersCount() {
+    public int countOfPlayers() {
         return players.size();
     }
 
@@ -33,5 +33,9 @@ public class Players {
             stringBuilder.append(String.format("%6s", player.name2Text()));
         }
         return stringBuilder.toString();
+    }
+
+    public boolean containsPlayer(String name) {
+        return players.stream().anyMatch(player -> player.isName(name));
     }
 }
