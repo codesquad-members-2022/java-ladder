@@ -13,7 +13,7 @@ public class PrintView {
         this.ladder = ladder;
     }
 
-    public void printLadder() {
+    public void printGame() {
         final String[] namePlayer = this.ladder.getNamePlayers();
         final Boolean[][] ladder = this.ladder.getLadder();
         final int height = this.ladder.getHeight();

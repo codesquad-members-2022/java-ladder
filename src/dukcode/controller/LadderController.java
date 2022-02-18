@@ -17,6 +17,6 @@ public class LadderController {
     }
 
     public void updatePrintView() {
-        printView.printLadder();
+        printView.printGame();
     }
 }

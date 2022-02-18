@@ -1,39 +1,40 @@
 package dukcode.model;
 
+import dukcode.model.domain.Line;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Ladder {
 
     private int height;
-    private int numPlayer;
+    private int numPlayers;
     private int numSteps;
     private String[] namePlayers;
-    private List<List<Boolean>> ladder;
+    private List<Line> ladder;
 
     public Ladder() {}
 
     public String[] getNamePlayers() {
-        String[] copyNamePlayers = new String[numPlayer];
-        System.arraycopy(namePlayers, 0, copyNamePlayers, 0, numPlayer);
+        String[] copyNamePlayers = new String[numPlayers];
+        System.arraycopy(namePlayers, 0, copyNamePlayers, 0, numPlayers);
         return copyNamePlayers;
     }
-    public int getNumPlayer() {
-        return numPlayer;
+    public int getNumPlayers() {
+        return numPlayers;
     }
     public int getHeight() {
         return height;
     }
 
     public int getNumSteps() {
-        return numPlayer - 1;
+        return numSteps;
     }
 
     public Boolean[][] getLadder() {
         Boolean[][] copyLadder = new Boolean[height][numSteps];
         for (int line = 0; line < height; ++line) {
-            copyLadder[line] = ladder.get(line).toArray(new Boolean[numSteps]);
+            copyLadder[line] = ladder.get(line).getStepArray();
         }
 
         return copyLadder;
@@ -41,32 +42,13 @@ public class Ladder {
 
     public void init(String[] namePlayers, int height) {
         this.namePlayers = namePlayers;
-        this.numPlayer = namePlayers.length;
+        this.numPlayers = namePlayers.length;
         this.numSteps = namePlayers.length - 1;
         this.height = height;
 
-        ladder = new ArrayList<>();
-        for (int lineNum = 0; lineNum < height; ++lineNum) {
-            initLine(lineNum);
+        ladder = new ArrayList<>(height);
+        for (int i = 0; i < height; ++i) {
+            ladder.add(new Line(numSteps));
         }
     }
-
-    private void initLine(int lineNum) {
-        Random rd = new Random();
-        ArrayList<Boolean> line = new ArrayList<Boolean>();
-        for (int step = 0; step < numSteps; ++step) {
-            line.add(getStep(line, rd, step));
-        }
-        ladder.add(line);
-    }
-
-    private boolean getStep(ArrayList<Boolean> line, Random rd, int step) {
-        if (step == 0) {
-            return rd.nextBoolean();
-        }
-
-        // 왼쪽에 step 존재하면 false, 없으면 random
-        return !line.get(step - 1) && rd.nextBoolean();
-    }
-
 }
