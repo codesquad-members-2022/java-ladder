@@ -27,11 +27,10 @@ public class Players {
         return players.size();
     }
 
-    @Override
-    public String toString() {
+    public String playersName2Text() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Player player : players) {
-            stringBuilder.append(String.format("%6s", player));
+            stringBuilder.append(String.format("%6s", player.name2Text()));
         }
         return stringBuilder.toString();
     }

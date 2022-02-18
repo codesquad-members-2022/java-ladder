@@ -18,5 +18,14 @@ public class Player {
         position++;
     }
 
+    public String name2Text() {
+        return editNameLength();
+    }
 
+    private String editNameLength() {
+        if(name.length() > 5) {
+            return name.substring(0, 3) + "..";
+        }
+        return name;
+    }
 }

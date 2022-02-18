@@ -54,7 +54,7 @@ public class Floor {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(START_VERTICAL);
-        floor.stream().filter(Objects::nonNull).map(this::toText).forEach(stringBuilder::append);
+        floor.stream().sequential().filter(Objects::nonNull).map(this::toText).forEach(stringBuilder::append);
         return stringBuilder.toString();
     }
 }
