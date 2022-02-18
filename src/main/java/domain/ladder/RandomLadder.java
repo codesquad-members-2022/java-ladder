@@ -17,7 +17,7 @@ public class RandomLadder extends AbstractLadder{
         super(height, numOfPerson);
     }
 
-    public void makeLines(int numOfPerson) {
+    protected void makeLines(int numOfPerson) {
         IntStream.range(0, height).forEach(i -> lines.add(new Line(numOfPerson)));
 
         List<Position> positionList = toPositions(makeStartPositions());
