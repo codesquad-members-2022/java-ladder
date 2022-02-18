@@ -14,7 +14,7 @@ public class Line {
         this.line = new ArrayList<>(numSteps);
 
         Random rd = new Random();
-        for (int stepIdx = 0; stepIdx < line.size(); ++stepIdx) {
+        for (int stepIdx = 0; stepIdx < numSteps; ++stepIdx) {
             line.add(getRandomStep(rd, line, stepIdx));
         }
     }
