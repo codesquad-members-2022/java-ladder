@@ -17,7 +17,7 @@ public class LadderGame {
         Group rewardGroup = new Group(rewards, playerCount);
         Ladder ladder = new Ladder(height, playerCount);
 
-        outputView.printLayout(playerGroup, ladder);
+        outputView.printLayout(ladder, playerGroup, rewardGroup);
 
         inputView.close();
     }

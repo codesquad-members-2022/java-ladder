@@ -4,17 +4,18 @@ import ladder.domain.Ladder;
 import ladder.domain.Group;
 
 public class OutputView {
-    public void printLayout(Group group, Ladder ladder) {
+    public void printLayout(Ladder ladder, Group topGroup, Group bottomGroup) {
         System.out.println();
-        printPlayers(group);
+        printGroup(topGroup);
         printLadder(ladder);
+        printGroup(bottomGroup);
     }
 
-    private void printPlayers(Group group) {
+    private void printGroup(Group group) {
         System.out.println(group);
     }
 
     private void printLadder(Ladder ladder) {
-        System.out.println(ladder.render());
+        System.out.print(ladder.render());
     }
 }
