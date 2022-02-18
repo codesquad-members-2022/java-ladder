@@ -1,6 +1,7 @@
 package app.jinan159.ladder.view;
 
-import app.jinan159.ladder.config.LadderGameConfig;
+import app.jinan159.ladder.config.GameConfig;
+import app.jinan159.ladder.domain.LadderElement;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.domain.gamemap.GameMap;
 import app.jinan159.ladder.domain.gamemap.GameMapColumn;
@@ -16,13 +17,19 @@ import java.util.List;
 public class OutputView implements Closeable {
 
     private final OutputStreamWriter writer;
+    private final GameConfig config;
 
-    public OutputView() {
-        this.writer = new OutputStreamWriter(System.out);
+    private OutputView(GameConfig config) {
+        this(System.out, config);
     }
 
-    public OutputView(OutputStream outputStream) {
+    private OutputView(OutputStream outputStream, GameConfig config) {
         this.writer = new OutputStreamWriter(outputStream);
+        this.config = config;
+    }
+
+    public static OutputView createWithConfig(GameConfig config) {
+        return new OutputView(config);
     }
 
     public void write(String s) throws IOException {
@@ -34,18 +41,18 @@ public class OutputView implements Closeable {
     }
 
     public void writeGameMap(GameMap gameMap) throws IOException {
-        write(gameMapToString(gameMap));
+        write(formatGameMap(gameMap));
     }
 
     private String participantsToString(List<Participant> participants) {
         return participants.stream()
                 .map(Participant::getName)
-                .map(name -> StringUtils.padLeftRight(name, LadderGameConfig.NAME_LENGTH))
+                .map(name -> StringUtils.padLeftRight(name, config.getNameLength()))
                 .reduce((nested, name) -> nested + " " + name)
                 .orElse("") + "\n";
     }
 
-    private String gameMapToString(GameMap gameMap) {
+    private String formatGameMap(GameMap gameMap) {
         StringBuilder sb = new StringBuilder();
 
         for (GameMapRow row : gameMap) {
@@ -59,10 +66,24 @@ public class OutputView implements Closeable {
     private String rowToString(GameMapRow row) {
         StringBuilder sb = new StringBuilder();
         for (GameMapColumn col : row) {
-            sb.append(col.getColumnValue());
+            sb.append(formatElement(col.getElement()));
         }
 
         return sb.toString();
+    }
+
+    private String formatElement(LadderElement element) {
+        switch (element) {
+            case L_PAD:
+                return StringUtils.repeatCharacter(element.getMark(), config.getLadderSize() / 2);
+            case V_LINE:
+                return String.valueOf(element.getMark());
+            case EMPTY:
+            case H_LINE:
+                return StringUtils.repeatCharacter(element.getMark(), config.getLadderSize());
+            default:
+                return "";
+        }
     }
 
     @Override

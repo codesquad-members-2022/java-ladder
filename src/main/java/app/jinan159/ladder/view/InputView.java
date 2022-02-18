@@ -1,5 +1,6 @@
 package app.jinan159.ladder.view;
 
+import app.jinan159.ladder.config.GameConfig;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.validation.InputValidator;
 
@@ -19,13 +20,19 @@ public class InputView implements Closeable {
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
 
     private final Scanner sc;
+    private final InputValidator validator;
 
-    public InputView() {
-        this.sc = new Scanner(System.in);
+    private InputView(GameConfig config) {
+        this(System.in, config);
     }
 
-    public InputView(InputStream inputStream) {
+    private InputView(InputStream inputStream, GameConfig config) {
         this.sc = new Scanner(inputStream);
+        this.validator = InputValidator.createWithConfig(config);
+    }
+
+    public static InputView createWithConfig(GameConfig config) {
+        return new InputView(config);
     }
 
     public List<Participant> readParticipants() {
@@ -44,7 +51,7 @@ public class InputView implements Closeable {
     private String[] readNames() {
         try {
             String[] names = sc.nextLine().split(SPLITER);
-            InputValidator.validateNames(names);
+            validator.validateNames(names);
             return names;
         } catch (IllegalArgumentException | NoSuchElementException e) {
             System.out.println(e.getMessage());
@@ -55,7 +62,7 @@ public class InputView implements Closeable {
     private int readPositiveNumber() {
         try {
             int input = sc.nextInt();
-            InputValidator.validateIsPositive(input);
+            validator.validateIsPositive(input);
             return input;
         } catch (IllegalArgumentException | NoSuchElementException e) {
             System.out.println(ALERT_NUMBER_REQUIRED);

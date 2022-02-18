@@ -14,7 +14,7 @@ public class GameMapColumn {
         return element;
     }
 
-    public String getColumnValue() {
+    public char getColumnValue() {
         return element.getMark();
     }
 }

@@ -1,5 +1,7 @@
 package app.jinan159.ladder.utils;
 
+import java.util.stream.IntStream;
+
 public class StringUtils {
 
     public static String padLeftRight(String source, int totalSize) {
@@ -10,6 +12,14 @@ public class StringUtils {
         int padSizeB = paddingSize - padSizeA;
 
         return getLeftRightPaddedSource(source, padSizeA, padSizeB);
+    }
+
+    public static String repeatCharacter(char chr, int count) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0,count)
+                .forEach(i -> sb.append(chr));
+
+        return sb.toString();
     }
 
     private static String getLeftRightPaddedSource(String source, int padSizeA, int padSizeB) {
