@@ -1,6 +1,11 @@
 package View;
 
 import Util.Validation;
+<<<<<<< HEAD
+=======
+import domain.Ladder;
+import domain.Players;
+>>>>>>> 643e3fd (refactor : Names -> Players로 수정)
 
 import java.util.Scanner;
 
@@ -11,7 +16,15 @@ public class InputView {
     private static final String LADDER_HEIGHT_COMMAND = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
+<<<<<<< HEAD
     public static String askPlayers() {
+=======
+    public static Ladder askSettingLadder() {
+        return new Ladder(askPlayers(),askLadderHeight());
+    }
+
+    private static Players askPlayers() {
+>>>>>>> 643e3fd (refactor : Names -> Players로 수정)
         System.out.println(PLAYER_NAMES_COMMAND);
         System.out.println(PLAYER_NAMES_RESTRICTIONS);
         String players = scanner.nextLine().replaceAll(" ","");
@@ -21,7 +34,11 @@ public class InputView {
             System.out.println(e.getMessage());
             return askPlayers();
         }
+<<<<<<< HEAD
         return players;
+=======
+        return new Players(players);
+>>>>>>> 643e3fd (refactor : Names -> Players로 수정)
     }
 
     public static int askLadderHeight() {

@@ -3,6 +3,7 @@ import View.OutputView;
 import domain.Board;
 import domain.Names;
 
+
 public class LadderGame {
 
     private Board board;
