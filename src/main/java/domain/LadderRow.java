@@ -17,14 +17,21 @@ public class LadderRow {
     public LadderRow(List<String> row, int count) {
         this.row = row;
         this.peopleCount = count;
-        line = new Line(count);
+        line = new Line();
         init();
     }
 
     public void init() {
+        makeRandomLine();
         row.add(voidBuilder());
         row.add(HEIGHT);
         makeRow();
+    }
+
+    private void makeRandomLine() {
+        for (int i = 0; i < peopleCount - 1; i++) {
+            line.addLine(RandomUtil.nextBoolean());
+        }
     }
 
     private String voidBuilder() {

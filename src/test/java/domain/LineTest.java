@@ -14,7 +14,7 @@ class LineTest {
 
     @BeforeEach
     void beforeEach() {
-        line = new Line(10);
+        line = new Line();
     }
 
     @ParameterizedTest
