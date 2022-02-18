@@ -16,8 +16,9 @@ class CreateLadderTest {
         Line line = new Line(2);
         Line line2 = new Line(3);
         Line line3 = new Line(4);
-        assertThat(testLine).isEqualTo(line.printLine());
-        assertThat(testLine2).isEqualTo(line2.printLine());
-        assertThat(testLine3).isEqualTo(line3.printLine());
+
+        assertThat(testLine).isEqualTo(line.createLine());
+        assertThat(testLine2).isEqualTo(line2.createLine());
+        assertThat(testLine3).isEqualTo(line3.createLine());
     }
 }
