@@ -31,7 +31,7 @@ public class LadderGame {
 
     public String findResult(String name) {
         if (players.containsPlayer(name)) {
-            return name + " : " + resultMap.get(name);
+            return name + KEY_VALUE_DELIMITER + resultMap.get(name);
         }
         throw new IllegalArgumentException();
     }
@@ -39,7 +39,7 @@ public class LadderGame {
     public String getAllResult() {
         StringBuilder stringBuilder = new StringBuilder();
         for (String key : resultMap.keySet()) {
-            stringBuilder.append(key).append(" : ").append(resultMap.get(key)).append('\n');
+            stringBuilder.append(key).append(KEY_VALUE_DELIMITER).append(resultMap.get(key)).append('\n');
         }
         return stringBuilder.toString();
     }
