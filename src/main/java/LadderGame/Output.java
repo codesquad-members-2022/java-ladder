@@ -20,32 +20,9 @@ public class Output {
         sb.append(USER_LINE_PADDING);
 
         for (String user : userList) {
-            sb.append(userNameLengthValidation(user));
+            sb.append(Validation.playerNameLengthValidation(user));
         }
         sb.append("\n");
-    }
-
-    private static String userNameLengthValidation(String user) {
-
-        if (user.length() <= 5) {
-            return userNamePadding(user);
-        }
-        return rename(user);
-    }
-
-    private static String rename(String user) {
-        return user.substring(0, 5) + " ";
-    }
-
-    private static String userNamePadding(String user) {
-        if (user.length() == 5) {
-            return user;
-        }
-
-        if (user.length() / 2 == 0) {
-            return String.format("%5s", user);
-        }
-        return String.format("%-5s", user);
     }
 
     private static void appendString(Line line) {
