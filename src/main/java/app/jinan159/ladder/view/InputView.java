@@ -1,6 +1,5 @@
 package app.jinan159.ladder.view;
 
-import app.jinan159.ladder.LadderGame;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.validation.InputValidator;
 
