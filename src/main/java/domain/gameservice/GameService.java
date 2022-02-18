@@ -9,6 +9,7 @@ import domain.user.User;
 import domain.user.UserCreator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class GameService {
     private Map<String, User> users;
     private Map<Integer, Item> items;
     private Ladder ladder;
+    private Map<String, String> results;
 
     public GameService( int lineHeight, String[] users,String[] items) {
 
@@ -24,21 +26,10 @@ public class GameService {
         this.ladder = LadderCreator.createLadder(lineHeight, calculateLadderWidth());
     }
 
-    public Item getSinglePlayerResult(String username) {
-        int userPoint = users.get(username).getPoint();
-
-        for (int i = 0; i < ladder.getLadderSize(); i++) {
-            userPoint += ladder.move(i, userPoint);
+    public void playGame() {
+        for (User user : users.values()) {
+            results.putAll(playSinglePlayer(user));
         }
-        return items.get(userPoint);
-    }
-
-    public List<Line> getLadder() {
-        return ladder.getLadders();
-    }
-
-    private int calculateLadderWidth() {
-        return users.size() * 2 - 1;
     }
 
     public List<User> getUsers() {
@@ -48,4 +39,29 @@ public class GameService {
     public List<Item> getItems() {
         return new ArrayList<>(items.values());
     }
+
+    public List<Line> getLadder() {
+        return ladder.getLadders();
+    }
+
+    public Map<String, String> getResults() {
+        return results;
+    }
+
+    private Map<String, String> playSinglePlayer(User user) {
+        int userPoint = user.getPoint();
+
+        for (int i = 0; i < ladder.getLadderSize(); i++) {
+            userPoint += ladder.move(i, userPoint);
+        }
+        Item item = items.get(userPoint);
+        return new HashMap<>(){{
+            put(user.getName(), item.getName());}};
+    }
+
+    private int calculateLadderWidth() {
+        return users.size() * 2 - 1;
+    }
+
+
 }

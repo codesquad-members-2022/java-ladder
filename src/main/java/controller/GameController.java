@@ -13,9 +13,13 @@ public class GameController {
         int lineHeight = InputUtil.getLadderSizeInput();
 
         GameService ladderGame = new GameService(lineHeight, users, results);
+
         OutputUtil.printUsers(ladderGame.getUsers());
         OutputUtil.printLadder(ladderGame.getLadder());
         OutputUtil.printItems(ladderGame.getItems());
+
+        ladderGame.playGame();
+
 
     }
 
