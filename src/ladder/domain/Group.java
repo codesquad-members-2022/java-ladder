@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public class Group {
     public static final int NAME_LENGTH_LIMIT = 5;
     private static final String NAME_FORMAT = String.format("%%-%1$d.%1$ds", NAME_LENGTH_LIMIT);
+    private static final char END_POINT_SYMBOL = '*';
     private final List<String> nameList;
 
     protected Group(String[] names) {
@@ -25,7 +26,7 @@ public class Group {
     @Override
     public String toString() {
         return nameList.stream()
-                .map(s -> "*" + s + " ")
+                .map(s -> END_POINT_SYMBOL + s + ' ')
                 .collect(Collectors.joining());
     }
 
