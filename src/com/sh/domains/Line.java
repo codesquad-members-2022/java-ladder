@@ -1,11 +1,13 @@
 package com.sh.domains;
 
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class Line {
 	private final List<Boolean> points;
 	private Predicate<Boolean> isTrue = (aBoolean -> aBoolean == true);
+	private BiPredicate<Boolean, Boolean> bothTrue = (a, b) -> (a && b);
 
 	public Line(List<Boolean> points) {
 		isValidLine(points);
@@ -17,21 +19,15 @@ public class Line {
 	}
 
 	private void isValidLine(List<Boolean> points) {
-		long count = getCount(points);
-		impossibleLine(count);
-	}
-
-	private void impossibleLine(long count) {
-		if (count != 1) {
-			throw new IllegalArgumentException("Line - count");
+		int size = points.size()-1;
+		for (int i = 0; i < size; i+=2) {
+			isContinuousLadder(points.get(i), points.get(i + 1));
 		}
 	}
 
-	private long getCount(List<Boolean> points) {
-		return points.stream()
-			.parallel()
-			.filter(isTrue::test)
-			.limit(2)
-			.count();
+	private void isContinuousLadder(Boolean a, Boolean b) {
+		if (bothTrue.test(a,b)) {
+			throw new IllegalArgumentException("Line - count");
+		}
 	}
 }

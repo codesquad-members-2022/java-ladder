@@ -5,72 +5,74 @@ import static java.util.stream.Collectors.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import com.sh.utils.Randomz;
 
 public class Ladder {
-	private static final int MIN_RANGE = 0;
 	private final int rangeOfx;
 	private final int rangeOfy;
 	private Randomz random;
-	private int place;
+	private int limitNumberOfLadder;
 	private List<Line> graphs = new ArrayList<>();
-	private Function<Boolean, Integer> nextDirection = (dir) -> (dir ? -1 : 1);
+	private Predicate<Boolean> isDiscontinuous = (bool) -> (bool ? false : true);
 
 	public Ladder(int rangeOfx, int rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
 			throw new NullPointerException("NPE - constructor of Ladder");
 		}
-		this.rangeOfx = rangeOfx-1;
+		this.rangeOfx = rangeOfx - 1;
 		this.rangeOfy = rangeOfy;
 		this.graphs = new ArrayList<>();
 		this.random = Randomz.getInstance();
-		this.place = random.getInt(this.rangeOfx);
+		this.limitNumberOfLadder = halfLengthInWidth();
+	}
+
+	private int halfLengthInWidth() {
+		return this.rangeOfx / 2;
 	}
 
 	public void play() {
-		Line firstRows = firstLine();
-		this.graphs.add(firstRows);
-		for (int i = 1; i < rangeOfy; i++) {
-			Line row = filledNextLines();
+		for (int i = 0; i < rangeOfy; i++) {
+			Line row = fillLine();
 			this.graphs.add(row);
 		}
 	}
 
-	private Line filledNextLines() {
+	private Line fillLine() {
 		List<Boolean> row = getFilledFalseList();
-		nextPlace();
-		row.set(this.place, true);
+		int size = rangeOfx - 1;
+
+		for (int i = 0; i < limitNumberOfLadder; i++) {
+			int idx = random.getInt(rangeOfx);
+			boolean possible = isFilled(row, size, idx);
+			insertTrue(possible, idx, row);
+		}
 		return new Line(row);
 	}
 
-	private void nextPlace() {
-		boolean directions = random.getBoolean();
-		int nextPlace = nextDirection.apply(directions);
-		if (!isRangeOf(nextPlace)) {
-			nextPlace *= (-1);
+	private void insertTrue(boolean isFilled, int idx, List<Boolean> row) {
+		if (isFilled) {
+			row.set(idx, true);
 		}
-		toNext(nextPlace);
 	}
 
-	private void toNext(int nextPlace) {
-		this.place += nextPlace;
+	private boolean isFilled(List<Boolean> row, int size, int idx) {
+		if (idx == 0) {
+			return isDiscontinuous.test(row.get(idx + 1));
+		}
+		if (idx == size) {
+			return isDiscontinuous.test(row.get(idx - 1));
+		}
+		return isMiddleDiscontinuous(row.get(idx - 1), row.get(idx + 1));
 	}
 
-	private boolean isRangeOf(int point) {
-		int nextPlace = this.place + point;
-		if (nextPlace < MIN_RANGE || nextPlace >= rangeOfx) {
+	private boolean isMiddleDiscontinuous(boolean before, boolean next) {
+		if (before || next) {
 			return false;
 		}
 		return true;
-	}
-
-	private Line firstLine() {
-		List<Boolean> row = getFilledFalseList();
-		row.set(this.place, true);
-		return new Line(row);
 	}
 
 	private List<Boolean> getFilledFalseList() {

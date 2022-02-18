@@ -79,6 +79,21 @@
   - LadderService에서 반환하는 출력문은 /n의 첫째 줄이 이름명단이다.
   - 가장 긴 이름이 5글자를 초과하면 안 된다.
 
+
+- 사다리 로직 변경
+  - 사다리 한줄만 추가하는 제 기존 로직으로는 결과와 맞지 않고, 또 인원수 늘어나니 부족해보여 로직 수정 먼저 하기로 했습니다. (칼퇴는 ..🙃)
+
+  <img src="https://user-images.githubusercontent.com/96989782/154608662-0cc12787-01c2-42d4-b2bb-dcb3f2993bf7.PNG" width="300">
+
+  - 입력된 가로 길이의 절반값을 random의 범위로 나온 개수만큼 사다리를 추가한다. (true로 변경)
+    - 단, 해당 위치 이전과 이후가 false 일 때만 가능하다 (연결되지 않도록)
+    - 라인은 연속되지 않는다.
+  - 변경 후
+
+  <img src="https://user-images.githubusercontent.com/96989782/154617905-f3d1a6c9-98b9-43d3-a6ee-4b46850447f5.PNG" width="300">
+
+<br>
+
 #### 테스트 결과
 
 <img src="https://user-images.githubusercontent.com/96989782/154529885-2672cf16-be70-44d4-8434-ca6a400290cf.PNG" width="300">
