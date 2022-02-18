@@ -25,11 +25,28 @@ class GroupTest {
     }
 
     @Test
+    @DisplayName("생성자에 길이가 지정되었을 때에 대한 머릿수 카운트")
+    void countFixedLength() {
+        assertAll(() -> assertEquals(new Group(DUMMY_INPUT.get(0), 5).count(), 5),
+                () -> assertEquals(new Group(DUMMY_INPUT.get(1), 6).count(), 6),
+                () -> assertEquals(new Group(DUMMY_INPUT.get(2), 7).count(), 7));
+    }
+
+    @Test
     @DisplayName("3가지 입력 시나리오에 대한 문자열 변환값")
     void testToString() {
         assertAll(
                 () -> assertEquals(new Group(DUMMY_INPUT.get(0)).toString(), "*ABC   *RATHA *GOLEM *BEAST "),
                 () -> assertEquals(new Group(DUMMY_INPUT.get(1)).toString(), "*HANNA *JK    *HONUX *FLOWE *GOAT  "),
                 () -> assertEquals(new Group(DUMMY_INPUT.get(2)).toString(), "*HAHAH *MADNE *STRAN "));
+    }
+
+    @Test
+    @DisplayName("생성자에 길이가 지정되었을 때에 대한 문자열 변환값")
+    void testToStringFixedLength() {
+        assertAll(
+                () -> assertEquals(new Group(DUMMY_INPUT.get(0), 5).toString(), "*ABC   *RATHA *GOLEM *BEAST *      "),
+                () -> assertEquals(new Group(DUMMY_INPUT.get(1), 6).toString(), "*HANNA *JK    *HONUX *FLOWE *GOAT  *      "),
+                () -> assertEquals(new Group(DUMMY_INPUT.get(2), 7).toString(), "*HAHAH *MADNE *STRAN *      *      *      *      "));
     }
 }

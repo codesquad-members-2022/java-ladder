@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,13 +32,18 @@ public class Group {
     }
 
     private List<String> buildNameList(String[] names, int size) {
-        return Stream.of(names)
-                .limit(size)
-                .map(this::truncate)
+        List<String> list = Stream.of(names)
+                .map(this::formatNameToFixedLength)
                 .collect(Collectors.toCollection(ArrayList::new));
+
+        while (list.size() < size) {
+            list.add(" ".repeat(NAME_LENGTH_LIMIT));
+        }
+
+        return list;
     }
 
-    private String truncate(String name) {
+    private String formatNameToFixedLength(String name) {
         return String.format(NAME_FORMAT, name);
     }
 }
