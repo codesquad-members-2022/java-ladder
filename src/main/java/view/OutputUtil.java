@@ -5,6 +5,7 @@ import domain.item.Item;
 import domain.user.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputUtil {
     private static final String USER_LINE = "|";
@@ -25,6 +26,19 @@ public class OutputUtil {
 
     public static void printItems(List<Item> items) {
         items.forEach(item -> System.out.print(addPadding(item.getName())));
+        System.out.println();
+    }
+
+    public static void printAllResult(Map<String, String> results) {
+        System.out.println("실행 결과");
+        for (String user : results.keySet()) {
+            System.out.println(user + " : " + results.get(user));
+        }
+    }
+
+    public static void printSingleResult(String result) {
+        System.out.println("실행 결과");
+        System.out.println(result);
         System.out.println();
     }
 

@@ -24,11 +24,12 @@ public class GameService {
         this.users = UserCreator.createUserMap(users);
         this.items = ItemCreator.createResultMap(items);
         this.ladder = LadderCreator.createLadder(lineHeight, calculateLadderWidth());
+        this.results = new HashMap<>();
     }
 
     public void playGame() {
-        for (User user : users.values()) {
-            results.putAll(playSinglePlayer(user));
+        for (String user : users.keySet()) {
+            results.putAll(playSinglePlayer(users.get(user)));
         }
     }
 
@@ -46,6 +47,10 @@ public class GameService {
 
     public Map<String, String> getResults() {
         return results;
+    }
+
+    public String getSingleUserResult(String username) {
+        return results.get(username);
     }
 
     private Map<String, String> playSinglePlayer(User user) {
