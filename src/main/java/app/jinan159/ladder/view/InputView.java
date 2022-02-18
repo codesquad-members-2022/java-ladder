@@ -19,7 +19,7 @@ public class InputView implements Closeable {
     private final static String Q_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?(1개 이상)";
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
 
-    public final Scanner sc;
+    private final Scanner sc;
 
     public InputView() {
         this.sc = new Scanner(System.in);
