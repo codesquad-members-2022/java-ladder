@@ -1,13 +1,13 @@
 package app.jinan159.ladder.domain;
 
-import app.jinan159.ladder.LadderGame;
+import app.jinan159.ladder.config.LadderGameConfig;
 
 public enum LadderElement {
 
-    L_PAD(" ".repeat(LadderGame.MAX_NAME_LENGTH / 2)),
+    L_PAD(" ".repeat(LadderGameConfig.LADDER_SIZE / 2)),
     V_LINE("|"),
-    H_LINE("-".repeat(LadderGame.MAX_NAME_LENGTH)),
-    EMPTY(" ".repeat(LadderGame.MAX_NAME_LENGTH));
+    H_LINE("-".repeat(LadderGameConfig.LADDER_SIZE)),
+    EMPTY(" ".repeat(LadderGameConfig.LADDER_SIZE));
 
     LadderElement(String mark) {
         this.mark = mark;

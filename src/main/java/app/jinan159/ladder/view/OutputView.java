@@ -1,6 +1,6 @@
 package app.jinan159.ladder.view;
 
-import app.jinan159.ladder.LadderGame;
+import app.jinan159.ladder.config.LadderGameConfig;
 import app.jinan159.ladder.domain.Participant;
 import app.jinan159.ladder.domain.gamemap.GameMap;
 import app.jinan159.ladder.utils.StringUtils;
@@ -38,7 +38,7 @@ public class OutputView implements Closeable {
     private String participantsToString(List<Participant> participants) {
         return participants.stream()
                 .map(Participant::getName)
-                .map(name -> StringUtils.padLeftRight(name, LadderGame.MAX_NAME_LENGTH))
+                .map(name -> StringUtils.padLeftRight(name, LadderGameConfig.NAME_LENGTH))
                 .reduce((nested, name) -> nested + " " + name)
                 .orElse("") + "\n";
     }

@@ -1,6 +1,6 @@
 package app.jinan159.ladder.validation;
 
-import app.jinan159.ladder.LadderGame;
+import app.jinan159.ladder.config.LadderGameConfig;
 
 public class InputValidator {
 
@@ -19,7 +19,7 @@ public class InputValidator {
     }
 
     private static void validateNamesLength(String input) throws IllegalArgumentException {
-        if (input.length() > LadderGame.MAX_NAME_LENGTH) {
+        if (input.length() > LadderGameConfig.NAME_LENGTH) {
             throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
         }
     }

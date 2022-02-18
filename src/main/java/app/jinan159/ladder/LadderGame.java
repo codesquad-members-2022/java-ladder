@@ -10,8 +10,6 @@ import java.util.List;
 
 public class LadderGame {
 
-    public static final int MAX_NAME_LENGTH = 5;
-
     private final GameMap gameMap;
     private final List<Participant> participants;
 
