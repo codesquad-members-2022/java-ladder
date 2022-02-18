@@ -6,14 +6,12 @@ import java.util.List;
 
 public class Ladder {
 
-    private static final String MARGIN = "    ";
-
     private final int width;
     private final int height;
     private final List<Floor> board;
 
     public Ladder(int count, int height) {
-        this.width = count*2-1;
+        this.width = count;
         this.height = Validation.checkHeight(height);
         board = generateBoard();
     }
@@ -33,7 +31,7 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        board.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
+        board.forEach(floor -> stringBuilder.append(floor.toString()).append('\n'));
         return stringBuilder.toString();
     }
 }
