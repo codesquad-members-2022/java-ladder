@@ -1,8 +1,8 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.User;
+import domain.ladder.Ladder;
+import domain.ladder.Line;
+import domain.user.User;
 
 import java.util.List;
 

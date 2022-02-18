@@ -1,8 +1,7 @@
 package controller;
 
-import domain.service.GameService;
+import domain.gameservice.GameService;
 import view.InputUtil;
-import view.OutputUtil;
 
 
 public class GameController {
