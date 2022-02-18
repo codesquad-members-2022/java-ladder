@@ -15,9 +15,7 @@ public class Client {
 
         inputUser();
 
-        LadderGame ladderGame = new LadderGame();
-
-        ladderGame.init(getUserCount(), getLadderHeight());
+        LadderGame ladderGame = new LadderGame(getUserCount(), getLadderHeight());
 
         sc.close();
     }

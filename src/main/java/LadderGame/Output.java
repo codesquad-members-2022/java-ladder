@@ -7,11 +7,11 @@ public class Output {
     private static final StringBuilder sb = new StringBuilder();
     private static final String USER_LINE_PADDING = "  ";
 
-    public static void printLadderGame(List<List<String>> arr) {
+    public static void printLadderGame(List<Line> ladder) {
         printUserList(Client.getUserList());
 
-        for (int row = 0; row < arr.size(); row++) {
-            appendString(arr.get(row));
+        for (int row = 0; row < ladder.size(); row++) {
+            appendString(ladder.get(row));
         }
         System.out.println(sb);
     }
@@ -48,9 +48,11 @@ public class Output {
         return String.format("%-5s", user);
     }
 
-    private static void appendString(List<String> arr) {
-        for (int col = 0; col < arr.size(); col++) {
-            sb.append(arr.get(col));
+    private static void appendString(Line line) {
+        List<String> copyLine = line.getLine();
+
+        for (int col = 0; col < copyLine.size(); col++) {
+            sb.append(copyLine.get(col));
         }
         sb.append("\n");
     }
