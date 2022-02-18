@@ -1,6 +1,6 @@
 import io.InputValidator;
-import io.InputView;
-import io.OutputView;
+import view.InputView;
+import view.OutputView;
 
 public class LadderGame {
 
