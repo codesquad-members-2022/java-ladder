@@ -216,36 +216,65 @@ public class User {
 ```java
 public class Ladder {
 
-  private final List<List<LadderElement>> ladderElements;
+  private final List<LadderRow> ladderRows;
 
-  Ladder(List<List<LadderElement>> ladderFrame) {
-    this.ladderElements = ladderFrame;
+  Ladder(List<LadderRow> ladderFrame) {
+    this.ladderRows = ladderFrame;
   }
 
   public LadderElement getLadderElement(int column, int row) {
-    return ladderElements.get(row).get(column);
+    LadderRow ladderRow = ladderRows.get(row);
+    return ladderRow.getLadderElement(column);
   }
 
-  void setLadderElement(int column, int row, LadderElement ladderElement) {
-    ladderElements.get(row).set(column, ladderElement);
-    return;
+  void drawLadderElement(int column, int row, LadderElement ladderElement) {
+    LadderRow ladderRow = ladderRows.get(row);
+    ladderRow.drawLadderElement(column, ladderElement);
   }
 
   public int width() {
-    return ladderElements.get(0).size();
+    return ladderRows.get(0).width();
   }
 
   public int height() {
-    return ladderElements.size();
+    return ladderRows.size();
   }
 
 }
 ```
 - 사다리를 정의한 클래스
-- 내부적으로 `List<List<LadderElement>>`를 가짐. 내부 이차원List는 `LadderElement`를 가지고 있다.
+- 내부적으로 `List<LadderRow>`를 가짐. LadderRow는 `LadderElement`를 가지고 있다.
 - getLadderElement : 지정 행, 열의 LadderElement 반환
 - setLadderElement : 지정 행, 열의 LadderElement을 변경. 접근제어자가 default라서, 외부 패키지에서 변경할 수 없다.
-  - 변경 가능성 : LadderFactory에서만.
+  - 내부값 변경 가능성 : LadderFactory에서만.
+
+---
+
+## LadderRow
+
+```java
+public class LadderRow {
+
+    private List<LadderElement> ladderElements;
+
+    LadderRow(List<LadderElement> ladderRowFrame) {
+        this.ladderElements = ladderRowFrame;
+    }
+
+    public LadderElement getLadderElement(int column) {
+        return ladderElements.get(column);
+    }
+
+    public void drawLadderElement(int column, LadderElement ladderElement) {
+        ladderElements.set(column, ladderElement);
+    }
+
+    public int width() {
+        return ladderElements.size();
+    }
+}
+```
+- Ladder의 각 행의 성분들을 모아둠
 
 ---
 

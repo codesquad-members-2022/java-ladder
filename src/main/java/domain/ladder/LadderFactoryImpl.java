@@ -1,7 +1,7 @@
 package domain.ladder;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderFactoryImpl implements LadderFactory {
@@ -19,37 +19,38 @@ public class LadderFactoryImpl implements LadderFactory {
     @Override
     public Ladder create(int numberOfUsers, int height) {
         Ladder ladder = new Ladder(makeLadderFrame(numberOfUsers, height));
-        setAllVerticalLine(ladder);
-        setAllHorizontalLine(ladder);
+        drawAllVerticalLine(ladder);
+        drawAllHorizontalLine(ladder);
         return ladder;
     }
 
-    private List<List<LadderElement>> makeLadderFrame(int numberOfUsers, int height) {
+    private List<LadderRow> makeLadderFrame(int numberOfUsers, int height) {
         int width = 2*numberOfUsers - 1;
 
-        List<List<LadderElement>> ladderFrame = new ArrayList<>();
-        IntStream.range(0, height)
-                .mapToObj(row -> makeLadderRowFrame(width))
-                .forEach(ladderFrame::add);
-
-        return ladderFrame;
+        return IntStream.range(0, height)
+                .mapToObj(row -> makeLadderRow(width))
+                .collect(Collectors.toList());
     }
 
-    private void setAllVerticalLine(Ladder ladder) {
+    private void drawAllVerticalLine(Ladder ladder) {
         IntStream.range(0, ladder.height())
                 .forEach(row -> setRowVerticalLine(ladder, row));
     }
 
-    private void setAllHorizontalLine(Ladder ladder) {
+    private void drawAllHorizontalLine(Ladder ladder) {
         IntStream.range(0, ladder.height())
                 .forEach(row -> setRowHorizontalLine(ladder, row));
     }
 
+    private LadderRow makeLadderRow(int width) {
+        List<LadderElement> ladderRowFrame = makeLadderRowFrame(width);
+        return new LadderRow(ladderRowFrame);
+    }
+
     private List<LadderElement> makeLadderRowFrame(int width) {
-        List<LadderElement> rowLadderFrame = new ArrayList<>();
-        IntStream.range(0, width)
-                .forEach(column -> rowLadderFrame.add(LadderElement.EMPTY_LINE));
-        return rowLadderFrame;
+        return IntStream.range(0, width)
+                        .mapToObj(column -> LadderElement.EMPTY_LINE)
+                        .collect(Collectors.toList());
     }
 
     private void setRowVerticalLine(Ladder ladder, int row) {
@@ -65,15 +66,15 @@ public class LadderFactoryImpl implements LadderFactory {
     }
 
     private void setVerticalLine(Ladder ladder, int row, int column) {
-        ladder.setLadderElement(column, row, LadderElement.VERTICAL_LINE);
+        ladder.drawLadderElement(column, row, LadderElement.VERTICAL_LINE);
     }
 
     private void setHorizontalLine(Ladder ladder, int row, int column) {
         if (canDrawHorizontalLine(ladder, row, column)) {
-            ladder.setLadderElement(column, row, randomLadderElement());
+            ladder.drawLadderElement(column, row, randomLadderElement());
             return;
         }
-        ladder.setLadderElement(column, row, LadderElement.EMPTY_LINE);
+        ladder.drawLadderElement(column, row, LadderElement.EMPTY_LINE);
     }
 
     private boolean canDrawHorizontalLine(Ladder ladder, int row, int column) {

@@ -4,27 +4,28 @@ import java.util.List;
 
 public class Ladder {
 
-    private final List<List<LadderElement>> ladderElements;
+    private final List<LadderRow> ladderRows;
 
-    Ladder(List<List<LadderElement>> ladderFrame) {
-        this.ladderElements = ladderFrame;
+    Ladder(List<LadderRow> ladderFrame) {
+        this.ladderRows = ladderFrame;
     }
 
     public LadderElement getLadderElement(int column, int row) {
-        return ladderElements.get(row).get(column);
+        LadderRow ladderRow = ladderRows.get(row);
+        return ladderRow.getLadderElement(column);
     }
 
-    void setLadderElement(int column, int row, LadderElement ladderElement) {
-        ladderElements.get(row).set(column, ladderElement);
-        return;
+    void drawLadderElement(int column, int row, LadderElement ladderElement) {
+        LadderRow ladderRow = ladderRows.get(row);
+        ladderRow.drawLadderElement(column, ladderElement);
     }
 
     public int width() {
-        return ladderElements.get(0).size();
+        return ladderRows.get(0).width();
     }
 
     public int height() {
-        return ladderElements.size();
+        return ladderRows.size();
     }
 
 }
