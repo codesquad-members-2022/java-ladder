@@ -48,15 +48,8 @@ public class Ladder {
 
         if (column % 2 == 1) {
             ladderRow.add(addRandomLine(random.nextBoolean()));
-            lineDuplicateCheck(ladderRow, column);
+            duplicateCheck(ladderRow, column);
         }
-    }
-
-    private void lineDuplicateCheck(List<String> ladderRow, int column) {
-        if (column >= 2 && ladderRow.get(column - 2).equals(HORIZON)) {
-            ladderRow.set(column, BLANK);
-        }
-
     }
 
     private String addRandomLine(boolean trueCheck) {
@@ -64,6 +57,24 @@ public class Ladder {
             return HORIZON;
         }
         return BLANK;
+    }
+
+    private void duplicateCheck(List<String> ladderRow, int column) {
+        lineDuplicateCheck(ladderRow, column);
+        blankDuplicateCheck(ladderRow, column);
+        //공백 중복체크를 안해주면 사다리 다리가 없는 열도 생기기때문에 추가
+    }
+
+    private void lineDuplicateCheck(List<String> ladderRow, int column) {
+        if (column >= 2 && ladderRow.get(column - 2).equals(HORIZON)) {
+            ladderRow.set(column, BLANK);
+        }
+    }
+
+    private void blankDuplicateCheck(List<String> ladderRow, int column) {
+        if(column >= 2 && ladderRow.get(column - 2).equals(BLANK)){
+            ladderRow.set(column, HORIZON);
+        }
     }
 
 
