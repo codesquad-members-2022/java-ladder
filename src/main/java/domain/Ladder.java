@@ -11,7 +11,7 @@ public class Ladder {
     private final List<Floor> board;
 
     public Ladder(int count, int height) {
-        this.width = count;
+        this.width = count-1;
         this.height = Validation.checkHeight(height);
         board = generateBoard();
     }

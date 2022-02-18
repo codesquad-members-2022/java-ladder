@@ -22,6 +22,9 @@ public class Floor {
         if(index > floor.size()-1) {
             return false;
         }
+        if(floor.get(index) == null) {
+            return false;
+        }
         return floor.get(index);
     }
 
@@ -36,6 +39,9 @@ public class Floor {
     }
 
     private boolean drawPart(List<Boolean> floor, int index) {
+        if(floor.get(index-1) == null) {
+            return false;
+        }
         if(floor.get(index-1)) {
           return false;
         }
