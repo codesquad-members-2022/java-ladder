@@ -11,7 +11,7 @@ public class Main {
 
         Ladder ladder = new Ladder(playerCount, ladderHeight);
 
-       output.printLadder2(ladder.makeLadder());
+       output.printLadder(ladder.makeLadder());
 
         input.close();
     }
