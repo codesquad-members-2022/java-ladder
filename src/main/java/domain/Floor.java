@@ -40,7 +40,7 @@ public class Floor {
 
     private boolean drawPart(List<Boolean> floor, int index) {
         if (floor.get(index - 1) == null) {
-            return false;
+            return drawRandom();
         }
         if (floor.get(index - 1)) {
             return false;
