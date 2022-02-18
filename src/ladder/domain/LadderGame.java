@@ -8,6 +8,7 @@ public class LadderGame {
 
     public void run() {
         String[] playerNames = inputView.getPlayerNames();
+        String[] rewards = inputView.getRewards();
         Players players = new Players(playerNames);
 
         int height = inputView.getLadderHeight();
