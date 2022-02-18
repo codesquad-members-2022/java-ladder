@@ -28,15 +28,29 @@ public class LadderGame {
 
     private void insertElementAtColumn(List<Integer> rowIndexList, int columnLength) {
         for (int column = 0; column < columnLength; column++) {
-            rowIndexList.add(insertElement(column));
+            insertElement(rowIndexList, column);
         }
     }
 
-    private Integer insertElement(int column) {
+    private void insertElement(List<Integer> rowIndexList, int column) {
         if (column % 2 == 0) {
-            return 2;
+            rowIndexList.add(2);
+            return;
         }
-        return (int) (Math.random() * 2);
+        CheckHorizontalLinesOverlap(rowIndexList, column);
+    }
+
+    private void CheckHorizontalLinesOverlap(List<Integer> rowIndexList, int column) {
+        int random = (int) (Math.random() * 2);
+        if (column == 1) {
+            rowIndexList.add(random);
+            return;
+        }
+        if (rowIndexList.get(column - 2) == 1) {
+            rowIndexList.add(0);
+            return;
+        }
+        rowIndexList.add(random);
     }
 
     public void start() {
