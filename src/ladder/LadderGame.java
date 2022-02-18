@@ -16,10 +16,10 @@ public class LadderGame {
         this.ov = new OutputView();
     }
 
-    private List<List<Integer>> creatGhostLeg(int numberOfParticipants, int rowLength) {
+    private List<List<Integer>> creatGhostLeg(int numberOfParticipants, int LegLength) {
         int columnLength = (numberOfParticipants * 2) - 1;
-        List<List<Integer>> ghostLeg = new ArrayList<>(rowLength);
-        for (int row = 0; row < rowLength; row++) {
+        List<List<Integer>> ghostLeg = new ArrayList<>(LegLength);
+        for (int row = 0; row < LegLength; row++) {
             ghostLeg.add(new ArrayList<>());
             insertElementAtColumn(ghostLeg.get(row), columnLength);
         }
