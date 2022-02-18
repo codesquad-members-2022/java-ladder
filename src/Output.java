@@ -1,20 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Output {
 
     StringBuilder sb = new StringBuilder();
 
-    public void printLadder(char[][] ladder){
-        for (int row = 0; row < ladder.length; row++) {
-            makeColumn(ladder, row);
-            sb.append("\n");
+    public void printLadder2(List<List<String>> ladder){
+        for (int i = 0; i < ladder.size(); i++) {
+            makeColumn2(ladder.get(i));
         }
         System.out.println(sb);
     }
 
-    private char[][] makeColumn(char[][] ladder, int row){
-        for (int column = 0; column < ladder[row].length; column++) {
-            sb.append(ladder[row][column]);
+    public StringBuilder makeColumn2(List<String> ladderLine){
+        for (int i = 0; i < ladderLine.size(); i++) {
+            sb.append(ladderLine.get(i));
         }
-        return ladder;
+        sb.append("\n");
+        return sb;
     }
+
 
 }

@@ -10,6 +10,7 @@ public class Ladder {
     private int heightLadder;
     private List<List<String>> ladder;
 
+
     public Ladder(int playerCount, int heightLadder) {
         this.playerCount = playerCount;
         this.heightLadder = heightLadder;
@@ -20,7 +21,6 @@ public class Ladder {
         for (int i = 0; i < heightLadder; i++) {
             List<String> ladderLine = new ArrayList<>();
             ladder.add(makeLadderLine(ladderLine));
-            System.out.println(ladder.get(i));
         }
         return ladder;
     }
