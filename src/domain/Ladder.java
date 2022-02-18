@@ -31,71 +31,19 @@ public class Ladder {
         return ladder;
     }
 
-    public String Info() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(putPlayers());
-        for (int i = 0; i < heightOfLadder; i++) {
-            sb.append(rowOfLadderInfo(i));
-        }
-        sb.append(putResults());
-        return sb.toString();
+    public List<Line> getLadderInfo() {
+        // deep copy
+        return new ArrayList<>(lineLadder);
     }
 
-    private String rowOfLadderInfo(int index) {
-        StringBuilder sb = new StringBuilder();
-        String expandedRow;
-        sb.append("  |");
-        for (int i = 0; i < numberOfPeople - 1; i++) {
-            expandedRow = expandRowWidth(lineLadder.get(index).get(i));
-            sb.append(expandedRow);
-            sb.append("|");
-        }
-        sb.append("\n");
-        return sb.toString();
+    public List<String> getPlayersInfo() {
+        // deep copy
+        return new ArrayList<>(players);
     }
 
-    private String expandRowWidth(boolean element) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < WIDTH; i++) {
-            sb.append(transValue(element));
-        }
-        return sb.toString();
-    }
-
-    private char transValue(boolean element) {
-        if (element) {
-            return '-';
-        }
-        return ' ';
-    }
-
-    private String putPlayers() {
-        StringBuilder sb = new StringBuilder();
-        for (String player : players) {
-            sb.append(Formatter.checkAndPadding(player, WIDTH));
-            sb.append(" ");
-        }
-        sb.append("\n");
-        return sb.toString();
-    }
-
-    private String putResults() {
-        StringBuilder sb = new StringBuilder();
-        for (String result : results) {
-            sb.append(Formatter.checkAndPadding(result, WIDTH));
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
-    public String resultInfo(String player) {
-        //TODO
-        //result 처리하는 로직 들어가야함.
-        if(player.equals("춘식이")){
-            return "춘식이";
-        }
-
-        return "";
+    public List<String> getResultsInfo() {
+        // deep copy
+        return new ArrayList<>(results);
     }
 }
 
