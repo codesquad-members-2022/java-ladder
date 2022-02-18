@@ -1,3 +1,7 @@
+package domain.game;
+
+import domain.ladder.Ladder;
+import domain.player.PlayerList;
 import util.InputValidator;
 import view.InputView;
 import view.OutputView;

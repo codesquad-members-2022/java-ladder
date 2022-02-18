@@ -1,3 +1,5 @@
+package domain.ladder;
+
 public enum LadderElement {
     EMPTY("     "),
     STEP("-----"),

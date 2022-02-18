@@ -1,3 +1,5 @@
+package domain.player;
+
 class Player {
 
     public static final int MAX_NAME_LENGTH = 5;
