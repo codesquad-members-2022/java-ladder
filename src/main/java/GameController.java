@@ -12,6 +12,7 @@ public class GameController {
         OutputView.showLadder(ladderGame);
         run(ladderGame);
         InputView.close();
+        OutputView.closeGame();
     }
 
     private void run(LadderGame ladderGame) {
