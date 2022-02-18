@@ -1,7 +1,9 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -13,21 +15,23 @@ public class Ladder {
     private static final String SECTION_WITHOUT_STEP = RAIL + EMPTY.repeat(STEP_WIDTH);
 
     private final int height;
+    private final int playerCount;
     private final int width;
     private final List<LadderRow> ladderRowList;
+    private final Map<Integer, Integer> resultTable = new HashMap<>();
     private final Climber climber = new Climber();
 
     protected Ladder(int height, int playerCount) {
         this.height = height;
+        this.playerCount = playerCount;
         this.width = playerCount - 1;
         this.ladderRowList = new ArrayList<>(width);
         build();
+        buildResultTable();
     }
 
     public int getRewardIndex(int playerIndex) {
-        climber.initialize(playerIndex);
-        climber.climbDown();
-        return climber.endPosition;
+        return resultTable.get(playerIndex);
     }
 
     public String render() {
@@ -49,6 +53,14 @@ public class Ladder {
     private void build() {
         for (int i = 0; i < height; i++) {
             ladderRowList.add(new LadderRow(width));
+        }
+    }
+
+    private void buildResultTable() {
+        for (int playerIndex = 0; playerIndex < playerCount; playerIndex++) {
+            climber.initialize(playerIndex);
+            climber.climbDown();
+            resultTable.put(playerIndex, climber.endPosition);
         }
     }
 
