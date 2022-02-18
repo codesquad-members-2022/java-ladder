@@ -9,6 +9,7 @@ public class Ladder {
     private String step;
     private final int width;
     private final int height;
+    private List<String> innerList;
 
     public Ladder(int width, int height) {
         this.width = width * 2 - 1;
@@ -23,8 +24,8 @@ public class Ladder {
         print(ladderList);
     }
 
-    public ArrayList<String> checkLadderParts() {
-        ArrayList<String> innerList = new ArrayList<>();
+    public List<String> checkLadderParts() {
+        innerList = new ArrayList<>();
         for (int column = 0; column < width; column++) {
             innerList.add(drawLines(column));
         }
@@ -37,11 +38,21 @@ public class Ladder {
         if (column % 2 == 0) {
             return step = "|";
         }
-        if (random == 0) {
-            return step = "     ";
+        if (rd.nextBoolean() && checkBlank(column)) {
+            return step = "-----";
         }
 
-        return step = "-----";
+        return step = "     ";
+    }
+
+    public boolean checkBlank (int column) {
+        if (column == 1) {
+            return true;
+        }
+        if ("     ".equals(innerList.get(column - 2))){
+            return true;
+        }
+        return false;
     }
 
     //TODO: 문자열 자체를 반환하게 해서.. or toString으로 출력할 문자열을 만들어서
