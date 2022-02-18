@@ -4,7 +4,7 @@ import domain.Board;
 import domain.Names;
 
 
-public class LadderGame {
+public class GameController {
 
     private Board board;
     private Names names;
