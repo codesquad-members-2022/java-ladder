@@ -28,8 +28,8 @@ public class Line {
         if(!isAlreadyExistedLadder(startPosition)){
             throw new IllegalArgumentException(ALREADY_MAKE_LADDER_MESSAGE);
         }
-        columns[startPosition] = 1;
-        columns[startPosition + 1] = 2;
+        columns[startPosition] = Direction.RIGHT.getNum();
+        columns[startPosition + 1] = Direction.LEFT.getNum();
         return true;
     }
 
@@ -42,7 +42,7 @@ public class Line {
     }
 
     public boolean isMarkedPosition(int position) {
-        return columns[position] == 1 || columns[position] == 2;
+        return columns[position] == Direction.RIGHT.getNum() || columns[position] == Direction.LEFT.getNum();
     }
 
     public int switchLadderLine(int startLine) {
@@ -50,18 +50,22 @@ public class Line {
             return startLine;
         }
         // 우측 처리하기
-        if(columns[startLine] == 1){
-            return startLine+1;
+        if(isSwitchRight(startLine)){
+            return startLine + 1;
         }
         // 좌측 이동하기
         return startLine - 1;
+    }
+
+    private boolean isSwitchRight(int startLine) {
+        return columns[startLine] == 1;
     }
 
     public void show() {
         System.out.print(" ");
         for(int i = 0; i < columns.length-1; i++){
             System.out.print("|");
-            if(columns[i] == 1 && columns[i+1] == 2){
+            if(columns[i] == Direction.RIGHT.getNum() && columns[i+1] == Direction.LEFT.getNum()){
                 System.out.print("-----");
                 continue;
             }
