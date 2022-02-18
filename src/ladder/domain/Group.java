@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,6 +21,18 @@ public class Group {
 
     protected int count() {
         return nameList.size();
+    }
+
+    protected boolean containsName(String name) {
+        return nameList.contains(String.format(NAME_FORMAT, name));
+    }
+
+    protected int getIndex(String name) {
+        return nameList.indexOf(String.format(NAME_FORMAT, name));
+    }
+
+    protected String getName(int index) {
+        return nameList.get(index);
     }
 
     @Override
