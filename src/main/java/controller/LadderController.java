@@ -1,5 +1,6 @@
 package controller;
 
+import domain.LadderFactory;
 import domain.ladder.RandomLadder;
 import domain.Line;
 import view.InputView;
@@ -15,8 +16,7 @@ public class LadderController {
             try {
                 inputNames = InputView.requestPerson();
                 int inputHeight = InputView.requestHeight();
-
-                List<Line> lines = new RandomLadder(inputHeight, inputNames.length).getLines();
+                List<Line> lines = LadderFactory.makeRandomLadder(inputHeight, inputNames.length).getLines();
 
                 OutputView.showLadder(lines, inputNames);
                 return;

@@ -8,11 +8,11 @@ public class LadderFactory {
     private LadderFactory() {
     }
 
-    public Ladder makeRandomLadder(int height, int numOfPerson){
+    public static Ladder makeRandomLadder(int height, int numOfPerson){
         return new RandomLadder(height, numOfPerson);
     }
 
-    public Ladder makeUserDefineLadder(int height, int numOfPerson){
+    public static Ladder makeUserDefineLadder(int height, int numOfPerson){
         return new UserDefineLadder(height, numOfPerson);
     }
 }
