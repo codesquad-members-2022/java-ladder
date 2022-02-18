@@ -1,46 +1,63 @@
+import java.net.Inet4Address;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
 
     private Random ran = new Random();
-    private char[][] ladder;
     private int playerCount;
     private int heightLadder;
+    private List<List<String>> ladder;
 
     public Ladder(int playerCount, int heightLadder) {
         this.playerCount = playerCount;
         this.heightLadder = heightLadder;
-        this.ladder = new char[heightLadder][playerCount*2-1];
+        this.ladder = new ArrayList<>();
     }
 
-    public char[][] makeLadder(){
-        for (int row = 0; row < ladder.length; row++) {
-            ladder = makeLadderColumn(ladder, row);
+    public List<List<String>> makeLadder(){
+        for (int i = 0; i < heightLadder; i++) {
+            List<String> ladderLine = new ArrayList<>();
+            ladder.add(makeLadderLine(ladderLine));
+            System.out.println(ladder.get(i));
         }
         return ladder;
     }
 
-    private char[][] makeLadderColumn(char[][] ladder, int row){
-        for (int column = 0; column < ladder[row].length; column++) {
-            ladder = makeLine(ladder, row, column);
-            ladder = makeStick(ladder, row, column);
+    public List<String> makeLadderLine(List<String> ladderArr){
+        int width = playerCount * 2 - 1;
+        for (int i = 0; i < width; i++) {
+            makeStick(ladderArr, i);
+            makeLine(ladderArr, i);
         }
-        return ladder;
+        return ladderArr;
     }
 
-    private char[][] makeLine(char[][] ladder, int row, int column){
+
+    public List<String> makeLine (List<String> line, int j){
+        if (j % 2 == 1) {
+            randomLine(line);
+        }
+        return line;
+    }
+
+    public List<String> randomLine(List<String> line){
         if (ran.nextBoolean()){
-            ladder[row][column] = ' ';
-            return ladder;
+            line.add("     ");
+            return line;
         }
-        ladder[row][column] = '-';
-        return ladder;
+        line.add("-----");
+        return line;
     }
 
-    private char[][] makeStick(char[][] ladder, int row, int column){
-        if (column % 2 == 0) {
-            ladder[row][column] = '|';
+
+    public List<String> makeStick(List<String> line, int j){
+        if (j % 2 == 0 ) {
+            line.add("|");
+            return line;
         }
-        return ladder;
+        return line;
     }
+
 }
