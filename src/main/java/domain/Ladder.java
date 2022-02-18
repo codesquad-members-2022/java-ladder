@@ -11,11 +11,9 @@ public class Ladder {
     private final int width;
     private final int height;
     private final List<Floor> board;
-    private final Players names;
 
-    public Ladder(Players names, int height) {
-        this.names = names;
-        this.width = names.getPlayersCount()*2-1;
+    public Ladder(int count, int height) {
+        this.width = count*2-1;
         this.height = Validation.checkHeight(height);
         board = generateBoard();
     }
@@ -35,7 +33,6 @@ public class Ladder {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(names.toString()).append('\n');
         board.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
         return stringBuilder.toString();
     }

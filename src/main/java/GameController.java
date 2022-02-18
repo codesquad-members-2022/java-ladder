@@ -1,8 +1,7 @@
 import View.InputView;
 import View.OutputView;
-import domain.Board;
-import domain.Names;
-
+import domain.Ladder;
+import domain.LadderGame;
 
 public class GameController {
 
@@ -17,8 +16,9 @@ public class GameController {
     }
 
     public void run() {
+        LadderGame ladderGame = InputView.askSettingLadder();
         InputView.close();
-        board.generateFrame();
+        OutputView.showLadder(ladderGame);
     }
 
     public void showResult() {
