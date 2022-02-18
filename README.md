@@ -35,7 +35,7 @@
 - 사용자로부터 InputView를 통해 필요 인자를 입력받음
   - InputView는 Validator을 의존하며, 이것이 유효성 검사를 해줌
 - 게임 초기화 : 필요 인자를 LadderGameService를 통해 전달함.
-  - 인자를 입력받으면 LadderFactory 에게 전달하여 Ladder을 생성
+  - 인자를 입력받으면 Ladder을 생성(Ladder 스스로)
   - 이를 기반으로 LadderGame 초기화
 - 결과 얻어오기 : LadderService에게 특정 결과를 요청하여 얻어옴
 - 결과 출력 : OutputView에서 결과값을 전달받아 적절히 출력
@@ -114,11 +114,7 @@ public class AppConfig {
   }
 
   public LadderGameService ladderGameService() {
-    return LadderGameServiceImpl.getInstance(ladderFactory(), ladderGameMapDecorator());
-  }
-
-  public LadderFactory ladderFactory() {
-    return LadderFactoryImpl.getInstance();
+    return LadderGameServiceImpl.getInstance(ladderGameMapDecorator());
   }
 
   public LadderGameMapDecorator ladderGameMapDecorator() {
@@ -216,26 +212,26 @@ public class User {
 ```java
 public class Ladder {
 
-  private final List<LadderRow> ladderRows;
+  private final List<LadderRow> ladderRows = new ArrayList<>();
 
   Ladder(int width, int height) {
-    this.ladderRows = initLadder(width, height);
+    initLadder(width, height);
   }
 
-  private List<LadderRow> initLadder (int width, int height) {
-    return IntStream.range(0, height)
+  private void initLadder (int width, int height) {
+    IntStream.range(0, height)
             .mapToObj(row -> new LadderRow(width))
-            .collect(Collectors.toList());
+            .forEach(ladderRows::add);
+  }
+
+  public static Ladder makeForGame(int numberOfUsers, int height) {
+    int width = 2 * numberOfUsers - 1;
+    return new Ladder(width, height);
   }
 
   public LadderElement getLadderElement(int column, int row) {
     LadderRow ladderRow = ladderRows.get(row);
     return ladderRow.getLadderElement(column);
-  }
-
-  void drawLadderElement(int column, int row, LadderElement ladderElement) {
-    LadderRow ladderRow = ladderRows.get(row);
-    ladderRow.drawLadderElement(column, ladderElement);
   }
 
   public int width() {
@@ -245,7 +241,6 @@ public class Ladder {
   public int height() {
     return ladderRows.size();
   }
-
 }
 ```
 - 사다리를 정의한 클래스
@@ -259,28 +254,69 @@ public class Ladder {
 ## LadderRow
 
 ```java
-public class LadderRow {
+public class LadderRow  {
 
-    private List<LadderElement> ladderElements;
+  private static final float ATTACH_HORIZONTAL_LINE_PROBABILITY = 0.5f;
 
-    LadderRow(List<LadderElement> ladderRowFrame) {
-        this.ladderElements = ladderRowFrame;
+  private final List<LadderElement> ladderElements = new ArrayList<>();
+
+  LadderRow(int width) {
+    initLadderRow(width);
+  }
+
+  private void initLadderRow(int width) {
+    IntStream.range(0, width)
+            .mapToObj(this::selectLadderElement)
+            .forEach(ladderElements::add);
+  }
+
+  public LadderElement getLadderElement(int column) {
+    return ladderElements.get(column);
+  }
+
+  private LadderElement selectLadderElement(int column) {
+    if (isVerticalLineDrawableColumn(column)) {
+      return LadderElement.VERTICAL_LINE;
     }
-
-    public LadderElement getLadderElement(int column) {
-        return ladderElements.get(column);
+    if (isHorizontalLineDrawableColumn(column)) {
+      return randomLadderElement();
     }
+    return LadderElement.EMPTY_LINE;
+  }
 
-    public void drawLadderElement(int column, LadderElement ladderElement) {
-        ladderElements.set(column, ladderElement);
-    }
+  private LadderElement randomLadderElement() {
+    boolean attachHorizontalLine = generateRandomBool(ATTACH_HORIZONTAL_LINE_PROBABILITY);
+    return (attachHorizontalLine) ? LadderElement.HORIZONTAL_LINE : LadderElement.EMPTY_LINE;
+  }
 
-    public int width() {
-        return ladderElements.size();
+  private boolean generateRandomBool(float probabilityOfTrue) {
+    double randomFloat = Math.random();
+    boolean randomBool = (0<= randomFloat) && (randomFloat < probabilityOfTrue);
+    return randomBool;
+  }
+
+  public boolean isVerticalLineDrawableColumn(int column) {
+    return (column%2 == 0);
+  }
+
+  public boolean isHorizontalLineDrawableColumn(int column) {
+    if (isVerticalLineDrawableColumn(column)) {
+      return false;
     }
+    if (column == 1) {
+      return true;
+    }
+    return getLadderElement(column - 2) == LadderElement.EMPTY_LINE;
+  }
+
+  public int width() {
+    return ladderElements.size();
+  }
 }
+
 ```
 - Ladder의 각 행의 성분들을 모아둠
+- LadderRow 스스로 자기 자신을 생성(초기화)할 책임을 가진다.
 
 ---
 
@@ -308,18 +344,6 @@ public enum LadderElement {
   - 세로라인은 VERTICAL_LINE
   - 가로라인은 HORIZONTAL_LINE
   - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
-
----
-
-## LadderFactory (interface)
-```java
-public interface LadderFactory {
-
-  Ladder create(int numberOfUsers, int height);
-}
-```
-- `Ladder`을 생성하는 역할
-- 구현체 : LadderFactoryImpl
 
 ---
 

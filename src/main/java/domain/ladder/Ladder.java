@@ -1,31 +1,31 @@
 package domain.ladder;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private final List<LadderRow> ladderRows;
+    private final List<LadderRow> ladderRows = new ArrayList<>();
 
     Ladder(int width, int height) {
-        this.ladderRows = initLadder(width, height);
+        initLadder(width, height);
     }
 
-    private List<LadderRow> initLadder (int width, int height) {
-        return IntStream.range(0, height)
-                        .mapToObj(row -> new LadderRow(width))
-                        .collect(Collectors.toList());
+    private void initLadder (int width, int height) {
+        IntStream.range(0, height)
+                .mapToObj(row -> new LadderRow(width))
+                .forEach(ladderRows::add);
+    }
+
+    public static Ladder makeForGame(int numberOfUsers, int height) {
+        int width = 2 * numberOfUsers - 1;
+        return new Ladder(width, height);
     }
 
     public LadderElement getLadderElement(int column, int row) {
         LadderRow ladderRow = ladderRows.get(row);
         return ladderRow.getLadderElement(column);
-    }
-
-    void drawLadderElement(int column, int row, LadderElement ladderElement) {
-        LadderRow ladderRow = ladderRows.get(row);
-        ladderRow.drawLadderElement(column, ladderElement);
     }
 
     public int width() {
@@ -35,5 +35,4 @@ public class Ladder {
     public int height() {
         return ladderRows.size();
     }
-
 }
