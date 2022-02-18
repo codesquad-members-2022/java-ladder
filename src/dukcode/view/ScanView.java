@@ -1,6 +1,7 @@
 package dukcode.view;
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ScanView {
@@ -13,8 +14,7 @@ public class ScanView {
 
     public String[] getPlayerName() {
         System.out.println("참여할 사람의 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요");
-        String[] namePlayers = sc.nextLine().split(",");
-        return namePlayers;
+        return Arrays.stream(sc.nextLine().split(",")).map(String::trim).toArray(String[]::new);
     }
 
     public int getHeight() {

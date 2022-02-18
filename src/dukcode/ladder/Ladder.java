@@ -1,6 +1,6 @@
-package dukcode.model;
+package dukcode.ladder;
 
-import dukcode.model.domain.Line;
+import dukcode.ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,11 @@ public class Ladder {
         System.arraycopy(namePlayers, 0, copyNamePlayers, 0, numPlayers);
         return copyNamePlayers;
     }
+
     public int getNumPlayers() {
         return numPlayers;
     }
+
     public int getHeight() {
         return height;
     }

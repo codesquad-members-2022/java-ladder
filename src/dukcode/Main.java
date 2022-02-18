@@ -1,7 +1,8 @@
 package dukcode;
 
-import dukcode.controller.LadderController;
-import dukcode.model.Ladder;
+import dukcode.controller.LadderGameController;
+import dukcode.ladder.Ladder;
+import dukcode.ladder.view.LadderView;
 import dukcode.view.PrintView;
 import dukcode.view.ScanView;
 
@@ -13,11 +14,12 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ScanView scanView = new ScanView(sc);
         Ladder ladder = new Ladder();
-        PrintView printView = new PrintView(ladder);
-        LadderController ladderController = new LadderController(printView, ladder);
+        LadderView ladderView = new LadderView(ladder);
+        PrintView printView = new PrintView(ladderView);
+        LadderGameController ladderGameController = new LadderGameController(printView, ladder);
 
-        ladderController.initLadder(scanView.getPlayerName(), scanView.getHeight());
-        ladderController.updatePrintView();
+        ladderGameController.initLadder(scanView.getPlayerName(), scanView.getHeight());
+        ladderGameController.updatePrintView();
         sc.close();
     }
 }

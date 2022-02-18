@@ -1,4 +1,4 @@
-package dukcode.model.domain;
+package dukcode.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
