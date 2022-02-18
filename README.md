@@ -214,19 +214,14 @@ public class Ladder {
 
   private final List<LadderRow> ladderRows = new ArrayList<>();
 
-  Ladder(int width, int height) {
-    initLadder(width, height);
+  public Ladder(int numberOfUsers, int height) {
+    initLadder(numberOfUsers, height);
   }
 
-  private void initLadder (int width, int height) {
+  private void initLadder (int numberOfUsers, int height) {
     IntStream.range(0, height)
-            .mapToObj(row -> new LadderRow(width))
+            .mapToObj(row -> new LadderRow(numberOfUsers))
             .forEach(ladderRows::add);
-  }
-
-  public static Ladder makeForGame(int numberOfUsers, int height) {
-    int width = 2 * numberOfUsers - 1;
-    return new Ladder(width, height);
   }
 
   public LadderElement getLadderElement(int column, int row) {
@@ -260,11 +255,12 @@ public class LadderRow  {
 
   private final List<LadderElement> ladderElements = new ArrayList<>();
 
-  LadderRow(int width) {
-    initLadderRow(width);
+  public LadderRow(int numberOfUsers) {
+    initLadderRow(numberOfUsers);
   }
 
-  private void initLadderRow(int width) {
+  private void initLadderRow(int numberOfUsers) {
+    int width = 2 * numberOfUsers  - 1;
     IntStream.range(0, width)
             .mapToObj(this::selectLadderElement)
             .forEach(ladderElements::add);
@@ -312,8 +308,8 @@ public class LadderRow  {
   public int width() {
     return ladderElements.size();
   }
-}
 
+}
 ```
 - Ladder의 각 행의 성분들을 모아둠
 - LadderRow 스스로 자기 자신을 생성(초기화)할 책임을 가진다.

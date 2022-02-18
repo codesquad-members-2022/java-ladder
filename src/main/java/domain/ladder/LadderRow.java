@@ -10,11 +10,12 @@ public class LadderRow  {
 
     private final List<LadderElement> ladderElements = new ArrayList<>();
 
-    LadderRow(int width) {
-        initLadderRow(width);
+    public LadderRow(int numberOfUsers) {
+        initLadderRow(numberOfUsers);
     }
 
-    private void initLadderRow(int width) {
+    private void initLadderRow(int numberOfUsers) {
+        int width = 2 * numberOfUsers  - 1;
         IntStream.range(0, width)
                 .mapToObj(this::selectLadderElement)
                 .forEach(ladderElements::add);
@@ -62,4 +63,5 @@ public class LadderRow  {
     public int width() {
         return ladderElements.size();
     }
+
 }

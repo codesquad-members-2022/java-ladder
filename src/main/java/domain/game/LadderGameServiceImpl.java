@@ -27,7 +27,7 @@ public class LadderGameServiceImpl implements LadderGameService {
     @Override
     public void initLadderGame(List<User> users, int height) {
         int numberOfUsers = users.size();
-        Ladder ladder = Ladder.makeForGame(numberOfUsers, height);
+        Ladder ladder = new Ladder(numberOfUsers, height);
         this.ladderGame = new LadderGame(users, ladder);
     }
 

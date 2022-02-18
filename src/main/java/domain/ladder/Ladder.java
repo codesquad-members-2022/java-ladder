@@ -8,19 +8,14 @@ public class Ladder {
 
     private final List<LadderRow> ladderRows = new ArrayList<>();
 
-    Ladder(int width, int height) {
-        initLadder(width, height);
+    public Ladder(int numberOfUsers, int height) {
+        initLadder(numberOfUsers, height);
     }
 
-    private void initLadder (int width, int height) {
+    private void initLadder (int numberOfUsers, int height) {
         IntStream.range(0, height)
-                .mapToObj(row -> new LadderRow(width))
+                .mapToObj(row -> new LadderRow(numberOfUsers))
                 .forEach(ladderRows::add);
-    }
-
-    public static Ladder makeForGame(int numberOfUsers, int height) {
-        int width = 2 * numberOfUsers - 1;
-        return new Ladder(width, height);
     }
 
     public LadderElement getLadderElement(int column, int row) {
