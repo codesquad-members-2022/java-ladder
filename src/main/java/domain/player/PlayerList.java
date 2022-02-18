@@ -30,7 +30,7 @@ public class PlayerList {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Player player : players) {
-            sb.append(player.getNameWithPadding());
+            sb.append(player.getShownName());
             sb.append("\t");
         }
         return sb.toString();
