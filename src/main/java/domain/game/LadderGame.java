@@ -8,6 +8,8 @@ import view.OutputView;
 
 public class LadderGame {
 
+    public static final int MIN_PLAYER = 2;
+
     private final InputView input = new InputView();
     private final InputValidator validator = new InputValidator();
     private final OutputView output = new OutputView();

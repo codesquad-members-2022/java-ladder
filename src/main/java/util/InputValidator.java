@@ -1,5 +1,7 @@
 package util;
 
+import domain.game.LadderGame;
+
 public class InputValidator {
 
     public int positiveInteger(String input) throws IllegalArgumentException {
@@ -14,8 +16,8 @@ public class InputValidator {
 
     public String[] names(String input) throws IllegalArgumentException {
         String[] names = input.replaceAll(" ", "").split(",");
-        if (names.length < 2) {
-            throw new IllegalArgumentException("이름을 쉼표로 구분하여 2명 이상 입력해주세요.");
+        if (names.length < LadderGame.MIN_PLAYER) {
+            throw new IllegalArgumentException("이름을 쉼표로 구분하여 " + LadderGame.MIN_PLAYER + "명 이상 입력해주세요.");
         }
         return names;
     }
