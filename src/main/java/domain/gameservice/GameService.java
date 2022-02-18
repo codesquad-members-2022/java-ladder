@@ -2,34 +2,50 @@ package domain.gameservice;
 
 import domain.ladder.Ladder;
 import domain.ladder.LadderCreator;
-import domain.result.Result;
-import domain.result.ResultCreator;
+import domain.ladder.Line;
+import domain.item.Item;
+import domain.item.ItemCreator;
 import domain.user.User;
 import domain.user.UserCreator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GameService {
     private Map<String, User> users;
-    private Map<Integer, Result> results;
+    private Map<Integer, Item> items;
     private Ladder ladder;
 
-    public GameService( int lineHeight, String[] users,String[] results) {
+    public GameService( int lineHeight, String[] users,String[] items) {
 
         this.users = UserCreator.createUserMap(users);
-        this.results = ResultCreator.createResultMap(results);
+        this.items = ItemCreator.createResultMap(items);
         this.ladder = LadderCreator.createLadder(lineHeight, calculateLadderWidth());
     }
 
-    public Result getSingleResult(String username) {
+    public Item getSinglePlayerResult(String username) {
         int userPoint = users.get(username).getPoint();
-        //게임 로직
-        return results.get(userPoint);
+
+        for (int i = 0; i < ladder.getLadderSize(); i++) {
+            userPoint += ladder.move(i, userPoint);
+        }
+        return items.get(userPoint);
     }
 
-
+    public List<Line> getLadder() {
+        return ladder.getLadders();
+    }
 
     private int calculateLadderWidth() {
         return users.size() * 2 - 1;
+    }
+
+    public List<User> getUsers() {
+        return new ArrayList<>(users.values());
+    }
+
+    public List<Item> getItems() {
+        return new ArrayList<>(items.values());
     }
 }

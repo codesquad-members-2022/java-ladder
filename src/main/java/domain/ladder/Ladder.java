@@ -10,23 +10,39 @@ public class Ladder {
 
 
     public Ladder(int ladderHeight, int ladderWidth) {
-        if (!validateLadderHeight(ladderHeight)) {
-            throw new IllegalArgumentException("입력값이 올바르지 않습니다.");
-        }
         this.ladderHeight = ladderHeight;
         this.ladderWidth = ladderWidth;
         initLadder();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        ladders.forEach(line->{
-            StringBuilder row = new StringBuilder();
-            row.append(line.toString());
-            sb.append(" " + row + "\n");
-        });
-        return sb.toString();
+    public int getLadderSize() {
+        return ladderHeight;
+    }
+
+    public List<Line> getLadders() {
+        return ladders;
+    }
+
+    public int move(int rowNumber, int userPoint) {
+        Line line = ladders.get(rowNumber);
+        if (userPoint == 0) {
+            return canMoveRight(line, userPoint);
+        }
+        if (userPoint == ladderWidth-1) {
+            return canMoveLeft(line, userPoint);
+        }
+        return canMoveLeft(line, userPoint) + canMoveRight(line, userPoint);
+
+    }
+
+    private int canMoveLeft(Line line, int userPoint) {
+        if (line.getPrev(userPoint) == 1) return -2;
+        return 0;
+    }
+
+    private int canMoveRight(Line line, int userPoint) {
+        if (line.getNext(userPoint) == 1) return 2;
+        return 0;
     }
 
     private void initLadder() {
@@ -36,7 +52,5 @@ public class Ladder {
         }
     }
 
-    private boolean validateLadderHeight(int lineCount) {
-        return lineCount >= 1;
-    }
+
 }

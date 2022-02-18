@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.InputMismatchException;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UserTest {
@@ -18,15 +17,4 @@ public class UserTest {
                 .isInstanceOf(InputMismatchException.class)
                 .hasMessage("이름의 길이를 1자 이상, 5자 이하로 작성해주세요.");
     }
-
-//    @Test
-//    @DisplayName("이름의 길이가 5자가 아닐경우 공백으로 채워주는 테스트")
-//    void addPaddingToUsername() {
-//        List<String> usernames = Arrays.asList("a","aa", "aaa", "aaaa");
-//
-//        usernames.forEach(name->{
-//            String sut = new User(name,0).getName();
-//            assertThat(sut.length()).isEqualTo(5);
-//        });
-//    }
 }

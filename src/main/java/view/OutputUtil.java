@@ -1,7 +1,7 @@
 package view;
 
-import domain.ladder.Ladder;
 import domain.ladder.Line;
+import domain.item.Item;
 import domain.user.User;
 
 import java.util.List;
@@ -10,26 +10,51 @@ public class OutputUtil {
     private static final String USER_LINE = "|";
     private static final String CONNECTION_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
+    private static final String PADDING = " ";
 
     public static void printUsers(List<User> users) {
-        users.forEach(user -> System.out.print(user + " "));
+        users.forEach(user -> System.out.print(addPadding(user.getName())));
+        System.out.println();
     }
 
-
-    public static void printLadder(Ladder ladder) {
-            //각 줄별로 출력
+    public static void printLadder(List<Line> ladder) {
+        for (Line line : ladder) {
+            System.out.println(PADDING.repeat(2) + printLadderLine(line.getLine()));;
+        }
     }
 
-    public static void printResults() {
-        //Result를 담은 List를 매개변수로 받는다
-        //출력
+    public static void printItems(List<Item> items) {
+        items.forEach(item -> System.out.print(addPadding(item.getName())));
+        System.out.println();
     }
 
-    private static void printLadderLine(Line line) {
-        //반복문으로 line을 돌면서
-        //-1 = 빈칸
-        //0 = 유저
-        //1 = 연결선
-        //으로 만들어서 반환
+    private static String printLadderLine(List<Integer> line) {
+        StringBuilder sb = new StringBuilder();
+        for (int i : line) {
+            if (i % 2 == 0) {
+                sb.append(USER_LINE);
+            } else if (i == -1) {
+                sb.append(EMPTY_LINE);
+            } else {
+                sb.append(CONNECTION_LINE);
+            }
+        }
+        return sb.toString();
+    }
+
+    private static String addPadding(String user) {
+        if (user.length() == 5) {
+            return user;
+        }
+        StringBuilder sb = new StringBuilder();
+        int whiteSpace = 5 - user.length();
+        int frontSpace = whiteSpace / 2;
+        int backSpace = whiteSpace - frontSpace;
+
+        sb.append(PADDING.repeat(frontSpace));
+        sb.append(user);
+        sb.append(PADDING.repeat(backSpace));
+
+        return sb.toString();
     }
 }
