@@ -11,22 +11,21 @@
         └── ladder
             ├── LadderGame.java
             ├── config
-            │         └── GameConfig.java
+            │    └── GameConfig.java
             ├── domain
-            │         ├── LadderElement.java
-            │         ├── Participant.java
-            │         └── gamemap
-            │             ├── GameMap.java
-            │             ├── GameMapColumn.java
-            │             └── GameMapRow.java
+            │    ├── LadderElement.java
+            │    ├── Participant.java
+            │    └── gamemap
+            │        ├── GameMap.java
+            │        ├── GameMapColumn.java
+            │        └── GameMapRow.java
             ├── utils
-            │         └── StringUtils.java
+            │    └── StringUtils.java
             ├── validation
-            │         └── InputValidator.java
+            │    └── InputValidator.java
             └── view
                 ├── InputView.java
                 └── OutputView.java
-
 
 ```
 
