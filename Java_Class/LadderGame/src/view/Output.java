@@ -27,9 +27,10 @@ public class Output {
 
     public void printLadder(List<Line> ladder) {
         for (Line line : ladder) {
-            String temp = String.join("",line.getOneLine());
+            String temp = String.join("",line.getLine());
             System.out.printf("%s%s%n", "   ", temp);
         }
     }
+
 
 }
