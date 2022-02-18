@@ -37,7 +37,7 @@ public class Ladder {
         for (int i = 0; i < heightOfLadder; i++) {
             sb.append(rowOfLadderInfo(i));
         }
-
+        sb.append(putResults());
         return sb.toString();
     }
 
@@ -76,6 +76,15 @@ public class Ladder {
             sb.append(" ");
         }
         sb.append("\n");
+        return sb.toString();
+    }
+
+    private String putResults() {
+        StringBuilder sb = new StringBuilder();
+        for (String result : results) {
+            sb.append(Formatter.checkAndPadding(result, WIDTH));
+            sb.append(" ");
+        }
         return sb.toString();
     }
 
