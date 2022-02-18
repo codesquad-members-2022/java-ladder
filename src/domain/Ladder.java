@@ -8,10 +8,12 @@ public class Ladder {
     private int numberOfPeople;
     private int heightOfLadder;
     private List<String> players;
+    private List<String> results;
     private List<Line> lineLadder;
 
-    public Ladder(List<String> players, int m) {
+    public Ladder(List<String> players, List<String> results, int m) {
         this.players = players;
+        this.results = results;
         this.numberOfPeople = players.size();
         this.heightOfLadder = m;
         this.init();
