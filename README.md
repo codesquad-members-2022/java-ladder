@@ -373,7 +373,6 @@ public interface LadderGameMapDecorator {
 ```java
 public interface Validator {
 
-  void validateUserName(User user);
   void validateNumberOfUsers(List<User> users);
   void validateDuplicateUsers(List<User> users);
   void heightValidate(int height);
@@ -381,7 +380,6 @@ public interface Validator {
 }
 ```
 - 입력값에 대한 유효성 검사, 유효하지 않으면 예외를 throw
-  - validateUserName : 이름의 유효성
   - validateNumberOfUser : 참가자 수의 유효성
   - validateDuplicateUsers : 참가자의 중복여부 검증
   - heightValidate : 높이의 유효성 검증

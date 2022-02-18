@@ -45,13 +45,12 @@ public class InputViewImpl implements InputView {
     }
 
     private void validateUsers(List<User> users) {
-        users.forEach(validator::validateUserName);
         validator.validateDuplicateUsers(users);
         validator.validateNumberOfUsers(users);
     }
 
     private void requestInputUserNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하셔야하고, 이름은 5자를 넘길 수 없습니다.)");
+        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하셔야합니다.)");
         System.out.print(USERS_PROMPT);
     }
 
