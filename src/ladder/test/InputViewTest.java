@@ -12,7 +12,7 @@ public class InputViewTest {
         String[] playerNames = {"suntory", "ddmouse", "nathan"};
 
         //when
-        String[] result = InputView.cutToMaximumLength(playerNames);
+        String[] result = InputView.cutToMaximumLength(playerNames, 5);
 
         //then
         for (int i = 0; i < playerNames.length; i++) {
