@@ -1,6 +1,7 @@
 package controller;
 
 import domain.LadderFactory;
+import domain.ladder.Ladder;
 import domain.ladder.RandomLadder;
 import domain.Line;
 import view.InputView;
@@ -15,10 +16,12 @@ public class LadderController {
             String[] inputNames;
             try {
                 inputNames = InputView.requestPerson();
+                String[] results = InputView.requestResult();
                 int inputHeight = InputView.requestHeight();
-                List<Line> lines = LadderFactory.makeRandomLadder(inputHeight, inputNames.length).getLines();
 
-                OutputView.showLadder(lines, inputNames);
+                Ladder ladder = LadderFactory.makeRandomLadder(inputHeight, inputNames.length);
+
+                OutputView.showLadder(ladder, inputNames, results);
                 return;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
