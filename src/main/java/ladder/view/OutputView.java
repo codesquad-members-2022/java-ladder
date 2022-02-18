@@ -1,14 +1,18 @@
-package LadderGame;
+package ladder.view;
+
+import ladder.Validation;
+import ladder.domain.Line;
+import ladder.domain.Player;
 
 import java.util.List;
 
-public class Output {
+public class OutputView {
 
     private static final StringBuilder sb = new StringBuilder();
     private static final String USER_LINE_PADDING = "  ";
 
     public static void printLadderGame(List<Line> ladder) {
-        printUserList(Client.getUserList());
+        printUserList(Player.getPlayerList());
 
         for (int row = 0; row < ladder.size(); row++) {
             appendString(ladder.get(row));

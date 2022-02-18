@@ -74,7 +74,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Editor-based Rest LadderGame.Client
+# Editor-based Rest ladder.Client
 .idea/httpRequests
 
 # Android studio 3.1+ serialized cache file

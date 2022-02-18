@@ -1,4 +1,4 @@
-package LadderGame;
+package ladder;
 
 public class Validation {
 

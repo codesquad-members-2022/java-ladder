@@ -1,4 +1,6 @@
-package LadderGame;
+package ladder.domain;
+
+import ladder.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,6 @@ public class LadderGame {
 
             ladder.add(new Line(countOfPlayer));
         }
-        Output.printLadderGame(ladder);
+        OutputView.printLadderGame(ladder);
     }
 }
