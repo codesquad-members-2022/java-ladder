@@ -51,6 +51,16 @@ public class InputView {
         return sb.toString();
     }
 
+    public void printLadder(List<List<String>> ladderList) {
+        StringBuilder sb = new StringBuilder();
+        for (List<String> strings : ladderList) {
+            sb.append("     ");
+            strings.forEach(string -> sb.append(string));
+            sb.append("\n");
+        }
+        System.out.print(sb);
+    }
+
     public void close() {
         if (scanner != null) {
             scanner.close();

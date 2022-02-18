@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Ladder {
-    private List<List<String>> ladderList = new ArrayList<>();
+    private List<List<String>> ladderList;
     private String step;
     private final int width;
     private final int height;
@@ -17,11 +17,12 @@ public class Ladder {
         makeLadder(height);
     }
 
-    public void makeLadder(int height) {
+    public List<List<String>> makeLadder(int height) {
+        ladderList = new ArrayList<>();
         for (int row = 0; row < height; row++) {
             ladderList.add(checkLadderParts());
         }
-        print(ladderList);
+        return ladderList;
     }
 
     public List<String> checkLadderParts() {
@@ -34,7 +35,6 @@ public class Ladder {
 
     public String drawLines(int column) {
         Random rd = new Random();
-        int random = rd.nextInt(100) % 2;
         if (column % 2 == 0) {
             return step = "|";
         }
@@ -54,17 +54,4 @@ public class Ladder {
         }
         return false;
     }
-
-    //TODO: 문자열 자체를 반환하게 해서.. or toString으로 출력할 문자열을 만들어서
-    public void print(List<List<String>> ladderList) {
-        StringBuilder sb = new StringBuilder();
-        for (List<String> strings : ladderList) {
-            sb.append("     ");
-            strings.forEach(string -> sb.append(string));
-            sb.append("\n");
-        }
-        System.out.print(sb);
-    }
 }
-
-

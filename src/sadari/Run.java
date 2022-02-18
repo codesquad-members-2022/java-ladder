@@ -12,6 +12,7 @@ public class Run {
 
         inputView.printNames();
         Ladder ladder = new Ladder(people, height);
+        inputView.printLadder(ladder.makeLadder(height));
         inputView.close();
     }
 }
