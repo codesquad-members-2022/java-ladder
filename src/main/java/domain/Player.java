@@ -18,6 +18,14 @@ public class Player {
         position++;
     }
 
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
+
+    public boolean isCorrectPosition(int position) {
+        return this.position == position;
+    }
+
     public String name2Text() {
         return editNameLength();
     }
