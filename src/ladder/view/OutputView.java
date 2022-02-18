@@ -1,17 +1,17 @@
 package ladder.view;
 
 import ladder.domain.Ladder;
-import ladder.domain.Players;
+import ladder.domain.Group;
 
 public class OutputView {
-    public void printLayout(Players players, Ladder ladder) {
+    public void printLayout(Group group, Ladder ladder) {
         System.out.println();
-        printPlayers(players);
+        printPlayers(group);
         printLadder(ladder);
     }
 
-    private void printPlayers(Players players) {
-        System.out.println(players);
+    private void printPlayers(Group group) {
+        System.out.println(group);
     }
 
     private void printLadder(Ladder ladder) {

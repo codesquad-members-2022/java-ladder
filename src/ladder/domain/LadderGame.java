@@ -9,14 +9,15 @@ public class LadderGame {
     public void run() {
         String[] playerNames = inputView.getPlayerNames();
         String[] rewards = inputView.getRewards();
-        Players players = new Players(playerNames);
-
         int height = inputView.getLadderHeight();
-        int playerCount = players.count();
 
+        Group playerGroup = new Group(playerNames);
+        int playerCount = playerGroup.count();
+
+        Group rewardGroup = new Group(rewards, playerCount);
         Ladder ladder = new Ladder(height, playerCount);
 
-        outputView.printLayout(players, ladder);
+        outputView.printLayout(playerGroup, ladder);
 
         inputView.close();
     }

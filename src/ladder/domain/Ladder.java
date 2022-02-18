@@ -8,7 +8,7 @@ public class Ladder {
     private static final String RAIL = "|";
     private static final String STEP = "-";
     private static final String EMPTY = " ";
-    private static final int STEP_WIDTH = Players.NAME_LENGTH_LIMIT + 1;
+    private static final int STEP_WIDTH = Group.NAME_LENGTH_LIMIT + 1;
     private static final String SECTION_WITH_STEP = RAIL + STEP.repeat(STEP_WIDTH);
     private static final String SECTION_WITHOUT_STEP = RAIL + EMPTY.repeat(STEP_WIDTH);
 
