@@ -4,6 +4,7 @@ import Util.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Players {
 
@@ -38,4 +39,13 @@ public class Players {
     public boolean containsPlayer(String name) {
         return players.stream().anyMatch(player -> player.isName(name));
     }
+
+    public String findName(int position) {
+        Optional<Player> target = players.stream().filter(player -> player.isCorrectPosition(position)).findFirst();
+        if (target.isPresent()) {
+            return target.get().findNameWithPosition(position);
+        }
+        throw new IllegalArgumentException();
+    }
+
 }

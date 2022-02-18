@@ -26,6 +26,13 @@ public class Player {
         return this.position == position;
     }
 
+    public String findNameWithPosition(int position) {
+        if(isCorrectPosition(position)) {
+            return this.name;
+        }
+        throw new IllegalArgumentException();
+    }
+
     public String name2Text() {
         return editNameLength();
     }
