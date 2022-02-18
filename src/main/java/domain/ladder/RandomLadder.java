@@ -1,14 +1,16 @@
-package domain;
+package domain.ladder;
 
-import java.rmi.dgc.Lease;
+import domain.LadderSize;
+import domain.Line;
+import domain.Position;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
-public class Ladder {
+public class RandomLadder {
     public static final String INVALID_HEIGHT_INPUT_MESSAGE = "사다리의 높이는 1이상 이여야 합니다.";
     public static final String INVALID_PERSON_NUM_INPUT_MESSAGE = "가능한 사람의 수는 1명 이상입니다.";
     public static final double DEFAULT_PERCENT = 0.3;
@@ -17,7 +19,7 @@ public class Ladder {
     private final List<Line> lines;
     private final LadderSize ladderSize;
 
-    public Ladder(int height, int numOfPerson) {
+    public RandomLadder(int height, int numOfPerson) {
         isValidInput(height, numOfPerson);
         this.ladderSize = LadderSize.create(height, numOfPerson);
         this.height = height;
@@ -46,7 +48,7 @@ public class Ladder {
         }
     }
 
-    int[] makeStartPositions() {
+    public int[] makeStartPositions() {
         int totalPositions = ladderSize.getTotalPositions();
         int countOfLine = ladderSize.getCountOfLine(DEFAULT_PERCENT);
         int[] startPositions = new int[countOfLine];
@@ -70,7 +72,7 @@ public class Ladder {
         return list;
     }
 
-    static boolean isExisted(int[] startPositions, int randomPosition) {
+    public static boolean isExisted(int[] startPositions, int randomPosition) {
         return Arrays.stream(startPositions)
                 .anyMatch(p -> p == randomPosition || p == randomPosition-1 || p == randomPosition+1);
     }

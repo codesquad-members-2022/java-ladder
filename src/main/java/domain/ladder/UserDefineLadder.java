@@ -1,4 +1,6 @@
-package domain;
+package domain.ladder;
+
+import domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
