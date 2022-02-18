@@ -10,6 +10,8 @@
         ├── Application.java
         └── ladder
             ├── LadderGame.java
+            ├── config
+            │         └── GameConfig.java
             ├── domain
             │         ├── LadderElement.java
             │         ├── Participant.java
@@ -25,6 +27,7 @@
                 ├── InputView.java
                 └── OutputView.java
 
+
 ```
 
 ### 프로젝트 설명
@@ -37,10 +40,11 @@
 public class Application {
 
     private static final String ALERT_UNEXPECTED_TERMINATION = "프로그램이 예기치 않게 종료되었습니다.";
+    private static final int NAME_LENGTH = 5;
 
     public static void main(String[] args) {
         try {
-            LadderGame game = new LadderGame();
+            LadderGame game = LadderGame.createWithNameLength(NAME_LENGTH);
             game.startGame();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,22 +65,27 @@ main 메소드에서는 `LadderGame` 인스턴스를 생성하고, startGame 메
 ```java
 public class LadderGame {
 
-    public static final int MAX_NAME_LENGTH = 5;
-
     private final GameMap gameMap;
+    private final GameConfig config;
     private final List<Participant> participants;
 
-    public LadderGame() throws IOException {
-        try (InputView reader = new InputView()) {
+    private LadderGame(int nameLength) {
+        config = GameConfig.createWithNameLength(nameLength);
+
+        try (InputView reader = InputView.createWithConfig(config)) {
             this.participants = reader.readParticipants();
             int height = reader.readHeight();
             this.gameMap = new GameMap(participants.size(), height);
         }
     }
 
+    public static LadderGame createWithNameLength(int nameLength) throws IOException {
+        return new LadderGame(nameLength);
+    }
+
     // ------- public method ---------
     public void startGame() throws IOException {
-        try (OutputView writer = new OutputView()) {
+        try (OutputView writer = OutputView.createWithConfig(config)) {
             writer.writeParticipants(this.participants);
             writer.writeGameMap(gameMap);
         }
@@ -106,13 +115,19 @@ public class InputView implements Closeable {
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
 
     private final Scanner sc;
+    private final InputValidator validator;
 
-    public InputView() {
-        this.sc = new Scanner(System.in);
+    private InputView(GameConfig config) {
+        this(System.in, config);
     }
 
-    public InputView(InputStream inputStream) {
+    private InputView(InputStream inputStream, GameConfig config) {
         this.sc = new Scanner(inputStream);
+        this.validator = InputValidator.createWithConfig(config);
+    }
+
+    public static InputView createWithConfig(GameConfig config) {
+        return new InputView(config);
     }
 
     public List<Participant> readParticipants() {
