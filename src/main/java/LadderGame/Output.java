@@ -5,7 +5,7 @@ import java.util.List;
 public class Output {
 
     private static final StringBuilder sb = new StringBuilder();
-    private static final String USERLINEPADDING = "  ";
+    private static final String USER_LINE_PADDING = "  ";
 
     public static void printLadderGame(List<List<String>> arr) {
         printUserList(Client.getUserList());
@@ -17,7 +17,7 @@ public class Output {
     }
 
     private static void printUserList(List<String> userList) {
-        sb.append(USERLINEPADDING);
+        sb.append(USER_LINE_PADDING);
 
         for (String user : userList) {
             sb.append(userNameLengthValidation(user));
