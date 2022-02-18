@@ -10,7 +10,7 @@ public class Validation {
     private static final int MAX_PLAYER = 10;
     private static final String PLAYER_ERROR_MESSAGE = "플레이어 수는 2명이상 10명이하로 가능합니다.";
     private static final String HEIGHT_ERROR_MESSGAE = "사다리의 높이는 1이상이어야 합니다.";
-    private static final String INPUT_REGEX = "^([\\w]{1,5},{1}){1,9}([\\w]{1,5}){1}";
+    private static final String INPUT_REGEX = "^([\\w]{1,20},{1}){1,9}([\\w]{1,20}){1}";
     private static final String INPUT_ERROR_MESSAGE = "입력을 확인해주세요.";
 
     public static int checkPlayers(int count) {

@@ -29,7 +29,7 @@ class ValidTest {
         assertDoesNotThrow(() ->Validation.checkInputNames(input6));
         // 5글자 초과
         String input7 = "tattjw,tattjwi,cmsskkk,cmsskkkkkkkkkk";
-        assertThrows(IllegalArgumentException.class, () -> Validation.checkInputNames(input7));
+        assertDoesNotThrow(()->Validation.checkInputNames(input7));
 
     }
 }
