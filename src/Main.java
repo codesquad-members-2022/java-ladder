@@ -10,13 +10,17 @@ public class Main {
         List<String> players;
         List<String> results;
         int heightOfLadder;
+        String player="";
         players = Arrays.asList(Input.getPlayer().split(","));
         results = Arrays.asList(Input.getResult().split(","));
         heightOfLadder = Input.getNumber();
 
-        Input.Close();
-
         Ladder ladder = new Ladder(players, results, heightOfLadder);
         Output.messageAboutLadder(ladder.Info());
+        while(!player.equals("춘식이")){
+            player = Input.pickPlayer();
+            Output.messageAboutResult(ladder.resultInfo(player));
+        }
+        Input.Close();
     }
 }

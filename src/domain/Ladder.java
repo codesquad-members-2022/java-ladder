@@ -88,5 +88,14 @@ public class Ladder {
         return sb.toString();
     }
 
+    public String resultInfo(String player) {
+        //TODO
+        //result 처리하는 로직 들어가야함.
+        if(player.equals("춘식이")){
+            return "춘식이";
+        }
+
+        return "";
+    }
 }
 
