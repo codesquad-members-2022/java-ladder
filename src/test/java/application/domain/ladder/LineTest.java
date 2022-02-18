@@ -16,8 +16,14 @@ class LineTest {
     }
 
     @Test
+    @DisplayName("현재 라인이 비어있을 때 'RAIL' 을 append 한다.")
+    void isValidTrueVer1() {
+        assertThat(line.isValid(2)).isTrue();
+    }
+
+    @Test
     @DisplayName("현재 라인의 2번 째 요소가 'EMPTY' 일 때 3번 째 요소에 'RAIL' 을 append 한다.")
-    void isValidTrue() {
+    void isValidTrueVer2() {
         line.addElement(STEP);
         line.addElement(EMPTY);
         assertThat(line.isValid(2)).isTrue();
