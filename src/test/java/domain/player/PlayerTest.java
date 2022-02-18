@@ -12,14 +12,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PlayerTest {
 
     @Test
-    @DisplayName("5자 이하의 이름을 입력하면 플에이어 정상 생성")
+    @DisplayName("5자 이하의 이름을 입력하면 플레이어 정상 생성")
     void createPlayer_O() {
         Player p = new Player("honux");
         assertThat(p).isInstanceOf(Player.class);
     }
 
     @Test
-    @DisplayName("5자 초과의 이름을 입력하면 플에이어 생성 실패")
+    @DisplayName("5자 초과의 이름을 입력하면 플레이어 생성 실패")
     void createPlayer_X_overLength() {
         assertThatThrownBy(() -> new Player("hohonux"))
             .isInstanceOf(IllegalArgumentException.class)
@@ -29,7 +29,7 @@ class PlayerTest {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"", " ", "   ", "\t", "\n"})
-    @DisplayName("이름을 입력하지 않으면 플에이어 생성 실패")
+    @DisplayName("이름을 입력하지 않으면 플레이어 생성 실패")
     void createPlayer_X_nonValue(String input) {
         assertThatThrownBy(() -> new Player(input))
             .isInstanceOf(IllegalArgumentException.class)
