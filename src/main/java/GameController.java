@@ -1,28 +1,37 @@
 import View.InputView;
 import View.OutputView;
-import domain.Ladder;
 import domain.LadderGame;
 
 public class GameController {
 
-    private Board board;
-    private Names names;
+    private static final String QUIT_COMMAND = "춘식이";
+    private static final String ALL_COMMNAD = "all";
 
     public void init() {
-        String playerNames = InputView.askPlayers();
-        int height = InputView.askLadderHeight();
-        names = new Names(playerNames);
-        board = new Board(names.getPlayersCount(), height);
-    }
-
-    public void run() {
         LadderGame ladderGame = InputView.askSettingLadder();
-        InputView.close();
         OutputView.showLadder(ladderGame);
+        run(ladderGame);
+        InputView.close();
     }
 
-    public void showResult() {
-        OutputView.showNames(names);
-        OutputView.showBoard(board);
+    private void run(LadderGame ladderGame) {
+        String target;
+        while (!(target = InputView.askPlayerForResult()).equals(QUIT_COMMAND)) {
+            showResult(ladderGame,target);
+        }
     }
+
+    private void showResult(LadderGame ladderGame, String command) {
+        if(command.equals(ALL_COMMNAD)) {
+            OutputView.showAllResult(ladderGame);
+            return;
+        }
+        try {
+            OutputView.showTargetResult(ladderGame,command);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            run(ladderGame);
+        }
+    }
+
 }

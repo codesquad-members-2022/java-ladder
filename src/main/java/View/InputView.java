@@ -13,11 +13,17 @@ public class InputView {
     private static final String PLAYER_NAMES_RESTRICTIONS = "[플레이어의 이름은 알파벳,숫자만 가능, 플레이어의 수는 2명이상 10명이하로 가능합니다.]";
     private static final String LADDER_HEIGHT_COMMAND = "최대 사다리 높이는 몇 개인가요?";
     private static final String RESULT_VALUES_COMMAND = "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String RESULT_PLAYER_COMMAND = "결과를 보고 싶은 사람은?";
     private static final Scanner scanner = new Scanner(System.in);
 
 
     public static LadderGame askSettingLadder() {
-        return new LadderGame(askPlayers(),askLadderHeight(),askResultValues());
+        return new LadderGame(askPlayers(),askResultValues(),askLadderHeight());
+    }
+
+    public static String askPlayerForResult() {
+        System.out.println(RESULT_PLAYER_COMMAND);
+        return scanner.nextLine();
     }
 
     public static void close() {
