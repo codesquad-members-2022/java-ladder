@@ -23,6 +23,8 @@ public class InputValidator {
     }
 
     public void validateNames(String[] names) throws IllegalArgumentException {
+        if (names == null) throw new IllegalArgumentException(ALERT_VALIDATION_FAILED);
+
         for (String name : names) {
             validateNamesLength(name);
         }
