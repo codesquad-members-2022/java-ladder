@@ -30,7 +30,6 @@ public class Ladder {
         }
         return ladder;
     }
-
     public List<Line> getLadderInfo() {
         // deep copy
         return new ArrayList<>(lineLadder);
@@ -44,6 +43,32 @@ public class Ladder {
     public List<String> getResultsInfo() {
         // deep copy
         return new ArrayList<>(results);
+    }
+
+    private char transValue(boolean element) {
+        if (element) {
+            return '-';
+        }
+        return ' ';
+    }
+
+    private String putPlayers() {
+        StringBuilder sb = new StringBuilder();
+        for (String player : players) {
+            sb.append(Formatter.checkAndPadding(player, WIDTH));
+            sb.append(" ");
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    private String putResults() {
+        StringBuilder sb = new StringBuilder();
+        for (String result : results) {
+            sb.append(Formatter.checkAndPadding(result, WIDTH));
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 }
 
