@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
 
 public class LadderGameMapDecoratorImpl implements LadderGameMapDecorator {
 
+    private static final int NAME_FORMAT_LIMIT = 5;
+
     private static final LadderGameMapDecoratorImpl instance = new LadderGameMapDecoratorImpl();
 
     private LadderGameMapDecoratorImpl() {}
@@ -34,8 +36,17 @@ public class LadderGameMapDecoratorImpl implements LadderGameMapDecorator {
                 .collect(Collectors.joining());
     }
 
-    private String formatUserName(String userName) {
+    public String formatUserName(String userName) {
+        userName = cutUserName(userName);
         return String.format("%6s", userName);
+    }
+
+    public String cutUserName(String userName) {
+        if (userName.length() > NAME_FORMAT_LIMIT) {
+            return userName.substring(0,NAME_FORMAT_LIMIT)
+                    .replaceAll("(?<=.{3}).",".");
+        }
+        return userName;
     }
 
     private String ladderRowString(Ladder ladder, int row) {
