@@ -6,12 +6,14 @@ import java.util.Map;
 
 public class LadderGame {
 
+    private static final String KEY_VALUE_DELIMITER = " : ";
+
     private final Players players;
     private final Ladder ladder;
     private final String[] results;
     private final Map<String, String> resultMap = new HashMap<>();
 
-    public LadderGame(Players players, int height, String[] results) {
+    public LadderGame(Players players, String[] results, int height) {
         this.players = players;
         this.ladder = new Ladder(players.countOfPlayers(), height);
         this.results = results;
@@ -19,7 +21,7 @@ public class LadderGame {
         saveResultMap();
     }
 
-    public String Game2Text() {
+    public String game2Text() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(players.playersName2Text()).append(System.lineSeparator());
         stringBuilder.append(ladder.toString());
@@ -27,7 +29,22 @@ public class LadderGame {
         return stringBuilder.append(System.lineSeparator()).toString();
     }
 
-    public void rideLadder() {
+    public String findResult(String name) {
+       if(players.containsPlayer(name)) {
+           return name+" : "+resultMap.get(name);
+       }
+       throw new IllegalArgumentException();
+    }
+
+    public String getAllResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String key : resultMap.keySet()) {
+            stringBuilder.append(key).append(" : ").append(resultMap.get(key)).append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
+    private void rideLadder() {
         players.rideLadder(ladder);
     }
 
