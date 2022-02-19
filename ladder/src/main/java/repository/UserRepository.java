@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import exception.WrongInputException;
 import io.Output;
 import model.User;
 
@@ -22,10 +23,24 @@ public class UserRepository {
     }
 
     public User save(User user) {
+        userDuplicateCheck(user);
         user.setID(sequence);
         userStore.put(sequence, user);
         sequence++;
         return user;
+    }
+
+    private void userDuplicateCheck(User user) {
+        for (var i : findAllUser()) {
+            validateUser(user, i);
+        }
+    }
+
+    private void validateUser(User user, User i) {
+        if (i.isSameUsername(user.toString())) {
+            userStore.clear();
+            throw new WrongInputException("중복된 유저가 존재합니다.");
+        }
     }
 
     public List<User> findAllUser() {
