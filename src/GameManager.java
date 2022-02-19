@@ -1,11 +1,12 @@
+
 public class GameManager {
 
-    public void StartGame() {
-        InputItem inputItem = new InputItem();
-        int userNum = inputItem.inputUserNumber();
-        int ladderNum = inputItem.inputLadderNumber();
+    InputItem inputItem = new InputItem();
 
-        Ladder ladder = new Ladder(userNum, ladderNum);
+    public void start() {
+        UserManager userManager = new UserManager(inputItem.inputUserName());
+        int ladderNum = inputItem.inputLadderNumber();
+        Ladder ladder = new Ladder(userManager, ladderNum);
         ladder.print();
     }
 }
