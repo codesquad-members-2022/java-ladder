@@ -1,18 +1,21 @@
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Ladder {
 
-    private Random ran = new Random();
     private int playerCount;
     private int heightLadder;
+    private List<String> playerName;
+    private static final String LADDER_ROW = "-----";
+    private static final String LADDER_BLANK = "     ";
+    private static final String LADDER_STICK = "|";
     private List<List<String>> ladder;
 
 
     public Ladder(int playerCount, int heightLadder) {
-        this.playerCount = playerCount;
+        //this.playerCount = playerCount;
+        this.playerName = new ArrayList<>();
         this.heightLadder = heightLadder;
         this.ladder = new ArrayList<>();
     }
@@ -43,18 +46,19 @@ public class Ladder {
     }
 
     public List<String> randomLine(List<String> line){
+        Random ran = new Random();
         if (ran.nextBoolean()){
-            line.add("     ");
+            line.add(LADDER_BLANK);
             return line;
         }
-        line.add("-----");
+        line.add(LADDER_ROW);
         return line;
     }
 
 
     public List<String> makeStick(List<String> line, int j){
         if (j % 2 == 0 ) {
-            line.add("|");
+            line.add(LADDER_STICK);
             return line;
         }
         return line;
