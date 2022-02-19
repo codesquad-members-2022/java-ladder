@@ -29,6 +29,7 @@ public class Output {
 
     public void printLadder(List<Line> ladder) {
         for (var line : ladder) {
+            sb.append("  ");
             sb.append(line).append("\n");
         }
         System.out.println(sb);
@@ -37,8 +38,17 @@ public class Output {
     public void printUser(List<User> allUser) {
         sb.append("\n");
         for (var u : allUser) {
-            sb.append(u);
+            addSpace(3, u);
+            sb.append(u).append(" ");
+            addSpace(4, u);
         }
         System.out.println(sb);
+    }
+
+    private void addSpace(int maxSpaceCount, User user) {
+        int userNameLength = user.toString().length();
+        if (userNameLength < User.USERNAME_MAX_LENGTH) {
+            sb.append(" ".repeat(Math.max(0, maxSpaceCount - userNameLength)));
+        }
     }
 }

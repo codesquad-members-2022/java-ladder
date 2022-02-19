@@ -2,8 +2,8 @@ package model;
 
 public class User {
 
+    public static final int USERNAME_MAX_LENGTH = 5;
     private static final String USERNAME_SHORT_CHARACTER = "..";
-    private static final int USERNAME_MAX_LENGTH = 5;
     private final String name;
     private Long id;
 
