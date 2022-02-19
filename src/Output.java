@@ -4,7 +4,8 @@ public class Output {
 
     StringBuilder sb = new StringBuilder();
 
-    public void printLadder(List<List<String>> ladder){
+    public void printLadder(List<List<String>> ladder, List<String> name){
+        printName(name);
         for (int i = 0; i < ladder.size(); i++) {
             makeColumn(ladder.get(i));
         }
@@ -17,6 +18,13 @@ public class Output {
         }
         sb.append("\n");
         return sb;
+    }
+    public StringBuilder printName(List<String> name){
+        for (int i = 0; i < name.size(); i++) {
+            System.out.print(name.get(i)+ "   ");
+        }
+        sb.append("\n");
+       return sb;
     }
 
 }

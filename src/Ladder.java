@@ -21,7 +21,7 @@ public class Ladder {
     }
 
 
-    private List<String> setPlayerName(String playerName){
+    public List<String> setPlayerName(String playerName){
         names = Arrays.asList(playerName.split("\\s*,\\s*"));
 
         return names;
