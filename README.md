@@ -38,7 +38,6 @@
 ```java
 public class Application {
 
-    private static final String ALERT_UNEXPECTED_TERMINATION = "프로그램이 예기치 않게 종료되었습니다.";
     private static final int NAME_LENGTH = 5;
 
     public static void main(String[] args) {
@@ -47,11 +46,11 @@ public class Application {
             game.startGame();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println(ALERT_UNEXPECTED_TERMINATION);
         }
     }
 
 }
+
 ```
 
 main 메소드에서 IOException 을 처리하고 있는데요, 이 예외가 발생했다는 것은 게임을 정상적으로 실행할 환경이 아니라는 것 입니다.<br>
@@ -71,9 +70,9 @@ public class LadderGame {
     private LadderGame(int nameLength) {
         config = GameConfig.createWithNameLength(nameLength);
 
-        try (InputView reader = InputView.createWithConfig(config)) {
-            this.participants = reader.readParticipants();
-            int height = reader.readHeight();
+        try (InputView inputView = InputView.createWithConfig(config)) {
+            this.participants = inputView.readParticipants();
+            int height = inputView.readHeight();
             this.gameMap = new GameMap(participants.size(), height);
         }
     }
@@ -84,9 +83,9 @@ public class LadderGame {
 
     // ------- public method ---------
     public void startGame() throws IOException {
-        try (OutputView writer = OutputView.createWithConfig(config)) {
-            writer.writeParticipants(this.participants);
-            writer.writeGameMap(gameMap);
+        try (OutputView outputView = OutputView.createWithConfig(config)) {
+            outputView.writeParticipants(this.participants);
+            outputView.writeGameMap(gameMap);
         }
     }
 
