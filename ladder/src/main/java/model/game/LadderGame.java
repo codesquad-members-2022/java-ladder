@@ -54,6 +54,7 @@ public class LadderGame {
         Stream.of(username.split(","))
                 .forEach(s -> {
                     User user = new User(s);
+                    validateUserName(s);
                     userRepository.save(user);
                 });
         userRepository.printUser();
@@ -62,6 +63,12 @@ public class LadderGame {
     public void validateUserCount(int userCount) {
         if (userCount < 2) {
             throw new WrongInputException("유저의 수가 너무 적습니다.");
+        }
+    }
+
+    private void validateUserName(String username) {
+        if (username.contains(" ")) {
+            throw new WrongInputException("사용자 이름에 공백이 포함되어 있습니다.");
         }
     }
 }
