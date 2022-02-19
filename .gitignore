@@ -74,7 +74,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Editor-based Rest Client
+# Editor-based Rest LadderGame.Client
 .idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
@@ -174,5 +174,7 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+/Users/donggilee/Desktop/codesquad-masterscourse-2022/week1/src/test/java/study
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,sonar,macos
