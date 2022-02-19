@@ -35,7 +35,7 @@ public class LadderGame {
 
     public void init(String username, int ladderMaxHigh) {
         int userCount = getUserCount(username);
-        validateUserCount(userCount);
+        userCount = validateUserCount(userCount);
         createUser(username);
         createLadder(userCount, ladderMaxHigh);
     }
@@ -53,22 +53,24 @@ public class LadderGame {
     public void createUser(String username) {
         Stream.of(username.split(","))
                 .forEach(s -> {
-                    User user = new User(s);
-                    validateUserName(s);
+                    String name = validateUserName(s);
+                    User user = new User(name);
                     userRepository.save(user);
                 });
         userRepository.printUser();
     }
 
-    public void validateUserCount(int userCount) {
+    public int validateUserCount(int userCount) {
         if (userCount < 2) {
             throw new WrongInputException("유저의 수가 너무 적습니다.");
         }
+        return userCount;
     }
 
-    private void validateUserName(String username) {
+    private String validateUserName(String username) {
         if (username.contains(" ")) {
             throw new WrongInputException("사용자 이름에 공백이 포함되어 있습니다.");
         }
+        return username;
     }
 }
