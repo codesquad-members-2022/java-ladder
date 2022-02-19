@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.Output;
 import model.User;
 
 public class UserRepository {
@@ -33,5 +34,10 @@ public class UserRepository {
 
     public void clear() {
         userStore.clear();
+    }
+
+    public void printUser() {
+        Output output = new Output();
+        output.printUser(findAllUser());
     }
 }
