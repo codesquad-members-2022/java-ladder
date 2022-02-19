@@ -12,28 +12,26 @@ class LadderGameMapDecoratorImplTest {
     
     @Test
     @DisplayName("5글자 이하의 이름은 마스킹처리를 하지 않는다.")
-    void cutName_Less() {
+    void formatName_Less() {
         String shortName = "honux";
-        String cutName = decorator.cutUserName(shortName);
-
-        assertThat(shortName).isEqualTo(cutName);
+        String formatName = decorator.formatUserName(shortName);
+        assertThat(formatName).contains(shortName);
     }
 
     @Test
     @DisplayName("5글자를 넘어가는 이름은 마스킹처리를 한다.")
-    void cutNameTest_Over() {
+    void formatNameTest_Over() {
         //given
         String longName = "ttasjwi";
 
         //when
-        String cutName = decorator.cutUserName(longName);
+        String formatName = decorator.formatUserName(longName);
         String expectedResult = "tta..";
 
         //then
         SoftAssertions softAssertions = new SoftAssertions();
-        softAssertions.assertThat(longName).isNotEqualTo(cutName);
-        softAssertions.assertThat(cutName).isEqualTo(expectedResult);
-        softAssertions.assertThat(cutName.length()).isEqualTo(5);
+        softAssertions.assertThat(formatName).doesNotContain(longName);
+        softAssertions.assertThat(formatName).contains(expectedResult);
         softAssertions.assertAll();
     }
 }
