@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Line {
 
@@ -13,12 +14,18 @@ public class Line {
 
     public Line(int userCount) {
         this.lineLength = userCount + (userCount - 1);
+        createLine();
     }
 
     public void createLine() {
         for (int lineNumber = 0; lineNumber < this.lineLength; lineNumber++) {
             String value = extractedLineValue(lineNumber);
-            lineResult.append(value);
+            try {
+                lineResult.append(value);
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
