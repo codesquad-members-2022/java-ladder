@@ -33,9 +33,36 @@
   - 닉네임 최대 길이, 유효한 숫자 등을 검증해야 한다.
 
 ### 동작 방식
-0. Application에서 `LadderGameManager.init()을 통해 실행합니다.
+0. Application에서 `LadderGameManager.init()`을 통해 실행합니다.
 1. init() 내부의 InputController 호출을 통해 참여 인원, 사다리 높이, 닉네임을 입력받습니다.
 2. 입력받은 값이 잘 입력되었는지 검증합니다. 
 3. 입력받은 정보를 통해 Ladder 객체를 만들고 Ladder의 생성자에서 2차원 ArrayList 형태의 사다리 자료구조를 만듭니다.
 4. 자료 구조를 만들 때 각 사다리 사이가 공백인지, 이어져있는지를 판단하여 올바른 사다리 모양을 만드는 로직을 거칩니다.
 5. LadderGameManager.showLadder()를 통해 사다리 정보와 유저 정보를 출력합니다.
+
+## Step 4: 리팩토링 2
+
+### 목표
+- 사다리의 가로줄을 `Line` 객체로 만들어 `ArrayList<ArrayList>`와 같은 코드를 리팩토링한다.
+- `Line` 객체에서 선을 그릴 수 있는지 여부를 판단하는 로직에 대한 단위 테스트를 추가한다.
+- 사다리 결과를 출력할 때 최대 5 글자를 정확히 출력하는지 처리하는 로직에 대한 테스트를 추가한다.
+- 적절히 패키지를 분리한다.
+
+### 동작 방식
+0. Application에서 `LadderGameManager.init()`을 통해 실행합니다.
+1. `init()` 내부의 `InputView`를 통해 참여 인원, 사다리 높이, 닉네임을 입력받습니다.
+2. 입력받은 값이 잘 입력되었는지 검증합니다.
+3. 특히, 닉네임은 5글자를 초과하면 3글자부터 자르고 `..`로 생략합니다.
+4. 입력받은 정보를 통해 Ladder 인스턴스를 만들고 Ladder 클래스의 생성자에서 사다리의 각 행에 해당하는 Line 인스턴스를 생성합니다.
+5. Line 인스턴스를 만들 때, 각 사다리 사이가 공백인지, 이어져있는지를 판단하여 올바른 사다리 모양을 만드는 로직을 거칩니다.
+6. Ladder 클래스 내부에서 ArrayList<Line>의 형태로 보관합니다.
+7. LadderGameManager.showLadder()를 통해 사다리 정보와 유저 정보를 출력합니다.
+
+### 패키지 구조
+![img.png](images/packageTree.png)
+
+### 테스트 결과
+![img.png](images/testResult.png)
+
+### 실행 결과
+![img.png](images/result.png)

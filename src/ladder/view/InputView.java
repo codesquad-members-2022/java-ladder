@@ -1,16 +1,18 @@
-package main.controller;
+package ladder.view;
 
-import main.InputValidator;
+import ladder.domain.LadderGame;
+import ladder.domain.LadderGameManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputController {
+public class InputView {
+    public static final String SHORTENING = "..";
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static InputValidator validator = new InputValidator();
 
-    private InputController() {
+    private InputView() {
     }
 
     public static int inputPositiveNumber(String msg) throws IOException {
@@ -22,9 +24,23 @@ public class InputController {
 
     public static String[] inputStringWithDelimiter(String msg, String delimiter, int max) throws IOException {
         printMessage(msg);
-        String[] names = br.readLine().split(delimiter);
-        validator.validateNameInRange(names, max);
-        return names;
+        return cutToMaximumLength(br.readLine().split(delimiter));
+    }
+
+    public static String[] cutToMaximumLength(String[] split) {
+        for (int i = 0; i < split.length; i++) {
+            String s = split[i];
+            cut(split, i, s);
+        }
+        return split;
+    }
+
+    private static void cut(String[] split, int i, String s) {
+        if (s.length() > LadderGameManager.MAX_NAME_LENGTH) {
+            StringBuilder sb = new StringBuilder(s.substring(0, LadderGameManager.MAX_NAME_LENGTH - SHORTENING.length()));
+            sb.append(SHORTENING);
+            split[i] = sb.toString();
+        }
     }
 
     private static void printMessage(String msg) {
