@@ -27,7 +27,7 @@ public class Server {
 	public void run() {
 		try {
 			ready();
-			toInstanceAndDi();
+			toLadder();
 			String result = ladderService.resultOfPlay();
 			println.accept(result);
 		} catch (IllegalArgumentException | NullPointerException exception) {
@@ -36,7 +36,7 @@ public class Server {
 		}
 	}
 
-	private void toInstanceAndDi() {
+	private void toLadder() {
 		players = new Players(names);
 		ladder = new Ladder(players.numberOf(), height);
 		ladderService = new LadderService(players, ladder);
