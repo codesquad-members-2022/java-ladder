@@ -5,8 +5,8 @@ import java.util.List;
 
 public class LadderMaker {
 
-    private final int WIDTH;
-    private final int HEIGHT;
+    private final int width;
+    private final int height;
     private List<Line> ladder;
 
 
