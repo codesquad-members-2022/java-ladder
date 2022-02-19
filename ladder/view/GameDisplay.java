@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Line;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameDisplay {
 
@@ -13,14 +13,14 @@ public class GameDisplay {
     }
 
     public static void showError() {
-        System.out.println("잘못된 형식의 데이터를 입력하셨습니다..");
+        System.out.println("잘못된 형식의 데이터를 입력하셨습니다.. 다시 입력해주세요.");
     }
 
     public static void guideInputLadderHeight() {
         System.out.println("최대 사다리 높이는 몇개 인가요?");
     }
 
-    public static void showLadderGameInfo(ArrayList<String> players, ArrayList<Line> ladderInfo) {
+    public static void showLadderGameInfo(List<String> players, List<Line> ladderInfo) {
         System.out.printf("%n  ");
         for (String player : players) {
             System.out.printf(getPaddingString(player) + " ");
