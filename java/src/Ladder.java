@@ -1,9 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ladder {
 
-    private static final char[] widthLine = {'-', ' '};
-    private static final char pole = '|';
+    private static final String STEP = "-----";
+    private static final String BLANK = "     ";
+    private static final String POLE = "|";
+    private static final List<String> widthLine = List.of(STEP, BLANK);
 
-    private char[][] frame;
+    private List<List<String>> frame;
+    private boolean randomLineKey = true;
 
     public Ladder(int people, int ladderHight) {
         makeAStart(people, ladderHight);
@@ -13,30 +19,47 @@ public class Ladder {
         return (int) (Math.random() * 2);
     }
 
-    private char line(int people, int number) {
-        if (number < people - 1) {
-            return widthLine[randomNumber()];
+    private String makeRandomWidthLine() {
+        String randomLine = widthLine.get(randomNumber());
+        if(randomLine.equals(STEP)) {
+            randomLineKey = false;
+            return randomLine;
         }
-        return ' ';
+        return randomLine;
     }
 
-    private char[] makeOneHight(int people) {
-        char[] ladderLine = new char[people * 2];
+    private String selectWidthLine() {
+        if (randomLineKey) {
+            return makeRandomWidthLine();
+        }
+        randomLineKey = true;
+        return BLANK;
+    }
+
+    private String makeWidthLine(int people, int number) {
+        if (number < people - 1) {
+            return selectWidthLine();
+        }
+        return BLANK;
+    }
+
+    private List<String> makeOneHight(int people) {
+        List<String> ladderLine = new ArrayList<>();
         for (int i = 0; i < people * 2; i = i + 2) {
-            ladderLine[i] = pole;
-            ladderLine[i + 1] = line(people, i / 2);
+            ladderLine.add(POLE);
+            ladderLine.add(makeWidthLine(people, i / 2));
         }
         return ladderLine;
     }
 
     private void makeAStart(int people, int ladderHight) {
-        frame = new char[ladderHight][people * 2];
+        frame = new ArrayList<>();
         for (int i = 0; i < ladderHight; i++) {
-            frame[i] = makeOneHight(people);
+            frame.add(makeOneHight(people));
         }
     }
 
-    public char[][] getLadder() {
+    public List<List<String>> getFrame() {
         return frame;
     }
 
