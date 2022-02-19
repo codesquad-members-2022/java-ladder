@@ -20,7 +20,7 @@ class LineTest {
 		filledFalseList = getFilledFalseList();
 	}
 
-	@DisplayName("true 1개 - Line 생성")
+	@DisplayName("Line 생성")
 	@Test
 	void acceptable_line() {
 		filledFalseList.set(2, true);
@@ -31,7 +31,7 @@ class LineTest {
 		assertTrue(points.contains(true));
 	}
 
-	@DisplayName("true 2개 이상 - Line 생성 불가")
+	@DisplayName("연속된 사다리 - Line 생성 불가")
 	@Test
 	void invalid_line() {
 		List<Boolean> filledFalseList = getFilledFalseList();

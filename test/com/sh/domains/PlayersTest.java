@@ -20,7 +20,7 @@ class PlayersTest {
 	@Test
 	void invalid_players_size_when_short() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Players(invalidLongNames);
+			new Players(invalidShortNames);
 		});
 	}
 
@@ -49,8 +49,4 @@ class PlayersTest {
 			.mapToObj(String::valueOf)
 			.collect(toList());
 	}
-
-
-
-
 }

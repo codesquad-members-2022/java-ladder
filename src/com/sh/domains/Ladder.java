@@ -40,6 +40,12 @@ public class Ladder {
 		}
 	}
 
+	/**
+	 * 사다리 가로길이 절반만큼의 사다리 생성 합니다 (중복된 값이 없을 확율)
+	 * - 생성될 라인은 Boolean 타입으로 false로 초기화 합니다. (true : 사다리 O, false : 사다리 X)
+	 * - insertLadder() 를 통해 특정위치 값을 True로 변경 : 사다리 삽입
+	 * @return Line
+	 */
 	private Line fillLine() {
 		List<Boolean> row = getFilledFalseList();
 		int size = rangeOfx - 1;
@@ -47,12 +53,12 @@ public class Ladder {
 		for (int i = 0; i < limitNumberOfLadder; i++) {
 			int idx = random.getInt(rangeOfx);
 			boolean possible = isFilled(row, size, idx);
-			insertTrue(possible, idx, row);
+			insertLadder(possible, idx, row);
 		}
 		return new Line(row);
 	}
 
-	private void insertTrue(boolean isFilled, int idx, List<Boolean> row) {
+	private void insertLadder(boolean isFilled, int idx, List<Boolean> row) {
 		if (isFilled) {
 			row.set(idx, true);
 		}
