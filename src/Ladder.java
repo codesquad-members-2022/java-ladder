@@ -1,41 +1,53 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
     UserManager userManager;
     Random random = new Random();
-    char[][] verticalBundle;
-    boolean[][] linkBundle;
+    List<List<Character>> verticalBundle;
+    List<List<Boolean>> linkBundle;
 
     public Ladder(UserManager userManager, int ladderNum) {
         this.userManager = userManager;
         int userNum = this.userManager.allUserNumber;
-        verticalBundle = new char[ladderNum][userNum];
-        linkBundle = new boolean[ladderNum][userNum];
+        verticalBundle = new ArrayList<>();
+        linkBundle = new ArrayList<>();
         for (int i = 0; i < ladderNum; i++) {
-            initRoute(userNum, i);
-            initHorizonLink(userNum, i);
+            initRoute(userNum);
+            initHorizonLink(userNum);
         }
     }
 
-    private void initRoute(int userNum, int ladderCnt) {
-        for (int i = 0; i < userNum; i++) {
-            verticalBundle[ladderCnt][i] = '|';
+    private <T> List<T> tempListInit(int length, T param) {
+        List<T> tempList = new ArrayList<T>();
+        for (int i = 0; i < length; i++) {
+            tempList.add(param);
         }
+        return tempList;
     }
 
-    private void initHorizonLink(int userNum, int ladderCnt) {
+    private void initRoute(int userNum) {
+        List<Character> tempList = new ArrayList<>();
+        tempList = tempListInit(userNum, '|');
+        verticalBundle.add(tempList);
+    }
+
+    private void initHorizonLink(int userNum) {
         int linkLimitNum = userNum - 1;
+        List<Boolean> tempList = new ArrayList<>();
         for (int i = 0; i < linkLimitNum; i++) {
-            linkBundle[ladderCnt][i] = checkPreRouteLink(ladderCnt, i);
+            tempList.add(checkPreRouteLink(tempList, i));
         }
+        linkBundle.add(tempList);
     }
 
-    private boolean checkPreRouteLink(int ladderCnt, int userCnt) {
+    private Boolean checkPreRouteLink(List<Boolean> tempList, int userCnt) {
         if (userCnt < 1) {
             return random.nextBoolean();
         }
         int preUserCnt = userCnt - 1;
-        if (linkBundle[ladderCnt][preUserCnt]) {
+        if (tempList.get(preUserCnt).booleanValue()) {
             return false;
         }
         return random.nextBoolean();
@@ -44,18 +56,19 @@ public class Ladder {
     public void print() {
         String allUserName = userManager.allUserRegister;
         System.out.println(allUserName);
-        int userNum = verticalBundle.length;
+        int userNum = verticalBundle.size();
         for (int i = 0; i < userNum; i++) {
             assembleLadder(i);
         }
     }
 
     private void assembleLadder(int routeNum) {
-        int length = verticalBundle[routeNum].length;
+        int length = verticalBundle.get(routeNum).size();
         for (int i = 0; i < length; i++) {
-            boolean isLink = linkBundle[routeNum][i];
+            boolean linkLimitCheck = linkBundle.get(routeNum).size() > i;
+            boolean isLink = linkLimitCheck ? linkBundle.get(routeNum).get(i) : false;
             String horizon = initHorizon(isLink, 10);
-            System.out.print(verticalBundle[routeNum][i] + horizon);
+            System.out.print(verticalBundle.get(routeNum).get(i) + horizon);
         }
         System.out.println();
     }

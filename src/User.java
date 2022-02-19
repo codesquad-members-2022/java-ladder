@@ -1,5 +1,5 @@
 public class User {
-    public static int MAX_NAME_LIMIT = 5;
+    public static final int MAX_NAME_LIMIT = 5;
     String name;
     boolean nameLimitExcess = false;
 

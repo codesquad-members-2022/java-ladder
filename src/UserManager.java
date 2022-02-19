@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserManager {
     String allUserRegister;
     int allUserNumber;
-    ArrayList<Integer> nameLengthGroup;
+    List<Integer> nameLengthGroup;
 
-    public UserManager(ArrayList<User> userList) {
+    public UserManager(List<User> userList) {
         StringBuilder sb = new StringBuilder();
         nameLengthGroup = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
