@@ -1,61 +1,59 @@
 package src.ladder;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ladder {
 
-    private static final String RAIL = "|";
-    private static final String STEP = "-";
-    private static final String BLANK = " ";
-    private static final String NEW_LINE = "\n";
-    private static final Random RANDOM = new Random();
-    private String[][] ladder;
+    private List<LadderRow> ladderRows = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
-    public Ladder(int peopleCount, int ladderHeight) {
-        this.ladder = new String[ladderHeight][peopleCount * 2 - 1];
-        createLadder(peopleCount, ladderHeight);
+    public Ladder(List<String> playerNames, int ladderHeight) {
+        init(playerNames, ladderHeight);
     }
 
-    private void createLadder(int peopleCount, int ladderHeight) {
+    private void init(List<String> playerNames, int ladderHeight) {
+        setPlayers(playerNames);
+        createLadder(players.size(), ladderHeight);
+    }
+
+    private void setPlayers(List<String> playerNames) {
+        for (int i = 0; i < playerNames.size(); i++) {
+            players.add(new Player(playerNames.get(i), i));
+        }
+    }
+
+    private void createLadder(int playerCount, int ladderHeight) {
         for (int i = 0; i < ladderHeight; i++) {
-            insertSingleLine(i);
+            ladderRows.add(new LadderRow(playerCount));
         }
-    }
-
-    private void insertSingleLine(int currentHeight) {
-        for (int i = 0; i < ladder[currentHeight].length; i++) {
-            insertLadderBar(currentHeight, i);
-        }
-    }
-
-    private void insertLadderBar(int currentHeight, int horizontalIndex) {
-        if (horizontalIndex % 2 == 0) {
-            ladder[currentHeight][horizontalIndex] = RAIL;
-            return;
-        }
-        if (RANDOM.nextBoolean()) {
-            ladder[currentHeight][horizontalIndex] = STEP;
-            return;
-        }
-        ladder[currentHeight][horizontalIndex] = BLANK;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < ladder.length; i++) {
-            appendSingleLine(i, stringBuilder);
-        }
-        return stringBuilder.toString();
+        StringBuilder sb = new StringBuilder();
+        toStringPlayerNames(sb);
+        toStringLadder(sb);
+        return sb.toString();
     }
-
-    private void appendSingleLine(int currentHeight, StringBuilder stringBuilder) {
-        for (int i = 0; i < ladder[currentHeight].length; i++) {
-            stringBuilder.append(ladder[currentHeight][i]);
+    private void toStringPlayerNames(StringBuilder sb) {
+        for (int i = 0; i < players.size(); i++) {
+            sb.append(String.format("%-6s", players.get(i).getName()));
         }
-        stringBuilder.append(NEW_LINE);
+        sb.append(LadderMaterial.NEW_LINE);
     }
-
+    private void toStringLadder(StringBuilder sb) {
+        for (int i = 0; i < ladderRows.size(); i++) {
+            appendSingleRow(ladderRows.get(i), sb);
+        }
+    }
+    private void appendSingleRow(LadderRow ladderRow, StringBuilder sb) {
+        List<String> ladderRowComponents = ladderRow.getLadderComponents();
+        for (int i = 0; i < ladderRowComponents.size(); i++) {
+            sb.append(ladderRowComponents.get(i));
+        }
+        sb.append(LadderMaterial.NEW_LINE);
+    }
 
 }
 
