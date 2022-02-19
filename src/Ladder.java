@@ -12,6 +12,7 @@ public class Ladder {
     private int heightLadder;
     private List<List<String>> ladder;
     private List<String> names;
+    private boolean isPreLine = true;
 
     public Ladder(String playerName, int heightLadder) {
         this.heightLadder = heightLadder;
@@ -35,6 +36,7 @@ public class Ladder {
     }
 
     public List<String> makeLadderLine(List<String> ladderArr){
+        isPreLine = true;
         int width = names.size() * 2 - 1;
         for (int i = 0; i < width; i++) {
             makeStick(ladderArr, i);
@@ -54,11 +56,14 @@ public class Ladder {
 
     public List<String> randomLine(List<String> line){
         Random ran = new Random();
-        if (ran.nextBoolean()){
-            line.add(LADDER_BLANK);
+
+        if (ran.nextBoolean() && isPreLine){
+            line.add(LADDER_LINE);
+            isPreLine = false;
             return line;
         }
-        line.add(LADDER_LINE);
+        line.add(LADDER_BLANK);
+        isPreLine = true;
         return line;
     }
 
