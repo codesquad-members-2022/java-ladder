@@ -2,11 +2,21 @@ package model;
 
 public class User {
 
+    private static final String USERNAME_SHORT_CHARACTER = "..";
+    private static final int USERNAME_MAX_LENGTH = 5;
     private final String name;
     private Long id;
 
     public User(String name) {
+        name = usernameLengthCheck(name);
         this.name = name;
+    }
+
+    private String usernameLengthCheck(String name) {
+        if (name.length() > USERNAME_MAX_LENGTH) {
+            name = name.substring(0, 3) + USERNAME_SHORT_CHARACTER;
+        }
+        return name;
     }
 
     public void setID(long sequence) {
