@@ -1,24 +1,43 @@
 package ladder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private String participantsQuestion = "참여할 사람은 몇 명인가요?";
-    private String heightQuestion = "사다리의 높이는 얼마인가요?";
+    private static final int MAX_NUM_CHARACTERS = 5;
+    private static final String PARTICIPANTS_QUESTION = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String HEIGHT_QUESTION = "사다리의 높이는 얼마인가요?";
     private Scanner scanner;
+    private Validator validator;
 
     public InputView(Scanner scanner) {
         this.scanner = scanner;
+        this.validator = new Validator();
     }
 
-    public int getParticipantsNum() {
-        System.out.println(participantsQuestion);
-        return scanner.nextInt();
+    public List<String> getParticipants() {
+        System.out.println(PARTICIPANTS_QUESTION);
+        List<String> participants = parsingParticipants();
+        return participants;
     }
 
     public int getLadderHeight() {
-        System.out.println(heightQuestion);
+        System.out.println(HEIGHT_QUESTION);
         return scanner.nextInt();
+    }
+
+    private List<String> parsingParticipants() {
+        String[] participantArr = scanner.nextLine().split(",");
+        try {
+            participantArr = validator.CheckMaximumNumberCharacters(participantArr, MAX_NUM_CHARACTERS);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return parsingParticipants();
+        }
+        List<String> participants = new ArrayList<>(Arrays.asList(participantArr));
+        return participants;
     }
 
 }

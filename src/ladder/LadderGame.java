@@ -1,44 +1,60 @@
 package ladder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
 
-    private int[][] ghostLeg;
+    private List<String> participants;
+    private List<List<Integer>> ghostLeg;
     private OutputView ov;
 
-    public LadderGame(int numberOfParticipants, int LegLength) {
+    public LadderGame(List<String> participants, int LegLength) {
+        this.participants = participants;
+        int numberOfParticipants = participants.size();
         this.ghostLeg = creatGhostLeg(numberOfParticipants, LegLength);
         this.ov = new OutputView();
     }
 
-    private int[][] creatGhostLeg(int numberOfParticipants, int LegLength) {
-        int rowLength = LegLength;
+    private List<List<Integer>> creatGhostLeg(int numberOfParticipants, int LegLength) {
         int columnLength = (numberOfParticipants * 2) - 1;
-        int[][] ghostLeg = createArr(rowLength, columnLength);
+        List<List<Integer>> ghostLeg = new ArrayList<>(LegLength);
+        for (int row = 0; row < LegLength; row++) {
+            ghostLeg.add(new ArrayList<>());
+            insertElementAtColumn(ghostLeg.get(row), columnLength);
+        }
         return ghostLeg;
     }
 
-    private int[][] createArr(int rowLength, int columnLength) {
-        int[][] arr = new int[rowLength][columnLength];
-        for (int row = 0; row < rowLength; row++) {
-            insertElementAtColumn(arr[row], columnLength);
-        }
-        return arr;
-    }
-
-    private void insertElementAtColumn(int[] arr, int columnLength) {
+    private void insertElementAtColumn(List<Integer> rowIndexList, int columnLength) {
         for (int column = 0; column < columnLength; column++) {
-            arr[column] = insertElement(column);
+            insertElement(rowIndexList, column);
         }
     }
 
-    private int insertElement(int column) {
+    private void insertElement(List<Integer> rowIndexList, int column) {
         if (column % 2 == 0) {
-            return 2;
+            rowIndexList.add(2);
+            return;
         }
-        return (int) (Math.random() * 2);
+        CheckHorizontalLinesOverlap(rowIndexList, column);
+    }
+
+    private void CheckHorizontalLinesOverlap(List<Integer> rowIndexList, int column) {
+        int random = (int) (Math.random() * 2);
+        if (column == 1) {
+            rowIndexList.add(random);
+            return;
+        }
+        if (rowIndexList.get(column - 2) == 1) {
+            rowIndexList.add(0);
+            return;
+        }
+        rowIndexList.add(random);
     }
 
     public void start() {
+        ov.printParticipants(participants);
         ov.printGhostLeg(ghostLeg);
     }
 }
