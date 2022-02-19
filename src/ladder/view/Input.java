@@ -1,7 +1,10 @@
+package ladder.view;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import ladder.domain.User;
 
 public class Input {
 
@@ -28,12 +31,7 @@ public class Input {
 
 	private static List<User> stringArrToList(String[] userNames) {
 		List<User> userList = new ArrayList<>();
-		try {
-			Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return getUserName();
-		}
+		Arrays.stream(userNames).forEach(name -> userList.add(new User(name)));
 		return userList;
 	}
 

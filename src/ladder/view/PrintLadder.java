@@ -1,4 +1,8 @@
+package ladder.view;
+
 import java.util.List;
+import ladder.domain.LadderLine;
+import ladder.domain.User;
 
 public class PrintLadder {
 

@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.Random;
 
 public class LadderLine {
@@ -13,8 +15,8 @@ public class LadderLine {
 	}
 
 	private void makeLadder(int ladderRow) {
-		for (int i = 1; i <= ladderRow; i++) {
-			makeLadderLine(i);
+		for (int rowIdx = 1; rowIdx <= ladderRow; rowIdx++) {
+			makeLadderLine(rowIdx);
 		}
 	}
 
@@ -23,8 +25,8 @@ public class LadderLine {
 			ladder.append("|");
 		} else {
 			boolean isStep = isStep();
-			previousStep = isStep;
 			ladder.append(isStep ? "-----" : "     ");
+			previousStep = isStep;
 		}
 	}
 

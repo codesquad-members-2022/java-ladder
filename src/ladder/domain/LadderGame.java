@@ -1,5 +1,9 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
+import ladder.view.Input;
+import ladder.view.PrintLadder;
 
 public class LadderGame {
 
