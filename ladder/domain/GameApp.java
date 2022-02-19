@@ -7,8 +7,10 @@ import java.util.List;
 
 public class GameApp {
 
+    private static final String EXIT_WORD = "춘식이";
     private UserInterface userInterface;
     private LadderProcessor ladderProcessor;
+    private GameResult gameResult;
 
     public GameApp() {
         userInterface = new UserInterface();
@@ -24,6 +26,19 @@ public class GameApp {
         // 사다리 정보 가져오기 및 사다리 게임 화면 출력
         List<Line> ladderInfo = ladderProcessor.getLadderInfo(players.size(), ladderHeight);
         GameDisplay.showLadderGameInfo(players, ladderInfo, results);
+
+        // 플레이어별 결과 가져오기 및 게임 결과 화면 출력
+        gameResult = new GameResult(players, ladderInfo, results);
+        while (true) informResult();
+    }
+
+    private void informResult() {
+        String playerName = userInterface.inputPlayerNameForResult();
+        if (playerName.equals(EXIT_WORD)) {
+            GameDisplay.showGameExit();
+            System.exit(130);
+        }
+        gameResult.getResult(playerName);
     }
 
 }

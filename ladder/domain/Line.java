@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Line {
 
-    boolean flag; // 사다리 Line 겹치지 않도록 flag 설정
-    Random rd;
+    private boolean flag; // 사다리 Line 겹치지 않도록 flag 설정
+    private Random rd;
     private List<Boolean> points;
 
     public Line(int playerCount) {

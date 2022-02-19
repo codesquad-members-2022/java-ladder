@@ -43,6 +43,11 @@ public class UserInterface {
         return Integer.parseInt(sc.nextLine());
     }
 
+    public String inputPlayerNameForResult() {
+        GameDisplay.guideResultOfPlayer();
+        return sc.nextLine();
+    }
+
     private boolean checkInput(String userInput) {
         String inputPattern = "^([^,\s]{1,5})+(,([^,\s]{1,5}))*$";
         if (!Pattern.matches(inputPattern, userInput)) {
