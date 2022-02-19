@@ -8,7 +8,7 @@
 <br/>
 
 ### 이벤트 흐름도
-> ![image](https://user-images.githubusercontent.com/82401504/154809078-cf95f9fd-49e3-4f3e-995c-e66944d41195.png)
+> ![image](https://user-images.githubusercontent.com/82401504/154812711-58ab8fe7-9b01-410d-b236-569ea9e95e4f.png)
 
 <br/>
 
