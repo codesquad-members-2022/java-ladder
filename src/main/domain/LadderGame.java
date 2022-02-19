@@ -1,17 +1,22 @@
 package main.domain;
 
+import static main.view.InputView.QUERY_ALL;
+
 import java.util.List;
+import java.util.stream.Collectors;
 import main.util.InputUtil;
 
 public class LadderGame {
 
-    private final List<String> names;
+    private final List<Player> players;
+    private final List<String> outcomes;
     private final int numLadder;
     private final LadderPlane plane;
 
-    public LadderGame(List<String> names, int numLadder) {
-        this.names = names;
+    public LadderGame(List<Player> players, List<String> outcomes, int numLadder) {
+        this.players = players;
         this.numLadder = numLadder;
+        this.outcomes = outcomes;
 
         plane = new LadderPlane(getHeight(), getWidth());
     }
@@ -21,10 +26,10 @@ public class LadderGame {
     }
 
     private int getWidth() {
-        return 2 * names.size() - 1;
+        return 2 * players.size() - 1;
     }
 
-    public String wrapName(String name) {
+    public String wrapEntry(String name) {
         int gap = LadderElement.getGap();
 
         int margin = getMargin(name, gap);
@@ -45,15 +50,42 @@ public class LadderGame {
         return margin;
     }
 
+    public void movePlayers() {
+        for (Player player : players) {
+            plane.move(player);
+            player.receive(outcomes);
+        }
+    }
+
+    public List<Player> queryPlayers(String query) {
+        if (query.equals(QUERY_ALL)) {
+            return players;
+        }
+
+        return players.stream()
+            .filter(p -> p.getName().equals(query))
+            .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        appendPlayer(sb);
+        appendOutcome(sb);
+        return sb.toString();
+    }
 
-        for (String name : names) {
-            sb.append(wrapName(name)).append(' ');
+    private void appendPlayer(StringBuilder sb) {
+        for (Player player : players) {
+            sb.append(wrapEntry(player.getName())).append(' ');
         }
         sb.append("\n").append(plane);
+    }
 
-        return sb.toString();
+    private void appendOutcome(StringBuilder sb) {
+        for (String outcome : outcomes) {
+            sb.append(wrapEntry(outcome)).append(' ');
+        }
+        sb.append("\n");
     }
 }

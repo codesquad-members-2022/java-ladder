@@ -18,8 +18,8 @@ class LadderGameTest {
 
         String name = "";  // 글자수 0
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -32,8 +32,8 @@ class LadderGameTest {
 
         String name = "A";  // 글자수 1
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -45,8 +45,8 @@ class LadderGameTest {
 
         String name = "AB";  // 글자수 2
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -58,8 +58,8 @@ class LadderGameTest {
 
         String name = "ABC";  // 글자수 3
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -71,8 +71,8 @@ class LadderGameTest {
 
         String name = "ABCD";  // 글자수 4
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -84,8 +84,8 @@ class LadderGameTest {
 
         String name = "ABCDE";  // 글자수 5
 
-        LadderGame game = new LadderGame(List.of(), 0);
-        String wrapper = game.wrapName(name);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
+        String wrapper = game.wrapEntry(name);
 
         assertEquals(wrapper.length(), WRAPPER_LENGTH);
         assertEquals(wrapper.strip(), name);
@@ -97,9 +97,9 @@ class LadderGameTest {
 
         String name = "ABCDEF";  // 글자수 6
 
-        LadderGame game = new LadderGame(List.of(), 0);
+        LadderGame game = new LadderGame(List.of(), List.of(), 0);
 
-        assertThrows(IllegalArgumentException.class, () -> game.wrapName(name));
+        assertThrows(IllegalArgumentException.class, () -> game.wrapEntry(name));
     }
 
 }
