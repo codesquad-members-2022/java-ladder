@@ -24,7 +24,7 @@ class ElementTest {
         element4 = new Element(3, true, true);   // expected : blank
 
         // then
-        assertFalse(element4.getHasStep());
+        assertFalse(element4.hasStep());
     }
 
     @Test
@@ -39,7 +39,7 @@ class ElementTest {
         element4 = new Element(3, false, true);    // expected : -----
 
         // then
-        assertTrue(element4.getHasStep());
+        assertTrue(element4.hasStep());
     }
 
     @Test
@@ -54,6 +54,6 @@ class ElementTest {
         element4 = new Element(3, false, false);    // expected : blank
 
         // then
-        assertFalse(element4.getHasStep());
+        assertFalse(element4.hasStep());
     }
 }

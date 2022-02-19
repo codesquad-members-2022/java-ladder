@@ -5,26 +5,18 @@ import java.util.List;
 
 public class Ladder {
 
-    private List<Line> ladderInstance;
+    private final List<Line> ladder;
 
     public Ladder(int playersCount, int maxLadderHeight) {
-        this.ladderInstance = getLadder(playersCount, maxLadderHeight);
-    }
-
-    private List<Line> getLadder(int playersCount, int maxLadderHeight) {
-        if (ladderInstance == null) {
-            createLadder(playersCount, maxLadderHeight);
-        }
-        return ladderInstance;
+        this.ladder = new ArrayList<>();
+        createLadder(playersCount, maxLadderHeight);
     }
 
     private void createLadder(int playerCount, int maxLadderHeight) {
-        this.ladderInstance = new ArrayList<>();
-
         for (int i = 0; i < maxLadderHeight; i++) {
             Line line = new Line();
             line.createLine(playerCount);
-            ladderInstance.add(line);
+            ladder.add(line);
         }
     }
 
@@ -32,7 +24,7 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (Line line : ladderInstance) {
+        for (Line line : ladder) {
             sb.append(line.toString() + "\n");
         }
         

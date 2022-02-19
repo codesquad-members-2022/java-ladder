@@ -6,11 +6,9 @@ import java.util.List;
 
 public class Line {
 
-    private static final String BLANK_FOR_PRINT = "  ";
-    private List<Element> elements;
+    private final List<Element> elements = new ArrayList<>();;
 
     public void createLine(int playerCount) {
-        initElementList();
         int width = getWidth(playerCount);
 
         for (int i = 0; i < width; i++) {
@@ -24,25 +22,22 @@ public class Line {
             return false;
         }
         if (index % 2 == 0) {
-            return elements.get(index - 1).getHasStep();
+            return elements.get(index - 1).hasStep();
         }
-        return elements.get(index - 2).getHasStep();
+        return elements.get(index - 2).hasStep();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        String blankForPrint = "  ";
 
-        sb.append(BLANK_FOR_PRINT);
+        sb.append(blankForPrint);
         for (Element element : elements) {
             sb.append(element.toString());
         }
 
         return sb.toString();
-    }
-
-    private void initElementList() {
-        elements = new ArrayList<>();
     }
 
     private int getWidth(int playerCount) {
