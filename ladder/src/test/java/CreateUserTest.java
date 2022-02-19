@@ -36,9 +36,34 @@ class CreateUserTest {
 
     @Test
     @DisplayName("유저 이름 공백체크 기능 테스트")
-    void UsernameBlankCheckTest() {
+    void usernameBlankCheckTest() {
         LadderGame game = new LadderGame();
         String username = "  ,pobi,honux,crong,jk";
+
+        assertThatThrownBy(() -> {
+            game.createUser(username);
+        }).isInstanceOf(WrongInputException.class);
+    }
+
+    @Test
+    @DisplayName("유저 이름 길이 체크 테스트")
+    void usernameLengthCheck() {
+        LadderGame game = new LadderGame();
+        String username = "geombong";
+        String resultName = "geo..";
+        game.createUser(username);
+
+        for (var u : userRepository.findAllUser()) {
+            assertThat(u.isSameUsername(resultName)).isTrue();
+        }
+    }
+
+    @Test
+    @DisplayName("유저 중복 등록 체크 테스트")
+    void userDuplicateCheckTest() {
+        LadderGame game = new LadderGame();
+        String username = "jk,jk,pobi,honux,crong";
+
 
         assertThatThrownBy(() -> {
             game.createUser(username);
