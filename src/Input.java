@@ -4,7 +4,12 @@ public class Input {
 
     Scanner scanner = new Scanner(System.in);
 
-    public int ladderInfo(String str){
+    public String playerName(String str){
+        System.out.println(str);
+        return scanner.nextLine();
+    }
+
+    public int height(String str){
         System.out.println(str);
         return scanner.nextInt();
     }

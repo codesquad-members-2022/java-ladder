@@ -1,23 +1,29 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Ladder {
 
-    private int playerCount;
-    private int heightLadder;
-    private List<String> playerName;
-    private static final String LADDER_ROW = "-----";
+    private static final String LADDER_LINE = "-----";
     private static final String LADDER_BLANK = "     ";
     private static final String LADDER_STICK = "|";
+
+    private int heightLadder;
     private List<List<String>> ladder;
+    private List<String> names;
 
-
-    public Ladder(int playerCount, int heightLadder) {
-        //this.playerCount = playerCount;
-        this.playerName = new ArrayList<>();
+    public Ladder(String playerName, int heightLadder) {
         this.heightLadder = heightLadder;
         this.ladder = new ArrayList<>();
+        this.names = setPlayerName(playerName);
+    }
+
+
+    private List<String> setPlayerName(String playerName){
+        names = Arrays.asList(playerName.split("\\s*,\\s*"));
+
+        return names;
     }
 
     public List<List<String>> makeLadder(){
@@ -29,7 +35,7 @@ public class Ladder {
     }
 
     public List<String> makeLadderLine(List<String> ladderArr){
-        int width = playerCount * 2 - 1;
+        int width = names.size() * 2 - 1;
         for (int i = 0; i < width; i++) {
             makeStick(ladderArr, i);
             makeLine(ladderArr, i);
@@ -45,13 +51,14 @@ public class Ladder {
         return line;
     }
 
+
     public List<String> randomLine(List<String> line){
         Random ran = new Random();
         if (ran.nextBoolean()){
             line.add(LADDER_BLANK);
             return line;
         }
-        line.add(LADDER_ROW);
+        line.add(LADDER_LINE);
         return line;
     }
 
