@@ -1,4 +1,6 @@
-public enum LadderElement {
+package domain.ladder;
+
+enum LadderElement {
     EMPTY("     "),
     STEP("-----"),
     RAIL("|");

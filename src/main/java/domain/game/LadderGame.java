@@ -1,8 +1,14 @@
-import io.InputValidator;
-import io.InputView;
-import io.OutputView;
+package domain.game;
+
+import domain.ladder.Ladder;
+import domain.player.PlayerList;
+import util.InputValidator;
+import view.InputView;
+import view.OutputView;
 
 public class LadderGame {
+
+    public static final int MIN_PLAYER = 2;
 
     private final InputView input = new InputView();
     private final InputValidator validator = new InputValidator();

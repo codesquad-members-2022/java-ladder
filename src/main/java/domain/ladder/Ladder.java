@@ -1,3 +1,5 @@
+package domain.ladder;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,14 +1,16 @@
+package domain.ladder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class LadderRow {
+class LadderRow {
 
     private static final Random random = new Random();
 
     private final List<LadderElement> row;
 
-    public LadderRow(int width) {
+    LadderRow(int width) {
         row = new ArrayList<>();
         for (int col = 0; col < width; col++) {
             row.add(generateLadderElement(col));
