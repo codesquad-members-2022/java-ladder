@@ -1,9 +1,11 @@
 package domain.game;
 
-import domain.ladder.Ladder;
+import domain.user.User;
+
+import java.util.List;
 
 public interface LadderGameService {
 
-    void initLadderGame(int entry, int height);
-    Ladder getCopyOfResultLadder();
+    void initLadderGame(List<User> users, int height);
+    String getResultMap();
 }

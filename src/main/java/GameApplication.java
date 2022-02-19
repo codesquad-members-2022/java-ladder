@@ -1,7 +1,9 @@
 import domain.game.LadderGameService;
-import domain.ladder.Ladder;
+import domain.user.User;
 import view.input.InputView;
 import view.output.OutputView;
+
+import java.util.List;
 
 public class GameApplication {
 
@@ -23,14 +25,14 @@ public class GameApplication {
 
     public void run() {
         initLadderGame();
-        Ladder ladder = ladderGameService.getCopyOfResultLadder();
-        outputView.printLadder(ladder);
+        String resultMap = ladderGameService.getResultMap();
+        outputView.printResultMap(resultMap);
         ac.close();
     }
 
     private void initLadderGame() {
-        int entry = inputView.inputEntry();
+        List<User> users = inputView.inputUsers();
         int height = inputView.inputHeight();
-        ladderGameService.initLadderGame(entry,height);
+        ladderGameService.initLadderGame(users, height);
     }
 }

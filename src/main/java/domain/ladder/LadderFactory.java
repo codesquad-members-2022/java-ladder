@@ -2,6 +2,5 @@ package domain.ladder;
 
 public interface LadderFactory {
 
-    Ladder create(int entry, int height);
-    Ladder copy(Ladder original);
+    Ladder create(int numberOfUsers, int height);
 }

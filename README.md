@@ -23,6 +23,11 @@
 
 ---
 
+## 실행결과
+![img/Result.png](img/Result.png)
+- 실행 결과 : 사다리 정상 출력
+---
+
 ## 의존 관계도
 ![Relationship.jpg](img/Relationship.jpg)
 - Main의 메인메서드에서 GameApplication을 생성, 호출
@@ -32,8 +37,7 @@
 - 게임 초기화 : 필요 인자를 LadderGameService를 통해 전달함.
   - 인자를 입력받으면 LadderFactory 에게 전달하여 Ladder을 생성
   - 이를 기반으로 LadderGame 초기화
-- 결과 얻어오기 : LadderService에게 요청하여 얻어옴
-  - 사다리 받아오기 : 원본 가져오지 않고 LadderFactory에 의뢰하여 복사본을 생성하여 반환
+- 결과 얻어오기 : LadderService에게 특정 결과를 요청하여 얻어옴
 - 결과 출력 : OutputView에서 결과값을 전달받아 적절히 출력
 
 ---
@@ -78,15 +82,15 @@ public class GameApplication {
 
   public void run() {
     initLadderGame();
-    Ladder ladder = ladderGameService.getCopyOfResultLadder();
-    outputView.printLadder(ladder);
+    String resultMap = ladderGameService.getResultMap();
+    outputView.printResultMap(resultMap);
     ac.close();
   }
 
   private void initLadderGame() {
-    int entry = inputView.inputEntry();
+    List<User> users = inputView.inputUsers();
     int height = inputView.inputHeight();
-    ladderGameService.initLadderGame(entry,height);
+    ladderGameService.initLadderGame(users, height);
   }
 }
 ```
@@ -99,7 +103,6 @@ public class GameApplication {
 
 ## AppConfig 클래스
 ```java
-
 public class AppConfig {
 
   private static AppConfig instance = new AppConfig();
@@ -111,11 +114,15 @@ public class AppConfig {
   }
 
   public LadderGameService ladderGameService() {
-    return LadderGameServiceImpl.getInstance(ladderFactory());
+    return LadderGameServiceImpl.getInstance(ladderFactory(), ladderGameMapDecorator());
   }
 
   public LadderFactory ladderFactory() {
     return LadderFactoryImpl.getInstance();
+  }
+
+  public LadderGameMapDecorator ladderGameMapDecorator() {
+    return LadderGameMapDecoratorImpl.getInstance();
   }
 
   public Validator validator() {
@@ -148,43 +155,97 @@ public class AppConfig {
 ```java
 public class LadderGame {
 
+  private final List<User> users;
   private final Ladder ladder;
 
-  LadderGame(Ladder ladder) {
+  LadderGame(List<User> users, Ladder ladder) {
+    this.users = users;
     this.ladder = ladder;
   }
 
   Ladder getLadder() {
     return this.ladder;
   }
+
+  List<String> getUserNames() {
+    return users.stream()
+            .map(User::getName)
+            .collect(Collectors.toList());
+  }
 }
 ```
 - 사다리 게임을 정의한 LadderGame 클래스를 정의
 - 같은 패키지 안에서만 생성 가능
-- getter로 ladder을 반환함. (같은 패키지 안에서만 호출가능)
+- `getLadder` : ladder를 반환함. (같은 패키지 안에서만 호출 가능)
+- `getUserNames` : 사용자의 이름들을 List로 반환 (같은 패키지 안에서만 호출 가능)
 
+---
+## User
+```java
+public class User {
+
+  private final String name;
+
+  public User(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return name.equals(user.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
+}
+```
+- 사용자를 정의한 클래스
+- name : 사용자명
+- 동등성 : name이 같으면 동등한 객체로 간주(equals, hashCode)
 ---
 ## Ladder
 ```java
 public class Ladder {
 
-  private final LadderElement[][] ladderElements;
+  private final List<List<LadderElement>> ladderElements;
 
-  Ladder(LadderElement[][] ladderElements) {
-    this.ladderElements = ladderElements;
+  Ladder(List<List<LadderElement>> ladderFrame) {
+    this.ladderElements = ladderFrame;
   }
 
-  public LadderElement[][] getLadderElements() {
-    return ladderElements;
+  public LadderElement getLadderElement(int column, int row) {
+    return ladderElements.get(row).get(column);
   }
+
+  void setLadderElement(int column, int row, LadderElement ladderElement) {
+    ladderElements.get(row).set(column, ladderElement);
+    return;
+  }
+
+  public int width() {
+    return ladderElements.get(0).size();
+  }
+
+  public int height() {
+    return ladderElements.size();
+  }
+
 }
 ```
 - 사다리를 정의한 클래스
-- `LadderElement`를 이차원배열로 함.
-- 여기서 많은 고민을 했다.
-  - 사다리 내용물을 출력하려면 ladderElements 정보가 필요함
-  - Output에 ladderElements 배열정보를 넘기기엔, 변경가능성이 커져버림.
-  - 그렇다고 ladderElements 측이 toString과 같은 메서드를 가지고 있기엔 이 역시도, ladder의 책임이 불필요하게 늘어난다.
+- 내부적으로 `List<List<LadderElement>>`를 가짐. 내부 이차원List는 `LadderElement`를 가지고 있다.
+- getLadderElement : 지정 행, 열의 LadderElement 반환
+- setLadderElement : 지정 행, 열의 LadderElement을 변경. 접근제어자가 default라서, 외부 패키지에서 변경할 수 없다.
+  - 변경 가능성 : LadderFactory에서만.
 
 ---
 
@@ -192,19 +253,19 @@ public class Ladder {
 ```java
 public enum LadderElement {
 
-    VERTICAL_LINE('|'),
-    HORIZONTAL_LINE('-'),
-    EMPTY_LINE(' ');
+  VERTICAL_LINE("|"),
+  HORIZONTAL_LINE("-----"),
+  EMPTY_LINE("     ");
 
-    private char symbol;
+  private String symbol;
 
-    LadderElement(char symbol) {
-        this.symbol = symbol;
-    }
+  LadderElement(String symbol) {
+    this.symbol = symbol;
+  }
 
-    public char getSymbol() {
-        return this.symbol;
-    }
+  public String getSymbol() {
+    return this.symbol;
+  }
 }
 ```
 - 사다리의 구성 요소들을 enum으로 정의
@@ -219,12 +280,10 @@ public enum LadderElement {
 ```java
 public interface LadderFactory {
 
-  Ladder create(int entry, int height);
-  Ladder copy(Ladder original);
+  Ladder create(int numberOfUsers, int height);
 }
-
 ```
-- Ladder을 생성하고, 복사하는 역할
+- `Ladder`을 생성하는 역할
 - 구현체 : LadderFactoryImpl
 
 ---
@@ -233,27 +292,44 @@ public interface LadderFactory {
 ```java
 public interface LadderGameService {
 
-  void initLadderGame(int entry, int height);
-  Ladder getCopyOfResultLadder();
+  void initLadderGame(List<User> users, int height);
+  String getResultMap();
 }
 ```
 - LadderGame에 관한 핵심적인 비즈니스 로직을 담당함
 - initLadderGame : 사다리 게임 초기화
-- getCopyOfResultLadder : 게임의 결과로부터, Ladder를 반아온 뒤, Ladder을 복사하여 반환.
+- getResultMap : 사다리 게임맵을 문자열로 반환
 - 구현체 : LadderGameServiceImpl
 
+---
+
+## LadderGameMapDecorator (interface)
+```java
+public interface LadderGameMapDecorator {
+
+    String drawLadderGameMap(List<String> userNames, Ladder ladder);
+
+}
+```
+- 사다리를 그려서 문자열로 반환하는 역할
 ---
 
 ## Validator (interface)
 ```java
 public interface Validator {
 
-  void entryValidate(int entry);
+  void validateUserName(User user);
+  void validateNumberOfUsers(List<User> users);
+  void validateDuplicateUsers(List<User> users);
   void heightValidate(int height);
 
 }
 ```
 - 입력값에 대한 유효성 검사, 유효하지 않으면 예외를 throw
+  - validateUserName : 이름의 유효성
+  - validateNumberOfUser : 참가자 수의 유효성
+  - validateDuplicateUsers : 참가자의 중복여부 검증
+  - heightValidate : 높이의 유효성 검증
 - 구현체 : ValidatorImpl
 
 ---
@@ -262,13 +338,13 @@ public interface Validator {
 ```java
 public interface InputView {
 
-    int inputEntry();
-    int inputHeight();
-    void close();
+  List<User> inputUsers();
+  int inputHeight();
+  void close();
 }
 ```
 - InputView : 사용자로부터 입력을 받는 역할을 정의한 인터페이스
-  - inputEntry : 참가자 수
+  - inputUsers : 참가자 명단을 입력받음.
   - inputHeight : 사다리 높이
   - close : 입력에 사용했던 자원 반환
 - InputViewImpl : 구현체
@@ -279,7 +355,7 @@ public interface InputView {
 ```java
 public interface OutputView {
 
-    void printLadder(Ladder ladder);
+  void printResultMap(String resultMap);
 
 }
 ```

@@ -1,12 +1,5 @@
 package view.output;
 
-import domain.ladder.Ladder;
-import domain.ladder.LadderElement;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class OutputViewImpl implements OutputView {
 
     private static final OutputViewImpl instance = new OutputViewImpl();
@@ -18,22 +11,10 @@ public class OutputViewImpl implements OutputView {
     }
 
     @Override
-    public void printLadder(Ladder ladder) {
-        LadderElement[][] ladderElements = ladder.getLadderElements();
-        String ladderString = makeLadderString(ladderElements);
-        System.out.print(ladderString);
+    public void printResultMap(String resultMap) {
+        System.out.println("\n--------- 실행결과 ---------\n");
+        System.out.println(resultMap);
+        System.out.print("\n--------------------------");
     }
 
-    private String makeLadderString(LadderElement[][] ladderElements) {
-        return Stream.of(ladderElements)
-                    .map(this::makeLadderRowString)
-                    .collect(Collectors.joining("\n"));
-    }
-
-    private String makeLadderRowString(LadderElement[] ladderRow) {
-        return Stream.of(ladderRow)
-                    .map(LadderElement::getSymbol)
-                    .map(String::valueOf)
-                    .collect(Collectors.joining());
-    }
 }

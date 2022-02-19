@@ -2,17 +2,17 @@ package domain.ladder;
 
 public enum LadderElement {
 
-    VERTICAL_LINE('|'),
-    HORIZONTAL_LINE('-'),
-    EMPTY_LINE(' ');
+    VERTICAL_LINE("|"),
+    HORIZONTAL_LINE("-----"),
+    EMPTY_LINE("     ");
 
-    private char symbol;
+    private String symbol;
 
-    LadderElement(char symbol) {
+    LadderElement(String symbol) {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         return this.symbol;
     }
 }
