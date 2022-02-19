@@ -1,11 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class LadderGame {
 
-  private char[][] ladders;
 
-  public Ladders gameInfo() {
+  public Ladders gameInfoStep1() {
     System.out.println("참여할 사람은 몇 명인가요?");
     int numOfPeople = inputNumber();
     System.out.println("최대 사다리 높이는 몇 개인가요?");
@@ -14,44 +15,70 @@ public class LadderGame {
     return new Ladders(numOfPeople, heightOfLadder);
   }
 
-  public char[][] makeLadder(Ladders ladder) {
-    initLadders(ladder);
+  public Ladders gameInfoStep2() {
+    System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    Scanner scanner = new Scanner(System.in);
+    List<Player> players = getPlayers(scanner.nextLine());
 
-    for (int whatFloor = 0; whatFloor < ladders.length; whatFloor++) {
-      ladders[whatFloor] = makeOneFloorLadder(whatFloor, ladder.getNumOfcolumns());
+    System.out.println("최대 사다리 높이는 몇 개인가요?");
+    int height = scanner.nextInt();
+    scanner.close();
+
+    return new Ladders(players.size(), height, players);
+  }
+
+  private List<Player> getPlayers(String value) {
+    List<Player> players = new ArrayList<>();
+
+    String[] playersArr = splitValue(value);
+    for (int i = 0; i < playersArr.length; i++) {
+      players.add(new Player(playersArr[i]));
     }
+    return players;
+  }
+
+  private String[] splitValue(String value) {
+    return value.split(",");
+  }
+
+  public Ladders makeLadder(Ladders ladders) {
+    List<List<Ladder>> totalLadders = new ArrayList<>();
+    for (int whatFloor = 0; whatFloor < ladders.getHeight(); whatFloor++) {
+      List<Ladder> floorLadder = new ArrayList<>();
+      floorLadder = makeOneFloorLadder(whatFloor, ladders.getNumOfcolumns());
+      totalLadders.add(floorLadder);
+    }
+    ladders.setTotalLadders(totalLadders);
     return ladders;
   }
 
-  public void printLadder() {
-    for (int i = 0; i < ladders.length; i++) {
-      printOneFloor(ladders[i]);
-      System.out.println();
-    }
-  }
-
-  private void printOneFloor(char[] oneFloor) {
-    System.out.print(oneFloor);
-  }
-
-
-  private void initLadders(Ladders ladder) {
-    ladders = new char[ladder.getHeight()][ladder.getNumOfcolumns()];
-  }
-
-  private char[] makeOneFloorLadder(int numOfFloor, int numOfColumns) {
-    return getOneFloorLadderShape(numOfColumns);
-  }
-
-  private char[] getOneFloorLadderShape(int numOfColumns) {
-    char[] oneFloor = new char[numOfColumns];
+  private List<Ladder> makeOneFloorLadder(int numOfFloor, int numOfColumns) {
+    List<Ladder> oneFloor = new ArrayList<>(numOfColumns);
 
     for (int column = 0; column < numOfColumns - 1; column += 2) {
       Ladder ladder = getLadderShape(column, numOfColumns);
-      oneFloor[column] = ladder.getLadderFrame();
-      oneFloor[column + 1] = ladder.getLadderLine();
+      compareLadderLineExist(oneFloor, ladder);
+      oneFloor.add(ladder);
     }
     return oneFloor;
+  }
+
+  private void compareLadderLineExist(List<Ladder> oneFloor, Ladder ladder) {
+    if (isEmptyList(oneFloor)) {
+      return;
+    }
+
+    int isBothLine = ladder.compareTo(oneFloor.get(oneFloor.size() - 1));
+    if (isBothLine == 0) {
+      ladder.setLadderLine(LadderShape.LADDER_LINE_NOEXIST);
+    }
+  }
+
+  private boolean isEmptyList(List<Ladder> ladders) {
+    if (ladders.size() == 0) {
+      return true;
+    }
+    return false;
   }
 
   private Ladder getLadderShape(int column, int numOfColumns) {
@@ -66,12 +93,40 @@ public class LadderGame {
     return ladder;
   }
 
+  public void printLadder(Ladders ladders) {
+    printPlayers(ladders);
+
+    List<List<Ladder>> totalLadder = ladders.get();
+    for (int i = 0; i < totalLadder.size(); i++) {
+      printOneFloor(totalLadder.get(i));
+      System.out.println();
+    }
+  }
+
+  private void printPlayers(Ladders ladders) {
+    for (Player player : ladders.getPlayers()) {
+      System.out.print(padRight(player.getName()));
+    }
+    System.out.println();
+  }
+
+  private String padRight(String value) {
+    // TODO 퍼옴. 의미를 잘 모르겠음. 이건 나중에.
+    return String.format("%-" + 6 + "s", value);
+  }
+
+  private void printOneFloor(List<Ladder> oneFloor) {
+    for (Ladder ladder : oneFloor) {
+      System.out.print(ladder.getLadderFrame());
+      System.out.print(ladder.getLadderLine());
+    }
+  }
+
   private int inputNumber() {
     return new Scanner(System.in).nextInt();
   }
 
-
-  private char getLadderLine() {
+  private String getLadderLine() {
     boolean isLineExist = isExist(randomNumber());
     if (isLineExist) {
       return LadderShape.LADDER_LINE_EXIST;

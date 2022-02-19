@@ -1,7 +1,7 @@
-public class Ladder {
+public class Ladder implements Comparable<Ladder> {
 
   private char ladderFrame;
-  private char ladderLine;
+  private String ladderLine;
 
   public char getLadderFrame() {
     return ladderFrame;
@@ -11,11 +11,20 @@ public class Ladder {
     this.ladderFrame = ladderFrame;
   }
 
-  public char getLadderLine() {
+  public String getLadderLine() {
     return ladderLine;
   }
 
-  public void setLadderLine(char ladderLine) {
+  public void setLadderLine(String ladderLine) {
     this.ladderLine = ladderLine;
+  }
+
+  @Override
+  public int compareTo(Ladder o) {
+    if (this.ladderLine.equals(LadderShape.LADDER_LINE_EXIST) && o.ladderLine.equals(
+        LadderShape.LADDER_LINE_EXIST)) {
+      return 0;
+    }
+    return 1;
   }
 }
