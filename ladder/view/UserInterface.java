@@ -7,7 +7,8 @@ import java.util.regex.Pattern;
 
 public class UserInterface {
 
-    Scanner sc;
+    private static final String SEPARATOR = ",";
+    private Scanner sc;
 
     public UserInterface() {
         sc = new Scanner(System.in);
@@ -17,20 +18,32 @@ public class UserInterface {
         String userInput = "";
         boolean inputFlag = true;
         while (inputFlag) {
-            GameDisplay.guideInputPlayerName();
+            GameDisplay.guidePlayerNameInput();
             userInput = sc.nextLine();
-            inputFlag = checkPlayerListInput(userInput); // 사용자 입력 검증 후 올바를 경우 while break
+            inputFlag = checkInput(userInput);
         }
 
-        return getPlayerList(userInput);
+        return getElementList(userInput);
+    }
+
+    public List<String> inputExecutionResult() {
+        String userInput = "";
+        boolean inputFlag = true;
+        while (inputFlag) {
+            GameDisplay.guideExecutionResultInput();
+            userInput = sc.nextLine();
+            inputFlag = checkInput(userInput);
+        }
+
+        return getElementList(userInput);
     }
 
     public int inputLadderHeight() {
-        GameDisplay.guideInputLadderHeight();
+        GameDisplay.guideLadderHeightInput();
         return Integer.parseInt(sc.nextLine());
     }
 
-    private boolean checkPlayerListInput(String userInput) {
+    private boolean checkInput(String userInput) {
         String inputPattern = "^([^,\s]{1,5})+(,([^,\s]{1,5}))*$";
         if (!Pattern.matches(inputPattern, userInput)) {
             GameDisplay.showError();
@@ -39,9 +52,9 @@ public class UserInterface {
         return false;
     }
 
-    private List<String> getPlayerList(String input) {
+    private List<String> getElementList(String input) {
         List<String> arrayList = new ArrayList<>();
-        String[] players = input.split(",");
+        String[] players = input.split(SEPARATOR);
         for (int i = 0; i < players.length; i++) {
             arrayList.add(players[i]);
         }
