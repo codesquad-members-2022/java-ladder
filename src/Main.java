@@ -1,19 +1,22 @@
+import domain.Ladder;
+import view.Input;
+import view.Output;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         List<String> players;
+        List<String> results;
         int heightOfLadder;
-        Output.messageAboutPlayer();
         players = Arrays.asList(Input.getPlayer().split(","));
-
-        Output.messageAboutHeight();
+        results = Arrays.asList(Input.getResult().split(","));
         heightOfLadder = Input.getNumber();
 
         Input.Close();
 
-        Ladder ladder = new Ladder(players, heightOfLadder);
+        Ladder ladder = new Ladder(players, results, heightOfLadder);
         Output.messageAboutLadder(ladder.Info());
     }
 }
