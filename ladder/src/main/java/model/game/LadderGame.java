@@ -18,32 +18,36 @@ public class LadderGame {
     }
 
     private void inputValue() {
-        Input input = new Input();
-        Output output = new Output();
         while (true) {
+            Input input = new Input();
+            Output output = new Output();
             try {
                 String username = output.printInputUsernameBar(input);
                 int ladderMaxHigh = output.printLadderMaxHighBar(input);
                 init(username, ladderMaxHigh);
+                input.close();
                 break;
             } catch (WrongInputException e) {
                 System.out.println(e.getMessage());
             }
         }
-        input.close();
     }
 
     public void init(String username, int ladderMaxHigh) {
-        createLadder(getUserCount(username), ladderMaxHigh);
+        int userCount = getUserCount(username);
+        validateUserCount(userCount);
         createUser(username);
+        createLadder(userCount, ladderMaxHigh);
     }
 
     private int getUserCount(String username) {
         return (int) Stream.of(username.split(",")).count();
     }
 
-    private void createLadder(int userCount, int ladderHigh) {
-        Ladder ladder = new Ladder(userCount, ladderHigh);
+    public void createLadder(int userCount, int ladderHeight) {
+        Ladder ladder = new Ladder(userCount, ladderHeight);
+        ladder.createLadder();
+        ladder.printLadder();
     }
 
     public void createUser(String username) {
@@ -52,5 +56,12 @@ public class LadderGame {
                     User user = new User(s);
                     userRepository.save(user);
                 });
+        userRepository.printUser();
+    }
+
+    public void validateUserCount(int userCount) {
+        if (userCount < 2) {
+            throw new WrongInputException("유저의 수가 너무 적습니다.");
+        }
     }
 }
