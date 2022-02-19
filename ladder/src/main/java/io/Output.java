@@ -1,6 +1,9 @@
 package io;
 
-import java.util.Arrays;
+import java.util.List;
+
+import model.Line;
+import model.User;
 
 public class Output {
 
@@ -23,13 +26,12 @@ public class Output {
         return input.inputString().trim();
     }
 
-    public void printLadder(String[][] ladder) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        for (String[] strings : ladder) {
-            Arrays.stream(strings).forEach(sb::append);
-            sb.append("\n");
+    public void printLadder(List<Line> ladder) {
+        for (Line line : ladder) {
+            System.out.println(line.toString());
         }
-        System.out.println(sb);
+    }
+
+    public void printUser(List<User> allUser) {
     }
 }
