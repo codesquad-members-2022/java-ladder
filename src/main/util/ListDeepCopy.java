@@ -2,18 +2,20 @@ package main.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import main.domain.HorizontalLine;
 
 public class ListDeepCopy {
-    public static List<List<String>> string2dDeepCopy(List<List<String>> org) {
-        List<List<String>> result = new ArrayList<>();
-        for (List<String> item: org){
-            result.add(string1dDeepCopy(item));
+
+    public static List<HorizontalLine> boardDeepCopy(List<HorizontalLine> org) {
+        List<HorizontalLine> result = new ArrayList<>();
+        for (HorizontalLine item: org){
+            result.add(item.clone());
         }
         return result;
     }
 
-    public static List<String> string1dDeepCopy(List<String> org) {
-        List<String> result = new ArrayList<>();
+    public static <T> List<T> listDeepCopy(List<T> org) {
+        List<T> result = new ArrayList<>();
         result.addAll(org);
         return result;
     }

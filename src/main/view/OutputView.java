@@ -1,7 +1,8 @@
 package main.view;
 
 import java.util.List;
-import main.util.nameFormatter;
+import main.domain.HorizontalLine;
+import main.util.NameFormatter;
 
 public class OutputView {
     public static final String NUM_OF_ATTENDANTS = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -14,7 +15,7 @@ public class OutputView {
         System.out.println(MAXIMUM_HEIGHT_OF_LADDERS);
     }
 
-    public static void printLadderBoard(String names, List<List<String>> ladderBoard) {
+    public static void printLadderBoard(String names, List<HorizontalLine> ladderBoard) {
         StringBuilder sb = new StringBuilder();
         getNamesRow(names,sb);
         getLaddersRow(ladderBoard,sb);
@@ -24,22 +25,30 @@ public class OutputView {
     public static void getNamesRow(String names, StringBuilder sb) {
         String[] nameList = names.split(",");
         for (String name: nameList) {
-            sb.append(" ").append(nameFormatter.blankPadding(name));
+            sb.append(" ").append(NameFormatter.blankPadding(name));
         }
         sb.append("\n");
     }
 
-    public static void getLaddersRow(List<List<String>> ladderBoard, StringBuilder sb) {
-        for (List<String> row : ladderBoard) {
-            getLaddersCol(row,sb);
+    public static void getLaddersRow(List<HorizontalLine> ladderBoard, StringBuilder sb) {
+        for (HorizontalLine line : ladderBoard) {
+            getLaddersCol(line,sb);
         }
     }
 
-    public static void getLaddersCol(List<String> ladderBoard, StringBuilder sb) {
+
+    public static void getLaddersCol(HorizontalLine line, StringBuilder sb) {
         sb.append("   ");
-        for (String sign : ladderBoard) {
-            sb.append("|").append(sign);
+        for (boolean bool : line.getPoints()) {
+            sb.append("|").append(ladderSign(bool));
         }
         sb.append("|\n");
+    }
+
+    public static String ladderSign(boolean b) {
+        if (b) {
+            return "-----";
+        }
+        return "     ";
     }
 }
