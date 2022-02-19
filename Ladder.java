@@ -1,61 +1,94 @@
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ladder {
+
+    private static final String HORIZON = "-----";
+    private static final String VERTICAL = "|";
+    private static final String BLANK = "     ";
+    private static final String FIRSTBLANK = "  ";
     private final int memberCount;
     private final int height;
-    private String[][] ladder;
+    List<List<String>> ladder;
 
     Random random = new Random();
     StringBuilder sb = new StringBuilder();
 
     public Ladder(int memberCount, int height) {
-        ladder = new String[height][(memberCount * 2) - 1];
         this.height = height;
         this.memberCount = memberCount;
         this.ladder = createLadder();
     }
 
-    private String[][] createLadder() {
-        ladder = new String[height][(memberCount * 2) - 1];
+    private List<List<String>> createLadder() {
+        List<List<String>> ladder = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            ladderRowData(row);
+            List<String> ladderRow = new ArrayList<>();
+            addLadderRow(ladderRow);
+            ladder.add(ladderRow);
         }
         return ladder;
     }
 
-    private void ladderRowData(int row) {
-        for (int col = 0; col < ladder[row].length; col++) {
-            rowElements(row, col);
+    private void addLadderRow(List<String> ladderRow) {
+        for (int column = 0; column < memberCount * 2 - 1; column++) {
+            addRowElements(ladderRow, column);
         }
     }
 
-    private void rowElements(int row, int col) {
-        if (col % 2 == 0) {
-            ladder[row][col] = "|";
+    private void addRowElements(List<String> ladderRow, int column) {
+        if (column == 0) {
+            ladderRow.add(FIRSTBLANK+VERTICAL);
         }
-        if (col % 2 == 1) {
-            ladder[row][col] = randomLine(random.nextBoolean());
+        if (column % 2 == 0 && column > 0) {
+            ladderRow.add(VERTICAL);
+        }
+
+        if (column % 2 == 1) {
+            ladderRow.add(addRandomLine(random.nextBoolean()));
+            duplicateCheck(ladderRow, column);
         }
     }
 
-    private String randomLine(boolean trueCheck) {
+    private String addRandomLine(boolean trueCheck) {
         if (trueCheck) {
-            return "-";
+            return HORIZON;
         }
-        return " ";
+        return BLANK;
     }
+
+    private void duplicateCheck(List<String> ladderRow, int column) {
+        lineDuplicateCheck(ladderRow, column);
+        blankDuplicateCheck(ladderRow, column);
+        //공백 중복체크를 안해주면 사다리 다리가 없는 열도 생기기때문에 추가
+    }
+
+    private void lineDuplicateCheck(List<String> ladderRow, int column) {
+        if (column >= 2 && ladderRow.get(column - 2).equals(HORIZON)) {
+            ladderRow.set(column, BLANK);
+        }
+    }
+
+    private void blankDuplicateCheck(List<String> ladderRow, int column) {
+        if(column >= 2 && ladderRow.get(column - 2).equals(BLANK)){
+            ladderRow.set(column, HORIZON);
+        }
+    }
+
 
     public String toString() {
-        for (int height = 0; height < this.height; height++) {
-            addRowData(sb, height);
+        for (int row = 0; row < height; row++) {
+            addRowData(sb, row);
             sb.append("\n");
         }
         return sb.toString();
     }
 
-    private void addRowData(StringBuilder sb, int height) {
-        for (int width = 0; width < ladder[height].length; width++) {
-            sb.append(ladder[height][width]);
+    private void addRowData(StringBuilder sb, int row) {
+        for (int column = 0; column < memberCount * 2 - 1; column++) {
+            sb.append(ladder.get(row).get(column));
         }
     }
 }
