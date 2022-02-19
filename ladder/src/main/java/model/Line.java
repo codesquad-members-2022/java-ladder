@@ -17,7 +17,7 @@ public class Line {
         createLine();
     }
 
-    public void createLine() {
+    private void createLine() {
         for (int lineNumber = 0; lineNumber < this.lineLength; lineNumber++) {
             String value = extractedLineValue(lineNumber);
             try {
