@@ -1,8 +1,8 @@
-package controller;
+package Ladder.controller;
 
-import domain.Ladder;
-import view.InputView;
-import view.OutputView;
+import Ladder.domain.Ladder;
+import Ladder.view.InputView;
+import Ladder.view.OutputView;
 
 import java.util.List;
 
@@ -23,6 +23,6 @@ public class LadderGame {
         int maxLadderHeight = InputView.getMaxLadderHeight();
         InputView.close();
 
-        return Ladder.getLadder(playersCount, maxLadderHeight);
+        return new Ladder(playersCount, maxLadderHeight);
     }
 }
