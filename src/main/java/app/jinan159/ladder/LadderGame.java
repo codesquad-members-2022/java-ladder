@@ -18,9 +18,9 @@ public class LadderGame {
     private LadderGame(int nameLength) {
         config = GameConfig.createWithNameLength(nameLength);
 
-        try (InputView reader = InputView.createWithConfig(config)) {
-            this.participants = reader.readParticipants();
-            int height = reader.readHeight();
+        try (InputView inputView = InputView.createWithConfig(config)) {
+            this.participants = inputView.readParticipants();
+            int height = inputView.readHeight();
             this.gameMap = new GameMap(participants.size(), height);
         }
     }
@@ -31,9 +31,9 @@ public class LadderGame {
 
     // ------- public method ---------
     public void startGame() throws IOException {
-        try (OutputView writer = OutputView.createWithConfig(config)) {
-            writer.writeParticipants(this.participants);
-            writer.writeGameMap(gameMap);
+        try (OutputView outputView = OutputView.createWithConfig(config)) {
+            outputView.writeParticipants(this.participants);
+            outputView.writeGameMap(gameMap);
         }
     }
 
