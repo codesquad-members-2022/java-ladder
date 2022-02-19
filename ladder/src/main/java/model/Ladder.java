@@ -9,7 +9,7 @@ public class Ladder {
 
     private final int userCount;
     private final int ladderHeight;
-    private List<Line> ladder = new ArrayList<>();
+    private final List<Line> ladder = new ArrayList<>();
 
 
     public Ladder(int userCount, int ladderHeight) {
@@ -26,5 +26,6 @@ public class Ladder {
 
     public void printLadder() {
         Output output = new Output();
+        output.printLadder(ladder);
     }
 }
