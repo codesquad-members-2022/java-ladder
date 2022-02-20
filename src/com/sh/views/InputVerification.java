@@ -1,4 +1,4 @@
-package com.sh.utils;
+package com.sh.views;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class InputVerification {
 	public static final String SYMBOL_NAME_SEPARATOR = ",";
-	private static final Integer MIN_NUMBER_OF_PEOPLE = 2;
-	private static final Integer MAX_NUMBER_OF_PEOPLE = 15;
+	public static final Integer MIN_NUMBER_OF_PEOPLE = 2;
+	public static final Integer MAX_NUMBER_OF_PEOPLE = 15;
 	private static final Integer MIN_HEIGHT_OF_LADDER = MIN_NUMBER_OF_PEOPLE-1;
 	private static final Integer MAX_HEIGHT_OF_LADDER = 20;
 	public static final Integer MAX_LENGTH_OF_NAME = 5;

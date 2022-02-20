@@ -5,68 +5,80 @@ import static java.util.stream.Collectors.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import com.sh.utils.Randomz;
 
 public class Ladder {
-	private static final int MIN_RANGE = 0;
-	private final Integer rangeOfx;
-	private final Integer rangeOfy;
+	private final int rangeOfx;
+	private final int rangeOfy;
 	private Randomz random;
-	private int place;
-	private List<List<Boolean>> graphs = new ArrayList<>();
-	private Function<Boolean, Integer> nextDirection = (dir) -> (dir ? -1 : 1);
+	private int limitNumberOfLadder;
+	private List<Line> graphs = new ArrayList<>();
+	private Predicate<Boolean> isDiscontinuous = (bool) -> (bool ? false : true);
 
-	public Ladder(Integer rangeOfx, Integer rangeOfy) {
+	public Ladder(int rangeOfx, int rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
 			throw new NullPointerException("NPE - constructor of Ladder");
 		}
-		this.rangeOfx = rangeOfx-1;
+		this.rangeOfx = rangeOfx - 1;
 		this.rangeOfy = rangeOfy;
 		this.graphs = new ArrayList<>();
 		this.random = Randomz.getInstance();
-		this.place = random.getInt(this.rangeOfx);
+		this.limitNumberOfLadder = halfLengthInWidth();
+	}
+
+	private int halfLengthInWidth() {
+		return this.rangeOfx / 2;
 	}
 
 	public void play() {
-		List<Boolean> firstRows = firstLine();
-		this.graphs.add(firstRows);
-		for (int i = 1; i < rangeOfy; i++) {
-			List<Boolean> row = filledNextLines();
+		for (int i = 0; i < rangeOfy; i++) {
+			Line row = fillLine();
 			this.graphs.add(row);
 		}
 	}
 
-	private List<Boolean> filledNextLines() {
+	/**
+	 * 사다리 가로길이 절반만큼의 사다리 생성 합니다 (중복된 값이 없을 확율)
+	 * - 생성될 라인은 Boolean 타입으로 false로 초기화 합니다. (true : 사다리 O, false : 사다리 X)
+	 * - insertLadder() 를 통해 특정위치 값을 True로 변경 : 사다리 삽입
+	 * @return Line
+	 */
+	private Line fillLine() {
 		List<Boolean> row = getFilledFalseList();
-		nextPlace();
-		row.set(this.place, true);
-		return row;
-	}
+		int size = rangeOfx - 1;
 
-	private void nextPlace() {
-		boolean directions = random.getBoolean();
-		Integer nextPlace = nextDirection.apply(directions);
-		if (!isRangeOf(nextPlace)) {
-			nextPlace *= (-1);
+		for (int i = 0; i < limitNumberOfLadder; i++) {
+			int idx = random.getInt(rangeOfx);
+			boolean possible = isFilled(row, size, idx);
+			insertLadder(possible, idx, row);
 		}
-		this.place += nextPlace;
+		return new Line(row);
 	}
 
-	private boolean isRangeOf(int point) {
-		int nextPlace = this.place + point;
-		if (nextPlace < MIN_RANGE || nextPlace >= rangeOfx) {
+	private void insertLadder(boolean isFilled, int idx, List<Boolean> row) {
+		if (isFilled) {
+			row.set(idx, true);
+		}
+	}
+
+	private boolean isFilled(List<Boolean> row, int size, int idx) {
+		if (idx == 0) {
+			return isDiscontinuous.test(row.get(idx + 1));
+		}
+		if (idx == size) {
+			return isDiscontinuous.test(row.get(idx - 1));
+		}
+		return isMiddleDiscontinuous(row.get(idx - 1), row.get(idx + 1));
+	}
+
+	private boolean isMiddleDiscontinuous(boolean before, boolean next) {
+		if (before || next) {
 			return false;
 		}
 		return true;
-	}
-
-	private List<Boolean> firstLine() {
-		List<Boolean> row = getFilledFalseList();
-		row.set(this.place, true);
-		return row;
 	}
 
 	private List<Boolean> getFilledFalseList() {
@@ -77,6 +89,9 @@ public class Ladder {
 	}
 
 	public List<List<Boolean>> getLadders() {
-		return graphs;
+		return graphs.stream()
+			.parallel()
+			.map(Line::getPoints)
+			.collect(toList());
 	}
 }

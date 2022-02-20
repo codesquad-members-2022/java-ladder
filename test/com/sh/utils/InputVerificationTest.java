@@ -1,11 +1,10 @@
 package com.sh.utils;
 
-import static com.sh.utils.InputVerification.*;
+import static com.sh.views.InputVerification.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -38,10 +37,6 @@ class InputVerificationTest {
 	private static final int invalidHeightOfMin = 0;
 	private static final int invalidHeightOfMax = 21;
 
-	@Test
-	void es() {
-		System.out.println(String.format("%-6s","bibi"));
-	}
 
 /*
 	@ParameterizedTest

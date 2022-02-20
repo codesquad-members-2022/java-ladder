@@ -1,6 +1,6 @@
-package com.sh;
+package com.sh.configs;
 
-import static com.sh.utils.Output.*;
+import static com.sh.views.Output.*;
 
 import java.util.List;
 
@@ -18,17 +18,16 @@ public class Server {
 		return SERVER;
 	}
 
-	private static Configuration configuration = Configuration.getInstance();
 	private List<String> names;
 	private int height;
 	private Players players;
 	private Ladder ladder;
 	private LadderService ladderService;
 
-	void run() {
+	public void run() {
 		try {
 			ready();
-			toInstanceAndDi();
+			toLadder();
 			String result = ladderService.resultOfPlay();
 			println.accept(result);
 		} catch (IllegalArgumentException | NullPointerException exception) {
@@ -37,14 +36,14 @@ public class Server {
 		}
 	}
 
-	private void toInstanceAndDi() {
+	private void toLadder() {
 		players = new Players(names);
 		ladder = new Ladder(players.numberOf(), height);
 		ladderService = new LadderService(players, ladder);
 	}
 
 	private void ready() {
-		var settings = configuration.getSettings();
+		Settings settings = new Settings();
 		names = settings.getListOfNames();
 		height = settings.getHeight(names.size());
 	}

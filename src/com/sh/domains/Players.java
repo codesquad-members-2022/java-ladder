@@ -1,7 +1,7 @@
 package com.sh.domains;
 
 
-import static com.sh.utils.InputVerification.*;
+import static com.sh.views.InputVerification.*;
 import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
@@ -17,15 +17,23 @@ public class Players {
 	}
 
 	private void addPlayers(List<String> names) {
-		if (Objects.isNull(names)) {
-			throw new NullPointerException("players - names");
-		}
-		if (isMinPeoples.or(isMaxPeoples).test(names.size())) {
-			throw new IllegalArgumentException(ERROR_NUMBER_OF_PEOPLE);
-		}
+		isNull(names);
+		isRangeOf(names);
 		for (String name : names) {
 			Player player = new Player(name);
 			players.add(player);
+		}
+	}
+
+	private void isRangeOf(List<String> names) {
+		if (isMinPeoples.or(isMaxPeoples).test(names.size())) {
+			throw new IllegalArgumentException(ERROR_NUMBER_OF_PEOPLE);
+		}
+	}
+
+	private void isNull(List<String> names) {
+		if (Objects.isNull(names)) {
+			throw new NullPointerException("players - names");
 		}
 	}
 
