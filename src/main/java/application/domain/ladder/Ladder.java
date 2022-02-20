@@ -10,9 +10,9 @@ import static application.util.RandomUtils.*;
 public class Ladder {
     public static final int INTERVAL = 5;
 
-    private List<Line> lines;
-    private int height;
-    private int width;
+    private final List<Line> lines;
+    private final int height;
+    private final int width;
 
     public Ladder(int height, int width) {
         this.lines = new ArrayList<>();

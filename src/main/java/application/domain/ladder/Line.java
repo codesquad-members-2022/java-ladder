@@ -8,7 +8,7 @@ import java.util.List;
 import static application.domain.element.LadderElement.*;
 
 public class Line {
-    private List<LadderElement> line;
+    private final List<LadderElement> line;
 
     Line() {
         this.line = new ArrayList<>();

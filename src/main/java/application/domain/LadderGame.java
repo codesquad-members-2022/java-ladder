@@ -4,8 +4,8 @@ import application.domain.ladder.Ladder;
 import application.domain.player.Players;
 
 public class LadderGame {
-    private Ladder ladder;
-    private Players players;
+    private final Ladder ladder;
+    private final Players players;
 
     public LadderGame(Ladder ladder, Players players) {
         this.ladder = ladder;

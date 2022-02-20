@@ -10,6 +10,7 @@ import application.view.OutputView;
 public class Application {
     private final InputView iv;
     private final OutputView ov;
+
     private LadderGame ladderGame;
 
     public Application() {

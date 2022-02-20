@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputUtils {
+    private static final String DELIMITER = ",";
+
     public static List<Player> getPlayers(String input) {
-        return Arrays.stream(input.split(",")).map(Player::new).collect(Collectors.toList());
+        return Arrays.stream(input.split(DELIMITER)).map(Player::new).collect(Collectors.toList());
     }
 }
