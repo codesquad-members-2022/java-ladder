@@ -112,7 +112,6 @@ public static int checkPlayersReturn(int count) {
 * 플레이어의 이름도 Name으로 감싸기 (name 다섯글자 이상일시 ..으로 바꾸는 메서드)
 * Ladder 객체내의 Board도 따로 객체로 만들기
 * 출력을 toString() 방식으로 계속 구현했으니, Boolean타입으로 바꾸고 OutputView에서 출력하도록 리팩토링 하기
-<<<<<<< HEAD
 * 테스트코드 작성하기
 
 ## 5단계
@@ -132,6 +131,4 @@ public static int checkPlayersReturn(int count) {
 * Floor객체에서 사다리의 연결선(STEP)을 String으로 상태관리하는 것이 아니라 boolean타입으로 수정했습니다.
 * LadderGame 객체를 만들어서 players와 Ladder, 결과값배열, 플레이어와 결과값을 저장하는 map을 갖도록 했습니다.
 * GameController를 통해서 출력예시와 같이 작동하도록 구현하였습니다.
-=======
-* 테스트코드 작성하기
->>>>>>> f03d26fdcb241f86451a7bcd93eae15ebe95f27c
+
