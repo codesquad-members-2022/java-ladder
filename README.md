@@ -375,3 +375,13 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 
 ## 사다리 게임 5단계 - 실행 결과 출력
 
+### 기능요구사항
+
+* [ ] 사다리 실행 결과를 출력해야 한다.
+* [ ] 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+* [ ] 이름에 "춘식이"를 입력하면 프로그램을 종료한다.
+
+### 프로그래밍 요구사항
+
+* [ ] setter 메소드를 사용하지 않고 구현한다.
+* [ ] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
