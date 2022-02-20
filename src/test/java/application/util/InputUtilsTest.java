@@ -19,7 +19,7 @@ class InputUtilsTest {
     void getPlayers(String input) {
         List<Player> players = InputUtils.getPlayers(input);
         for (Player player : players) {
-            assertThat(player.toString().length()).isEqualTo(Ladder.INTERVAL + 1);
+            assertThat(player.output().length()).isEqualTo(Ladder.INTERVAL + 1);
         }
     }
 }

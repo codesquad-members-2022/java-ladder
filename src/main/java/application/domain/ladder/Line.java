@@ -22,13 +22,19 @@ public class Line {
         return col == 0 || line.get(col - 1) != STEP;
     }
 
-    @Override
-    public String toString() {
+    public String output() {
         StringBuilder sb = new StringBuilder();
         for (LadderElement element : line) {
-            sb.append(RAIL).append(element);
+            sb.append(RAIL.output()).append(element.output());
         }
-        sb.append(RAIL).append('\n');
+        sb.append(RAIL.output()).append(System.lineSeparator());
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "line=" + line +
+                '}';
     }
 }

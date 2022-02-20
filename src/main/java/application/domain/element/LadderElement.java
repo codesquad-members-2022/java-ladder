@@ -1,13 +1,13 @@
 package application.domain.element;
 
 public enum LadderElement {
-    STEP("-----")
-    , EMPTY("     ")
-    , RAIL("|");
+    STEP("-----"),
+    EMPTY("     "),
+    RAIL("|");
 
     private String str;
 
-    public String toString() {
+    public String output() {
         return str;
     }
 

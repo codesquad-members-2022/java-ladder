@@ -2,7 +2,7 @@ package application;
 
 import application.domain.LadderGame;
 import application.domain.ladder.Ladder;
-import application.domain.player.PlayerList;
+import application.domain.player.Players;
 import application.util.InputUtils;
 import application.view.InputView;
 import application.view.OutputView;
@@ -18,7 +18,7 @@ public class Application {
     }
 
     public void run() {
-        PlayerList players = new PlayerList(InputUtils.getPlayers(iv.playerNames()));
+        Players players = new Players(InputUtils.getPlayers(iv.playerNames()));
         int height = iv.ladderHeight();
         Ladder ladder = new Ladder(height, players.getTotalNum() - 1);
         ladderGame = new LadderGame(ladder, players);

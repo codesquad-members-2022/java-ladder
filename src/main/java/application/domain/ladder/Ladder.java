@@ -9,6 +9,7 @@ import static application.util.RandomUtils.*;
 
 public class Ladder {
     public static final int INTERVAL = 5;
+
     private List<Line> lines;
     private int height;
     private int width;
@@ -34,8 +35,16 @@ public class Ladder {
         return line;
     }
 
+    public String output() {
+        return lines.stream().map(Line::output).collect(Collectors.joining());
+    }
+
     @Override
     public String toString() {
-        return lines.stream().map(Line::toString).collect(Collectors.joining());
+        return "Ladder{" +
+                "lines=" + lines +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }
