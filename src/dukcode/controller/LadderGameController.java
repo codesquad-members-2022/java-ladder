@@ -33,19 +33,23 @@ public class LadderGameController {
 
     public void printResults() {
         while(true) {
-            String PlayerNameToShowResult = scanView.getPlayerNameToShowResult();
-
-            if (PlayerNameToShowResult.equals("춘식이")) {
-                printView.printExitMessage();
-                return;
-            }
-
-            if (PlayerNameToShowResult.equals("all")) {
-                printView.printResultOfAllPlayer();
-                continue;
-            }
-
-            printView.printResultOfPlayer(PlayerNameToShowResult);
+            String playerNameToShowResult = scanView.getPlayerNameToShowResult();
+            printResult(playerNameToShowResult);
         }
+    }
+
+    public void printResult(String playerNameToShowResult) {
+        if (playerNameToShowResult.equals("춘식이")) {
+            printView.printExitMessage();
+            System.exit(0);
+            return;
+        }
+
+        if (playerNameToShowResult.equals("all")) {
+            printView.printResultOfAllPlayer();
+            return;
+        }
+
+        printView.printResultOfPlayer(playerNameToShowResult);
     }
 }
