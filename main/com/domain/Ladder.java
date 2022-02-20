@@ -1,33 +1,32 @@
-package domain;
+package main.java.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Ladder {
-	private static final List<List<String>> ladder = new ArrayList<>();
+	private static final List<List<String>> ladderForGame = new ArrayList<>();
 	private int width;
 
-	private int getWidth(List<String> playerNames){
-		return (playerNames.size() * 2) - 1;
+	private int getWidth(String[] playerNames){
+		return (playerNames.length * 2) - 1;
 	}
 
-	public void setWidth(List<String> playerNames) {
+	public void setWidth(String[] playerNames) {
 		this.width = getWidth(playerNames);
 	}
 
 	List<String> getLadderRow(int width){
 		LadderRow ladderRow = new LadderRow();
-		List<String> row = ladderRow.make(width);
-		return row;
+		return ladderRow.make(width);
 	}
 
 	public List<List<String>> make(int height){
 		for(int rowNumber = 0; rowNumber < height; rowNumber++){
 			List<String> row = getLadderRow(this.width);
-			ladder.add(row);
+			ladderForGame.add(row);
 		}
 
-		return ladder;
+		return ladderForGame;
 	}
 }

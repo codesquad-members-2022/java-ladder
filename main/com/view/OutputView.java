@@ -1,4 +1,4 @@
-package view;
+package main.java.view;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public void printPlayerName(List<String> nameList){
+	public void printPlayerName(String[] nameList){
 		for(String name : nameList){
 			System.out.print(name);
 			System.out.print(BLANK);

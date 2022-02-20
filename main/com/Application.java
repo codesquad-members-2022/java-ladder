@@ -1,13 +1,16 @@
+package main.java;
+
 import java.io.IOException;
 import java.util.List;
 
-import domain.Ladder;
-import view.*;
+import main.java.domain.Ladder;
+import main.java.view.InputView;
+import main.java.view.OutputView;
 
 public class Application {
 	private static void run() throws IOException {
 		InputView inputView = new InputView();
-		List<String> playerNames = inputView.getPlayerName();
+		String[] playerNames = inputView.getPlayerName();
 		int ladderHeight = inputView.getLadderHeight();
 
 
