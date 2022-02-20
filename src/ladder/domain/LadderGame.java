@@ -25,7 +25,7 @@ public class LadderGame {
         HashMap<String, String> resultMap = new HashMap<>();
         String[] playerNames = ladderGameInfo.getPlayerNames();
         for (int indexOfPlayer = 0; indexOfPlayer < playerNames.length; indexOfPlayer++) {
-            resultMap.put(playerNames[indexOfPlayer], ladderGameInfo.getResults()[ladder.getcurrentPos(indexOfPlayer)]);
+            resultMap.put(playerNames[indexOfPlayer], ladderGameInfo.getResults()[ladder.getCurrentPos(indexOfPlayer)]);
         }
         return resultMap;
     }

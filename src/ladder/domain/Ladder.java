@@ -14,7 +14,7 @@ public class Ladder {
         createLines();
     }
 
-    public int getcurrentPos(int indexOfPlayer) {
+    public int getCurrentPos(int indexOfPlayer) {
         // 현재 열과 -1칸 열을 검사하여 true 가 존재하면 그 칸으로 이동
         int currentPos = indexOfPlayer;
         for (Line line : ladderArr) {
