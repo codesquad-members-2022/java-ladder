@@ -2,8 +2,6 @@ import domain.game.LadderGameMapDecorator;
 import domain.game.LadderGameMapDecoratorImpl;
 import domain.game.LadderGameService;
 import domain.game.LadderGameServiceImpl;
-import domain.ladder.LadderFactory;
-import domain.ladder.LadderFactoryImpl;
 import view.input.InputView;
 import view.input.InputViewImpl;
 import view.input.Validator;
@@ -22,11 +20,7 @@ public class AppConfig {
     }
 
     public LadderGameService ladderGameService() {
-        return LadderGameServiceImpl.getInstance(ladderFactory(), ladderGameMapDecorator());
-    }
-
-    public LadderFactory ladderFactory() {
-        return LadderFactoryImpl.getInstance();
+        return LadderGameServiceImpl.getInstance(ladderGameMapDecorator());
     }
 
     public LadderGameMapDecorator ladderGameMapDecorator() {

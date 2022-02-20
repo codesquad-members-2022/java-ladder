@@ -35,7 +35,7 @@
 - 사용자로부터 InputView를 통해 필요 인자를 입력받음
   - InputView는 Validator을 의존하며, 이것이 유효성 검사를 해줌
 - 게임 초기화 : 필요 인자를 LadderGameService를 통해 전달함.
-  - 인자를 입력받으면 LadderFactory 에게 전달하여 Ladder을 생성
+  - 인자를 입력받으면 Ladder을 생성(Ladder 스스로)
   - 이를 기반으로 LadderGame 초기화
 - 결과 얻어오기 : LadderService에게 특정 결과를 요청하여 얻어옴
 - 결과 출력 : OutputView에서 결과값을 전달받아 적절히 출력
@@ -114,11 +114,7 @@ public class AppConfig {
   }
 
   public LadderGameService ladderGameService() {
-    return LadderGameServiceImpl.getInstance(ladderFactory(), ladderGameMapDecorator());
-  }
-
-  public LadderFactory ladderFactory() {
-    return LadderFactoryImpl.getInstance();
+    return LadderGameServiceImpl.getInstance(ladderGameMapDecorator());
   }
 
   public LadderGameMapDecorator ladderGameMapDecorator() {
@@ -216,36 +212,107 @@ public class User {
 ```java
 public class Ladder {
 
-  private final List<List<LadderElement>> ladderElements;
+  private final List<LadderRow> ladderRows = new ArrayList<>();
 
-  Ladder(List<List<LadderElement>> ladderFrame) {
-    this.ladderElements = ladderFrame;
+  public Ladder(int numberOfUsers, int height) {
+    initLadder(numberOfUsers, height);
+  }
+
+  private void initLadder (int numberOfUsers, int height) {
+    IntStream.range(0, height)
+            .mapToObj(row -> new LadderRow(numberOfUsers))
+            .forEach(ladderRows::add);
   }
 
   public LadderElement getLadderElement(int column, int row) {
-    return ladderElements.get(row).get(column);
-  }
-
-  void setLadderElement(int column, int row, LadderElement ladderElement) {
-    ladderElements.get(row).set(column, ladderElement);
-    return;
+    LadderRow ladderRow = ladderRows.get(row);
+    return ladderRow.getLadderElement(column);
   }
 
   public int width() {
-    return ladderElements.get(0).size();
+    return ladderRows.get(0).width();
   }
 
   public int height() {
+    return ladderRows.size();
+  }
+}
+```
+- 사다리를 정의한 클래스
+- 내부적으로 `List<LadderRow>`를 가짐. LadderRow는 `LadderElement`를 가지고 있다.
+- getLadderElement : 지정 행, 열의 LadderElement 반환
+- setLadderElement : 지정 행, 열의 LadderElement을 변경. 접근제어자가 default라서, 외부 패키지에서 변경할 수 없다.
+  - 내부값 변경 가능성 : LadderFactory에서만.
+
+---
+
+## LadderRow
+
+```java
+public class LadderRow  {
+
+  private static final float ATTACH_HORIZONTAL_LINE_PROBABILITY = 0.5f;
+
+  private final List<LadderElement> ladderElements = new ArrayList<>();
+
+  public LadderRow(int numberOfUsers) {
+    initLadderRow(numberOfUsers);
+  }
+
+  private void initLadderRow(int numberOfUsers) {
+    int width = 2 * numberOfUsers  - 1;
+    IntStream.range(0, width)
+            .mapToObj(this::selectLadderElement)
+            .forEach(ladderElements::add);
+  }
+
+  public LadderElement getLadderElement(int column) {
+    return ladderElements.get(column);
+  }
+
+  private LadderElement selectLadderElement(int column) {
+    if (isVerticalLineDrawableColumn(column)) {
+      return LadderElement.VERTICAL_LINE;
+    }
+    if (isHorizontalLineDrawableColumn(column)) {
+      return randomLadderElement();
+    }
+    return LadderElement.EMPTY_LINE;
+  }
+
+  private LadderElement randomLadderElement() {
+    boolean attachHorizontalLine = generateRandomBool(ATTACH_HORIZONTAL_LINE_PROBABILITY);
+    return (attachHorizontalLine) ? LadderElement.HORIZONTAL_LINE : LadderElement.EMPTY_LINE;
+  }
+
+  private boolean generateRandomBool(float probabilityOfTrue) {
+    double randomFloat = Math.random();
+    boolean randomBool = (0<= randomFloat) && (randomFloat < probabilityOfTrue);
+    return randomBool;
+  }
+
+  public boolean isVerticalLineDrawableColumn(int column) {
+    return (column%2 == 0);
+  }
+
+  public boolean isHorizontalLineDrawableColumn(int column) {
+    if (isVerticalLineDrawableColumn(column)) {
+      return false;
+    }
+    if (column == 1) {
+      return true;
+    }
+    return getLadderElement(column - 2) == LadderElement.EMPTY_LINE;
+  }
+
+  public int width() {
     return ladderElements.size();
   }
 
 }
 ```
-- 사다리를 정의한 클래스
-- 내부적으로 `List<List<LadderElement>>`를 가짐. 내부 이차원List는 `LadderElement`를 가지고 있다.
-- getLadderElement : 지정 행, 열의 LadderElement 반환
-- setLadderElement : 지정 행, 열의 LadderElement을 변경. 접근제어자가 default라서, 외부 패키지에서 변경할 수 없다.
-  - 변경 가능성 : LadderFactory에서만.
+- Ladder의 각 행의 성분들을 모아둠
+- LadderRow 스스로 자기 자신을 생성(초기화)할 책임을 가진다.
 
 ---
 
@@ -273,18 +340,6 @@ public enum LadderElement {
   - 세로라인은 VERTICAL_LINE
   - 가로라인은 HORIZONTAL_LINE
   - 빈 가로라인(사다리 가로라인이 없는 경우)은 EMPTY_LINE
-
----
-
-## LadderFactory (interface)
-```java
-public interface LadderFactory {
-
-  Ladder create(int numberOfUsers, int height);
-}
-```
-- `Ladder`을 생성하는 역할
-- 구현체 : LadderFactoryImpl
 
 ---
 
@@ -318,7 +373,6 @@ public interface LadderGameMapDecorator {
 ```java
 public interface Validator {
 
-  void validateUserName(User user);
   void validateNumberOfUsers(List<User> users);
   void validateDuplicateUsers(List<User> users);
   void heightValidate(int height);
@@ -326,7 +380,6 @@ public interface Validator {
 }
 ```
 - 입력값에 대한 유효성 검사, 유효하지 않으면 예외를 throw
-  - validateUserName : 이름의 유효성
   - validateNumberOfUser : 참가자 수의 유효성
   - validateDuplicateUsers : 참가자의 중복여부 검증
   - heightValidate : 높이의 유효성 검증
