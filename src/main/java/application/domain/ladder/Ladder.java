@@ -1,5 +1,7 @@
 package application.domain.ladder;
 
+import application.domain.element.LadderElement;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,9 +31,13 @@ public class Ladder {
     private Line createLine() {
         Line line = new Line();
         for (int col = 0; col < width; ++col) {
-            line.addElement(nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY);
+            line.addElement(createElement(line, col));
         }
         return line;
+    }
+
+    private LadderElement createElement(Line line, int col) {
+        return nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY;
     }
 
     public String output() {
