@@ -3,7 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Position {
-    public static final String POSITION_INPUT_ERROR_MESSAGE = "범위는 0이상부터 가능합니다.";
+    public final String POSITION_INPUT_ERROR_MESSAGE = "범위는 0이상부터 가능합니다.";
     private final int x;
     private final int y;
 
