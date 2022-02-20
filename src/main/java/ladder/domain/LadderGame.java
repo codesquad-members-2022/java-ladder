@@ -21,7 +21,7 @@ public class LadderGame {
     }
 
     public void build() {
-        ladder = new ArrayList<>();
+        ladder = new ArrayList<Line>();
 
         for (int row = 0; row < height; row++) {
 

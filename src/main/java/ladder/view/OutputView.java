@@ -3,6 +3,7 @@ package ladder.view;
 import ladder.Validation;
 import ladder.domain.Line;
 import ladder.domain.Player;
+import ladder.domain.Element;
 
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class OutputView {
     }
 
     private static void appendString(Line line) {
-        List<String> copyLine = line.getLine();
+        List<Element> copyLine = line.getLine();
 
         for (int col = 0; col < copyLine.size(); col++) {
-            sb.append(copyLine.get(col));
+            sb.append(copyLine.get(col).getElement());
         }
         sb.append("\n");
     }
