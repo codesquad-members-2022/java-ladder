@@ -15,7 +15,7 @@ public class Output {
         List<String> playersInfo = ladder.getPlayersInfo();
         List<String> resultsInfo = ladder.getResultsInfo();
 
-        System.out.println(info(ladderInfo, playersInfo, resultsInfo));
+        System.out.println(ladderGameInfo(ladderInfo, playersInfo, resultsInfo));
     }
 
     public static void messageAboutGame(String gameResult) {
@@ -27,7 +27,7 @@ public class Output {
         System.out.println(gameResult);
     }
 
-    private static String info(List<Line> ladderInfo, List<String> playersInfo, List<String> resultsInfo) {
+    private static String ladderGameInfo(List<Line> ladderInfo, List<String> playersInfo, List<String> resultsInfo) {
         StringBuilder sb = new StringBuilder();
         sb.append(putPlayers(playersInfo));
         for (int i = 0; i < ladderInfo.size(); i++) {
