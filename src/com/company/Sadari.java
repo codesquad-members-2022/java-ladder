@@ -1,45 +1,63 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Sadari {
-    char[][] sadariArray;
-    String[] people;
+    private ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
+    private ArrayList<String> playerList;
 
-    public Sadari(int peopleCount, int height) {
-        this.sadariArray = makeSadariArray(peopleCount, height);
+    public Sadari(ArrayList<String> playerList, int height) {
+        this.sadariList = makeSadariList(playerList.size(), height);
+        this.playerList = playerList;
     }
 
-    private char[][] makeSadariArray(int peopleCount, int height) {
-        char[][] sadariArray = new char[height][peopleCount + peopleCount - 1];
+    private ArrayList<ArrayList<String>> makeSadariList(int playerCount, int height) {
+        ArrayList<ArrayList<String>> sadariList = new ArrayList<ArrayList<String>>();
         for (int i = 0; i < height; i++) {
-            sadariArray[i] = makeRow(peopleCount);
+            sadariList.add(makeRow(playerCount));
         }
-        return sadariArray;
+        return sadariList;
     }
 
-    private char[] makeRow(int peopleCount) {
-        char[] Row = new char[peopleCount + peopleCount - 1];
-        for (int i = 0; i < peopleCount + peopleCount - 1; i++) {
-            Row[i] = getRowComponent(i);
+    private ArrayList<String> makeRow(int playerCount) {
+        ArrayList<String> Row = new ArrayList<>();
+        boolean[] isLineUsed = { false };
+        for (int i = 0; i < playerCount + playerCount + 1; i++) {
+            Row.add(getRowComponent(playerCount, i, isLineUsed));
         }
         return Row;
     }
 
-    private char getRowComponent(int index) {
+    private String getRowComponent(int playerCount, int index, boolean[] isLineUsed) {
+        if (index == 0 || index == 2 * playerCount) {
+            return "  ";
+        }
+        if (index % 2 == 0 && isLineUsed[0]) {
+            return "     ";
+        }
         if (index % 2 == 0)
-            return '|';
-        if (getRandomLine())
-            return '-';
-        return ' ';
+            return getRandomLine(isLineUsed);
+        return "|";
     }
 
-    public char[][] getSadariArray() {
-        return this.sadariArray;
+    public ArrayList<ArrayList<String>> getSadariList() {
+        return this.sadariList;
     }
 
-    private boolean getRandomLine() {
+    public ArrayList<String> getPlayerList() {
+        return this.playerList;
+    }
+
+    private String getRandomLine(boolean[] isLineUsed) {
         Random random = new Random();
-        return random.nextBoolean();
+        boolean isLine = false;
+        if (!isLineUsed[0]) {
+            isLine = random.nextBoolean();
+            isLineUsed[0] = isLine;
+        }
+        if (isLine)
+            return "-----";
+        return "     ";
     }
 }
