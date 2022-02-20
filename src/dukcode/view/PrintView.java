@@ -13,5 +13,6 @@ public class PrintView {
         System.out.println("\n실행결과\n");
         System.out.println(ladderView.getPlayersName());
         System.out.println(ladderView.getLadderString());
+        System.out.println(ladderView.getResults());
     }
 }

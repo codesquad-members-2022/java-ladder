@@ -3,12 +3,12 @@ package dukcode.ladder.view;
 import dukcode.ladder.Ladder;
 
 public class LadderView {
-    private static final int MAX_NAME_LEN = 7;
+    private static final int MAX_STR_LEN = 7;
     private static final String SIDE_RAIL = "|";
-    private static final String STEP = "-".repeat(MAX_NAME_LEN);
+    private static final String STEP = "-".repeat(MAX_STR_LEN);
     private static final String BLANK_BETWEEN_NAME = " ".repeat(SIDE_RAIL.length());
-    private static final String LEFT_BLANK_WITH_SIDE_RAIL = " ".repeat(MAX_NAME_LEN / 2).concat(SIDE_RAIL);
-    private static final String BLANK_BETWEEN_SIDE_RAIL = " ".repeat(MAX_NAME_LEN);
+    private static final String LEFT_BLANK_WITH_SIDE_RAIL = " ".repeat(MAX_STR_LEN / 2).concat(SIDE_RAIL);
+    private static final String BLANK_BETWEEN_SIDE_RAIL = " ".repeat(MAX_STR_LEN);
     private static final String ELLIPSIS = "..";
 
     private final Ladder ladder;
@@ -19,28 +19,37 @@ public class LadderView {
 
     public String getPlayersName() {
         final String[] namePlayers = this.ladder.getNamePlayers();
+        return getConsecutiveString(namePlayers);
+    }
+
+    public String getResults() {
+        final String[] results = this.ladder.getResults();
+        return getConsecutiveString(results);
+    }
+
+    private String getConsecutiveString(String[] strArray) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < namePlayers.length; ++i) {
-            namePlayers[i] = makeNameWithEllipsis(namePlayers[i]);
-            namePlayers[i] = makeNameWithPadding(namePlayers[i]);
-            sb.append(namePlayers[i].concat(BLANK_BETWEEN_NAME));
+        for (int i = 0; i < strArray.length; ++i) {
+            strArray[i] = getStringWithEllipsis(strArray[i]);
+            strArray[i] = getStringWithPadding(strArray[i]);
+            sb.append(strArray[i].concat(BLANK_BETWEEN_NAME));
         }
 
         return new String(sb);
     }
 
-    private String makeNameWithEllipsis(String name) {
-        if (name.length() <= MAX_NAME_LEN) {
-            return name;
+    private String getStringWithEllipsis(String str) {
+        if (str.length() <= MAX_STR_LEN) {
+            return str;
         }
 
-        return name.substring(0, MAX_NAME_LEN - ELLIPSIS.length()).concat(ELLIPSIS);
+        return str.substring(0, MAX_STR_LEN - ELLIPSIS.length()).concat(ELLIPSIS);
     }
 
-    private String makeNameWithPadding(String name) {
+    private String getStringWithPadding(String str) {
         int count = 0;
-        StringBuilder sb = new StringBuilder(name);
-        while (sb.length() < MAX_NAME_LEN) {
+        StringBuilder sb = new StringBuilder(str);
+        while (sb.length() < MAX_STR_LEN) {
             sb = getStringPaddingOnce(sb, count);
             count++;
         }
@@ -66,7 +75,7 @@ public class LadderView {
             sb.append(getStringLine(ladder[line], numSteps));
             sb.append("\n");
         }
-
+        sb.setLength(sb.length() - 1);
         return new String(sb);
     }
 

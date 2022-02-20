@@ -22,6 +22,12 @@ public class Ladder {
         return copyNamePlayers;
     }
 
+    public String[] getResults() {
+        String[] copyResults = new String[numPlayers];
+        System.arraycopy(results, 0, copyResults, 0, numPlayers);
+        return copyResults;
+    }
+
     public int getNumPlayers() {
         return numPlayers;
     }
