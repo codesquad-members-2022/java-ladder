@@ -1,21 +1,25 @@
 package domain;
 
+import Util.Validation;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Names {
 
-    private List<String> names;
+    private final List<String> names;
 
     public Names(String names) {
-        this.names = new ArrayList<>();
-        putNames(names);
+        this.names = splitNames(names);
+        Validation.checkPlayers(this.names.size());
     }
 
-    private void putNames(String names) {
+    private List<String> splitNames(String names) {
+        List<String> nameList = new ArrayList<>();
         String[] arr = names.split(",");
-        Collections.addAll(this.names, arr);
+        Collections.addAll(nameList, arr);
+        return nameList;
     }
 
     public int getPlayersCount() {
@@ -26,7 +30,7 @@ public class Names {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (String name : names) {
-            stringBuilder.append(String.format("%6s",name));
+            stringBuilder.append(String.format("%6s", name));
         }
         return stringBuilder.toString();
     }

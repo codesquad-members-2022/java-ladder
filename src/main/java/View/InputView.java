@@ -1,6 +1,8 @@
 package View;
 
 import Util.Validation;
+import domain.Ladder;
+import domain.Names;
 
 import java.util.Scanner;
 
@@ -11,20 +13,24 @@ public class InputView {
     private static final String LADDER_HEIGHT_COMMAND = "최대 사다리 높이는 몇 개인가요?";
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String askPlayers() {
+    public static Ladder askSettingLadder() {
+        return new Ladder(askPlayers(),askLadderHeight());
+    }
+
+    private static Names askPlayers() {
         System.out.println(PLAYER_NAMES_COMMAND);
         System.out.println(PLAYER_NAMES_RESTRICTIONS);
-        String players = scanner.nextLine().replaceAll(" ","");
+        String players = scanner.nextLine().replaceAll(" ", "");
         try {
             Validation.checkInputNames(players);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askPlayers();
         }
-        return players;
+        return new Names(players);
     }
 
-    public static int askLadderHeight() {
+    private static int askLadderHeight() {
         System.out.println(LADDER_HEIGHT_COMMAND);
         return Integer.parseInt(scanner.nextLine());
     }
