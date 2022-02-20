@@ -6,7 +6,7 @@ public class LadderLine {
 
 	private final StringBuilder ladder;
 	private static final Random ran = new Random();
-	private boolean previousStep = false;
+	private boolean isPreviousStep = false;
 
 	public LadderLine(int userNumber) {
 		ladder = new StringBuilder();
@@ -27,15 +27,11 @@ public class LadderLine {
 		}
 		boolean isStep = isStep();
 		ladder.append(isStep ? "-----" : "     ");
-		previousStep = isStep;
+		isPreviousStep = isStep;
 	}
 
 	private boolean isStep() {
-		return !isExistPreviousStep() && ran.nextInt(2) == 0;
-	}
-
-	private boolean isExistPreviousStep() {
-		return previousStep;
+		return !isPreviousStep && ran.nextBoolean();
 	}
 
 	@Override
