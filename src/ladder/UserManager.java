@@ -1,10 +1,12 @@
+package ladder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager {
-    String allUserRegister;
-    int allUserNumber;
-    List<Integer> nameLengthGroup;
+    public String allUserRegister;
+    public int allUserNumber;
+    public List<Integer> nameLengthGroup;
 
     public UserManager(List<User> userList) {
         StringBuilder sb = new StringBuilder();

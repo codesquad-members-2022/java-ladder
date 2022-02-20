@@ -1,7 +1,9 @@
+package ladder;
+
 public class User {
     public static final int MAX_NAME_LIMIT = 5;
-    String name;
-    boolean nameLimitExcess = false;
+    public String name;
+    public boolean nameLimitExcess = false;
 
     User(String inputName) {
         if (inputName.length() <= MAX_NAME_LIMIT) {
