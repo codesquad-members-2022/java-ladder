@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LadderController {
 
-    public void run(){
+    public void run() {
         while(true) {
             String[] inputNames;
             try {
