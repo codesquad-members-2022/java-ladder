@@ -1,11 +1,11 @@
-package ladder;
+package ladder.domain;
 
 public class User {
     public static final int MAX_NAME_LIMIT = 5;
     public String name;
     public boolean nameLimitExcess = false;
 
-    User(String inputName) {
+    public User(String inputName) {
         if (inputName.length() <= MAX_NAME_LIMIT) {
             name = inputName;
             return;
