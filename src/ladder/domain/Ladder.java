@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,7 @@ public class Ladder {
     private final int width;
     private final List<LadderRow> ladderRowList;
 
-    public Ladder(int height, int playerCount) {
+    protected Ladder(int height, int playerCount) {
         this.height = height;
         this.width = playerCount - 1;
         this.ladderRowList = new ArrayList<>(width);
