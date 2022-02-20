@@ -15,20 +15,17 @@ public class Ladder {
 
     private final int height;
     private final List<Line> lines;
-    private LadderSize ladderSize;
+    private final LadderSize ladderSize;
 
-    public Ladder(LadderSize ladderSize) {
-        isValidInput(ladderSize);
-        int numOfPerson = ladderSize.getNumOfPerson();
-        this.ladderSize = ladderSize;
-        this.height = ladderSize.getHeight();
+    public Ladder(int height, int numOfPerson) {
+        isValidInput(height, numOfPerson);
+        this.ladderSize = LadderSize.create(height, numOfPerson);
+        this.height = height;
         this.lines = new ArrayList<>();
         makeLines(numOfPerson);
     }
 
-    private void isValidInput(LadderSize ladderSize) {
-        int height = ladderSize.getHeight();
-        int numOfPerson = ladderSize.getNumOfPerson();
+    private void isValidInput(int height, int numOfPerson) {
         if(!isValidHeight(height)){
             throw new IllegalArgumentException(INVALID_HEIGHT_INPUT_MESSAGE);
         }
@@ -66,8 +63,8 @@ public class Ladder {
 
     List<Position> toPositions(int[] positions){
         List<Position> list = new ArrayList<>();
-        for(int i = 0; i < positions.length; i++){
-            int[] ints = ladderSize.convertPositionToXY(positions[i]);
+        for (int position : positions) {
+            int[] ints = ladderSize.convertPositionToXY(position);
             list.add(new Position(ints[0], ints[1]));
         }
         return list;

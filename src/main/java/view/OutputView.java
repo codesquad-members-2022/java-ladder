@@ -23,8 +23,6 @@ public class OutputView {
                 return " " + name + "  ";
             case 3:
                 return " " + name + " ";
-            case 4:
-                return name + " ";
             default:
                 return name + " ";
         }
