@@ -94,11 +94,11 @@ test
 
 테스트 진행한 사항
 
-<img width="470" alt="스크린샷 2022-02-17 19 27 06" src="https://user-images.githubusercontent.com/81368630/154457417-8a7341a1-30cd-4549-836e-90d44db19f9e.png">
+![테스트이미지](https://user-images.githubusercontent.com/81368630/154457417-8a7341a1-30cd-4549-836e-90d44db19f9e.png)
 
 코드 커버리지
 
-<img width="810" alt="스크린샷 2022-02-17 19 24 12" src="https://user-images.githubusercontent.com/81368630/154457430-5b858cbc-481c-4e9a-bd91-7a0b8d02d18f.png">
+![코드커버리지](https://user-images.githubusercontent.com/81368630/154457430-5b858cbc-481c-4e9a-bd91-7a0b8d02d18f.png)
 
 <br>
 
@@ -110,12 +110,18 @@ test
 
 LadderGame class에서 `List<LadderLine> ladder`로 ladder를 관리하고 있었는데 유저와 결과를 매칭해주는 메소드의 크기가 커서 Ladder Class로 분리했습니다.
 
-### 고민사항
+<br>
 
-변수명이 마음에 들지 않는 것이 너무 많습니다.
+=== 4단계 코드리뷰 전 mission 5 구현 ===
 
-Q) getter나 setter가 아닌 메소드명이 get이나 set이 포함되어 있어도 되는걸까요??
+4단계 코드리뷰 이후 이미 간단하게 구현해놓은 5단계를 4단계 리뷰에 맞추어 리팩토링을 진행했습니다.
 
-ex) InputView Class에서 유저의 이름을 입력받는 메소드 명 `getUserName()`, LadderGame Class에서 입력받은 유저이름을 클래스변수에 저장하는 메소드 명 `setUserName()`
+1. 테스트코드를 Junit에서 assertJ로 변경했습니다.
+2. InputView Class에 있던 비즈니스 로직을 LadderGame에서 처리하도록 했습니다.
+3. if else를 사용한 코드 제거
+4. 단순하게 출력을 편하게 하기 위한 toString() 제거
+5. 테스트코드 메서드명 test() -> 조금 더 자세하게 변경
 
-위와 같이 메소드명을 지정했는데 마음에 들지 않고 그렇다고 다른 적절한 메소드명이 생각나지 않네요
+테스트코드를 어떻게 할지 아직도 잘 모르겠네요. ㅠ_ㅠ
+
+5단계 미션에 대한 테스트코드 작성은 하지 않았고 4단계에 대한 테스트코드만 assertJ로 변경했습니다.
