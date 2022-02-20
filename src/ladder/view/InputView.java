@@ -20,7 +20,7 @@ public class InputView {
 		return intInput;
 	}
 
-	public static List<String> getUserCommandInput(String message) {
+	public static List<String> getUserCommand(String message) {
 		System.out.println(message);
 		String[] userResult = getStringArrBySplitComma();
 		return List.of(userResult);
@@ -30,7 +30,7 @@ public class InputView {
 		return sc.nextLine().split(",");
 	}
 
-	public static String getUserCommand() {
+	public static String getUserName() {
 		System.out.println("결과를 보고 싶은 사람은?");
 		return sc.nextLine();
 	}

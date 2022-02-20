@@ -1,6 +1,7 @@
 package ladder.view;
 
 import java.util.List;
+import java.util.Map;
 import ladder.domain.LadderLine;
 import ladder.domain.User;
 
@@ -39,8 +40,15 @@ public class OutputView {
 			sb.append(String.format("%6s", result));
 		}
 	}
-	public static void printGameResult(Object result) {
+	public static void printGameResult(String result) {
 		System.out.println(result);
 	}
 
+	public static void printGameResultAll(Map<User, String> gameResult, List<User> users) {
+		for (User user : users) {
+			sb.append(user.getUserName()).append(" : ").append(gameResult.get(user)).append("\n");
+		}
+		System.out.println(sb);
+		sb.setLength(0);
+	}
 }

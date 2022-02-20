@@ -14,8 +14,17 @@ public class LadderGame {
 
 	public void start() {
 		init();
-		showResult();
+		keepShowResult();
 		InputView.close();
+	}
+
+	private void keepShowResult() {
+		boolean isKeep;
+		do {
+			String command = InputView.getUserName();
+			isKeep = showResult(command);
+
+		} while (isKeep);
 	}
 
 	private void init() {
@@ -27,7 +36,7 @@ public class LadderGame {
 	}
 
 	private void setUserName() {
-		users = convertInputToUsers(InputView.getUserCommandInput("참여할 사람 이름을 입력하세요."));
+		users = convertInputToUsers(InputView.getUserCommand("참여할 사람 이름을 입력하세요."));
 		userNumber = users.size();
 	}
 
@@ -41,7 +50,7 @@ public class LadderGame {
 
 	private void setUserResult() {
 		do {
-			userResultInput = InputView.getUserCommandInput("실행 결과를 입력하세요.");
+			userResultInput = InputView.getUserCommand("실행 결과를 입력하세요.");
 		} while (userResultInput.size() != userNumber);
 	}
 
@@ -49,17 +58,16 @@ public class LadderGame {
 		return InputView.getLadderHeight("최대 사다리 높이는 몇 개인가요?");
 	}
 
-	private boolean showResult() {
-		String command = InputView.getUserCommand();
+	private boolean showResult(String command) {
 		if (command.equals("춘식이")) {
 			return false;
 		}
 		if (command.equals("all")) {
-			OutputView.printGameResult(ladder.getGameResult());
-			return showResult();
+			OutputView.printGameResultAll(ladder.getGameResult(), users);
+			return true;
 		}
 		OutputView.printGameResult(ladder.getGameResult().get(new User(command)));
-		return showResult();
+		return true;
 	}
 
 }
