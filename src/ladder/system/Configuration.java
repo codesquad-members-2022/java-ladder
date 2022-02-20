@@ -18,7 +18,7 @@ public class Configuration {
     public static final RandomGenerator randomGenerator = RandomGenerator.getInstance();
     public static final InputView inputView = InputView.getInstance();
     public static final OutputView outputView = OutputView.getInstance();
-    public static final LadderGame ladderGame = LadderGame.getInstance();
     public static final GameManager gameManager = GameManager.getInstance();
+    public static final LadderGame ladderGame = LadderGame.getInstance();
     public static final Ladder ladder = Ladder.getInstance();
 }

@@ -1,19 +1,15 @@
 package ladder.domain.ladder;
 
 import ladder.domain.user.Names;
-import ladder.system.Configuration;
-import ladder.utils.Counts;
-
-import java.util.List;
 
 
 public class Ladder {
-
 
     private Ladder (){};
     private LadderLines ladderLines;
 
     private static final Ladder instance = new Ladder();
+
     public Ladder(LadderLines ladderLines) {
         this.ladderLines = ladderLines;
     }
@@ -31,6 +27,6 @@ public class Ladder {
     }
 
     public LadderLines getLadderLines(Names names, Height height) {
-        return new LadderLines(names, height);
+        return LadderLines.getInstance().getLadderLines(names, height);
     }
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderLineTest {
@@ -26,7 +27,7 @@ class LadderLineTest {
         points.add(pointD);
 
         LadderLine ladderLine = new LadderLine(points);
-        Assertions.assertThat(ladderLine).isNotNull();
+        assertThat(ladderLine).isNotNull();
     }
 
     @Test
@@ -34,4 +35,6 @@ class LadderLineTest {
     void 라인_그리기_테스트_실패() {
         assertThrows(IllegalStateException.class, () -> new Point(0, new Direction(true, true)));
     }
+
+
 }

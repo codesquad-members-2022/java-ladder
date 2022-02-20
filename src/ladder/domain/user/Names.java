@@ -3,7 +3,6 @@ package ladder.domain.user;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import static ladder.utils.CopyUtils.CopyUtils.copy;
 
 public class Names {
 
@@ -36,7 +35,7 @@ public class Names {
     }
 
     public List<Name> getElements() {
-        return Collections.unmodifiableList(copy(this.names));
+        return Collections.unmodifiableList(new ArrayList<>(this.names));
     }
 
     public int findNameByIndex(String name) {

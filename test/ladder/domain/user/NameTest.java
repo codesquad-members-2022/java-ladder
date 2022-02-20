@@ -37,9 +37,4 @@ class NameTest {
             assertTrue(min <= index && index <= max);
         }
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 0e53738c16ddb03f07e3e31a48c7c4d5018aeccc
 }

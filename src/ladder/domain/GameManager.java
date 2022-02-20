@@ -29,8 +29,6 @@ public class GameManager {
     }
 
     public void startGame() throws Exception {
-
-
         while (true) {
             Names names = inputView.getPlayerNames();
             Height height = inputView.getHeight();

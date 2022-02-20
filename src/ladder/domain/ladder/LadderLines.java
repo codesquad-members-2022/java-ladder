@@ -4,6 +4,7 @@ import ladder.domain.strategy.LadderLineFactory;
 import ladder.domain.user.Names;
 import ladder.utils.Counts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,6 +27,10 @@ public class LadderLines {
         this.ladderLines = ladderLines;
     }
 
+    public List<LadderLine> getLadderLines() {
+        return new ArrayList<>(this.ladderLines);
+    }
+
     LadderLines getLadderLines(Names names, Height height) {
         this.ladderLines = LadderLineFactory.getLadderLines(Counts.of(names.size()), height);
         return new LadderLines(this.ladderLines);
@@ -33,7 +38,7 @@ public class LadderLines {
 
     public int getResult(int index) {
         for (LadderLine ladderLine : ladderLines) {
-            index = ladderLine.trace(index);
+            index = ladderLine.move(index);
         }
         return index;
     }

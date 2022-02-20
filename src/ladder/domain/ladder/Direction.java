@@ -18,13 +18,13 @@ public class Direction {
 
     private void validateDirection(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalStateException(UNDRAWABLE);
+            throw new IllegalArgumentException(UNDRAWABLE);
         }
     }
 
     void validateDirection(){
         if(this.left && this.right){
-            throw new IllegalStateException(UNDRAWABLE);
+            throw new IllegalArgumentException(UNDRAWABLE);
         }
     }
 

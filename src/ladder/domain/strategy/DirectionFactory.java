@@ -14,12 +14,10 @@ public class DirectionFactory {
         final boolean right = Configuration.randomGenerator.getBoolean();
         return new Direction(NONE, right);
     }
-    private static final Boolean NULL = Boolean.FALSE;
-
 
     public static Direction getNextDirection(Point point) {
         Direction direction = point.getDirection();
-        if(direction.hasRight()){
+        if (direction.hasRight()) {
             return new Direction(direction.getRight(), NONE);
         }
         boolean next = Configuration.randomGenerator.getBoolean();
