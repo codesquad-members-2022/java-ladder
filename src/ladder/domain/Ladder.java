@@ -43,12 +43,12 @@ public class Ladder {
 	private String checkResult(int idx) {
 		int line = idx * EACH_WIDTH_OF_LADDER_SIZE + 1;
 		for (int i = 0; i < ladderHeight; i++) {
-			line = userPath(line, i);
+			line = traceUserPath(line, i);
 		}
 		return userResultInput.get((line - 1) / EACH_WIDTH_OF_LADDER_SIZE);
 	}
 
-	private int userPath(int line, int i) {
+	private int traceUserPath(int line, int i) {
 		if (isExistLeftStep(line, i)) {
 			return line - EACH_WIDTH_OF_LADDER_SIZE;
 		}
