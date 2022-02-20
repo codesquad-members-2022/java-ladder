@@ -4,10 +4,7 @@ import domain.LadderSize;
 import domain.Line;
 import domain.Position;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class RandomLadder extends AbstractLadder{
@@ -30,6 +27,11 @@ public class RandomLadder extends AbstractLadder{
         int totalPositions = ladderSize.getTotalPositions();
         int countOfLine = ladderSize.getCountOfLine(DEFAULT_PERCENT);
         int[] startPositions = new int[countOfLine];
+        makeUniquePositions(totalPositions, startPositions);
+        return startPositions;
+    }
+
+    private void makeUniquePositions(int totalPositions, int[] startPositions) {
         for (int i = 0; i < startPositions.length; i++) {
             int randomPosition = randomRangeInt(1, totalPositions);
             if(ladderSize.isMultipleOfPersonNum(randomPosition) || isExisted(startPositions, randomPosition)){
@@ -38,7 +40,6 @@ public class RandomLadder extends AbstractLadder{
             }
             startPositions[i] = randomPosition;
         }
-        return startPositions;
     }
 
     List<Position> toPositions(int[] positions){

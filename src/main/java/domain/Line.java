@@ -61,17 +61,7 @@ public class Line {
         return columns[startLine] == 1;
     }
 
-    public void show() {
-        System.out.print(" ");
-        for(int i = 0; i < columns.length-1; i++){
-            System.out.print("|");
-            if(columns[i] == Direction.RIGHT.getNum() && columns[i+1] == Direction.LEFT.getNum()){
-                System.out.print("-----");
-                continue;
-            }
-            System.out.print("     ");
-        }
-        System.out.print("|");
-        System.out.println();
+    public int[] getLineInfo() {
+        return columns;
     }
 }

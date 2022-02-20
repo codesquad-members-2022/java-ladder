@@ -14,9 +14,9 @@
 - [x] 에러 출력은 System.out.error로 변경해주기
 - [ ] Ladder에서 depth 2가 지켜지지 않은 부분 해결하기 (55~58 라인)
 - [x] makeStartPositions() 접근 제어자 수정하기
-- [ ] Line에서의 뷰 출력 수정하기
+- [x] Line에서의 뷰 출력 수정하기
 - [x] 상수 사용 부분 수정하기
-- [ ] Validation 하는 부분에서 예외 던지기
+- [x] Validation 하는 부분에서 예외 던지기
 - [ ] @ParameterizedTest를 사용하기
 
 ## Step 5 TO-DO list
