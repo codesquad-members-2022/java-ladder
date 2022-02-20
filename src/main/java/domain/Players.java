@@ -10,16 +10,14 @@ public class Players {
 
     private final List<Player> players;
 
-    public Players(String names) {
-        this.players = splitNames(names);
-        Validation.checkPlayers(this.players.size());
+    public Players(String[] playerNames) {
+        this.players = splitNames(playerNames);
     }
 
-    private List<Player> splitNames(String names) {
+    private List<Player> splitNames(String[] playerNames) {
         List<Player> players = new ArrayList<>();
-        String[] nameList = names.split(",");
-        for (int i = 0; i < nameList.length; i++) {
-            players.add(new Player(nameList[i], i));
+        for (int i = 0; i < playerNames.length; i++) {
+            players.add(new Player(playerNames[i], i));
         }
         return players;
     }

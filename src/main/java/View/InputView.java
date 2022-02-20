@@ -8,7 +8,7 @@ import domain.Players;
 import java.util.Scanner;
 
 public class InputView {
-
+    private static final String INPUT_DELIMITER = ",";
     private static final String PLAYER_NAMES_COMMAND = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String PLAYER_NAMES_RESTRICTIONS = "[플레이어의 이름은 알파벳,숫자만 가능, 플레이어의 수는 2명이상 10명이하로 가능합니다.]";
     private static final String LADDER_HEIGHT_COMMAND = "최대 사다리 높이는 몇 개인가요?";
@@ -36,14 +36,17 @@ public class InputView {
     private static Players askPlayers() {
         System.out.println(PLAYER_NAMES_COMMAND);
         System.out.println(PLAYER_NAMES_RESTRICTIONS);
-        String players = scanner.nextLine().replaceAll(" ","");
+        String input = scanner.nextLine().replaceAll(" ", "");
+        String[] playerNames;
         try {
-            Validation.checkInputNames(players);
+            Validation.checkInputNames(input);
+            playerNames = input.split(INPUT_DELIMITER);
+            Validation.checkPlayers(playerNames.length);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askPlayers();
         }
-        return new Players(players);
+        return new Players(playerNames);
     }
 
     public static int askLadderHeight() {
