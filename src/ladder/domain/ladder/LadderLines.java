@@ -1,12 +1,11 @@
 package ladder.domain.ladder;
 
 import ladder.domain.strategy.LadderLineFactory;
-import ladder.utils.Count;
+import ladder.domain.user.Names;
+import ladder.utils.Counts;
 
-import java.util.Collections;
 import java.util.List;
 
-import static ladder.utils.CopyUtils.copy;
 
 public class LadderLines {
 
@@ -23,21 +22,13 @@ public class LadderLines {
         return instance;
     }
 
-    private LadderLines(List<LadderLine> ladderLines) {
+    LadderLines(List<LadderLine> ladderLines) {
         this.ladderLines = ladderLines;
     }
 
-    LadderLines getLadderLines(Count playerCounts, Height height) {
-        this.ladderLines = LadderLineFactory.getLadderLines(playerCounts, height);
+    LadderLines getLadderLines(Names names, Height height) {
+        this.ladderLines = LadderLineFactory.getLadderLines(Counts.of(names.size()), height);
         return new LadderLines(this.ladderLines);
-    }
-
-    public List<LadderLine> getLadderLines() {
-        return Collections.unmodifiableList(copy(this.ladderLines));
-    }
-
-    LadderLines getLadderLines(List<LadderLine> ladderLines){
-        return new LadderLines(ladderLines);
     }
 
     public int getResult(int index) {

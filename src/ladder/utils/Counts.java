@@ -17,9 +17,9 @@ public class Counts {
     }
 
     private static void initCounts() {
-        List<Count> elements = IntStream.rangeClosed(START, LIMIT)
+        List<Count> elements = new ArrayList<>(IntStream.rangeClosed(START, LIMIT)
                 .mapToObj(Count::new)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toUnmodifiableList()));
         counts.addAll(elements);
     }
 

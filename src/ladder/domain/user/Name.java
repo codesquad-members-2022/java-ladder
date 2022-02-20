@@ -4,7 +4,6 @@ public class Name {
 
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String END_CONDITION = "춘식이";
 
     private final String name;
 
@@ -27,7 +26,4 @@ public class Name {
         return this.name;
     }
 
-    public boolean isNotEqualToEndCondition(){
-        return this.name.equals(END_CONDITION);
-    }
 }

@@ -10,7 +10,6 @@ import java.util.List;
 
 public class LadderLineFactory {
 
-
     public static List<LadderLine> getLadderLines(Count playerCount, Height height) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int index = 0; index < height.getValue(); index++) {

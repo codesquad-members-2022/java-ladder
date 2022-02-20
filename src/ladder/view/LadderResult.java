@@ -1,7 +1,7 @@
 package ladder.view;
 
-import ladder.model.Names;
-import ladder.model.ladder.LadderLines;
+import ladder.domain.user.Names;
+import ladder.domain.ladder.LadderLines;
 
 public class LadderResult {
     private Names names;

@@ -6,16 +6,15 @@ import ladder.utils.Counts;
 
 import java.util.List;
 
+
 public class Ladder {
 
-    private static Ladder instance = new Ladder();
+
+    private Ladder (){};
     private LadderLines ladderLines;
 
-    private Ladder() {
-        this.ladderLines = Configuration.ladderLines;
-    }
-
-    private Ladder(LadderLines ladderLines) {
+    private static final Ladder instance = new Ladder();
+    public Ladder(LadderLines ladderLines) {
         this.ladderLines = ladderLines;
     }
 
@@ -27,13 +26,11 @@ public class Ladder {
     }
 
     public Ladder getLadder(Names names, Height height) {
-        int number = names.size();
-        LadderLines ladderLines = this.ladderLines.getLadderLines(Counts.of(number), height);
+        LadderLines ladderLines = this.ladderLines.getLadderLines(names, height);
         return new Ladder(ladderLines);
     }
 
-    public LadderLines getLadderLines(){
-        List<LadderLine> ladderLines = this.ladderLines.getLadderLines();
-        return this.ladderLines.getLadderLines(ladderLines);
+    public LadderLines getLadderLines(Names names, Height height) {
+        return new LadderLines(names, height);
     }
 }

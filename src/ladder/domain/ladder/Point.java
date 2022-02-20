@@ -44,4 +44,12 @@ public class Point {
     public Direction getDirection() {
         return direction;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.domain.ladder.Height;
 import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLines;
 import ladder.domain.user.Names;
 import ladder.system.Configuration;
 
@@ -22,7 +23,7 @@ public class LadderGame {
         return instance;
     }
 
-    Ladder getLadder(Names names, Height height) {
-        return this.ladder.getLadder(names, height);
+    public LadderLines drawLadder(Names names, Height height) {
+        return ladder.getLadderLines(names, height);
     }
 }

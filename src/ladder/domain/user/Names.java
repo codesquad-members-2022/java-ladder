@@ -1,12 +1,9 @@
 package ladder.domain.user;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.IntStream;
 
-import static ladder.utils.CopyUtils.copy;
+import static ladder.utils.CopyUtils.CopyUtils.copy;
 
 public class Names {
 
@@ -28,7 +25,7 @@ public class Names {
 
     private void validateMaxMember(List<Name> names) {
         int playerCount = names.size();
-        if (playerCount < MIN_PLAYER_LIMIT || playerCount > MAX_PLAYER_LIMIT){
+        if (playerCount < MIN_PLAYER_LIMIT || playerCount > MAX_PLAYER_LIMIT) {
             throw new IllegalStateException();
         }
     }
@@ -63,6 +60,6 @@ public class Names {
     }
 
     public int size() {
-        return names.size();
+        return this.names.size();
     }
 }

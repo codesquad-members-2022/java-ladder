@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.model.GameManager;
+import ladder.domain.GameManager;
 import ladder.system.Configuration;
 
 public class Main {

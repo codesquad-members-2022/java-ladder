@@ -9,7 +9,7 @@ public class Count {
     private static final int MAX_VALUE = 15;
     private static final String INDEX_OUT_OF_RANGE = "최소 1이상, 최대 15 이하의 숫자만 입력하실 수 있습니다.";
 
-    Count(int value) {
+    public Count(int value) {
         validate(value);
         this.value = value;
     }
