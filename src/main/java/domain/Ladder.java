@@ -28,7 +28,7 @@ public class Ladder {
     public List<Floor> generateBoard() {
         List<Floor> frame = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            frame.add(new Floor(width));
+            frame.add(Floor.getInstance(width));
         }
         return frame;
     }

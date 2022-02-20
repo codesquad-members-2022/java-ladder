@@ -10,10 +10,15 @@ public class GameController {
     public void init() {
         LadderGame ladderGame = InputView.askSettingLadder();
         ladderGame.start();
-        //OutputView.showLadder();
         run(ladderGame);
         InputView.close();
         OutputView.closeGame();
+    }
+
+    private void showBoard(LadderGame ladderGame) {
+        OutputView.showPlayerNames(ladderGame.getPlayers());
+        OutputView.showLadder(ladderGame.getLadder());
+        OutputView.showResults(ladderGame.getResults());
     }
 
     private void run(LadderGame ladderGame) {
@@ -25,7 +30,7 @@ public class GameController {
 
     private void showResult(LadderGame ladderGame, String command) {
         if (command.equals(ALL_COMMAND)) {
-            OutputView.showAllResult(ladderGame);
+            OutputView.showAllResult(ladderGame.getResultMap());
             return;
         }
         try {

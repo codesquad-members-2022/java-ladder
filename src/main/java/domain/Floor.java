@@ -24,7 +24,7 @@ public class Floor {
     }
 
     public boolean isSTEP(int index) {
-        if(index >= size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IllegalArgumentException();
         }
         return floor.get(index);
@@ -40,7 +40,7 @@ public class Floor {
         if (index == 0) {
             return drawRandom();
         }
-        if (isSTEP(index-1)) {
+        if (isSTEP(index - 1)) {
             return false;
         }
         return drawRandom();

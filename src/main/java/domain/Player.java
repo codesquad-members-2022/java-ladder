@@ -56,7 +56,7 @@ public class Player {
 
     private String editNameLength() {
         if (name.length() > MAX_NAME_LENGTH) {
-            return name.substring(0, MAX_NAME_LENGTH-2) + "..";
+            return name.substring(0, MAX_NAME_LENGTH - 2) + "..";
         }
         return name;
     }

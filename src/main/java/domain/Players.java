@@ -44,7 +44,7 @@ public class Players {
     }
 
     public List<String> getNames() {
-        return players.stream().map(player -> player.name2Text()).collect(Collectors.toList());
+        return players.stream().map(Player::name2Text).collect(Collectors.toList());
     }
 
 }

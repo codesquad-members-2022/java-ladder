@@ -19,7 +19,7 @@ public class OutputView {
 
     public static void showPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
-        players.getNames().forEach(name -> stringBuilder.append(String.format("%6s",name)));
+        players.getNames().forEach(name -> stringBuilder.append(String.format("%6s", name)));
         System.out.println(stringBuilder.toString());
     }
 
@@ -29,7 +29,7 @@ public class OutputView {
 
     public static void showResults(String[] results) {
         StringBuilder stringBuilder = new StringBuilder();
-        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s",result)));
+        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s", result)));
         System.out.println(stringBuilder.toString());
     }
 
@@ -60,22 +60,22 @@ public class OutputView {
     private static String drawLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         int height = ladder.getLadderHeight();
-        for (int i = 0; i < height ; i++) {
+        for (int i = 0; i < height; i++) {
             stringBuilder.append(START_VERTICAL);
-            drawFloor(stringBuilder,ladder,i);
+            drawFloor(stringBuilder, ladder, i);
         }
         return stringBuilder.toString();
     }
 
     private static void drawFloor(StringBuilder stringBuilder, Ladder ladder, int indexOfFloor) {
-        for (int j = 0; j <ladder.getWidth() ; j++) {
-            stringBuilder.append(drawLadderElement(ladder.isStep(indexOfFloor,j)));
+        for (int j = 0; j < ladder.getWidth(); j++) {
+            stringBuilder.append(drawLadderElement(ladder.isStep(indexOfFloor, j)));
         }
         stringBuilder.append(NEW_LINE);
     }
 
     private static String drawLadderElement(Boolean isStep) {
-        if(isStep) {
+        if (isStep) {
             return STEP;
         }
         return BLANK;

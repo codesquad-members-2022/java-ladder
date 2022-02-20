@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
@@ -30,16 +28,20 @@ public class LadderGame {
         throw new IllegalArgumentException();
     }
 
-    public String getAllResult() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String key : resultMap.keySet()) {
-            stringBuilder.append(key).append(KEY_VALUE_DELIMITER).append(resultMap.get(key)).append('\n');
-        }
-        return stringBuilder.toString();
+    public Players getPlayers() {
+        return players;
     }
 
-    public List<String> getPlayerNames() {
-        return players.getNames();
+    public Ladder getLadder() {
+        return ladder;
+    }
+
+    public String[] getResults() {
+        return results;
+    }
+
+    public Map<String, String> getResultMap() {
+        return resultMap;
     }
 
     private void rideLadder() {

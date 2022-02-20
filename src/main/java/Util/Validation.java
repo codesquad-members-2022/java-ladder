@@ -37,7 +37,7 @@ public class Validation {
     }
 
     public static void comparePlayersWithResults(int countOfPlayers, int countOfResults) {
-        if(countOfPlayers != countOfResults) {
+        if (countOfPlayers != countOfResults) {
             throw new IllegalArgumentException(COUNT_ERROR_MESSAGE);
         }
     }
