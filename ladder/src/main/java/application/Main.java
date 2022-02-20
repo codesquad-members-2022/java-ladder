@@ -1,4 +1,6 @@
-package ladder;
+package application;
+
+import model.game.LadderGame;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,11 +1,16 @@
-package ladder;
+package io;
 
 import java.util.Scanner;
 
 public class Input {
     Scanner scan = new Scanner(System.in);
-    public int inputString() {
-        return Integer.parseInt(scan.nextLine());
+
+    public int inputInteger() {
+        return scan.nextInt();
+    }
+
+    public String inputString() {
+        return scan.nextLine();
     }
 
     public void close() {
