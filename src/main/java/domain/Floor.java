@@ -10,7 +10,8 @@ public class Floor {
     private static final String START_VERTICAL = "    |";
     private static final String STEP = "-----|";
     private static final String BLANK = "     |";
-    private static final Random random = new Random();
+
+    private static Random random = new Random();
 
     private final List<Boolean> floor;
 
