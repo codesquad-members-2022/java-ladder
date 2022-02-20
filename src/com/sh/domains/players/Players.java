@@ -9,11 +9,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Players {
+	public static final String ERROR_NOT_INCLUDE_PLAYERS = "플레이어 이름을 확인 후 재입력 해주세요.";
 	private final List<Player> players;
 
 	public Players(List<String> names, List<Result> results) {
 		this.players = new ArrayList<>();
 		addPlayers(names, results);
+	}
+
+	public void isName(String name) {
+		boolean isContains = getNames().contains(name);
+		if (!isContains) {
+			throw new IllegalArgumentException(ERROR_NOT_INCLUDE_PLAYERS);
+		}
 	}
 
 	private void addPlayers(List<String> names, List<Result> results) {
@@ -58,5 +66,22 @@ public class Players {
 		return this.players.stream()
 			.map(Player::getName)
 			.collect(toList());
+	}
+
+	public List<String> getAllResults() {
+		return this.players.stream()
+			.map(Player::getResult)
+			.collect(toList());
+	}
+
+	public String getPersonalResult(String name) {
+		Player findPlayer = players.stream()
+			.parallel()
+			.filter(player -> player.isSame(name))
+			.findAny()
+			.orElseThrow(() -> {
+				throw new IllegalArgumentException("해당 플레이어는 없습니다.");
+			});
+		return findPlayer.getResult();
 	}
 }

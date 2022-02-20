@@ -80,4 +80,27 @@ public class PlayersService {
 	public String getLadderResult(ResultDto resultDto) {
 		return toText(resultDto.getLadderGameResult());
 	}
+
+	public String getResultAllPlayers(Players players) {
+		List<String> names = players.getNames();
+		List<String> results = players.getAllResults();
+		return toTextAllPlayers(names, results);
+	}
+
+	public String getResultOfPlayer(Players players, String name) {
+		players.isName(name);
+		return players.getPersonalResult(name);
+	}
+
+	private String toTextAllPlayers(List<String> names, List<String> results) {
+		StringBuilder sb = new StringBuilder();
+		int size = names.size();
+		for (int i = 0; i < size; i++) {
+			sb.append(names.get(i))
+				.append(" : ")
+				.append(results.get(i))
+				.append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
 }

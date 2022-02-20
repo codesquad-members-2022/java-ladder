@@ -23,4 +23,12 @@ public class Player {
 	public String getName() {
 		return name;
 	}
+
+	public String getResult() {
+		return result.content();
+	}
+
+	public boolean isSame(String name) {
+		return this.name.equals(name);
+	}
 }
