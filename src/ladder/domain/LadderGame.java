@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -26,15 +27,22 @@ public class LadderGame {
 	}
 
 	private void setUserName() {
-		users = InputView.getUserName();
+		users = convertInputToUsers(InputView.getUserCommandInput("참여할 사람 이름을 입력하세요."));
 		userNumber = users.size();
 	}
 
-	private void setUserResult() {
-		userResultInput = InputView.getUserResult();
-		while (userResultInput.size() != userNumber) {
-			userResultInput = InputView.getUserResult();
+	private List<User> convertInputToUsers(List<String> userNames) {
+		List<User> tmpUsers = new ArrayList<>();
+		for (String userName : userNames) {
+			tmpUsers.add(new User(userName));
 		}
+		return tmpUsers;
+	}
+
+	private void setUserResult() {
+		do {
+			userResultInput = InputView.getUserCommandInput("실행 결과를 입력하세요.");
+		} while (userResultInput.size() != userNumber);
 	}
 
 	private int getLadderHeight() {
