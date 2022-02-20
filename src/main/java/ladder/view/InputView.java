@@ -1,19 +1,28 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.Person;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class View {
+public class InputView {
     private static Scanner sc = new Scanner(System.in);
 
     public static Ladder createLadder() {
-        String[] personNames = getNames();
-        List<Person> personList = Arrays.stream(personNames)
-                .map(name -> new Person(name))
-                .collect(Collectors.toList());
+        String[] personNames = getPersonNames();
+        List<Person> personList = getPersonList(personNames);
 
         int ladderHeight = getLadderHeight();
         return new Ladder(personList, ladderHeight);
+    }
+
+    private static List<Person> getPersonList(String[] personNames) {
+        return Arrays.stream(personNames)
+                .map(name -> new Person(name))
+                .collect(Collectors.toList());
     }
 
     private static int getLadderHeight() {
@@ -22,14 +31,9 @@ public class View {
         return ladderHeight;
     }
 
-    private static String[] getNames() {
+    private static String[] getPersonNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String[] names = sc.next().split(",");
         return names;
-    }
-
-    public static void printMap(List<String> map) {
-        System.out.println("\n실행 결과\n");
-        map.stream().forEach(System.out::println);
     }
 }
