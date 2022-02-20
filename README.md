@@ -345,7 +345,7 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 * [x] indent(인덴트, 들여쓰기) depth를 2단계에서 1단계로 줄여라.
   * [x] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다.\if문 안에 while문을 사용한다면 depth가 2단계가 된다.
 * [x] else를 사용하지 마라.
-* [ ] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+* [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 * [ ] 로직을 구현하는 코드에 단위 테스트가 존재해야 한다. 단, UI 처리 로직(System.in, System.out)은 테스트에서 제외한다.
 * [x] 각각의 역할에 맞도록 패키지를 분리하고 접근 제어자를 적절히 사용하도록 리팩토링한다.
 
@@ -358,6 +358,20 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
   * [x] UI 관련된 클래스는 `view` 패키지를 추가한 후 이동한다.
   * [x] 핵심 비지니스 로직을 담당하는 클래스는 `domain` 패키지를 추가한 후 이동한다.
   * [x] 제일 상위 패키지에서는 `main()` 메소드를 가지는 클래스만 위치한다.
+
+### 리팩토링 과정
+
+#### 1. Line 클래스 추가
+
+`Ladder` 클래스에서 이중 `ArrayList` 사용을 지양하기 위해 한 줄의 Line의 정보를 가지는 `Line`클래스를 추가하였다.
+
+#### 2. LadderView 클래스 추가
+
+기존 `PrinvView` 클래스에서 게임의 정보를 모두 표현했는데, 게임을 위한 사용자와 대화하는 출력과, `Ladder`의 정보를 나누기 위해 `Ladder`만의 정보를 보여주는 `LadderView`클래스를 추가하였다.
+
+#### 3. 이름을 변경 없이 받고 PrintView에서 수정하여 출력하도록 변경
+
+기존 플레이어의 이름을 받을 때, `ScanView`클래스에서 사용자의 이름을 변형하여 `Ladder`에 저장했는데, 그대로 저장하고 출력 시에만 최대 길이로 변경하도록 코드를 수정하였다.
 
 ## 사다리 게임 5단계 - 실행 결과 출력
 
