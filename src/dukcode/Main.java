@@ -16,10 +16,10 @@ public class Main {
         Ladder ladder = new Ladder();
         LadderView ladderView = new LadderView(ladder);
         PrintView printView = new PrintView(ladderView);
-        LadderGameController ladderGameController = new LadderGameController(printView, ladder);
+        LadderGameController ladderGameController = new LadderGameController(scanView, printView, ladder);
 
-        ladderGameController.initLadder(scanView.getPlayerName(),scanView.getResults(), scanView.getHeight());
-        ladderGameController.updatePrintView();
+        ladderGameController.initLadder();
+        ladderGameController.playGame();
         sc.close();
     }
 }

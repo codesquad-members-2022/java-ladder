@@ -30,4 +30,24 @@ public class Line {
     public Boolean[] getStepArray() {
         return steps.toArray(new Boolean[numSteps]);
     }
+
+    public int getNextPosition(int position) {
+        if (position == 0) {
+            return steps.get(0) ? 1 : 0;
+        }
+
+        if (position == numSteps) {
+            return steps.get(numSteps - 1) ? position - 1  : position;
+        }
+
+        if (steps.get(position - 1) == true) {
+            return position - 1;
+        }
+
+        if (steps.get(position) == true) {
+            return position + 1;
+        }
+
+        return position;
+    }
 }

@@ -30,6 +30,14 @@ public class ScanView {
         System.out.println("최대 사다리 높이 는 몇 개 인가요?");
         int height = sc.nextInt();
         System.out.println();
+        sc.nextLine();
         return height;
+    }
+
+    public String getPlayerNameToShowResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String name = sc.nextLine();
+        System.out.println();
+        return name;
     }
 }

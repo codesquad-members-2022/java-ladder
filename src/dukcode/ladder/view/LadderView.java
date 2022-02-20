@@ -17,6 +17,14 @@ public class LadderView {
         this.ladder = ladder;
     }
 
+    public String[] getPlayersNameArray() {
+        return ladder.getNamePlayers();
+    }
+
+    public String[] getResultsArray() {
+        return ladder.getResults();
+    }
+
     public String getPlayersName() {
         final String[] namePlayers = this.ladder.getNamePlayers();
         return getConsecutiveString(namePlayers);
@@ -87,5 +95,11 @@ public class LadderView {
         }
 
         return strLine;
+    }
+
+    public String getStringResultOfPlayer(String namePlayer) {
+        int playerIdx = ladder.getPlayerIdx(namePlayer);
+        int resultIdx = ladder.getResultIdx(playerIdx);
+        return ladder.getResults()[resultIdx];
     }
 }

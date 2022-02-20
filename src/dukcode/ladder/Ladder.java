@@ -3,6 +3,7 @@ package dukcode.ladder;
 import dukcode.ladder.domain.Line;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
@@ -60,5 +61,18 @@ public class Ladder {
         for (int i = 0; i < height; ++i) {
             ladder.add(new Line(numSteps));
         }
+    }
+
+    public int getPlayerIdx(String namePlayer) {
+        return Arrays.asList(namePlayers).indexOf(namePlayer);
+    }
+
+    public int getResultIdx(int playerIdx) {
+        int result = playerIdx;
+        for (int line = 0; line < height; ++line) {
+            result = ladder.get(line).getNextPosition(result);
+        }
+
+        return result;
     }
 }
