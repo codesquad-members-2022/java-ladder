@@ -3,27 +3,26 @@ package domain;
 import domain.ladder.RandomLadder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RandomLadderCreateTest {
 
-    @Test
-    void createLineTest(){
-        RandomLadder randomLadder = new RandomLadder(4, 5);
-        assertThat(randomLadder.getHeight()).isEqualTo(4);
-
-        RandomLadder randomLadder2 = new RandomLadder(3, 5);
-        assertThat(randomLadder2.getHeight()).isEqualTo(3);
+    @ParameterizedTest
+    @CsvSource({"4,5,4", "3,5,3"})
+    void createLineTest(int height, int numOfPerson, int expected){
+        RandomLadder randomLadder = new RandomLadder(height, numOfPerson);
+        assertThat(randomLadder.getHeight()).isEqualTo(expected);
     }
 
-    @Test
-    void invalidInputTest(){
-        assertThatThrownBy(() -> new RandomLadder(1, 0)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new RandomLadder(1, -1)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new RandomLadder(0, 1)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new RandomLadder(-1, 1)).isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @CsvSource({"1,0", "1,-1", "0,1", "-1,1"})
+    void invalidInputTest(int height, int numOfPerson){
+        assertThatThrownBy(() -> new RandomLadder(height, numOfPerson)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
