@@ -23,26 +23,27 @@ public class RandomLadder extends AbstractLadder {
         }
     }
 
-    public int[] makeStartPositions() {
+    public List<Integer> makeStartPositions() {
         int totalPositions = ladderSize.getTotalPositions();
         int countOfLine = ladderSize.getCountOfLine(DEFAULT_PERCENT);
-        int[] startPositions = new int[countOfLine];
-        makeUniquePositions(totalPositions, startPositions);
-        return startPositions;
+        return makeUniquePositions(totalPositions, countOfLine);
     }
 
-    private void makeUniquePositions(int totalPositions, int[] startPositions) {
-        for (int i = 0; i < startPositions.length; i++) {
-            int randomPosition = randomRangeInt(1, totalPositions);
-            if(ladderSize.isMultipleOfPersonNum(randomPosition) || isExisted(startPositions, randomPosition)){
-                i--;
-                continue;
-            }
-            startPositions[i] = randomPosition;
+    private List<Integer> makeUniquePositions(int totalPositions, int count) {
+        List<Integer> list = new LinkedList<>();
+        while (list.size() < count) {
+            addRandomNumToList(list, randomRangeInt(1, totalPositions));
+        }
+        return list;
+    }
+
+    private void addRandomNumToList(List<Integer> list, int randomPosition) {
+        if(!ladderSize.isMultipleOfPersonNum(randomPosition) && !isExisted(list, randomPosition)){
+            list.add(randomPosition);
         }
     }
 
-    List<Position> toPositions(int[] positions) {
+    List<Position> toPositions(List<Integer> positions) {
         List<Position> list = new ArrayList<>();
         for (int position : positions) {
             int[] ints = ladderSize.convertPositionToXY(position);
@@ -51,8 +52,8 @@ public class RandomLadder extends AbstractLadder {
         return list;
     }
 
-    public static boolean isExisted(int[] startPositions, int randomPosition) {
-        return Arrays.stream(startPositions)
+    public static boolean isExisted(List<Integer> startPositions, int randomPosition) {
+        return startPositions.stream()
                 .anyMatch(p -> p == randomPosition || p == randomPosition-1 || p == randomPosition+1);
     }
 

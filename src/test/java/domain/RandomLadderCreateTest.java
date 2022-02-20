@@ -1,11 +1,15 @@
 package domain;
 
 import domain.ladder.RandomLadder;
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -29,7 +33,7 @@ public class RandomLadderCreateTest {
     @DisplayName("포지션들 출력하기")
     void generatePositionsTest(){
         RandomLadder randomLadder = new RandomLadder(3, 5);
-        int[] positions = randomLadder.makeStartPositions();
+        List<Integer> positions = randomLadder.makeStartPositions();
         for (int position : positions) {
             System.out.println(position);
         }
@@ -37,21 +41,27 @@ public class RandomLadderCreateTest {
 
     @Test
     void alreadyExistedPosition(){
-        int[] startPositions = {2, 3};
+        List<Integer> startPositions = new LinkedList<>();
+        startPositions.add(2);
+        startPositions.add(3);
         assertThat(RandomLadder.isExisted(startPositions, 2)).isTrue();
         assertThat(RandomLadder.isExisted(startPositions, 7)).isFalse();
     }
 
     @Test
     void alreadyExistedBeforePosition(){
-        int[] startPositions = {1, 4};
+        List<Integer> startPositions = new LinkedList<>();
+        startPositions.add(1);
+        startPositions.add(4);
         assertThat(RandomLadder.isExisted(startPositions, 2)).isTrue();
         assertThat(RandomLadder.isExisted(startPositions, 7)).isFalse();
     }
 
     @Test
     void alreadyExistedAfterPosition(){
-        int[] startPositions = {1, 4};
+        List<Integer> startPositions = new LinkedList<>();
+        startPositions.add(1);
+        startPositions.add(4);
         assertThat(RandomLadder.isExisted(startPositions, 3)).isTrue();
         assertThat(RandomLadder.isExisted(startPositions, 7)).isFalse();
     }
