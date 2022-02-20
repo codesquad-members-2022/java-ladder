@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PlayersTest {
+public class PlayersTest {
 	public static final String TEST_MAX_LENGTH_NAME = "honux";
 	private static final String TEST_MAX_LENGTH_RESULT = "로또1등!";
 	private List<String> invalidShortNames = List.of("pobi", "  ");
