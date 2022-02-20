@@ -113,3 +113,9 @@ public static int checkPlayersReturn(int count) {
 * 출력을 toString() 방식으로 계속 구현했으니, Boolean타입으로 바꾸고 OutputView에서 출력하도록 리팩토링 하기
 * 테스트코드 작성하기
 
+## 5단계
+* PR 리뷰 내용 리팩토링하기
+  - [ ] toString으로 출력하는 것, 그리고 도메인 객체에서 출력을 담당하는 것을 분리하기
+  - [ ] 생성자는 생성만 할 수 있게끔 처리하기
+  - [ ] 테스트가 가능하도록 Random으로 처리하는 메서드와 분리하기
+
