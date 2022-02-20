@@ -19,7 +19,7 @@ public class InputView {
 
     private static boolean invalidNameLength(String[] names) {
         boolean isMatch = Arrays.stream(names).anyMatch(i -> i.length() > 5);
-        if(!isMatch){
+        if(isMatch){
             throw new IllegalArgumentException(INPUT_NAME_LENGTH_ERROR_MESSAGE);
         }
         return isMatch;
