@@ -1,3 +1,5 @@
+package view;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Input {
+public class Input{
     private final String PROMPT_NAMES = "참여자들의 이름을 쉼표(,)로 구분하여 입력해주세요\n> ";
     private final String PROMPT_LADDERHEIGHT = "최대 사다리 높이는 몇 개인가요?\n> ";
     private final String PROMPT_NOTNUMBER = "숫자를 입력해주세요\n> ";
@@ -15,7 +17,7 @@ public class Input {
     private int ladderHeight;
     private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    protected void processInput() {
+    public void processInput() {
         try {
             names = receiveNameInput();
             ladderHeight = Integer.parseInt(receiveHeightInput());

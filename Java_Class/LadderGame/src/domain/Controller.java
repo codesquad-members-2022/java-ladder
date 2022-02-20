@@ -1,4 +1,9 @@
-public class Controller {
+package domain;
+
+import view.Input;
+import view.Output;
+
+public class Controller{
     private final Input input;
     private final Output output;
 
@@ -7,15 +12,13 @@ public class Controller {
         this.output = output;
     }
 
-    protected void runApp() {
+    public void runApp() {
         input.processInput();
         LadderMaker ladderMaker = new LadderMaker(input.getNameList().size(), input.getHeight());
         ladderMaker.make();
 
-        output.printConsole(input.getNameList());   // [pobi,honux,crong,jk]
-        for (String row : ladderMaker.getLadderList()) {  // [ {row1},{row2}..]
-            output.printConsole(row);
-        }
+        output.printNames(input.getNameList(), 6);
+        output.printLadder(ladderMaker.getLadderList());
     }
 
 }
