@@ -15,12 +15,13 @@ import java.util.stream.Collectors;
 public class InputView implements Closeable {
 
     private final static String SPLITER = ",";
-    private final static String Q_NAMES_OF_PARTICIPANTS = "참여할 사람을 입력해주세요.(5자 이하, 이름은 쉼표 '" + SPLITER + "' 로 구분해주세요.)";
+    private final static String Q_NAMES_OF_PARTICIPANTS = "참여할 사람을 입력해주세요.(%d자 이하, 이름은 쉼표 '" + SPLITER + "' 로 구분해주세요.)\n";
     private final static String Q_MAX_LADDER_HEIGHT = "최대 사다리 높이는 몇 개인가요?(1개 이상)";
     private final static String ALERT_NUMBER_REQUIRED = "(주의) 숫자만 입력해 주세요.";
 
     private final Scanner sc;
     private final InputValidator validator;
+    private final GameConfig config;
 
     private InputView(GameConfig config) {
         this(System.in, config);
@@ -29,6 +30,7 @@ public class InputView implements Closeable {
     private InputView(InputStream inputStream, GameConfig config) {
         this.sc = new Scanner(inputStream);
         this.validator = InputValidator.createWithConfig(config);
+        this.config = config;
     }
 
     public static InputView createWithConfig(GameConfig config) {
@@ -36,7 +38,7 @@ public class InputView implements Closeable {
     }
 
     public List<Participant> readParticipants() {
-        System.out.println(Q_NAMES_OF_PARTICIPANTS);
+        System.out.printf(Q_NAMES_OF_PARTICIPANTS, config.getNameLength());
         String[] names = readNames();
         return Arrays.stream(names)
                 .map(Participant::new)
