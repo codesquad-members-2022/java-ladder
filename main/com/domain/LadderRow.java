@@ -1,20 +1,23 @@
-package main.java.domain;
+package main.com.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class LadderRow {
-	private static final String BLANK = "  ";
-
-	private final List<String> row = new ArrayList<>();
+public class LadderRow {
 	private final LadderLine ladderLine = new LadderLine();
+	public List<LadderLine> element = new ArrayList<>();
 
-	List<String> make(int width){
-		row.add(BLANK);
+	LadderRow() {}
+
+	LadderRow(List<LadderLine> lines){
+		this.element = lines;
+	}
+
+	LadderRow make(int width){
 		for(int column = 0; column < width; column++){
-			String ladderElement = ladderLine.make(column);
-			row.add(ladderElement);
+			LadderLine line = ladderLine.make(column);
+			element.add(line);
 		}
-		return row;
+		return new LadderRow(element);
 	}
 }
