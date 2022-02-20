@@ -17,6 +17,9 @@ public class LadderGame {
         this.players = players;
         this.ladder = new Ladder(players.countOfPlayers(), height);
         this.results = results;
+    }
+
+    public void start() {
         rideLadder();
         saveResultMap();
     }
