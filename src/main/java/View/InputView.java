@@ -5,6 +5,7 @@ import domain.Ladder;
 import domain.LadderGame;
 import domain.Players;
 
+
 import java.util.Scanner;
 
 public class InputView {
@@ -49,7 +50,7 @@ public class InputView {
         return new Players(playerNames);
     }
 
-    public static int askLadderHeight() {
+    private static int askLadderHeight() {
         System.out.println(LADDER_HEIGHT_COMMAND);
         int height = Integer.parseInt(scanner.nextLine());
         Validation.checkHeight(height);

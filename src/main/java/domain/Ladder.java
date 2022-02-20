@@ -1,7 +1,5 @@
 package domain;
 
-import Util.Validation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +31,7 @@ public class Ladder {
         return frame;
     }
 
+
     public boolean isStep(int row, int col) {
         return board.get(row).isSTEP(col);
     }
@@ -44,6 +43,7 @@ public class Ladder {
                 ", height=" + height +
                 ", board=" + board +
                 '}';
+
     }
 }
 
