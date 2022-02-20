@@ -7,43 +7,40 @@ import java.util.Random;
 
 public class Floor {
 
-    private static final String START_VERTICAL = "    |";
-    private static final String STEP = "-----|";
-    private static final String BLANK = "     |";
-
     private static Random random = new Random();
 
+    private final int size;
     private final List<Boolean> floor;
 
     public Floor(int size) {
-        this.floor = generateFloor(size);
+        this.size = size;
+        this.floor = new ArrayList<>();
+    }
+
+    public static Floor getInstance(int size) {
+        Floor floor = new Floor(size);
+        floor.generateFloor();
+        return floor;
     }
 
     public boolean isSTEP(int index) {
-        if (index > floor.size() - 1) {
-            return false;
-        }
-        if (floor.get(index) == null) {
-            return false;
+        if(index >= size || index < 0) {
+            throw new IllegalArgumentException();
         }
         return floor.get(index);
     }
 
-    private List<Boolean> generateFloor(int size) {
-        List<Boolean> parts = new ArrayList<>();
-        parts.add(null);
-        for (int i = 1; i <= size; i++) {
-            parts.add(drawPart(parts, i));
+    private void generateFloor() {
+        for (int i = 1; i <= this.size; i++) {
+            floor.add(drawPart(floor, i));
         }
-        parts.add(null);
-        return parts;
     }
 
     private boolean drawPart(List<Boolean> floor, int index) {
-        if (floor.get(index - 1) == null) {
+        if (index == 0) {
             return drawRandom();
         }
-        if (floor.get(index - 1)) {
+        if (isSTEP(index-1)) {
             return false;
         }
         return drawRandom();
@@ -53,18 +50,4 @@ public class Floor {
         return random.nextBoolean();
     }
 
-    private String toText(boolean b) {
-        if (b) {
-            return STEP;
-        }
-        return BLANK;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(START_VERTICAL);
-        floor.stream().sequential().filter(Objects::nonNull).map(this::toText).forEach(stringBuilder::append);
-        return stringBuilder.toString();
-    }
 }
