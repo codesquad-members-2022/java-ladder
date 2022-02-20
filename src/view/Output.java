@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Output {
     private static final int WIDTH = 5;
+    private static final String TERMINATE = "춘식이";
 
     public static void messageAboutLadder(Ladder ladder) {
         System.out.println("사다리 결과\n");
@@ -19,7 +20,7 @@ public class Output {
     }
 
     public static void messageAboutGame(String gameResult) {
-        if (gameResult.equals("춘식이")) {
+        if (gameResult.equals(TERMINATE)) {
             System.out.println("게임을 종료합니다.");
             return;
         }

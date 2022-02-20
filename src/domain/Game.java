@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private List<Line> ladder;
     private List<String> players;
     private List<String> results;
-    private String player;
+    private GamePlayResults gamePlayResults;
     private int nowPlayerIndex;
     private int result;
 
@@ -17,38 +19,27 @@ public class Game {
     }
 
     public String play(String player){
-        //TODO
-        //result 처리하는 로직 들어가야함.
-        this.player = player;
-        if (player.equals("춘식이")) {
-            return "춘식이";
+        getAllPlayersResults();
+        return gamePlayResults.get(player);
+    }
+
+    private void getAllPlayersResults(){
+        Map<String, String> gameResults = new HashMap<>();
+        for (int i = 0; i < players.size(); i++) {
+            nowPlayerIndex = i;
+            gameResults.put(players.get(nowPlayerIndex), getOnePlayerResult());
         }
-        nowPlayerIndex = findPlayerIndex(player);
-        if(nowPlayerIndex==-1){
-            return "찾는 플레이어가 없습니다.";
-        }
+        gamePlayResults = new GamePlayResults(gameResults);
+    }
+
+    private String getOnePlayerResult() {
         result = stepDown();
         return results.get(result);
     }
 
-    private int findPlayerIndex(String player) {
-        for (int i = 0; i < players.size(); i++) {
-            if(checkSamePlayer(i, player)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean checkSamePlayer(int index, String player) {
-        return players.get(index).equals(player);
-    }
-
     private int stepDown(){
         for (int i = 0; i < ladder.size(); i++) {
-            System.out.print("now: "+nowPlayerIndex);
             rowCheck(nowPlayerIndex, i);
-            System.out.println(" => next: "+nowPlayerIndex);
         }
         return nowPlayerIndex;
     }
@@ -66,15 +57,15 @@ public class Game {
 
     private boolean leftSideCheck(int playerIndex, int step){
         int i = playerIndex;
-        while(i > 0 && isLine(i, step)){
+        while(i > 0 && isLine(i, step)){    // 맨 왼쪽 인덱스를 제외하고, 라인이 있는지 확인
             i--;
         }
-        return (i!=playerIndex); // 수정해야함
+        return (i!=playerIndex);
     }
 
     private boolean rightSideCheck(int playerIndex, int step){
         int i = playerIndex+1;
-        while(i <= ladder.get(step).size() && isLine(i, step)){
+        while(i <= ladder.get(step).size() && isLine(i, step)){ // 맨 오른쪽 인덱스를 제외하고, 라인이 있는지 확인
             i++;
         }
         return (i!=playerIndex+1);
