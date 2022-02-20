@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.players;
 
 
 import static com.sh.views.InputVerification.*;
@@ -11,18 +11,35 @@ import java.util.Objects;
 public class Players {
 	private final List<Player> players;
 
-	public Players(List<String> names) {
+	public Players(List<String> names, List<Result> results) {
 		this.players = new ArrayList<>();
-		addPlayers(names);
+		addPlayers(names, results);
 	}
 
-	private void addPlayers(List<String> names) {
-		isNull(names);
-		isRangeOf(names);
-		for (String name : names) {
-			Player player = new Player(name);
+	private void addPlayers(List<String> names, List<Result> results) {
+		invalidNamesAndResults(names, results);
+		int size = names.size();
+		for (int i = 0; i < size; i++) {
+			String name = names.get(i);
+			Result result = results.get(i);
+			Player player = new Player(name, result);
 			players.add(player);
 		}
+	}
+
+	private void invalidNamesAndResults(List<String> names, List<Result> results) {
+		List<String> resultString = toTextFrom(results);
+		isNull(names);
+		isNull(resultString);
+		isRangeOf(names);
+		isRangeOf(resultString);
+	}
+
+	private List<String> toTextFrom(List<Result> results) {
+		return results.stream()
+			.parallel()
+			.map(Result::content)
+			.collect(toList());
 	}
 
 	private void isRangeOf(List<String> names) {

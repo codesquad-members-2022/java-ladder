@@ -1,6 +1,5 @@
-package com.sh.domains;
+package com.sh.domains.players;
 
-import static com.sh.domains.LadderServiceTest.*;
 import static com.sh.views.InputVerification.*;
 import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlayersTest {
+	public static final String TEST_MAX_LENGTH_NAME = "honux";
+	private static final String TEST_MAX_LENGTH_RESULT = "로또1등!";
 	private List<String> invalidShortNames = List.of("pobi", "  ");
 	private List<String> invalidLongNames = getInvalidLongNames();
 	private int invalidLength = MAX_NUMBER_OF_PEOPLE + 1;
@@ -20,7 +21,7 @@ class PlayersTest {
 	@Test
 	void invalid_players_size_when_short() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Players(invalidShortNames);
+			new Players(invalidShortNames, getResults());
 		});
 	}
 
@@ -28,7 +29,7 @@ class PlayersTest {
 	@Test
 	void invalid_players_size_when_large() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Players(invalidLongNames);
+			new Players(invalidLongNames, getResults());
 		});
 	}
 
@@ -36,7 +37,8 @@ class PlayersTest {
 	@Test
 	void create_players() {
 		List<String> names = getNames();
-		Players players = new Players(names);
+		List<Result> results = getResults();
+		Players players = new Players(names, results);
 
 		List<String> actual = players.getNames();
 
@@ -48,5 +50,13 @@ class PlayersTest {
 		return IntStream.rangeClosed(0, invalidLength)
 			.mapToObj(String::valueOf)
 			.collect(toList());
+	}
+
+	public static List<String> getNames() {
+		return List.of("pobi", TEST_MAX_LENGTH_NAME, "crong", "jk");
+	}
+
+	public static List<Result> getResults() {
+		return List.of(new Result("꽝"), new Result(TEST_MAX_LENGTH_RESULT), new Result("3등"), new Result("2등"));
 	}
 }

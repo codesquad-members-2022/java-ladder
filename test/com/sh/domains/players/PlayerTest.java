@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.players;
 
 import static com.sh.views.InputVerification.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +13,7 @@ class PlayerTest {
 	@ValueSource(strings = {"abcdef", " "})
 	void invalid_name_of_player_exception(String name) {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Player(name);
+			new Player(name, new Result("1등"));
 		});
 	}
 
@@ -21,7 +21,7 @@ class PlayerTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"abcde", "honux", "JK"})
 	void acceptable_name_of_player_exception(String name) {
-		Player player = new Player(name);
+		Player player = new Player(name, new Result("1등"));
 
 		String actual = player.getName();
 

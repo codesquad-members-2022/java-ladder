@@ -1,11 +1,10 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
 import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import com.sh.utils.Randomz;
@@ -62,9 +61,6 @@ public class Ladder {
 			row.set(idx, true);
 		}
 	}
-
-	// private Predicate<Boolean> isDiscontinuous = (bool) -> (bool ? false : true);
-
 
 	private boolean isFilled(List<Boolean> row, int size, int idx) {
 		Discontinuous isDiscontinuous = getIsDiscontinuous();

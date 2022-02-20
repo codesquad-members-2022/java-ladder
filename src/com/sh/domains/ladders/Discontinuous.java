@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
 @FunctionalInterface
 public interface Discontinuous {

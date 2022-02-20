@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
 import java.util.List;
 import java.util.function.BiPredicate;
