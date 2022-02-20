@@ -35,11 +35,9 @@ public class User {
 		return userName.substring(0, 3) + "..";
 	}
 
-	@Override
-	public String toString() {
+	public String getUserName() {
 		return userName;
 	}
-
 
 	@Override
 	public boolean equals(Object o) {

@@ -23,7 +23,7 @@ public class OutputView {
 	private static void appendUserInfo(List<User> users) {
 		sb.append("  ");
 		for (User user : users) {
-			sb.append(user).append(" ");
+			sb.append(user.getUserName()).append(" ");
 		}
 		sb.append("\n");
 	}
