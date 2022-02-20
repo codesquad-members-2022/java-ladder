@@ -26,12 +26,12 @@ public class OutputView {
 		for (User user : users) {
 			sb.append(user.getUserName()).append(" ");
 		}
-		sb.append("\n");
+		sb.append(System.lineSeparator());
 	}
 
 	private static void appendLadder(List<LadderLine> ladders) {
 		for (LadderLine ladder : ladders) {
-			sb.append("    ").append(ladder).append("\n");
+			sb.append("    ").append(ladder).append(System.lineSeparator());
 		}
 	}
 
@@ -46,7 +46,10 @@ public class OutputView {
 
 	public static void printGameResultAll(Map<User, String> gameResult, List<User> users) {
 		for (User user : users) {
-			sb.append(user.getUserName()).append(" : ").append(gameResult.get(user)).append("\n");
+			sb.append(user.getUserName())
+				.append(" : ")
+				.append(gameResult.get(user))
+				.append(System.lineSeparator());
 		}
 		System.out.println(sb);
 		sb.setLength(0);

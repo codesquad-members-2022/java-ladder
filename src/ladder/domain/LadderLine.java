@@ -4,8 +4,9 @@ import java.util.Random;
 
 public class LadderLine {
 
-	private final StringBuilder ladder;
 	private static final Random ran = new Random();
+
+	private final StringBuilder ladder;
 	private boolean isPreviousStep = false;
 
 	public LadderLine(int userNumber) {

@@ -18,15 +18,6 @@ public class LadderGame {
 		InputView.close();
 	}
 
-	private void keepShowResult() {
-		boolean isKeep;
-		do {
-			String command = InputView.getUserName();
-			isKeep = showResult(command);
-
-		} while (isKeep);
-	}
-
 	private void init() {
 		setUserName();
 		setUserResult();
@@ -56,6 +47,15 @@ public class LadderGame {
 
 	private int getLadderHeight() {
 		return InputView.getLadderHeight("최대 사다리 높이는 몇 개인가요?");
+	}
+
+	private void keepShowResult() {
+		boolean isKeep;
+		do {
+			String command = InputView.getUserName();
+			isKeep = showResult(command);
+
+		} while (isKeep);
 	}
 
 	private boolean showResult(String command) {
