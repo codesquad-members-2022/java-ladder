@@ -2,7 +2,7 @@ package View;
 
 import domain.LadderGame;
 import domain.Players;
-
+import domain.Ladder;
 import java.util.Arrays;
 import java.util.Map;
 

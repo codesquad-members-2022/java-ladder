@@ -18,7 +18,6 @@ public class Validation {
         if (count < MIN_PLAYER || count > MAX_PLAYER) {
             throw new IllegalArgumentException(PLAYER_ERROR_MESSAGE);
         }
-        return count;
     }
 
     public static int checkHeight(int height) {
