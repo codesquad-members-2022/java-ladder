@@ -37,16 +37,23 @@ public class LadderView {
         return name.substring(0, MAX_NAME_LEN - ELLIPSIS.length()).concat(ELLIPSIS);
     }
 
-    // TODO : LinkedList 이용해 구현
     private String makeNameWithPadding(String name) {
         int count = 0;
         StringBuilder sb = new StringBuilder(name);
         while (sb.length() < MAX_NAME_LEN) {
-            sb = count % 2 == 0 ? sb.insert(0, ' ') : sb.append(' ');
+            sb = getStringPaddingOnce(sb, count);
             count++;
         }
 
         return new String(sb);
+    }
+    
+    private StringBuilder getStringPaddingOnce(StringBuilder sb, int count) {
+        if (count % 2 == 0) {
+            return sb.insert(0, ' ');
+        }
+
+        return sb.append(' ');
     }
 
     public String getLadderString() {
