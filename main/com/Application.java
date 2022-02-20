@@ -1,24 +1,23 @@
-package main.java;
+package main.com;
 
 import java.io.IOException;
-import java.util.List;
 
-import main.java.domain.Ladder;
-import main.java.view.InputView;
-import main.java.view.OutputView;
+import main.com.domain.Ladder;
+import main.com.view.InputView;
+import main.com.view.OutputView;
 
 public class Application {
 	private static void run() throws IOException {
 		InputView inputView = new InputView();
+		Ladder ladder = new Ladder();
+		OutputView outputView = new OutputView();
+
 		String[] playerNames = inputView.getPlayerName();
 		int ladderHeight = inputView.getLadderHeight();
 
-
-		Ladder ladder = new Ladder();
 		ladder.setWidth(playerNames);
-		List<List<String>> ladderForGame = ladder.make(ladderHeight);
+		Ladder ladderForGame = ladder.make(ladderHeight);
 
-		OutputView outputView = new OutputView();
 		outputView.printPlayerName(playerNames);
 		outputView.print(ladderForGame);
 	}
