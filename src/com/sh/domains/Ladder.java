@@ -16,7 +16,6 @@ public class Ladder {
 	private Randomz random;
 	private int limitNumberOfLadder;
 	private List<Line> graphs = new ArrayList<>();
-	private Predicate<Boolean> isDiscontinuous = (bool) -> (bool ? false : true);
 
 	public Ladder(int rangeOfx, int rangeOfy) {
 		if (Objects.isNull(rangeOfx) || Objects.isNull(rangeOfy)) {
@@ -64,7 +63,11 @@ public class Ladder {
 		}
 	}
 
+	// private Predicate<Boolean> isDiscontinuous = (bool) -> (bool ? false : true);
+
+
 	private boolean isFilled(List<Boolean> row, int size, int idx) {
+		Discontinuous isDiscontinuous = getIsDiscontinuous();
 		if (idx == 0) {
 			return isDiscontinuous.test(row.get(idx + 1));
 		}
@@ -72,6 +75,15 @@ public class Ladder {
 			return isDiscontinuous.test(row.get(idx - 1));
 		}
 		return isMiddleDiscontinuous(row.get(idx - 1), row.get(idx + 1));
+	}
+
+	private Discontinuous getIsDiscontinuous() {
+		return new Discontinuous() {
+			@Override
+			public boolean test(boolean nextLadder) {
+				return (nextLadder ? false : true);
+			}
+		};
 	}
 
 	private boolean isMiddleDiscontinuous(boolean before, boolean next) {
