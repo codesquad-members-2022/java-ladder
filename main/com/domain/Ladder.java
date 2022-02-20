@@ -1,12 +1,18 @@
-package main.java.domain;
+package main.com.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Ladder {
-	private static final List<List<String>> ladderForGame = new ArrayList<>();
+	public List<LadderRow> ladderForGame = new ArrayList<>();
+
 	private int width;
+
+	public Ladder() {}
+
+	Ladder(List<LadderRow> rows) {
+		this.ladderForGame = rows;
+	}
 
 	private int getWidth(String[] playerNames){
 		return (playerNames.length * 2) - 1;
@@ -16,17 +22,17 @@ public class Ladder {
 		this.width = getWidth(playerNames);
 	}
 
-	List<String> getLadderRow(int width){
+	LadderRow getLadderRow(int width){
 		LadderRow ladderRow = new LadderRow();
 		return ladderRow.make(width);
 	}
 
-	public List<List<String>> make(int height){
+	public Ladder make(int height){
 		for(int rowNumber = 0; rowNumber < height; rowNumber++){
-			List<String> row = getLadderRow(this.width);
+			LadderRow row = getLadderRow(this.width);
 			ladderForGame.add(row);
 		}
 
-		return ladderForGame;
+		return new Ladder(ladderForGame);
 	}
 }
