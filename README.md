@@ -8,8 +8,22 @@
 간단한 사다리 게임을 구현합니다.  
 
 <details>
-<summary> 📝 Step 1 설명 </summary>
+<summary> 🖼📝 Step 1 결과와 설명 </summary>
 <div markdown="1">
+
+#### 결과
+
+```text
+참여할 사람은 몇 명인가요?
+3
+최대 사다리 높이는 몇 개인가요?
+5
+|-| |
+| |-|
+| |-|
+| |-|
+| | |
+```
 
 0. GameController.run() 메서드에서 시작됩니다.
 1. InputView에서 사용자 입력을 받습니다.
@@ -175,36 +189,20 @@ int[][] lines
 </div>
 </details>
 
-
-
-<details>
-<summary> 🖼 출력 결과 </summary>
-<div markdown="1">
-
-```text
-참여할 사람은 몇 명인가요?
-3
-최대 사다리 높이는 몇 개인가요?
-5
-|-| |
-| |-|
-| |-|
-| |-|
-| | |
-```
-
-</div>
-</details>
+---
 
 # Step2 : 리팩토링 맛보기
-Step1의 코드를 리팩토링 합니다.  
-- 메서드 - 10라인 이하, 한 가지 일만
-- 들여쓰기 - depteh 1단계
-- else문 사용 금지
+
+Step1의 코드를 리팩토링 합니다.
+
 
 <details>
 <summary> 📝 Step2 설명 </summary>
 <div markdown="1">
+
+- [x] 메서드 - 10라인 이하, 한 가지 일만
+- [x] 들여쓰기 - depteh 1단계
+- [x] else문 사용 금지
 
 #### 1. Ladder
 - drawRandomLines() 메서드 분할 -> (drawRandomLine() , drawRandomRadder())
@@ -230,12 +228,11 @@ Step1의 코드를 리팩토링 합니다.
 
 ---
 
-
 # step3 : 사다리 모양 개선
 step2의 코드의 사용자 View를 개선하고 내부 로직을 요구사항에 맞게 리팩토링 합니다.  
 
 <details>
-<summary> 📝 Step 3 설명 </summary>
+<summary> 🖼📝 Step 3 결과와 설명 </summary>
 <div markdown="1">
 
 #### 결과
@@ -253,14 +250,85 @@ step2의 코드의 사용자 View를 개선하고 내부 로직을 요구사항�
 - [x] indent(들여쓰기) depth를 2단계에서 1단계로 줄여라.
 - [x] else를 사용하지 마라.
 - [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
-
-- 이름이 5글자 이상인 경우 앞 3글자, 나머지 .. 으로 표시 (e.g. Dawn McManus -> Daw..)
-- Utils 클래스를 따로 추출
-- 객체의 유효값 체크는 getter로 밖에서 체크하는 것이 아닌 객체 해당 안에서 체크하도록 함
-
+- [x] 이름이 5글자 이상인 경우 앞 3글자, 나머지 .. 으로 표시 (e.g. Dawn McManus -> Daw..)
+- [x] Utils 클래스를 따로 추출
+- [x] 객체의 유효값 체크는 getter로 밖에서 체크하는 것이 아닌 객체 해당 안에서 체크하도록 함
 
 
 </div>
 </details>
+
+---
+
+# step4 : 리팩토링 2
+step3의 코드를 리팩토링 합니다.
+
+<details>
+<summary> 🖼📝 Step 4 : 계층형 테스트(BDD 패턴) 결과와 간단한 코드 설명 </summary>
+<div markdown="1">
+
+- [x] 패키지 분리
+- [x] 테스트 코드를 계층 구조(BDD 패턴) 으로 변경
+- [x] StringUtils.center() 메서드의 리팩토링(분할과 가독성)
+- [x] InputView에서 OutputView 메서드 사용하는 의존성 제거
+- [x] 추가적인 예외처리
+
+![LineTest](https://i.imgur.com/ekvzIjQ.jpg)
+
+![StringUtilsTest](https://i.imgur.com/ppyjmWp.jpg)
+
+계층형 테스트 코드는 이종립님의 [JUnit5로 계층 구조의 테스트 코드 작성하기](https://johngrib.github.io/wiki/junit5-nested/) 글을 참고하여 작성했습니다.   
+Junit5에서 @Nested 어노테이션을 사용했고 `Describe - Context - It` 의 구조로 테스트 대상의 행동에 초점을 맞췄습니다.  
+
+`Describe` - 설명할 테스트 대상 명시  
+`Context` - 테스트 대상이 놓인 상황 설명
+`It` - 테스트 대상의 행동을 설명
+
+위 형태로 작성한 코드 일부분은 아래와 같다.  
+
+```java
+
+@DisplayName("Line 클래스")
+class LineTest {
+
+   @Nested
+   @DisplayName("createLineWithPlayerCount 메소드는")
+   class Describe_createLineWithPlayerCount {
+
+      @Nested
+      @DisplayName("만약 음수값이 주어진다면")
+      class Context_with_negative {
+         @Test
+         @DisplayName("IllegalArgumentException 예외를 던진다.")
+         void it_throws_a_exception() {
+            assertThatThrownBy(() -> Line.createLineWithPlayerCount(-1))
+                    .isInstanceOf(IllegalArgumentException.class);
+         }
+      }
+
+      @Nested
+      @DisplayName("만약 양수 n이 주어진다면")
+      class Context_with_positive {
+         @Test
+         @DisplayName("주어진 n개의 point를 갖고, 사다리가 비어있는 Line 객체를 리턴한다.")
+         void it_returns_a_vaild_line() {
+            Line result = Line.createLineWithPlayerCount(3);
+
+            assertThat(result.isLadder(0)).isFalse();
+            assertThat(result.isLadder(1)).isFalse();
+         }
+      }
+   }
+   
+   // 생략
+}
+
+```
+
+</div>
+</details>
+
+
+---
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fku-kim%2Fjava-ladder&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)

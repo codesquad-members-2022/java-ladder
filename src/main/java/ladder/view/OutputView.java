@@ -1,12 +1,15 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.Line;
+import ladder.domain.Player;
+import ladder.util.StringUtils;
+
 import java.util.List;
 
 public class OutputView {
     private OutputView() {
         throw new IllegalStateException("Utility class");
-    }
-
-    public static void printMessage(String str) {
-        System.out.println(str);
     }
 
     public static void print(Ladder ladder) {
@@ -21,7 +24,10 @@ public class OutputView {
     private static void appendPlayers(StringBuilder sb, List<Player> players) {
         sb.append("   ");
         for (Player player : players) {
-            sb.append(String.format("%5s ", StringUtils.center(player.getName(), 5, ' ')));
+            String modPlayerName = StringUtils.center(player.getName(), 5, ' ');
+            modPlayerName = StringUtils.withLimitLength(modPlayerName, 5);
+
+            sb.append(String.format("%5s ", modPlayerName));
         }
         sb.append("\n");
     }

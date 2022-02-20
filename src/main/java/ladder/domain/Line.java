@@ -1,3 +1,5 @@
+package ladder.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +12,19 @@ public class Line {
 
     public static Line createLineWithPlayerCount(int count) {
         Line line = new Line();
+        line.checkCount(count);
         line.maxLength = count;
         line.points = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             line.points.add(false);
         }
         return line;
+    }
+
+    private void checkCount(int count) {
+        if (count < 0) {
+            throw new IllegalArgumentException("count가 정상 범위를 넘었습니다.");
+        }
     }
 
     public boolean isLadder(int ladderPos) {
