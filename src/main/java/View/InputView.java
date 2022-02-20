@@ -51,7 +51,9 @@ public class InputView {
 
     public static int askLadderHeight() {
         System.out.println(LADDER_HEIGHT_COMMAND);
-        return Integer.parseInt(scanner.nextLine());
+        int height = Integer.parseInt(scanner.nextLine());
+        Validation.checkHeight(height);
+        return height;
     }
 
     private static String[] askResultValues() {
