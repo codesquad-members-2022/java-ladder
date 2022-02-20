@@ -18,12 +18,12 @@ public class Application {
     }
 
     public void run() {
-        init();
-        start();
-        end();
+        initGame();
+        startGame();
+        endGame();
     }
 
-    private void init() {
+    private void initGame() {
         Players players = new Players(InputUtils.getPlayers(iv.playerNames()));
         int height = iv.ladderHeight();
         Ladder ladder = new Ladder(height, players.getTotalNum() - 1);
@@ -31,11 +31,11 @@ public class Application {
         ladderGame.start();
     }
 
-    private void start() {
+    private void startGame() {
         ov.printGame(ladderGame);
     }
 
-    private void end() {
+    private void endGame() {
         iv.close();
     }
 }
