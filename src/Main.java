@@ -14,8 +14,8 @@ public class Main {
         String player="";
 
         //Input 수정해서 Ladder로 넘겨버리자(코드 간결성)
-        players = Arrays.asList(Input.getPlayer().split(","));
-        results = Arrays.asList(Input.getResult().split(","));
+        players = Arrays.asList(Input.getPlayer());
+        results = Arrays.asList(Input.getResult());
         heightOfLadder = Input.getNumber();
 
         Ladder ladder = new Ladder(players, results, heightOfLadder);
