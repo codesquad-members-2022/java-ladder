@@ -47,7 +47,7 @@ public class LadderView {
 
         return new String(sb);
     }
-    
+
     private StringBuilder getStringPaddingOnce(StringBuilder sb, int count) {
         if (count % 2 == 0) {
             return sb.insert(0, ' ');
