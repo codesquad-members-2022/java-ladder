@@ -2,11 +2,10 @@ package domain;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LadderGame {
-
-    private static final String KEY_VALUE_DELIMITER = " : ";
 
     private final Players players;
     private final Ladder ladder;
@@ -26,7 +25,7 @@ public class LadderGame {
 
     public String findResult(String name) {
         if (players.containsPlayer(name)) {
-            return name + KEY_VALUE_DELIMITER + resultMap.get(name);
+            return resultMap.get(name);
         }
         throw new IllegalArgumentException();
     }
@@ -37,6 +36,10 @@ public class LadderGame {
             stringBuilder.append(key).append(KEY_VALUE_DELIMITER).append(resultMap.get(key)).append('\n');
         }
         return stringBuilder.toString();
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getNames();
     }
 
     private void rideLadder() {

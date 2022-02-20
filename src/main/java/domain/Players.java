@@ -5,16 +5,17 @@ import Util.Validation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Players {
 
     private final List<Player> players;
 
     public Players(String[] playerNames) {
-        this.players = splitNames(playerNames);
+        this.players = generatePlayers(playerNames);
     }
 
-    private List<Player> splitNames(String[] playerNames) {
+    private List<Player> generatePlayers(String[] playerNames) {
         List<Player> players = new ArrayList<>();
         for (int i = 0; i < playerNames.length; i++) {
             players.add(new Player(playerNames[i], i));
@@ -40,6 +41,10 @@ public class Players {
 
     public void rideLadder(Ladder ladder) {
         players.forEach(player -> player.ride(ladder));
+    }
+
+    public List<String> getNames() {
+        return players.stream().map(player -> player.name2Text()).collect(Collectors.toList());
     }
 
 }
