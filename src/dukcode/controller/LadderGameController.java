@@ -12,8 +12,8 @@ public class LadderGameController {
         this.ladder = ladder;
     }
 
-    public void initLadder(String[] namePlayers, int height) {
-        ladder.init(namePlayers, height);
+    public void initLadder(String[] namePlayers, String[] results, int height) {
+        ladder.init(namePlayers, results, height);
     }
 
     public void updatePrintView() {

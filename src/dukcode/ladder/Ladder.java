@@ -11,6 +11,7 @@ public class Ladder {
     private int numPlayers;
     private int numSteps;
     private String[] namePlayers;
+    private String[] results;
     private List<Line> ladder;
 
     public Ladder() {}
@@ -42,9 +43,10 @@ public class Ladder {
         return copyLadder;
     }
 
-    public void init(String[] namePlayers, int height) {
+    public void init(String[] namePlayers, String[] results, int height) {
         this.namePlayers = namePlayers;
         this.numPlayers = namePlayers.length;
+        this.results = results;
         this.numSteps = namePlayers.length - 1;
         this.height = height;
 
