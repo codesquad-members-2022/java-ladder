@@ -11,7 +11,7 @@ public class Ladder {
     public Ladder(int countOfPlayer, int height) {
         this.countOfPlayer = countOfPlayer;
         this.height = height;
-        build();
+        createLines();
     }
 
     public int getcurrentPos(int indexOfPlayer) {
@@ -34,7 +34,7 @@ public class Ladder {
         return currentPos;
     }
 
-    private void build() {
+    private void createLines() {
         for (int i = 0; i < height; i++) {
             ladderArr.add(new Line(countOfPlayer));
         }
