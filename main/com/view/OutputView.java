@@ -1,18 +1,25 @@
-package main.java.view;
+package main.com.view;
 
 import java.util.List;
 
+import main.com.domain.Ladder;
+import main.com.domain.LadderLine;
+import main.com.domain.LadderRow;
+
 public class OutputView {
 	private static final String BLANK = " ";
-	public void print(List<List<String>> ladder){
-		for(List<String> row : ladder){
-			printRow(row);
+	private static final String BUFFER = "  ";
+
+	public void print(Ladder ladder){
+		for(LadderRow ladderRow : ladder.ladderForGame){
+			printRow(ladderRow.element);
 		}
 	}
 
-	private void printRow(List<String> row){
-		for(String element : row){
-			System.out.print(element);
+	private void printRow(List<LadderLine> row){
+		System.out.print(BUFFER);
+		for(LadderLine ladderLine : row){
+			System.out.print(ladderLine.element);
 		}
 		System.out.println();
 	}
