@@ -13,14 +13,16 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         System.out.println(INPUT_PERSON_GUIDANCE_MESSAGE);
         String[] names = scanner.nextLine().split(",");
-        if(invalidNameLength(names)){
-            throw new IllegalArgumentException(INPUT_NAME_LENGTH_ERROR_MESSAGE);
-        }
+        invalidNameLength(names);
         return names;
     }
 
     private static boolean invalidNameLength(String[] names) {
-        return Arrays.stream(names).anyMatch(i -> i.length() > 5);
+        boolean isMatch = Arrays.stream(names).anyMatch(i -> i.length() > 5);
+        if(!isMatch){
+            throw new IllegalArgumentException(INPUT_NAME_LENGTH_ERROR_MESSAGE);
+        }
+        return isMatch;
     }
 
     public static String[] requestResult(){
