@@ -21,6 +21,4 @@ public class ScanView {
         System.out.println("최대 사다리 높이 는 몇 개 인가요?");
         return sc.nextInt();
     }
-
-
 }
