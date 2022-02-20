@@ -9,16 +9,16 @@ public class Line {
 
     public Line(int countOfPerson) {
         int limitRouteSize = countOfPerson - 1;
-        for(int i = 0; i < limitRouteSize; i++){
+        for (int i = 0; i < limitRouteSize; i++) {
             points.add(checkHorizonPoint(points, i));
         }
     }
 
-    public ArrayList<Boolean> getPoints(){
+    public ArrayList<Boolean> getPoints() {
         return points;
     }
 
-    private Boolean checkHorizonPoint(List<Boolean> tempList, int userCnt){
+    private Boolean checkHorizonPoint(List<Boolean> tempList, int userCnt) {
         Random random = new Random();
         if (userCnt < 1) {
             return random.nextBoolean();

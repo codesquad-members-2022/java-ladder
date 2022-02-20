@@ -1,7 +1,4 @@
-package ladder.view;
-
-import ladder.domain.Line;
-import ladder.domain.UserManager;
+package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,7 @@ public class Ladder {
 
     public Ladder(UserManager userManager, int ladderNum) {
         this.userManager = userManager;
-        userSize = this.userManager.allUserNumber;
+        userSize = this.userManager.userList.size();
         stepSize = ladderNum;
         lineList = new ArrayList<>();
         for (int i = 0; i < stepSize; i++) {
