@@ -23,11 +23,11 @@ public class LadderLine {
 	private void makeLadderLine(int rowIdx) {
 		if (rowIdx % 2 == 1) {
 			ladder.append("|");
-		} else {
-			boolean isStep = isStep();
-			ladder.append(isStep ? "-----" : "     ");
-			previousStep = isStep;
+			return;
 		}
+		boolean isStep = isStep();
+		ladder.append(isStep ? "-----" : "     ");
+		previousStep = isStep;
 	}
 
 	private boolean isStep() {
