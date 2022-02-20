@@ -29,10 +29,6 @@ public class Ladder {
         return copyResults;
     }
 
-    public int getNumPlayers() {
-        return numPlayers;
-    }
-
     public int getHeight() {
         return height;
     }
