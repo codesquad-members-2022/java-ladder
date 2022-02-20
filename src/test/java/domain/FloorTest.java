@@ -1,2 +1,6 @@
-package domain;public class FloorTest {
+package domain;
+
+public class FloorTest {
+
+
 }

@@ -56,7 +56,7 @@ public class InputView {
 
     private static String[] askResultValues() {
         System.out.println(RESULT_VALUES_COMMAND);
-        return scanner.nextLine().replaceAll(" ", "").split(",");
+        return scanner.nextLine().replaceAll(" ", "").split(INPUT_DELIMITER);
     }
 
 

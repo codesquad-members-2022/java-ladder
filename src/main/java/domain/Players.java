@@ -26,14 +26,6 @@ public class Players {
         return players.size();
     }
 
-    public String playersName2Text() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Player player : players) {
-            stringBuilder.append(String.format("%6s", player.name2Text()));
-        }
-        return stringBuilder.toString();
-    }
-
     public boolean containsPlayer(String name) {
         return players.stream().anyMatch(player -> player.isName(name));
     }

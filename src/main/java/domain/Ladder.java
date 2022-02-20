@@ -39,9 +39,11 @@ public class Ladder {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        board.forEach(floor -> stringBuilder.append(floor.toString()).append('\n'));
-        return stringBuilder.toString();
+        return "Ladder{" +
+                "width=" + width +
+                ", height=" + height +
+                ", board=" + board +
+                '}';
     }
 }
 

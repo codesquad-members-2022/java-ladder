@@ -24,14 +24,6 @@ public class LadderGame {
         saveResultMap();
     }
 
-    public String game2Text() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(players.playersName2Text()).append(System.lineSeparator());
-        stringBuilder.append(ladder.toString());
-        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s", result)));
-        return stringBuilder.append(System.lineSeparator()).toString();
-    }
-
     public String findResult(String name) {
         if (players.containsPlayer(name)) {
             return name + KEY_VALUE_DELIMITER + resultMap.get(name);
