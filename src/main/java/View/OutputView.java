@@ -58,6 +58,13 @@ public class OutputView {
         System.out.println(NAME_ERROR_MESSAGE);
     }
 
+    public static String editLength(String value) {
+        if (value.length() > OUTPUT_LENGTH) {
+            return String.format("%6s", value.substring(0, OUTPUT_LENGTH - 2) + "..");
+        }
+        return String.format("%6s",value);
+    }
+
     private static String drawLadder(Ladder ladder) {
         StringBuilder stringBuilder = new StringBuilder();
         int height = ladder.getLadderHeight();
@@ -82,11 +89,6 @@ public class OutputView {
         return BLANK;
     }
 
-    private static String editLength(String value) {
-        if (value.length() > OUTPUT_LENGTH) {
-            return String.format("%6s", value.substring(0, OUTPUT_LENGTH - 2) + "..");
-        }
-        return String.format("%6s",value);
-    }
+
 }
 
