@@ -12,7 +12,7 @@ public class LadderFactory {
         return new RandomLadder(height, numOfPerson);
     }
 
-    public static Ladder makeUserDefineLadder(int height, int numOfPerson){
+    public static Ladder makeUserDefineLadder(int height, int numOfPerson) {
         return new UserDefineLadder(height, numOfPerson);
     }
 }

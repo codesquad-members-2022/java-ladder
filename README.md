@@ -9,7 +9,7 @@
 - [x] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
 
 ## Dion이 리뷰해주신 부분
-- [ ] 코드 포매팅 신경쓰기
+- [x] 코드 포매팅 신경쓰기
 - [ ] Controller에서 사용자 요청 받도록 하는 메서드의 위치 생각해보기
 - [x] 에러 출력은 System.out.error로 변경해주기
 - [ ] Ladder에서 depth 2가 지켜지지 않은 부분 해결하기 (55~58 라인)

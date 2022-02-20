@@ -25,7 +25,7 @@ public class InputView {
         return isMatch;
     }
 
-    public static String[] requestResult(){
+    public static String[] requestResult() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(INPUT_LADDER_RESULT_MESSAGE);
         String[] results = scanner.nextLine().split(",");

@@ -6,7 +6,7 @@ import domain.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractLadder implements Ladder{
+public abstract class AbstractLadder implements Ladder {
     public final String INVALID_HEIGHT_INPUT_MESSAGE = "사다리의 높이는 1이상 이여야 합니다.";
     public final String INVALID_PERSON_NUM_INPUT_MESSAGE = "가능한 사람의 수는 1명 이상입니다.";
 

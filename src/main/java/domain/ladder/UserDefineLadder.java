@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class UserDefineLadder extends AbstractLadder{
+public class UserDefineLadder extends AbstractLadder {
     public UserDefineLadder(int height, int numOfPerson) {
         super(height, numOfPerson);
     }

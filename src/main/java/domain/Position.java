@@ -8,7 +8,7 @@ public class Position {
     private final int y;
 
     public Position(int x, int y) {
-        if(!isValidPosition(x, y)){
+        if(!isValidPosition(x, y)) {
             throw new IllegalArgumentException(POSITION_INPUT_ERROR_MESSAGE);
         }
         this.x = x;

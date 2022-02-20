@@ -10,7 +10,7 @@ public class OutputView {
     public static void showLadder(Ladder ladder, String[] inputNames, String[] results) {
         List<Line> lines = ladder.getLines();
 
-        for(String name : inputNames){
+        for(String name : inputNames) {
             System.out.print(addPadding(name));
         }
         System.out.println();
@@ -18,14 +18,14 @@ public class OutputView {
             showLine(line.getLineInfo());
         }
 
-        for(int i = 0; i < inputNames.length; i++){
+        for(int i = 0; i < inputNames.length; i++) {
             System.out.println(inputNames[i] + " : " + results[ladder.run(i)]);
         }
     }
 
     private static void showLine(int[] line) {
         System.out.print(" ");
-        for(int i = 0; i < line.length-1; i++){
+        for(int i = 0; i < line.length-1; i++) {
             System.out.print("|");
             if(line[i] == Direction.RIGHT.getNum() && line[i+1] == Direction.LEFT.getNum()){
                 System.out.print("-----");
@@ -37,7 +37,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String addPadding(String name){
+    private static String addPadding(String name) {
         switch (name.length()){
             case 1:
                 return "  " + name + "  ";

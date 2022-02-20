@@ -7,7 +7,7 @@ import domain.Position;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class RandomLadder extends AbstractLadder{
+public class RandomLadder extends AbstractLadder {
     public static final double DEFAULT_PERCENT = 0.3;
 
     public RandomLadder(int height, int numOfPerson) {
@@ -42,7 +42,7 @@ public class RandomLadder extends AbstractLadder{
         }
     }
 
-    List<Position> toPositions(int[] positions){
+    List<Position> toPositions(int[] positions) {
         List<Position> list = new ArrayList<>();
         for (int position : positions) {
             int[] ints = ladderSize.convertPositionToXY(position);
@@ -56,7 +56,7 @@ public class RandomLadder extends AbstractLadder{
                 .anyMatch(p -> p == randomPosition || p == randomPosition-1 || p == randomPosition+1);
     }
 
-    private static int randomRangeInt(int min, int max){
+    private static int randomRangeInt(int min, int max) {
         Random random = new Random();
         return random.nextInt((max-min) + 1) + min;
     }

@@ -7,7 +7,7 @@ public class Line {
     private final int[] columns;
 
     public Line(int numOfPerson) {
-        if(!isValidPersonNumber(numOfPerson)){
+        if(!isValidPersonNumber(numOfPerson)) {
             throw new IllegalArgumentException(INVALID_INPUT_PERSON_NUMBER_MESSAGE);
         }
         this.columns = new int[numOfPerson];
@@ -22,10 +22,10 @@ public class Line {
     }
 
     public boolean makeLadderAt(int startPosition) {
-        if(!isValidLadderStartPosition(startPosition)){
+        if(!isValidLadderStartPosition(startPosition)) {
             throw new IllegalArgumentException(INVALID_INPUT_LADDER_POSITION_MESSAGE);
         }
-        if(!isAlreadyExistedLadder(startPosition)){
+        if(!isAlreadyExistedLadder(startPosition)) {
             throw new IllegalArgumentException(ALREADY_MAKE_LADDER_MESSAGE);
         }
         columns[startPosition] = Direction.RIGHT.getNum();
@@ -46,11 +46,11 @@ public class Line {
     }
 
     public int switchLadderLine(int startLine) {
-        if(!isMarkedPosition(startLine)){ // 그대로 이동
+        if(!isMarkedPosition(startLine)) { // 그대로 이동
             return startLine;
         }
         // 우측 처리하기
-        if(isSwitchRight(startLine)){
+        if(isSwitchRight(startLine)) {
             return startLine + 1;
         }
         // 좌측 이동하기
