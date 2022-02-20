@@ -17,6 +17,10 @@ public class Ladder {
         board = generateBoard();
     }
 
+    public int getWidth() {
+        return width;
+    }
+
     public int getLadderHeight() {
         return height;
     }
