@@ -22,6 +22,7 @@ public class Application {
         int height = iv.ladderHeight();
         Ladder ladder = new Ladder(height, players.getTotalNum() - 1);
         ladderGame = new LadderGame(ladder, players);
+        ladderGame.start();
         ov.printGame(ladderGame);
         iv.close();
     }

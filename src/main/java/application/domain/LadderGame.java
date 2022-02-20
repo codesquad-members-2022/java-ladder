@@ -12,6 +12,10 @@ public class LadderGame {
         this.players = players;
     }
 
+    public void start() {
+        ladder.createLadder();
+    }
+
     public String screen() {
         return players.output() + ladder.output();
     }

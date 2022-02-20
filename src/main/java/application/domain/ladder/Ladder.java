@@ -18,10 +18,9 @@ public class Ladder {
         this.lines = new ArrayList<>();
         this.height = height;
         this.width = width;
-        this.createLadder();
     }
 
-    private void createLadder() {
+    public void createLadder() {
         for (int row = 0; row < height; ++row) {
             lines.add(createLine());
         }
