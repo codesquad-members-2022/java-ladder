@@ -1,28 +1,36 @@
-package app.jinan159.ladder.meta;
+package app.jinan159.ladder.domain.gamemap;
+
+import app.jinan159.ladder.domain.LadderElement;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class GameMap {
+public class GameMap implements Iterable<GameMapRow> {
 
-    private final List<List<LadderElement>> gameMap;
+    private final static String ALERT_WRONG_POINT_ACCESS = "잘못된 좌표로 접근하셨습니다.";
+
+    private final List<GameMapRow> gameMapRows;
     private final int width;
     private final int height;
 
     public GameMap(int participantCount, int height) {
         this.width = participantCount * 2;
         this.height = height;
-        gameMap = new ArrayList<>(height);
+        gameMapRows = new ArrayList<>(height);
         for (int i = 0; i < height; i++) {
-            gameMap.add(new ArrayList<>(width));
+            gameMapRows.add(new GameMapRow(width));
         }
 
         prepareGameMap(this);
     }
 
     public LadderElement get(int x, int y) {
-        return gameMap.get(y).get(x);
+        return gameMapRows.get(y)
+                .getColumn(x)
+                .orElseThrow(()->new IllegalStateException(ALERT_WRONG_POINT_ACCESS))
+                .getElement();
     }
 
     public int getWidth() {
@@ -31,26 +39,6 @@ public class GameMap {
 
     public int getHeight() {
         return this.height;
-    }
-
-    public String gameMapToString() {
-        StringBuilder sb = new StringBuilder();
-
-        for (List<LadderElement> row : this.gameMap) {
-            sb.append(rowToString(row));
-            sb.append('\n');
-        }
-
-        return sb.toString();
-    }
-
-    private String rowToString(List<LadderElement> row) {
-        StringBuilder sb = new StringBuilder();
-        for (LadderElement col : row) {
-            sb.append(col.getMark());
-        }
-
-        return sb.toString();
     }
 
     private void prepareGameMap(GameMap gameMap) {
@@ -81,10 +69,7 @@ public class GameMap {
         if (isEmptyPosition(x, y)) return LadderElement.EMPTY;
 
         Random isHorizontalLine = new Random();
-
-        if (isHorizontalLine.nextBoolean()) {
-            return LadderElement.H_LINE;
-        }
+        if (isHorizontalLine.nextBoolean()) return LadderElement.H_LINE;
 
         return LadderElement.EMPTY;
     }
@@ -99,7 +84,29 @@ public class GameMap {
     }
 
     private void set(int x, int y, LadderElement value) {
-        gameMap.get(y).add(x, value);
+        gameMapRows.get(y).addColumn(x, new GameMapColumn(value));
     }
 
+    @Override
+    public Iterator<GameMapRow> iterator() {
+        return new GameMapIterator();
+    }
+
+    private class GameMapIterator implements Iterator<GameMapRow> {
+
+        private int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < gameMapRows.size();
+        }
+
+        @Override
+        public GameMapRow next() {
+            GameMapRow row = gameMapRows.get(cursor);
+            cursor++;
+
+            return row;
+        }
+    }
 }
