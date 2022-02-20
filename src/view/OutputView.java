@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package view;
+
+import domain.Line;
+
+import java.util.List;
 
 public class OutputView {
     private static final String userNumberMessage = "참여할 사람은 몇 명인가요?";
@@ -21,23 +25,23 @@ public class OutputView {
 
     public static void printUserNames(String[] userNames){
         for(String eachUserName: userNames){
-            System.out.printf("%5s ",eachUserName);
+            System.out.printf("%5s ",eachUserName.substring(0, Math.min( eachUserName.length(), 5) ));
         }
         System.out.println();
     }
 
-    public static void printGraphicalSadari(ArrayList<boolean[]> sadari){
+    public static void printGraphicalSadari(List<Line> sadari){
         StringBuilder graphicSadari = new StringBuilder();
-        for(boolean[] line : sadari){
+        for(Line line : sadari){
             graphicSadari.append( lineToStringline(line) );
         }
         System.out.println(graphicSadari);
     }
 
-    private static StringBuilder lineToStringline(boolean[] line){
+    private static StringBuilder lineToStringline(Line line){
         StringBuilder sb = new StringBuilder();
         sb.append("  "+sero);
-        for(boolean i : line) {
+        for(boolean i : line.getPoints()) {
             sb.append( garoOrSpace(i) );
             sb.append(sero);
         }
