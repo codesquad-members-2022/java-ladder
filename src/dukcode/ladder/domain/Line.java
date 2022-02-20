@@ -32,14 +32,30 @@ public class Line {
     }
 
     public int getNextPosition(int position) {
-        if (position == 0) {
-            return steps.get(0) ? 1 : 0;
+        if (isBoundary(position)) {
+            return getNextPositionOfBoundary(position);
         }
 
+        return getNextPositionOfNonBoundary(position);
+    }
+
+    private boolean isBoundary(int position) {
+        if (position == 0 || position == numSteps) {
+            return true;
+        }
+        return false;
+    }
+
+    private int getNextPositionOfBoundary(int position) {
         if (position == numSteps) {
             return steps.get(numSteps - 1) ? position - 1  : position;
         }
 
+        // position == 0
+        return steps.get(0) ? 1 : 0;
+    }
+
+    private int getNextPositionOfNonBoundary(int position) {
         if (steps.get(position - 1) == true) {
             return position - 1;
         }

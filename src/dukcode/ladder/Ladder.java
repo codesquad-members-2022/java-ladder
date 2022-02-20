@@ -68,11 +68,11 @@ public class Ladder {
     }
 
     public int getResultIdx(int playerIdx) {
-        int result = playerIdx;
+        int position = playerIdx;
         for (int line = 0; line < height; ++line) {
-            result = ladder.get(line).getNextPosition(result);
+            position = ladder.get(line).getNextPosition(position);
         }
 
-        return result;
+        return position;
     }
 }
