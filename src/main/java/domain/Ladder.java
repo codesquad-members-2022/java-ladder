@@ -13,7 +13,7 @@ public class Ladder {
 
     public Ladder(int count, int height) {
         this.width = count - 1;
-        this.height = Validation.checkHeight(height);
+        this.height = height;
         board = generateBoard();
     }
 

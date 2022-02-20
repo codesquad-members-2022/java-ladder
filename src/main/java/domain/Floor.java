@@ -31,7 +31,7 @@ public class Floor {
     }
 
     private void generateFloor() {
-        for (int i = 1; i <= this.size; i++) {
+        for (int i = 0; i < this.size; i++) {
             floor.add(drawPart(floor, i));
         }
     }

@@ -10,6 +10,7 @@ public class GameController {
     public void init() {
         LadderGame ladderGame = InputView.askSettingLadder();
         ladderGame.start();
+        showBoard(ladderGame);
         run(ladderGame);
         InputView.close();
         OutputView.closeGame();
