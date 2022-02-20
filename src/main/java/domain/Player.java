@@ -1,6 +1,7 @@
 package domain;
 
 public class Player {
+    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
     private int position;
@@ -18,11 +19,11 @@ public class Player {
 
     private void movePosition(Ladder ladder, int row) {
         int currentPosition = position;
-        if (ladder.isStep(row, currentPosition)) {
-            moveLeft();
-        }
-        if (ladder.isStep(row, currentPosition + 1)) {
+        if (currentPosition < ladder.getWidth() && ladder.isStep(row, currentPosition)) {
             moveRight();
+        }
+        if (currentPosition > 0 && ladder.isStep(row, currentPosition - 1)) {
+            moveLeft();
         }
     }
 
@@ -54,8 +55,8 @@ public class Player {
     }
 
     private String editNameLength() {
-        if (name.length() > 5) {
-            return name.substring(0, 3) + "..";
+        if (name.length() > MAX_NAME_LENGTH) {
+            return name.substring(0, MAX_NAME_LENGTH-2) + "..";
         }
         return name;
     }
