@@ -51,4 +51,33 @@ public class PlayersService {
 			.collect(toList());
 		return resultOfPlayers;
 	}
+
+	public String getPlayersNames(Players players) {
+		return toText(players.getNames());
+	}
+
+	private String toText(List<String> texts) {
+		StringBuilder sb = new StringBuilder();
+		for (String text : texts) {
+			String formatedText = fixLength(text);
+			sb.append(formatedText);
+		}
+		sb.append(System.lineSeparator());
+		return sb.toString();
+	}
+
+	private String fixLength(String name) {
+		if (name.length() <= SYMBOL_HALF_LENGTH_OF_NAME) {
+			return String.format("%3s   ", name);
+		}
+		return fixRightLength(name);
+	}
+
+	private String fixRightLength(String name) {
+		return String.format("%-6.5s", name);
+	}
+
+	public String getLadderResult(ResultDto resultDto) {
+		return toText(resultDto.getLadderGameResult());
+	}
 }

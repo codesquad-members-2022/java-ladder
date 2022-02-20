@@ -14,6 +14,8 @@ import com.sh.domains.players.dtos.ResultDto;
 
 public class Server {
 	private static final Server SERVER = new Server();
+	public static final String  OUTPUT_RESULT_OF_LADDER = "사다리 결과";
+
 
 	private LadderService ladderService;
 	private PlayersService playersService;
@@ -36,14 +38,24 @@ public class Server {
 			String ladderDrawing = ladderService.resultOfLadder(ladder);
 			Players players = getPlayers(ladder);
 
+			printResultOfLadder(players, ladderDrawing);
 
-			prints.accept(players.getNames());
-			println.accept(ladderDrawing);
 
 		} catch (IllegalArgumentException | NullPointerException exception) {
 			println.accept(exception.getMessage());
 			run();
 		}
+	}
+
+	private void printResultOfLadder(Players players, String ladderDrawing) {
+		println.accept(OUTPUT_RESULT_OF_LADDER);
+		StringBuilder sb = new StringBuilder();
+		String playersNames = playersService.getPlayersNames(players);
+		String resultInput = playersService.getLadderResult(resultDto);
+		sb.append(playersNames)
+			.append(ladderDrawing)
+			.append(resultInput);
+		println.accept(sb.toString());
 	}
 
 	private Players getPlayers(Ladder ladder) {
