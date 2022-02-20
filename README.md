@@ -7,7 +7,7 @@
 * [x] 간단한 사다리 게임을 구현한다.
 * [x] n명의 사람과 m개의 사다리 개수를 입력할 수 있어야 한다.
 * [x] 사다리의 라인은 랜덤 값에 따라 있거나 없을 수도 있다.
-* [x] 사다리가 있으면 -를 표시하고 없으면 " " (공백문자)를 표시한다. 양옆에는 |로 세로를 표시한다.
+* [x] 사다리가 있으면 -를 표시하고 없으면 " " (공백문자)를 표시한다. 양옆에는 `|`로 세로를 표시한다.
 * [x] 사다리 상태를 화면에 출력한다. 어느 시점에 출력할 것인지에 대한 제약은 없다.
 
 ### 프로그래밍 요구사항
@@ -377,11 +377,97 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 
 ### 기능요구사항
 
-* [ ] 사다리 실행 결과를 출력해야 한다.
-* [ ] 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
-* [ ] 이름에 "춘식이"를 입력하면 프로그램을 종료한다.
+* [x] 사다리 실행 결과를 출력해야 한다.
+* [x] 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+* [x] 이름에 "춘식이"를 입력하면 프로그램을 종료한다.
 
 ### 프로그래밍 요구사항
 
-* [ ] setter 메소드를 사용하지 않고 구현한다.
-* [ ] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
+* [x] setter 메소드를 사용하지 않고 구현한다.
+* [x] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
+
+### 구현 과정
+
+#### 1. Player 이름에 따라 결과를 가져오는 로직 구현
+
+* `Ladder` 클래스에서 `for`문을 돌며 Player가 가장 밑에 도착했을 때의 위치를 구한다.
+
+```java
+    public int getResultIdx(int playerIdx) {
+        int position = playerIdx;
+        for (int line = 0; line < height; ++line) {
+            position = ladder.get(line).getNextPosition(position);
+        }
+
+        return position;
+    }
+```
+
+* `Line` 클래스에서 해당 Line에서의 다음 위치를 구한다.
+
+```java
+    public int getNextPosition(int position) {
+        if (isBoundary(position)) {
+            return getNextPositionOfBoundary(position);
+        }
+
+        return getNextPositionOfNonBoundary(position);
+    }
+
+    private boolean isBoundary(int position) {
+        if (position == 0 || position == numSteps) {
+            return true;
+        }
+        return false;
+    }
+
+    // 첫 player 이거나 마지막 player라면 끝 줄만 고려한다.
+    private int getNextPositionOfBoundary(int position) {
+        if (position == numSteps) {
+            return steps.get(numSteps - 1) ? position - 1  : position;
+        }
+
+        // position == 0
+        return steps.get(0) ? 1 : 0;
+    }
+
+    // 중간의 player라면 양쪽을 고려해 연결선을 타고 position을 변경한다.
+    private int getNextPositionOfNonBoundary(int position) {
+        if (steps.get(position - 1) == true) {
+            return position - 1;
+        }
+
+        if (steps.get(position) == true) {
+            return position + 1;
+        }
+
+        return position;
+    }
+```
+
+#### 2. 결과 list 입출력 관련 구현
+
+* 기존 이름을 MAX_LENGTH로 줄이고 줄임표를 붙이는 메서드를 결과 list 출력에 재활용 하기 위해 메서드 이름을 변경하고 결과 list 를 반환하는 함수 추가
+
+```java
+    private String getConsecutiveName(String[] strArray);
+    private String getNameWithEllipsis(String str);
+    private String getNameWithPadding(String str);
+
+    // -->
+
+    private String getConsecutiveString(String[] strArray);
+    private String getStringWithEllipsis(String str);
+    private String getStringWithPadding(String str);
+
+
+    public String[] getResults() {
+        String[] copyResults = new String[numPlayers];
+        System.arraycopy(results, 0, copyResults, 0, numPlayers);
+        return copyResults;
+    }
+```
+
+### 실행 결과
+
+![image](./readme_image/level_5_result.png)
