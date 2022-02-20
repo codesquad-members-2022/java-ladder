@@ -7,6 +7,7 @@ import java.util.List;
 import com.sh.domains.ladders.Ladder;
 import com.sh.domains.ladders.LadderService;
 import com.sh.domains.ladders.dtos.LadderDto;
+import com.sh.domains.players.Players;
 import com.sh.domains.players.PlayersService;
 import com.sh.domains.players.dtos.PlayersDto;
 import com.sh.domains.players.dtos.ResultDto;
@@ -32,13 +33,23 @@ public class Server {
 			ready();
 			toLadder();
 			Ladder ladder = ladderService.createLadder(ladderDto);
-			for (List<Boolean> isLadder : ladder.getLadders()) {  // test
-				prints.accept(isLadder);
-			}
+			String ladderDrawing = ladderService.resultOfLadder(ladder);
+			Players players = getPlayers(ladder);
+
+
+			prints.accept(players.getNames());
+			println.accept(ladderDrawing);
+
 		} catch (IllegalArgumentException | NullPointerException exception) {
 			println.accept(exception.getMessage());
 			run();
 		}
+	}
+
+	private Players getPlayers(Ladder ladder) {
+		List<Integer> resultOfPlayers = ladderService.resultOfPlayers(ladder);
+		Players players = playersService.createPlayers(playersDto, resultDto, resultOfPlayers);
+		return players;
 	}
 
 	private void toLadder() {

@@ -22,6 +22,15 @@ public class LadderService {
 		return ladder;
 	}
 
+	public List<Integer> resultOfPlayers(Ladder ladder) {
+		return ladder.playersResult();
+	}
+
+	public String resultOfLadder(Ladder ladder) {
+		ladder.build();
+		return toLadders(ladder);
+	}
+
 	private String toLadders(Ladder ladders) {
 		StringBuilder sb = new StringBuilder();
 		List<List<Boolean>> laddersBool = ladders.getLadders();

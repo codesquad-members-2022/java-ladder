@@ -54,10 +54,6 @@ public class Players {
 		}
 	}
 
-	public int numberOf() {
-		return this.players.size();
-	}
-
 	public List<String> getNames() {
 		return this.players.stream()
 			.map(Player::getName)
