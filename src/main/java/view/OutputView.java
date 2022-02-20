@@ -7,7 +7,7 @@ import domain.user.User;
 import java.util.List;
 import java.util.Map;
 
-public class OutputUtil {
+public class OutputView {
     private static final String USER_LINE = "|";
     private static final String CONNECTION_LINE = "-----";
     private static final String EMPTY_LINE = "     ";
