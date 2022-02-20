@@ -1,4 +1,4 @@
-package main.java.domain;
+package main.com.domain;
 
 public class NameEditor {
 	private boolean isValidate(String name){
