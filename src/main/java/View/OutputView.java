@@ -16,20 +16,21 @@ public class OutputView {
     private static final String STEP = "-----|";
     private static final String NEW_LINE = System.lineSeparator();
     private static final String KEY_VALUE_DELIMITER = " : ";
+    private static final int OUTPUT_LENGTH = 5;
 
     public static void showPlayerNames(Players players) {
         StringBuilder stringBuilder = new StringBuilder();
-        players.getNames().forEach(name -> stringBuilder.append(String.format("%6s", name)));
+        players.getNames().forEach(name -> stringBuilder.append(editLength(name)));
         System.out.println(stringBuilder.toString());
     }
 
     public static void showLadder(Ladder ladder) {
-        System.out.println(drawLadder(ladder));
+        System.out.print(drawLadder(ladder));
     }
 
     public static void showResults(String[] results) {
         StringBuilder stringBuilder = new StringBuilder();
-        Arrays.stream(results).forEach(result -> stringBuilder.append(String.format("%6s", result)));
+        Arrays.stream(results).forEach(result -> stringBuilder.append(editLength(result)));
         System.out.println(stringBuilder.toString());
     }
 
@@ -79,6 +80,13 @@ public class OutputView {
             return STEP;
         }
         return BLANK;
+    }
+
+    private static String editLength(String value) {
+        if (value.length() > OUTPUT_LENGTH) {
+            return String.format("%6s", value.substring(0, OUTPUT_LENGTH - 2) + "..");
+        }
+        return String.format("%6s",value);
     }
 }
 

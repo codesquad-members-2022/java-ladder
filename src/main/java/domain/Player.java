@@ -1,7 +1,6 @@
 package domain;
 
 public class Player {
-    private static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
     private int position;
@@ -50,14 +49,9 @@ public class Player {
         throw new IllegalArgumentException();
     }
 
-    public String name2Text() {
-        return editNameLength();
+    public String getName() {
+        return this.name;
     }
 
-    private String editNameLength() {
-        if (name.length() > MAX_NAME_LENGTH) {
-            return name.substring(0, MAX_NAME_LENGTH - 2) + "..";
-        }
-        return name;
-    }
+
 }
