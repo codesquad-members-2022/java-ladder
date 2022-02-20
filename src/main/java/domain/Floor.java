@@ -41,6 +41,13 @@ public class Floor {
         floor.addAll(booleans);
     }
 
+    public boolean canDraw(boolean previousElement) {
+        if(previousElement) {
+            return false;
+        }
+        return true;
+    }
+
     private List<Boolean> generateRandomStep() {
         List<Boolean> booleans = new ArrayList<>();
         for (int i = 0; i < this.size ; i++) {
@@ -53,10 +60,10 @@ public class Floor {
         if (index == 0) {
             return drawRandom();
         }
-        if (booleans.get(index - 1)) {
-            return false;
+        if (canDraw(booleans.get(index-1))) {
+            return drawRandom();
         }
-        return drawRandom();
+        return false;
     }
 
     private boolean drawRandom() {
