@@ -8,9 +8,16 @@
 - [x] setter 메소드를 사용하지 않고 구현한다.
 - [x] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
 
-## 호눅스가 수정하라 권고해 주신부분
-- [x] 파일 맨 마지막에 EOF라인 추가하기
-- [ ] LaddserSize 이름 변경하기
+## Dion이 리뷰해주신 부분
+- [ ] 코드 포매팅 신경쓰기
+- [ ] Controller에서 사용자 요청 받도록 하는 메서드의 위치 생각해보기
+- [ ] 에러 출력은 System.out.error로 변경해주기
+- [ ] Ladder에서 depth 2가 지켜지지 않은 부분 해결하기 (55~58 라인)
+- [ ] makeStartPositions() 접근 제어자 수정하기
+- [ ] Line에서의 뷰 출력 수정하기
+- [ ] 상수 사용 부분 수정하기
+- [ ] Validation 하는 부분에서 예외 던지기
+- [ ] @ParameterizedTest를 사용하기
 
 ## Step 5 TO-DO list
 - [x] 사다리 로직 생각하기.
