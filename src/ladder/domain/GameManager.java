@@ -1,7 +1,8 @@
-package ladder.model;
+package ladder.domain;
 
-import ladder.model.ladder.Height;
-import ladder.model.ladder.LadderLines;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.LadderLines;
+import ladder.domain.user.Names;
 import ladder.system.Configuration;
 import ladder.view.InputView;
 import ladder.view.OutputView;
@@ -28,10 +29,11 @@ public class GameManager {
     }
 
     public void startGame() throws Exception {
-        Names names = inputView.getPlayerNames();
-        Height height = inputView.getHeight();
-
-        LadderLines ladderLines = new LadderLines(names.size(), height);
-        outputView.print(ladderLines, names);
+        while (true) {
+            Names names = inputView.getPlayerNames();
+            Height height = inputView.getHeight();
+            LadderLines ladderLines = Configuration.ladder.getLadderLines(names, height);
+            outputView.print(ladderLines, names);
+        }
     }
 }

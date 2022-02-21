@@ -1,10 +1,10 @@
 package ladder.view;
 
-import ladder.model.Name;
-import ladder.model.Names;
-import ladder.model.ladder.LadderLine;
-import ladder.model.ladder.LadderLines;
-import ladder.model.ladder.Point;
+import ladder.domain.ladder.LadderLine;
+import ladder.domain.ladder.LadderLines;
+import ladder.domain.ladder.Point;
+import ladder.domain.user.Name;
+import ladder.domain.user.Names;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +17,7 @@ public class OutputView {
     private static final String LADDER = "-----";
     private static final String NEXT_LINE = "\n";
 
-
-    private OutputView() {
-    }
+    private OutputView() {}
 
     private static final OutputView instance = new OutputView();
 
@@ -49,21 +47,24 @@ public class OutputView {
     private void addLine(StringBuilder stringBuilder, LadderLine line) {
         for (Point point : line.getPoints()) {
             stringBuilder.append(COLUMN);
-            if (point.getDirection().isRight()) {
+            if (point.getDirection().hasRight()) {
                 stringBuilder.append(LADDER);
             }
-            if(!point.getDirection().isRight()){
+            if (!point.getDirection().hasRight()) {
                 stringBuilder.append(EMPTY_LINE);
             }
         }
     }
 
-
     private static void printNames(Names names) {
-        String result = names.getElements().stream()
+        String result = getNames(names);
+        print(result);
+    }
+
+    private static String getNames(Names names) {
+        return names.getElements().stream()
                 .map(Name::getName)
                 .collect(Collectors.joining(EMPTY_LINE));
-        print(result);
     }
 
     private static void print(String result) {

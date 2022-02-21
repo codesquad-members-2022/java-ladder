@@ -1,11 +1,10 @@
-package ladder.model.ladder;
+package ladder.domain.ladder;
 
-import ladder.model.Direction;
-import ladder.model.strategy.DirectionFactory;
-import ladder.model.strategy.PointFactory;
+import ladder.domain.strategy.PointFactory;
 
 public class Point {
 
+    private static final int PREVIOUS = -1;
     private static final int NEXT = 1;
 
     private final int index;
@@ -21,8 +20,11 @@ public class Point {
     }
 
     public int move() {
-        if (this.direction.isRight()) {
-            return index + NEXT;
+        if (this.direction.hasRight()) {
+            return this.index + NEXT;
+        }
+        if (this.direction.hasLeft()) {
+            return this.index + PREVIOUS;
         }
         return this.index;
     }
@@ -36,10 +38,18 @@ public class Point {
     }
 
     public Point last() {
-        return new Point(this.index+ NEXT, DirectionFactory.getLast(this));
+        return PointFactory.getLastPoint(this);
     }
 
     public Direction getDirection() {
         return direction;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "index=" + index +
+                ", direction=" + direction +
+                '}';
     }
 }

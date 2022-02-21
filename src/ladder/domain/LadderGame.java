@@ -1,8 +1,9 @@
-package ladder.model;
+package ladder.domain;
 
-import ladder.model.ladder.Height;
-import ladder.model.ladder.Ladder;
-import ladder.model.ladder.LadderLines;
+import ladder.domain.ladder.Height;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.LadderLines;
+import ladder.domain.user.Names;
 import ladder.system.Configuration;
 
 public class LadderGame {
@@ -15,7 +16,7 @@ public class LadderGame {
 
     private static final LadderGame instance = new LadderGame();
 
-    public static final LadderGame getInstance() {
+    public static LadderGame getInstance() {
         if(instance == null){
             return new LadderGame();
         }
