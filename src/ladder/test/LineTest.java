@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LineTest {
     @Test
@@ -12,7 +13,7 @@ public class LineTest {
         //given
         int countOfPlayer = 15;
         Line line = new Line(countOfPlayer);
-        ArrayList<Boolean> points = line.getPoints();
+        List<Boolean> points = line.getPoints();
         //when
         for (int i = 1; i < points.size(); i++) {
             if (Boolean.TRUE.equals(points.get(i - 1))) {

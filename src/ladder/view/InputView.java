@@ -1,6 +1,5 @@
 package ladder.view;
 
-import ladder.domain.LadderGame;
 import ladder.domain.LadderGameManager;
 
 import java.io.BufferedReader;
@@ -22,22 +21,27 @@ public class InputView {
         return posNumber;
     }
 
-    public static String[] inputStringWithDelimiter(String msg, String delimiter, int max) throws IOException {
+    public static String[] inputStringWithDelimiter(String msg, String delimiter) throws IOException {
         printMessage(msg);
-        return cutToMaximumLength(br.readLine().split(delimiter));
+        return br.readLine().split(delimiter);
     }
 
-    public static String[] cutToMaximumLength(String[] split) {
+    public static String[] inputStringWithDelimiter(String msg, String delimiter, int maximumLength) throws IOException {
+        printMessage(msg);
+        return cutToMaximumLength(br.readLine().split(delimiter), maximumLength);
+    }
+
+    public static String[] cutToMaximumLength(String[] split, int maximumLength) {
         for (int i = 0; i < split.length; i++) {
             String s = split[i];
-            cut(split, i, s);
+            cut(split, i, s, maximumLength);
         }
         return split;
     }
 
-    private static void cut(String[] split, int i, String s) {
+    private static void cut(String[] split, int i, String s, int maximumLength) {
         if (s.length() > LadderGameManager.MAX_NAME_LENGTH) {
-            StringBuilder sb = new StringBuilder(s.substring(0, LadderGameManager.MAX_NAME_LENGTH - SHORTENING.length()));
+            StringBuilder sb = new StringBuilder(s.substring(0, maximumLength - SHORTENING.length()));
             sb.append(SHORTENING);
             split[i] = sb.toString();
         }
@@ -49,5 +53,10 @@ public class InputView {
 
     public static void close() throws IOException {
         br.close();
+    }
+
+    public static String inputRequestNameForResult(String msg) throws IOException {
+        System.out.println(msg);
+        return br.readLine();
     }
 }
