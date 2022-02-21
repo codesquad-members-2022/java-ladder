@@ -1,28 +1,51 @@
 package ladder.view;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class UserInterface {
 
-    Scanner sc;
+    private static final String SEPARATOR = ",";
+    private Scanner sc;
 
     public UserInterface() {
         sc = new Scanner(System.in);
     }
 
-    public ArrayList<String> inputPlayerList() {
-        GameDisplay.guideInputPlayerName();
-        String userInput = sc.nextLine();
-        if (checkInput(userInput)) return null;
+    public List<String> inputPlayerList() {
+        String userInput = "";
+        boolean inputFlag = true;
+        while (inputFlag) {
+            GameDisplay.guidePlayerNameInput();
+            userInput = sc.nextLine();
+            inputFlag = checkInput(userInput);
+        }
 
-        return getPlayerList(userInput);
+        return getElementList(userInput);
+    }
+
+    public List<String> inputExecutionResult() {
+        String userInput = "";
+        boolean inputFlag = true;
+        while (inputFlag) {
+            GameDisplay.guideExecutionResultInput();
+            userInput = sc.nextLine();
+            inputFlag = checkInput(userInput);
+        }
+
+        return getElementList(userInput);
     }
 
     public int inputLadderHeight() {
-        GameDisplay.guideInputLadderHeight();
+        GameDisplay.guideLadderHeightInput();
         return Integer.parseInt(sc.nextLine());
+    }
+
+    public String inputPlayerNameForResult() {
+        GameDisplay.guideResultOfPlayer();
+        return sc.nextLine();
     }
 
     private boolean checkInput(String userInput) {
@@ -34,14 +57,13 @@ public class UserInterface {
         return false;
     }
 
-    private ArrayList<String> getPlayerList(String input) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        String[] players = input.split(",");
+    private List<String> getElementList(String input) {
+        List<String> arrayList = new ArrayList<>();
+        String[] players = input.split(SEPARATOR);
         for (int i = 0; i < players.length; i++) {
             arrayList.add(players[i]);
         }
 
         return arrayList;
     }
-
 }
