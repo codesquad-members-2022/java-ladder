@@ -8,16 +8,16 @@ public class LadderRow {
     private final List<Boolean> steps;
     private final Random random = new Random();
 
-    protected LadderRow(int width) {
+    public LadderRow(int width) {
         steps = new ArrayList<>(width);
         build(width);
     }
 
-    protected boolean hasStepAt(int xPosition) {
+    public boolean hasStepAt(int xPosition) {
         return steps.get(xPosition);
     }
 
-    protected boolean isEmpty(int xPosition) {
+    public boolean isEmpty(int xPosition) {
         return !(hasStepAt(xPosition));
     }
 

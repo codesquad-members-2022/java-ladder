@@ -11,27 +11,27 @@ public class Group {
     private static final char END_POINT_SYMBOL = '*';
     private final List<String> nameList;
 
-    protected Group(String[] names) {
+    public Group(String[] names) {
         this.nameList = buildNameList(names, names.length);
     }
 
-    protected Group(String[] names, int size) {
+    public Group(String[] names, int size) {
         this.nameList = buildNameList(names, size);
     }
 
-    protected int count() {
+    public int count() {
         return nameList.size();
     }
 
-    protected boolean containsName(String name) {
+    public boolean containsName(String name) {
         return nameList.contains(String.format(NAME_FORMAT, name));
     }
 
-    protected int getIndex(String name) {
+    public int getIndex(String name) {
         return nameList.indexOf(String.format(NAME_FORMAT, name));
     }
 
-    protected String getName(int index) {
+    public String getName(int index) {
         return nameList.get(index);
     }
 

@@ -21,7 +21,7 @@ public class Ladder {
     private final Map<Integer, Integer> resultTable = new HashMap<>();
     private final Climber climber = new Climber();
 
-    protected Ladder(int height, int playerCount) {
+    public Ladder(int height, int playerCount) {
         this.height = height;
         this.playerCount = playerCount;
         this.width = playerCount - 1;
