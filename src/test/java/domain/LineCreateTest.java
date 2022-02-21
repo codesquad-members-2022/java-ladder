@@ -49,6 +49,36 @@ public class LineCreateTest {
         assertThatThrownBy(() -> line.makeLadderAt(-1)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 라인_없는경우_방향전환_테스트(){
+        assertThat(line.switchLadderLine(0)).isEqualTo(0);
+        assertThat(line.switchLadderLine(3)).isEqualTo(3);
+    }
+
+    @Test
+    public void 왼쪽으로_이동_테스트() {
+        // given : 0 1 1 0
+        assertThat(line.makeLadderAt(1)).isTrue();
+
+        // when
+        int result = line.switchLadderLine(2);
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    public void 오른쪽으로_이동_테스트() {
+        // given : 0 0 1 1
+        assertThat(line.makeLadderAt(2)).isTrue();
+
+        // when
+        int result = line.switchLadderLine(3);
+
+        // then
+        assertThat(result).isEqualTo(2);
+    }
+
     @AfterEach
     void tearDown() {
         line = null;

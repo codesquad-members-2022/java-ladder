@@ -1,6 +1,8 @@
 package domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,10 +15,9 @@ public class PositionTest {
         assertThat(position).isEqualTo(new Position(3, 4));
     }
 
-    @Test
-    void invalidRangeTest(){
-        assertThatThrownBy(() -> new Position(0, -1)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Position(-1, 0)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Position(-1, -1)).isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @CsvSource({"0,-1","-1,0","-1,-1"})
+    void invalidRangeTest(int x, int y){
+        assertThatThrownBy(() -> new Position(x, y)).isInstanceOf(IllegalArgumentException.class);
     }
 }
