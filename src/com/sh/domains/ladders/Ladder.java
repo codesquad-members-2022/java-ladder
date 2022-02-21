@@ -103,9 +103,10 @@ public class Ladder {
 		Boolean toLeft = isLadder.get(left);
 		Boolean toRight = isLadder.get(right);
 		if (toLeft) {
-			playerIdx = withinRangeOfPlayer(playerIdx - 1);
-		} else if (toRight) {
-			playerIdx = withinRangeOfPlayer(playerIdx + 1);
+			return withinRangeOfPlayer(playerIdx - 1);
+		}
+		if (toRight) {
+			return withinRangeOfPlayer(playerIdx + 1);
 		}
 		return playerIdx;
 	}
