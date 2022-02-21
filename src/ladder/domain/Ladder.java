@@ -4,16 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Ladder {
-    private static final String RAIL = "|";
-    private static final String STEP = "-";
-    private static final String EMPTY = " ";
-    private static final int STEP_WIDTH = Group.NAME_LENGTH_LIMIT + 1;
-    private static final String SECTION_WITH_STEP = RAIL + STEP.repeat(STEP_WIDTH);
-    private static final String SECTION_WITHOUT_STEP = RAIL + EMPTY.repeat(STEP_WIDTH);
-
     private final int height;
     private final int playerCount;
     private final int width;
@@ -34,20 +26,16 @@ public class Ladder {
         return resultTable.get(playerIndex);
     }
 
-    public String render() {
-        return ladderRowList.stream()
-                .map(this::renderRow)
-                .collect(Collectors.joining());
+    public boolean hasStepAt(int xPosition, int yPosition) {
+        return ladderRowList.get(yPosition).hasStepAt(xPosition);
     }
 
-    private StringBuilder renderRow(LadderRow ladderRow) {
-        StringBuilder sb = new StringBuilder();
+    public int getHeight() {
+        return height;
+    }
 
-        for (int i = 0; i < width; i++) {
-            sb.append(ladderRow.hasStepAt(i) ? SECTION_WITH_STEP : SECTION_WITHOUT_STEP);
-        }
-
-        return sb.append(RAIL).append(System.lineSeparator());
+    public int getWidth() {
+        return width;
     }
 
     private void build() {

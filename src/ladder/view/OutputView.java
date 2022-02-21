@@ -12,6 +12,13 @@ public class OutputView {
     private static final String NAME_FORMAT = String.format("%%-%1$d.%1$ds", Group.NAME_LENGTH_LIMIT);
     private static final String OUTRO = "굶주린 야생의 %s(이)가 사다리를 먹어치웠다. 다음은 내 차례다. 나를 기억해ㅈ -END-";
 
+    private static final String RAIL = "|";
+    private static final String STEP = "-";
+    private static final String EMPTY = " ";
+    private static final int STEP_WIDTH = Group.NAME_LENGTH_LIMIT + 1;
+    private static final String SECTION_WITH_STEP = RAIL + STEP.repeat(STEP_WIDTH);
+    private static final String SECTION_WITHOUT_STEP = RAIL + EMPTY.repeat(STEP_WIDTH);
+
     public void printLayout(Ladder ladder, Group playerGroup, Group rewardGroup) {
         System.out.println();
         printGroup(playerGroup);
@@ -44,7 +51,21 @@ public class OutputView {
     }
 
     private void printLadder(Ladder ladder) {
-        System.out.print(ladder.render());
+        System.out.print(renderLadder(ladder));
+    }
+
+    private String renderLadder(Ladder ladder) {
+        return IntStream.range(0, ladder.getHeight())
+                .mapToObj(i -> renderLadderRow(ladder, i))
+                .collect(Collectors.joining());
+    }
+
+    private StringBuilder renderLadderRow(Ladder ladder, int yPosition) {
+        return IntStream.range(0, ladder.getWidth())
+                .mapToObj(i -> ladder.hasStepAt(i, yPosition) ? SECTION_WITH_STEP : SECTION_WITHOUT_STEP)
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .append(RAIL)
+                .append(System.lineSeparator());
     }
 
     private String formatNameToFixedLength(String name) {
