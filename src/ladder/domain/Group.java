@@ -7,8 +7,6 @@ import java.util.stream.Stream;
 
 public class Group {
     public static final int NAME_LENGTH_LIMIT = 5;
-    private static final String NAME_FORMAT = String.format("%%-%1$d.%1$ds", NAME_LENGTH_LIMIT);
-    private static final char END_POINT_SYMBOL = '*';
     private final List<String> nameList;
 
     public Group(String[] names) {
@@ -24,37 +22,35 @@ public class Group {
     }
 
     public boolean containsName(String name) {
-        return nameList.contains(String.format(NAME_FORMAT, name));
+        return nameList.contains(name);
     }
 
     public int getIndex(String name) {
-        return nameList.indexOf(String.format(NAME_FORMAT, name));
+        return nameList.indexOf(name);
     }
 
     public String getName(int index) {
         return nameList.get(index);
     }
 
-    @Override
-    public String toString() {
-        return nameList.stream()
-                .map(s -> END_POINT_SYMBOL + s + ' ')
-                .collect(Collectors.joining());
-    }
-
     private List<String> buildNameList(String[] names, int size) {
         List<String> list = Stream.of(names)
-                .map(this::formatNameToFixedLength)
+                .limit(size)
+                .map(this::truncate)
                 .collect(Collectors.toCollection(ArrayList::new));
 
         while (list.size() < size) {
-            list.add(" ".repeat(NAME_LENGTH_LIMIT));
+            list.add("");
         }
 
         return list;
     }
 
-    private String formatNameToFixedLength(String name) {
-        return String.format(NAME_FORMAT, name);
+    private String truncate(String name) {
+        if (name.length() <= NAME_LENGTH_LIMIT) {
+            return name;
+        }
+
+        return name.substring(0, NAME_LENGTH_LIMIT);
     }
 }

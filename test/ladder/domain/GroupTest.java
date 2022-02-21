@@ -1,52 +1,43 @@
 package ladder.domain;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class GroupTest {
-
-    private static final List<String[]> DUMMY_INPUT = List.of(
+    static final List<String[]> DUMMY_INPUT = List.of(
             new String[]{"ABC", "RATHALOS", "GOLEM", "BEAST"},
             new String[]{"HANNAH", "JK", "HONUX", "FLOWER", "GOAT"},
             new String[]{"HAHAHAHA", "MADNESS", "STRANGE"}
     );
+    final SoftAssertions softly = new SoftAssertions();
 
-    @Test
-    @DisplayName("3가지 입력 시나리오에 대한 머릿수 카운트")
-    void count() {
-        assertAll(() -> assertEquals(new Group(DUMMY_INPUT.get(0)).count(), 4),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(1)).count(), 5),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(2)).count(), 3));
+    Group group;
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 4",
+            "1, 5",
+            "2, 3"
+    })
+    @DisplayName("생성자에 길이가 지정되지 않았을 때 만들어진 객체의 이름 갯수 카운트")
+    void count(int dummyInputIndex, int expected) {
+        group = new Group(DUMMY_INPUT.get(dummyInputIndex));
+        softly.assertThat(group.count()).isEqualTo(expected);
     }
 
-    @Test
-    @DisplayName("생성자에 길이가 지정되었을 때에 대한 머릿수 카운트")
-    void countFixedLength() {
-        assertAll(() -> assertEquals(new Group(DUMMY_INPUT.get(0), 5).count(), 5),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(1), 6).count(), 6),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(2), 7).count(), 7));
-    }
-
-    @Test
-    @DisplayName("3가지 입력 시나리오에 대한 문자열 변환값")
-    void testToString() {
-        assertAll(
-                () -> assertEquals(new Group(DUMMY_INPUT.get(0)).toString(), "*ABC   *RATHA *GOLEM *BEAST "),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(1)).toString(), "*HANNA *JK    *HONUX *FLOWE *GOAT  "),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(2)).toString(), "*HAHAH *MADNE *STRAN "));
-    }
-
-    @Test
-    @DisplayName("생성자에 길이가 지정되었을 때에 대한 문자열 변환값")
-    void testToStringFixedLength() {
-        assertAll(
-                () -> assertEquals(new Group(DUMMY_INPUT.get(0), 5).toString(), "*ABC   *RATHA *GOLEM *BEAST *      "),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(1), 6).toString(), "*HANNA *JK    *HONUX *FLOWE *GOAT  *      "),
-                () -> assertEquals(new Group(DUMMY_INPUT.get(2), 7).toString(), "*HAHAH *MADNE *STRAN *      *      *      *      "));
+    @ParameterizedTest
+    @CsvSource({
+            "0, 5",
+            "1, 6",
+            "2, 7"
+    })
+    @DisplayName("생성자에 길이가 지정되었을 때 만들어진 객체의 이름 갯수 카운트")
+    void countFixedLength(int dummyInputIndex, int expected) {
+        group = new Group(DUMMY_INPUT.get(dummyInputIndex), expected);
+        softly.assertThat(group.count()).isEqualTo(expected);
     }
 }
