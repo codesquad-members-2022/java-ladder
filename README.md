@@ -79,6 +79,16 @@
 - [x] setter 메소드를 사용하지 않고 구현한다.
   - 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
 
+### 4단계 PR 피드백
+
+- 도메인과 출력의 책임분리가 미흡하다. 
+- 접근제어자의 활용이 미숙하다.
+- JUnit 내장 assertion 대신 AssertJ를 사용해 보자.
+- 단위 테스트를 @ParameterizedTest로 개선한다.
+- 단위 테스트는 자동화되어 있어야 하며 출력한 내용을 직접 확인할 필요가 없어야 한다.
+- .idea/java-ladder.iml 파일은 버전관리에 포함할 필요가 없다.
+  - 개인화된 설정을 다루고 있으며, auto-import 시 자동으로 생성되는 파일이기도 하다.
+
 ## 실행결과 예제
 
 ```shell
