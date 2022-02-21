@@ -10,13 +10,14 @@ import java.util.stream.Collectors;
 
 public class Settings {
 
-	public Settings() {}
+	public Settings() {
+	}
 
 	public List<String> getListOfNames() {
 		try {
 			println.accept(OUTPUT_NAME_LIST);
 			String[] validNames = getNames();
-			List<String> names = trimsName(validNames);
+			List<String> names = trimsText(validNames);
 			return names;
 		} catch (IllegalArgumentException e) {
 			println.accept(e.getMessage());
@@ -24,7 +25,19 @@ public class Settings {
 		}
 	}
 
-	private List<String> trimsName(String[] names) {
+	public List<String> getListOfLadderGameResult(int numberOfPeoples) {
+		try {
+			println.accept(OUTPUT_RESULT_OF_GAME);
+			String[] validResultInfo = getResultOfLadder(numberOfPeoples);
+			List<String> results = trimsText(validResultInfo);
+			return results;
+		} catch (IllegalArgumentException e) {
+			println.accept(e.getMessage());
+			return getListOfLadderGameResult(numberOfPeoples);
+		}
+	}
+
+	private List<String> trimsText(String[] names) {
 		return Arrays.stream(names)
 			.parallel()
 			.map(String::trim)
@@ -46,7 +59,13 @@ public class Settings {
 	private String[] getNames() {
 		String inputValue = nextLine();
 		isValidNames(inputValue);
-		return inputValue.split(SYMBOL_NAME_SEPARATOR);
+		return inputValue.split(SYMBOL_SEPARATOR);
+	}
+
+	private String[] getResultOfLadder(int numberOfPeoples) {
+		String inputValue = nextLine();
+		isValidResultInfo(inputValue, numberOfPeoples);
+		return inputValue.split(SYMBOL_SEPARATOR);
 	}
 
 	private int getHeightOfLadder(int minHeight) {

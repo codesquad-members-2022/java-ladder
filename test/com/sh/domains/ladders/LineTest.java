@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
 import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,8 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LineTest {
+import com.sh.domains.ladders.Line;
 
+class LineTest {
 	private int numberOfPeople = 5;
 	private List<Boolean> filledFalseList;
 

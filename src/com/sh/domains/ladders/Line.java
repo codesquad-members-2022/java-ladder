@@ -1,4 +1,4 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -6,8 +6,6 @@ import java.util.function.Predicate;
 
 public class Line {
 	private final List<Boolean> points;
-	private Predicate<Boolean> isTrue = (aBoolean -> aBoolean == true);
-	private BiPredicate<Boolean, Boolean> bothTrue = (a, b) -> (a && b);
 
 	public Line(List<Boolean> points) {
 		isValidLine(points);
@@ -26,7 +24,13 @@ public class Line {
 	}
 
 	private void isContinuousLadder(Boolean a, Boolean b) {
-		if (bothTrue.test(a,b)) {
+		BothTrue compared = new BothTrue() {
+			@Override
+			public boolean isAnd(boolean a, boolean b) {
+				return (a && b);
+			}
+		};
+		if (compared.isAnd(a,b)) {
 			throw new IllegalArgumentException("Line - count");
 		}
 	}

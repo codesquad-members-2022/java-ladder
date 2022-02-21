@@ -1,5 +1,6 @@
-package com.sh.domains;
+package com.sh.domains.ladders;
 
+import static com.sh.domains.players.PlayersTest.*;
 import static com.sh.views.InputVerification.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,46 +12,46 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LadderServiceTest {
+import com.sh.domains.ladders.Ladder;
+import com.sh.domains.ladders.LadderService;
 
-	public static final String TEST_MAX_LENGTH_NAME = "honux";
+class LadderServiceTest {
 	public static final String TEST_SYMBOL_LADDER = "-----";
-	private Players players;
+	public static final int VERTICAL_LENGTH_OF_LADDER = 5;
 	private Ladder ladder;
 	private LadderService ladderService;
 
-	Predicate<String> isNotNull = isStringBlank.negate();
+	static Predicate<String> isNotNull = isStringBlank.negate();
 
 	@BeforeEach
 	void beforeEach() {
 		List<String> names = getNames();
-		players = new Players(names);
-		ladder = new Ladder(names.size(), 5);
-		ladderService = new LadderService(players, ladder);
-	}
-
-	@DisplayName("이름중 가장 긴 이름 5글자 확인")
-	@Test
-	void acceptable_the_result_of_name_length_for_print_out() {
-		String regex = "\\s";
-		String ladderText = ladderService.resultOfPlay();
-		String actual = pickLineAndMaxText(0, regex, ladderText);
-
-		assertEquals(TEST_MAX_LENGTH_NAME, actual);
+		ladder = new Ladder(names.size(), VERTICAL_LENGTH_OF_LADDER);
+		ladderService = new LadderService();
 	}
 
 	@DisplayName("사다리 길이 확인")
 	@Test
 	void acceptable_the_result_of_ladder_length_for_print_out() {
 		String regex = "[\\s\\|]";
-		String ladderText = ladderService.resultOfPlay();
+		String ladderText = ladderService.resultOfLadder(ladder);
 
 		String actual = pickLineAndMaxText(1, regex, ladderText);
 
 		assertEquals(TEST_SYMBOL_LADDER, actual);
 	}
 
-	private String pickLineAndMaxText(int idx, String regex, String ladderText) {
+	/**
+	 * 	출력문이 세로순으로는(y축) 플레이어들 이름, 사다리, 사디리 결과 순입니다.
+	 * 	- 첫째줄 이용한 이름 테스트
+	 * 	- 둘째줄 이후 이용한 사다리 라인 확인 테스트
+	 * 	- 마지막줄 이용한 사다리 결과 테스트
+	 * @param idx
+	 * @param regex
+	 * @param ladderText
+	 * @return
+	 */
+	public static String pickLineAndMaxText(int idx, String regex, String ladderText) {
 		String line = ladderText.split(System.lineSeparator())[idx];
 		String separated = line.replaceAll(regex, ",");
 		String[] datas = separated.split(",");
@@ -58,14 +59,10 @@ class LadderServiceTest {
 		return maxLength;
 	}
 
-	private String maxLengthText(String[] names) {
+	private static String maxLengthText(String[] names) {
 		return Arrays.stream(names)
 			.filter(isNotNull::test)
 			.max((a, b) -> (a.length() - b.length()))
 			.get();
-	}
-
-	public static List<String> getNames() {
-		return List.of("pobi", TEST_MAX_LENGTH_NAME, "crong", "jk");
 	}
 }

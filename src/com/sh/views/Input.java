@@ -13,7 +13,7 @@ public class Input {
 	}
 
 	public static int nextInt() {
-		return scanner.nextInt();
+		return Integer.parseInt(nextLine());
 	}
 
 	public static void scanClose() {
