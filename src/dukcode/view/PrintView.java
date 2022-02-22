@@ -1,66 +1,17 @@
 package dukcode.view;
 
-import dukcode.model.Ladder;
+import dukcode.ladder.view.LadderView;
 
 public class PrintView {
-    private static final String SIDE_RAIL = "|";
-    private static final String STEP = "-----";
-    private static final String BLANK = "     ";
+    private final LadderView ladderView;
 
-    private final Ladder ladder;
-
-    public PrintView(Ladder ladder) {
-        this.ladder = ladder;
+    public PrintView(LadderView ladderView) {
+        this.ladderView = ladderView;
     }
 
-    public void printLadder() {
-        final String[] namePlayer = this.ladder.getNamePlayers();
-        final Boolean[][] ladder = this.ladder.getLadder();
-        final int height = this.ladder.getHeight();
-        final int numSteps = this.ladder.getNumSteps();
-
+    public void printGame() {
         System.out.println("\n실행결과\n");
-        printPlayerName(namePlayer);
-        printLadder(ladder, height, numSteps);
-
+        System.out.println(ladderView.getPlayersName());
+        System.out.println(ladderView.getLadderString());
     }
-
-    private void printPlayerName(String[] namePlayer) {
-        for (String name : namePlayer) {
-            name = getNameWithPadding(name);
-            System.out.print(name + " ");
-        }
-        System.out.println();
-    }
-
-    private String getNameWithPadding(String name) {
-        int count = 0;
-        while (name.length() < 5) {
-            name = count % 2 == 0 ? " " + name : name + " ";
-            count++;
-        }
-
-        return name;
-    }
-
-    private void printLadder(Boolean[][] ladder, int height, int numSteps) {
-        StringBuilder sb = new StringBuilder();
-        for (int line = 0; line < height; ++line) {
-            sb.append(getStringLine(ladder[line], numSteps));
-            sb.append("\n");
-        }
-
-        System.out.println(sb);
-    }
-
-    private StringBuilder getStringLine(Boolean[] line, int numSteps) {
-        StringBuilder strLine = new StringBuilder("  " + SIDE_RAIL);
-        for (int step = 0; step < numSteps; ++step) {
-            strLine.append(line[step] ? STEP : BLANK);
-            strLine.append(SIDE_RAIL);
-        }
-
-        return strLine;
-    }
-
 }

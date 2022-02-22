@@ -1,13 +1,13 @@
 package dukcode.controller;
 
-import dukcode.model.Ladder;
+import dukcode.ladder.Ladder;
 import dukcode.view.PrintView;
 
-public class LadderController {
+public class LadderGameController {
     private final Ladder ladder;
     private final PrintView printView;
 
-    public LadderController(PrintView printView, Ladder ladder) {
+    public LadderGameController(PrintView printView, Ladder ladder) {
         this.printView = printView;
         this.ladder = ladder;
     }
@@ -17,6 +17,6 @@ public class LadderController {
     }
 
     public void updatePrintView() {
-        printView.printLadder();
+        printView.printGame();
     }
 }
