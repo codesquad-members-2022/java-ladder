@@ -1,7 +1,11 @@
+package ladder.view;
+
+import ladder.domain.Ladder;
+import ladder.domain.UserManager;
 
 public class GameManager {
 
-    InputItem inputItem = new InputItem();
+    private InputItem inputItem = new InputItem();
 
     public void start() {
         UserManager userManager = new UserManager(inputItem.inputUserName());

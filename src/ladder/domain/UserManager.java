@@ -1,11 +1,15 @@
+package ladder.domain;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserManager {
-    String allUserRegister;
-    int allUserNumber;
-    ArrayList<Integer> nameLengthGroup;
+    public String allUserRegister;
+    public List<User> userList;
+    public List<Integer> nameLengthGroup;
 
-    public UserManager(ArrayList<User> userList) {
+    public UserManager(List<User> userList) {
+        this.userList = userList;
         StringBuilder sb = new StringBuilder();
         nameLengthGroup = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
@@ -14,10 +18,9 @@ public class UserManager {
             nameLengthGroup.add(user.name.length());
         }
         allUserRegister = sb.toString();
-        allUserNumber = userList.size();
     }
 
-    private String processUserName(User user) {
+    public String processUserName(User user) {
         String userName = user.name;
         int gapSize = initGapSize(user);
         if (user.nameLimitExcess) {
