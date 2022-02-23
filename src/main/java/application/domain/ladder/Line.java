@@ -22,6 +22,10 @@ public class Line {
         return col == 0 || line.get(col - 1) != STEP;
     }
 
+    LadderElement getElement(int col) {
+        return col >= 0 && col < line.size() ? line.get(col) : EMPTY;
+    }
+
     public String output() {
         StringBuilder sb = new StringBuilder();
         for (LadderElement element : line) {

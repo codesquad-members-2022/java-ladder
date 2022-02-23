@@ -40,6 +40,15 @@ public class Ladder {
         return nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY;
     }
 
+    public int go(int row, int col) {
+        if (row == height) {
+            return col;
+        }
+        LadderElement left = lines.get(row).getElement(col - 1);
+        LadderElement right = lines.get(row).getElement(col);
+        return left == STEP ? go(row + 1, col - 1) : right == STEP ? go(row + 1, col + 1) : go(row + 1, col);
+    }
+
     public String output() {
         return lines.stream().map(Line::output).collect(Collectors.joining());
     }

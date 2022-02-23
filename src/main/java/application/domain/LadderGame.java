@@ -27,8 +27,21 @@ public class LadderGame {
     }
 
     public void start() {
+        ladder.createLadder();
         List<Player> playerList = players.getPlayers();
         List<Result> resultList = results.getResults();
+        int num = playerList.size();
+        for (int seq = 0; seq < num; ++seq) {
+            resultMap.put(playerList.get(seq).getName(), resultList.get(ladder.go(0, seq)));
+        }
+    }
+
+    private String resultString(Player player) {
+        return String.format("%s: %s\n", player.getName(), resultMap.get(player.getName()));
+    }
+
+    public String screen() {
+        return players.output() + ladder.output();
     }
 
     @Override
