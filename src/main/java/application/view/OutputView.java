@@ -15,6 +15,10 @@ public class OutputView {
     }
 
     public void printGame(LadderGame game) {
-        System.out.println(game.screen());
+        System.out.println(game);
+    }
+
+    public void printResult(String result) {
+        System.out.println(result);
     }
 }
