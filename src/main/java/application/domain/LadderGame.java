@@ -26,13 +26,13 @@ public class LadderGame {
         this.resultMap = new HashMap<>();
     }
 
-    public void start() {
+    public void setGame() {
         ladder.createLadder();
         List<Player> playerList = players.getPlayers();
         List<Result> resultList = results.getResults();
         int num = playerList.size();
-        for (int seq = 0; seq < num; ++seq) {
-            resultMap.put(playerList.get(seq).getName(), resultList.get(ladder.go(0, seq)));
+        for (int idx = 0; idx < num; ++idx) {
+            resultMap.put(playerList.get(idx).getName(), resultList.get(ladder.go(0, idx)));
         }
     }
 
@@ -40,10 +40,8 @@ public class LadderGame {
         StringBuilder sb = new StringBuilder();
         Result result = resultMap.get(playerName);
         sb.append(result != null ? result.output() : "");
-        if (sb.length() == 0 && playerName.equals(ALL_CMD)) {
-            sb.append(players.getPlayers().stream()
-                    .map(this::resultString)
-                    .collect(Collectors.joining()));
+        if (playerName.equals(ALL_CMD)) {
+            sb.append(players.getPlayers().stream().map(this::resultString).collect(Collectors.joining()));
         }
         return sb.toString();
     }

@@ -35,7 +35,7 @@ public class Application {
     }
 
     private void startGame() {
-        ladderGame.start();
+        ladderGame.setGame();
         ov.printGame(ladderGame);
 
         String playerName;

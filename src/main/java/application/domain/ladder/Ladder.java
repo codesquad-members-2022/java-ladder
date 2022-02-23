@@ -46,7 +46,9 @@ public class Ladder {
         }
         LadderElement left = lines.get(row).getElement(col - 1);
         LadderElement right = lines.get(row).getElement(col);
-        return left == STEP ? go(row + 1, col - 1) : right == STEP ? go(row + 1, col + 1) : go(row + 1, col);
+        return left == STEP ? go(row + 1, col - 1) :
+                right == STEP ? go(row + 1, col + 1) :
+                        go(row + 1, col);
     }
 
     public String output() {
