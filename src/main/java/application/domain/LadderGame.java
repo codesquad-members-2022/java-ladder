@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static application.util.InputUtils.ALL_CMD;
+import static application.util.InputUtils.*;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -36,12 +36,24 @@ public class LadderGame {
         }
     }
 
+    public String getResult(String playerName) {
+        StringBuilder sb = new StringBuilder();
+        Result result = resultMap.get(playerName);
+        sb.append(result != null ? result.output() : "");
+        if (sb.length() == 0 && playerName.equals(ALL_CMD)) {
+            sb.append(players.getPlayers().stream()
+                    .map(this::resultString)
+                    .collect(Collectors.joining()));
+        }
+        return sb.toString();
+    }
     private String resultString(Player player) {
-        return String.format("%s: %s\n", player.getName(), resultMap.get(player.getName()));
+        String playerName = player.getName();
+        return String.format("%s: %s\n", playerName, resultMap.get(playerName).output());
     }
 
     public String screen() {
-        return players.output() + ladder.output();
+        return players.output() + ladder.output() + results.output();
     }
 
     @Override

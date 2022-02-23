@@ -1,5 +1,6 @@
 package application.domain.result;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Results {
@@ -10,11 +11,11 @@ public class Results {
     }
 
     public List<Result> getResults() {
-        return results;
+        return Collections.unmodifiableList(results);
     }
 
     public String output() {
-        return results.stream().map(Result::toString).reduce("", (s1, s2) -> s1 + s2) + '\n';
+        return results.stream().map(Result::output).reduce("", (s1, s2) -> s1 + s2) + '\n';
     }
 
     @Override

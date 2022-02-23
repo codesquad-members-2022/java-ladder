@@ -8,6 +8,8 @@ import application.util.InputUtils;
 import application.view.InputView;
 import application.view.OutputView;
 
+import static application.util.InputUtils.END_CMD;
+
 public class Application {
     private final InputView iv;
     private final OutputView ov;
@@ -28,14 +30,18 @@ public class Application {
     private void initGame() {
         Players players = new Players(InputUtils.getPlayers(iv.playerNames()));
         Results results = new Results(InputUtils.getResult(iv.resultValues()));
-        int height = iv.ladderHeight();
-        Ladder ladder = new Ladder(height, players.getTotalNum() - 1);
+        Ladder ladder = new Ladder(iv.ladderHeight(), players.getTotalNum() - 1);
         ladderGame = new LadderGame(ladder, players, results);
     }
 
     private void startGame() {
         ladderGame.start();
         ov.printGame(ladderGame);
+
+        String playerName;
+        while (!(playerName = iv.playerName()).equals(END_CMD)) {
+            ov.printResult(ladderGame.getResult(playerName));
+        }
     }
 
     private void endGame() {
