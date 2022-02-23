@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputUtils {
+    public static final String ALL_CMD = "all";
     public static final String END_CMD = "춘식이";
     public static final String DELIMITER = ",";
 

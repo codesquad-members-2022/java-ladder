@@ -9,8 +9,14 @@ public class Result {
         this.result = result;
     }
 
+    public String output() {
+        return String.format("%-" + (Ladder.INTERVAL + 1) + "s", result);
+    }
+
     @Override
     public String toString() {
-        return String.format("%-" + (Ladder.INTERVAL + 1) + "s", result);
+        return "Result{" +
+                "result='" + result + '\'' +
+                '}';
     }
 }

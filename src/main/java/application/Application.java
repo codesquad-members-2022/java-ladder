@@ -3,6 +3,7 @@ package application;
 import application.domain.LadderGame;
 import application.domain.ladder.Ladder;
 import application.domain.player.Players;
+import application.domain.result.Results;
 import application.util.InputUtils;
 import application.view.InputView;
 import application.view.OutputView;
@@ -26,9 +27,10 @@ public class Application {
 
     private void initGame() {
         Players players = new Players(InputUtils.getPlayers(iv.playerNames()));
+        Results results = new Results(InputUtils.getResult(iv.resultValues()));
         int height = iv.ladderHeight();
         Ladder ladder = new Ladder(height, players.getTotalNum() - 1);
-        ladderGame = new LadderGame(ladder, players);
+        ladderGame = new LadderGame(ladder, players, results);
     }
 
     private void startGame() {

@@ -9,6 +9,10 @@ public class Players {
         this.players = players;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     public int getTotalNum() {
         return players.size();
     }
