@@ -21,20 +21,12 @@ public class InputView {
 
     public String playerNames() {
         System.out.println(REQUEST_PLAYER_NAMES);
-        return getLine();
+        return sc.next();
     }
 
     public int ladderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
-        return getValue();
-    }
-
-    private int getValue() {
         return sc.nextInt();
-    }
-
-    private String getLine() {
-        return sc.next();
     }
 
     public void close() {

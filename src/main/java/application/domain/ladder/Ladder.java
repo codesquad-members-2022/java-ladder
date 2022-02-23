@@ -1,68 +1,55 @@
 package application.domain.ladder;
 
-import application.domain.ladder.element.Element;
-import application.domain.ladder.element.Line;
-import application.domain.ladder.element.None;
-import application.domain.ladder.element.Pole;
+import application.domain.element.LadderElement;
 
-import static application.util.RandomUtils.nextDouble;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static application.domain.element.LadderElement.*;
+import static application.util.RandomUtils.*;
 
 public class Ladder {
-    private final Shape<Element> shape;
-    private final Line line;
-    private final None none;
-    private final Pole pole;
+    public static final int INTERVAL = 5;
 
-    public Ladder(int height, int width, int maxNameLength) {
-        this.shape = new Shape<>(height, width);
-        this.line = new Line(maxNameLength);
-        this.none = new None(maxNameLength);
-        this.pole = new Pole();
-        createLine();
+    private final List<Line> lines;
+    private final int height;
+    private final int width;
+
+    public Ladder(int height, int width) {
+        this.lines = new ArrayList<>();
+        this.height = height;
+        this.width = width;
     }
 
-    private void createLine() {
-        int height = shape.getHeight();
-        for (int h = 0; h < height; ++h) {
-            createLine(h);
+    public void createLadder() {
+        for (int row = 0; row < height; ++row) {
+            lines.add(createLine());
         }
     }
-    private void createLine(int h) {
-        int width = shape.getWidth();
-        for (int w = 0; w < width; ++w) {
-            try {
-                shape.addElement(h, allocElement(h, w));
-            } catch (IllegalArgumentException e) {
-                throw new RuntimeException(e);
-            }
+
+    private Line createLine() {
+        Line line = new Line();
+        for (int col = 0; col < width; ++col) {
+            line.addElement(createElement(line, col));
         }
+        return line;
     }
-    private Element allocElement(int h, int w) {
-        return nextDouble() * 10 < 5.5 && isValid(h, w) ? line : none;
+
+    private LadderElement createElement(Line line, int col) {
+        return nextDouble() * 10 < 5.5 && line.isValid(col) ? STEP : EMPTY;
     }
-    private boolean isValid(int h, int w) {
-        return w == 0 || (shape.getElement(h, w - 1) != line);
+
+    public String output() {
+        return lines.stream().map(Line::output).collect(Collectors.joining());
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        int height = shape.getHeight();
-        for (int h = 0; h < height; ++h) {
-            appendRow(sb, h);
-        }
-        return sb.toString();
-    }
-
-    private void appendRow(StringBuilder sb, int h) {
-        int width = shape.getWidth();
-        for (int w = 0; w < width; ++w) {
-            sb.append(pole).append(getOutput(shape, h, w));
-        }
-        sb.append('\n');
-    }
-
-    private String getOutput(Shape<Element> shape, int h, int w) {
-        return w < shape.getWidth() - 1 ? shape.getElement(h, w).toString() : "";
+        return "Ladder{" +
+                "lines=" + lines +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }
