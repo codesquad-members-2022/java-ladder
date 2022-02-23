@@ -1,23 +1,22 @@
 package domain;
 
-import Util.Validation;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
 
-    private static final String MARGIN = "    ";
-
     private final int width;
     private final int height;
     private final List<Floor> board;
-    private final Names names;
 
-    public Ladder(Names names, int height) {
-        this.names = names;
-        this.width = names.getPlayersCount()*2-1;
-        this.height = Validation.checkHeight(height);
+    public Ladder(int count, int height) {
+        this.width = count - 1;
+        this.height = height;
         board = generateBoard();
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public int getLadderHeight() {
@@ -27,17 +26,24 @@ public class Ladder {
     public List<Floor> generateBoard() {
         List<Floor> frame = new ArrayList<>();
         for (int row = 0; row < height; row++) {
-            frame.add(new Floor(width));
+            frame.add(Floor.getInstance(width));
         }
         return frame;
     }
 
+
+    public boolean isStep(int row, int col) {
+        return board.get(row).isSTEP(col);
+    }
+
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(names.toString()).append('\n');
-        board.forEach(floor -> stringBuilder.append(MARGIN).append(floor.toString()));
-        return stringBuilder.toString();
+        return "Ladder{" +
+                "width=" + width +
+                ", height=" + height +
+                ", board=" + board +
+                '}';
+
     }
 }
 

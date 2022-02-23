@@ -6,53 +6,68 @@ import java.util.Random;
 
 public class Floor {
 
-    private static final String VERTICAL = "|";
-    private static final String LINE = "-----";
-    private static final String BLANK = "     ";
-    private static final Random random = new Random();
+    private static Random random = new Random();
 
-    private final List<String> floor;
+    private final int size;
+    private final List<Boolean> floor;
 
-    public Floor(int size) {
-        this.floor = generateFloor(size);
+    public Floor(int size, List<Boolean> floor) {
+        this.size = size;
+        this.floor = floor;
     }
 
-    private List<String> generateFloor(int size) {
-        List<String> parts = new ArrayList<>();
-        for (int i = 0; i < size ; i++) {
-            parts.add(drawPart(parts,i));
+    private Floor(int size) {
+        this.size = size;
+        this.floor = new ArrayList<>();
+    }
+
+    public static Floor getInstance(int size) {
+        Floor floor = new Floor(size);
+        floor.generateFloor(floor.generateRandomStep());
+        return floor;
+    }
+
+    public boolean isSTEP(int index) {
+        if (index >= size || index < 0) {
+            throw new IllegalArgumentException();
         }
-        return parts;
+        return floor.get(index);
     }
 
-    private String generateLine(boolean b) {
-        if (b) {
-            return LINE;
+    public void generateFloor(List<Boolean> booleans) {
+        if (booleans.size() > this.size) {
+            throw new IllegalArgumentException();
         }
-        return BLANK;
+        floor.addAll(booleans);
     }
 
-    private String generateRandomLine(List<String> list, int index) {
-        if (index == 1) {
-            return generateLine(random.nextBoolean());
+    public boolean canDraw(boolean previousElement) {
+        if(previousElement) {
+            return false;
         }
-        if (list.get(index - 2).equals(BLANK)) {
-            return generateLine(random.nextBoolean());
-        }
-        return BLANK;
+        return true;
     }
 
-    private String drawPart(List<String> list, int index) {
-        if(index % 2 == 0) {
-            return VERTICAL;
+    private List<Boolean> generateRandomStep() {
+        List<Boolean> booleans = new ArrayList<>();
+        for (int i = 0; i < this.size ; i++) {
+            booleans.add(drawPart(booleans,i));
         }
-        return generateRandomLine(list,index);
+        return booleans;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        floor.forEach(stringBuilder::append);
-        return stringBuilder.append('\n').toString();
+    private boolean drawPart(List<Boolean> booleans, int index) {
+        if (index == 0) {
+            return drawRandom();
+        }
+        if (canDraw(booleans.get(index-1))) {
+            return drawRandom();
+        }
+        return false;
     }
+
+    private boolean drawRandom() {
+        return random.nextBoolean();
+    }
+
 }
