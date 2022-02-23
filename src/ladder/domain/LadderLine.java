@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class LadderLine {
 
-	private final StringBuilder ladder;
 	private static final Random ran = new Random();
-	private boolean previousStep = false;
+
+	private final StringBuilder ladder;
+	private boolean isPreviousStep = false;
 
 	public LadderLine(int userNumber) {
 		ladder = new StringBuilder();
@@ -15,27 +16,23 @@ public class LadderLine {
 	}
 
 	private void makeLadder(int ladderRow) {
-		for (int rowIdx = 1; rowIdx <= ladderRow; rowIdx++) {
-			makeLadderLine(rowIdx);
+		for (int i = 1; i <= ladderRow; i++) {
+			makeLadderLine(i);
 		}
 	}
 
 	private void makeLadderLine(int rowIdx) {
 		if (rowIdx % 2 == 1) {
 			ladder.append("|");
-		} else {
-			boolean isStep = isStep();
-			ladder.append(isStep ? "-----" : "     ");
-			previousStep = isStep;
+			return;
 		}
+		boolean isStep = isStep();
+		ladder.append(isStep ? "-----" : "     ");
+		isPreviousStep = isStep;
 	}
 
 	private boolean isStep() {
-		return !isExistPreviousStep() && ran.nextInt(2) == 0;
-	}
-
-	private boolean isExistPreviousStep() {
-		return previousStep;
+		return !isPreviousStep && ran.nextBoolean();
 	}
 
 	@Override
