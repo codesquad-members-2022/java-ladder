@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="assertj.core" type="repository">
+    <properties maven-id="org.assertj:assertj-core:3.22.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.22.0/assertj-core-3.22.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
