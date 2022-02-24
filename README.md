@@ -7,7 +7,7 @@
 * [x] 간단한 사다리 게임을 구현한다.
 * [x] n명의 사람과 m개의 사다리 개수를 입력할 수 있어야 한다.
 * [x] 사다리의 라인은 랜덤 값에 따라 있거나 없을 수도 있다.
-* [x] 사다리가 있으면 -를 표시하고 없으면 " " (공백문자)를 표시한다. 양옆에는 |로 세로를 표시한다.
+* [x] 사다리가 있으면 -를 표시하고 없으면 " " (공백문자)를 표시한다. 양옆에는 `|`로 세로를 표시한다.
 * [x] 사다리 상태를 화면에 출력한다. 어느 시점에 출력할 것인지에 대한 제약은 없다.
 
 ### 프로그래밍 요구사항
@@ -345,7 +345,7 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
 * [x] indent(인덴트, 들여쓰기) depth를 2단계에서 1단계로 줄여라.
   * [x] depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다.\if문 안에 while문을 사용한다면 depth가 2단계가 된다.
 * [x] else를 사용하지 마라.
-* [ ] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
+* [x] 배열 대신 ArrayList와 Generic을 활용해 구현한다.
 * [ ] 로직을 구현하는 코드에 단위 테스트가 존재해야 한다. 단, UI 처리 로직(System.in, System.out)은 테스트에서 제외한다.
 * [x] 각각의 역할에 맞도록 패키지를 분리하고 접근 제어자를 적절히 사용하도록 리팩토링한다.
 
@@ -359,5 +359,115 @@ private StringBuilder getStringLine(boolean[] line, int numSteps) {
   * [x] 핵심 비지니스 로직을 담당하는 클래스는 `domain` 패키지를 추가한 후 이동한다.
   * [x] 제일 상위 패키지에서는 `main()` 메소드를 가지는 클래스만 위치한다.
 
+### 리팩토링 과정
+
+#### 1. Line 클래스 추가
+
+`Ladder` 클래스에서 이중 `ArrayList` 사용을 지양하기 위해 한 줄의 Line의 정보를 가지는 `Line`클래스를 추가하였다.
+
+#### 2. LadderView 클래스 추가
+
+기존 `PrinvView` 클래스에서 게임의 정보를 모두 표현했는데, 게임을 위한 사용자와 대화하는 출력과, `Ladder`의 정보를 나누기 위해 `Ladder`만의 정보를 보여주는 `LadderView`클래스를 추가하였다.
+
+#### 3. 이름을 변경 없이 받고 PrintView에서 수정하여 출력하도록 변경
+
+기존 플레이어의 이름을 받을 때, `ScanView`클래스에서 사용자의 이름을 변형하여 `Ladder`에 저장했는데, 그대로 저장하고 출력 시에만 최대 길이로 변경하도록 코드를 수정하였다.
+
 ## 사다리 게임 5단계 - 실행 결과 출력
 
+### 기능요구사항
+
+* [x] 사다리 실행 결과를 출력해야 한다.
+* [x] 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다.
+* [x] 이름에 "춘식이"를 입력하면 프로그램을 종료한다.
+
+### 프로그래밍 요구사항
+
+* [x] setter 메소드를 사용하지 않고 구현한다.
+* [x] 단, DTO(Data Transfer Object)는 setter를 사용해도 무방하다.
+
+### 구현 과정
+
+#### 1. Player 이름에 따라 결과를 가져오는 로직 구현
+
+* `Ladder` 클래스에서 `for`문을 돌며 Player가 가장 밑에 도착했을 때의 위치를 구한다.
+
+```java
+    public int getResultIdx(int playerIdx) {
+        int position = playerIdx;
+        for (int line = 0; line < height; ++line) {
+            position = ladder.get(line).getNextPosition(position);
+        }
+
+        return position;
+    }
+```
+
+* `Line` 클래스에서 해당 Line에서의 다음 위치를 구한다.
+
+```java
+    public int getNextPosition(int position) {
+        if (isBoundary(position)) {
+            return getNextPositionOfBoundary(position);
+        }
+
+        return getNextPositionOfNonBoundary(position);
+    }
+
+    private boolean isBoundary(int position) {
+        if (position == 0 || position == numSteps) {
+            return true;
+        }
+        return false;
+    }
+
+    // 첫 player 이거나 마지막 player라면 끝 줄만 고려한다.
+    private int getNextPositionOfBoundary(int position) {
+        if (position == numSteps) {
+            return steps.get(numSteps - 1) ? position - 1  : position;
+        }
+
+        // position == 0
+        return steps.get(0) ? 1 : 0;
+    }
+
+    // 중간의 player라면 양쪽을 고려해 연결선을 타고 position을 변경한다.
+    private int getNextPositionOfNonBoundary(int position) {
+        if (steps.get(position - 1) == true) {
+            return position - 1;
+        }
+
+        if (steps.get(position) == true) {
+            return position + 1;
+        }
+
+        return position;
+    }
+```
+
+#### 2. 결과 list 입출력 관련 구현
+
+* 기존 이름을 MAX_LENGTH로 줄이고 줄임표를 붙이는 메서드를 결과 list 출력에 재활용 하기 위해 메서드 이름을 변경하고 결과 list 를 반환하는 함수 추가
+
+```java
+    private String getConsecutiveName(String[] strArray);
+    private String getNameWithEllipsis(String str);
+    private String getNameWithPadding(String str);
+
+    // -->
+
+    private String getConsecutiveString(String[] strArray);
+    private String getStringWithEllipsis(String str);
+    private String getStringWithPadding(String str);
+
+
+    public String[] getResults() {
+        String[] copyResults = new String[numPlayers];
+        System.arraycopy(results, 0, copyResults, 0, numPlayers);
+        return copyResults;
+    }
+```
+
+### 실행 결과
+
+![image](./readme_image/level_5_result.png)
