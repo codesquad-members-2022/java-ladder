@@ -1,6 +1,7 @@
 package application.domain.result;
 
-import java.util.Collections;
+import application.domain.player.Player;
+
 import java.util.List;
 
 public class Results {
@@ -10,8 +11,8 @@ public class Results {
         this.results = results;
     }
 
-    public List<Result> getResults() {
-        return Collections.unmodifiableList(results);
+    public Result getResult(int index) {
+        return results.get(index);
     }
 
     public String output() {

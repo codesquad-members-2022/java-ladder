@@ -7,7 +7,6 @@ import application.domain.result.Result;
 import application.domain.result.Results;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,11 +27,9 @@ public class LadderGame {
 
     public void setGame() {
         ladder.createLadder();
-        List<Player> playerList = players.getPlayers();
-        List<Result> resultList = results.getResults();
-        int num = playerList.size();
+        int num = players.getTotalNum();
         for (int idx = 0; idx < num; ++idx) {
-            resultMap.put(playerList.get(idx).getName(), resultList.get(ladder.go(0, idx)));
+            resultMap.put(players.getPlayer(idx).getName(), results.getResult(ladder.go(0, idx)));
         }
     }
 
@@ -41,13 +38,9 @@ public class LadderGame {
         Result result = resultMap.get(playerName);
         sb.append(result != null ? result.output() : "");
         if (playerName.equals(ALL_CMD)) {
-            sb.append(players.getPlayers().stream().map(this::resultString).collect(Collectors.joining()));
+            sb.append(players.resultOutput(resultMap));
         }
         return sb.toString();
-    }
-    private String resultString(Player player) {
-        String playerName = player.getName();
-        return String.format("%s: %s\n", playerName, resultMap.get(playerName).output());
     }
 
     public String screen() {
