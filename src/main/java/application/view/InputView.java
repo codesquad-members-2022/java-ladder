@@ -24,9 +24,19 @@ public class InputView {
         return sc.next();
     }
 
+    public String resultValues() {
+        System.out.println(REQUEST_RESULT_VALUES);
+        return sc.next();
+    }
+
     public int ladderHeight() {
         System.out.println(REQUEST_LADDER_HEIGHT);
         return sc.nextInt();
+    }
+
+    public String playerName() {
+        System.out.println(REQUEST_PLAYER_NAME);
+        return sc.next();
     }
 
     public void close() {

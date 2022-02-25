@@ -9,11 +9,16 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String output() {
+        String output = name;
         if (name.length() > Ladder.INTERVAL) {
-            name = name.substring(0, Ladder.INTERVAL - 2).concat("..");
+            output = name.substring(0, Ladder.INTERVAL - 2).concat("..");
         }
-        return String.format("%-" + (Ladder.INTERVAL + 1) + "s", name);
+        return String.format("%-" + (Ladder.INTERVAL + 1) + "s", output);
     }
 
     @Override
