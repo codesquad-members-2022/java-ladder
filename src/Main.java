@@ -1,3 +1,4 @@
+import domain.Game;
 import domain.Ladder;
 import view.Input;
 import view.Output;
@@ -10,13 +11,20 @@ public class Main {
         List<String> players;
         List<String> results;
         int heightOfLadder;
-        players = Arrays.asList(Input.getPlayer().split(","));
-        results = Arrays.asList(Input.getResult().split(","));
+        String player="";
+
+        //Input 수정해서 Ladder로 넘겨버리자(코드 간결성)
+        players = Arrays.asList(Input.getPlayer());
+        results = Arrays.asList(Input.getResult());
         heightOfLadder = Input.getNumber();
 
-        Input.Close();
-
         Ladder ladder = new Ladder(players, results, heightOfLadder);
-        Output.messageAboutLadder(ladder.Info());
+        Output.messageAboutLadder(ladder);
+        Game game = new Game(ladder);
+        while(!player.equals("춘식이")){
+            player = Input.pickPlayer();
+            Output.messageAboutGame(game.play(player));
+        }
+        Input.Close();
     }
 }

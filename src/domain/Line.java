@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Line {
-    private ArrayList<Boolean> points = new ArrayList<>();
+    private final ArrayList<Boolean> points = new ArrayList<>();
 
     public Line(int countOfPerson) {
         // 라인 좌표 값에 선이 있는지 유무 판단하는 로직 추가
@@ -15,7 +15,7 @@ public class Line {
 
     public Boolean get(int index) {
         if (index < 0 || index >= points.size()) {
-            throw new IndexOutOfBoundsException();
+            throw new IllegalArgumentException("1이상의 Line 길이 내에서만 값을 얻을 수 있습니다.");
         }
         return points.get(index);
     }
