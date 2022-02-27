@@ -13,36 +13,37 @@ public class OutputView {
     private static final String EMPTY_LINE = "     ";
     private static final String PADDING = " ";
 
-    public static void printUsers(List<User> users) {
+    public void printUsers(List<User> users) {
         users.forEach(user -> System.out.print(addPadding(user.getName())));
         System.out.println();
     }
 
-    public static void printLadder(List<Line> ladder) {
+    public void printLadder(List<Line> ladder) {
         for (Line line : ladder) {
             System.out.println(PADDING.repeat(2) + printLadderLine(line.getLine()));;
         }
     }
 
-    public static void printItems(List<Item> items) {
+    public void printItems(List<Item> items) {
         items.forEach(item -> System.out.print(addPadding(item.getName())));
-        System.out.println();
+        System.out.println(System.lineSeparator());
     }
 
-    public static void printAllResult(Map<String, String> results) {
+    public void printAllResult(Map<String, String> results) {
         System.out.println("실행 결과");
         for (String user : results.keySet()) {
             System.out.println(user + " : " + results.get(user));
         }
+        System.out.println();
     }
 
-    public static void printSingleResult(String result) {
+    public void printSingleResult(String result) {
         System.out.println("실행 결과");
         System.out.println(result);
         System.out.println();
     }
 
-    private static String printLadderLine(List<Integer> line) {
+    private String printLadderLine(List<Integer> line) {
         StringBuilder sb = new StringBuilder();
         for (int i : line) {
             if (i % 2 == 0) {
@@ -56,7 +57,7 @@ public class OutputView {
         return sb.toString();
     }
 
-    private static String addPadding(String user) {
+    private String addPadding(String user) {
         if (user.length() == 5) {
             return user;
         }

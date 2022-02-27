@@ -4,37 +4,42 @@ import domain.gameservice.GameService;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 
 public class GameController {
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
 
     public void run() {
         boolean status = true;
-        String[] users = InputView.getUserNameInput();
-        String[] results = InputView.getItemsInput();
-        int lineHeight = InputView.getLadderSizeInput();
+        List<String> users = inputView.inputUserName();
+        List<String> results = inputView.inputItems();
+        int lineHeight = inputView.inputLadderSize();
 
         GameService ladderGame = new GameService(lineHeight, users, results);
 
-        OutputView.printUsers(ladderGame.getUsers());
-        OutputView.printLadder(ladderGame.getLadder());
-        OutputView.printItems(ladderGame.getItems());
+        outputView.printUsers(ladderGame.getUsers());
+        outputView.printLadder(ladderGame.getLadder());
+        outputView.printItems(ladderGame.getItems());
 
         ladderGame.playGame();
 
         while (status) {
-            String target = InputView.getResultTargetInput();
-            status = handleTargetInput(target,ladderGame);
+            String target = inputView.inputResultTarget();
+            status = handleTargetInput(target, ladderGame);
         }
     }
 
     public boolean handleTargetInput(String target, GameService ladderGame) {
         if (target.equals("춘식이")) {
             return false;
-        } else if(target.equals("all")){
-            OutputView.printAllResult(ladderGame.getResults());
+        } else if (target.equals("all")) {
+            outputView.printAllResult(ladderGame.getResults());
             return true;
-        }else{
-            OutputView.printSingleResult(ladderGame.getSingleUserResult(target));
+        } else {
+            outputView.printSingleResult(ladderGame.getSingleUserResult(target));
             return true;
         }
     }
