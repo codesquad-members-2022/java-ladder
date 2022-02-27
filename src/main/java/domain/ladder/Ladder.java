@@ -1,18 +1,19 @@
 package domain.ladder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
     private final int ladderWidth;
     private final int ladderHeight;
-    private List<Line> ladders;
+    private final List<Line> ladders;
 
 
     public Ladder(int ladderHeight, int ladderWidth) {
         this.ladderHeight = ladderHeight;
         this.ladderWidth = ladderWidth;
-        initLadder();
+        ladders = initLadder();
     }
 
     public int getLadderSize() {
@@ -20,7 +21,7 @@ public class Ladder {
     }
 
     public List<Line> getLadders() {
-        return ladders;
+        return Collections.unmodifiableList(ladders);
     }
 
     public int move(int rowNumber, int userPoint) {
@@ -45,11 +46,12 @@ public class Ladder {
         return 0;
     }
 
-    private void initLadder() {
-        ladders = new ArrayList<>();
+    private List<Line> initLadder() {
+        List<Line> result = new ArrayList<>();
         for (int i = 0; i < ladderHeight; i++) {
-            ladders.add(Line.createRandomStep(ladderWidth));
+            result.add(Line.createRandomStep(ladderWidth));
         }
+        return result;
     }
 
 

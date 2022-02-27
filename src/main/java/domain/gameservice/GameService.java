@@ -8,10 +8,7 @@ import domain.item.ItemCreator;
 import domain.user.User;
 import domain.user.UserCreator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameService {
     private Map<String, User> users;
@@ -19,8 +16,7 @@ public class GameService {
     private Ladder ladder;
     private Map<String, String> results;
 
-    public GameService( int lineHeight, String[] users,String[] items) {
-
+    public GameService( int lineHeight, List<String> users,List<String> items) {
         this.users = UserCreator.createUserMap(users);
         this.items = ItemCreator.createResultMap(items);
         this.ladder = LadderCreator.createLadder(lineHeight, calculateLadderWidth());
@@ -46,7 +42,7 @@ public class GameService {
     }
 
     public Map<String, String> getResults() {
-        return results;
+        return Collections.unmodifiableMap(results);
     }
 
     public String getSingleUserResult(String username) {
