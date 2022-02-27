@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -10,31 +12,31 @@ public class InputView {
     private static final String TARGET_QUESTION = "결과를 보고 싶은 사람은?";
     private static final String DELIMITER = ",";
 
-    public static String[] getUserNameInput() {
+    public List<String> inputUserName() {
         System.out.println(NAME_INPUT_QUESTION);
 
         String usernames = sc.nextLine();
-        return usernames.split(DELIMITER);
+        return Arrays.asList(usernames.split(DELIMITER));
     }
 
-    public static String[] getItemsInput() {
+    public List<String> inputItems() {
         System.out.println(ITEM_INPUT_QUESTION);
 
         String resuls = sc.nextLine();
-        return resuls.split(DELIMITER);
+        return Arrays.asList(resuls.split(DELIMITER));
     }
 
-    public static int getLadderSizeInput() {
+    public int inputLadderSize() {
         System.out.println(HEIGHT_INPUT_QUESTION);
         return Integer.parseInt(sc.nextLine());
     }
 
-    public static String getResultTargetInput() {
+    public String inputResultTarget() {
         System.out.println(TARGET_QUESTION);
         return sc.nextLine();
     }
 
-    public static void close() {
+    public void close() {
         sc.close();
     }
 }
