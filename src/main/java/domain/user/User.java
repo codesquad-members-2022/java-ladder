@@ -1,8 +1,8 @@
 package domain.user;
 
 public class User {
-    private String name;
-    private int point;
+    private final String name;
+    private final int point;
 
 
     public User(String user, int point) {

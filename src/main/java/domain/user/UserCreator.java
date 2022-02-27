@@ -3,6 +3,7 @@ package domain.user;
 import java.util.HashMap;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Map;
 
 public class UserCreator {
@@ -10,11 +11,11 @@ public class UserCreator {
     private static final int USERNAME_MINLENGTH = 1;
     private Map<String, User> users;
 
-    public UserCreator(String[] users) {
+    public UserCreator(List<String> users) {
         this.users = createUserMap(users);
     }
 
-    public static Map<String, User> createUserMap(String[] users) {
+    public static Map<String, User> createUserMap(List<String> users) {
         int i = 0;
         Map<String, User> map = new HashMap<>();
         for (String user : users) {
